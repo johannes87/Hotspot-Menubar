@@ -6,6 +6,8 @@
 //  Copyright © 2019 Johannes Bittner. All rights reserved.
 //
 
+// TODO: rename to AndroidTetheringHelper
+
 import Cocoa
 
 class ViewController: NSViewController {
