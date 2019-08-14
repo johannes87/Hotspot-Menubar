@@ -9,14 +9,14 @@
 import Cocoa
 
 class SignalStrength {
+    // needs to be in class, not in function; why?
+    let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
+    
+    public func drawStatusItem() {
+        // https://stackoverflow.com/questions/12714923/os-x-icons-size
+        let imageSize = NSSize.init(width: 18.0, height: 18.0)
 
-    // https://stackoverflow.com/questions/12714923/os-x-icons-size
-    let imageSize = NSSize.init(width: 18.0, height: 18.0)
-    
-    var image: NSImage
-    
-    init() {
-        image = NSImage(size: imageSize, flipped: false, drawingHandler: {
+        let statusItemImage = NSImage(size: imageSize, flipped: false, drawingHandler: {
             (dstRect: NSRect) -> Bool in
             
             let path = NSBezierPath()
@@ -29,12 +29,9 @@ class SignalStrength {
             path.lineWidth = 0.25
             path.stroke()
             
-            
             return true
         })
+        
+        statusItem.button?.image = statusItemImage
     }
-    
-    
-
-
 }

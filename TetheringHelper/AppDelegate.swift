@@ -10,16 +10,10 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
-    let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
-
     let signalStrength = SignalStrength()
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Insert code here to initialize your application
-        
-//        statusItem.button?.image = NSImage(named: "statusIcon")
-        statusItem.button?.image = signalStrength.image
+        signalStrength.drawStatusItem()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
