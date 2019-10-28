@@ -13,7 +13,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let signalStrength = SignalStrength()
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        signalStrength.drawStatusItem()
+        signalStrength.setSignalStrength(
+            signalQuality: SignalStrength.SignalQuality.three_bars,
+            signalType: SignalStrength.SignalType.three_g)
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
