@@ -22,13 +22,14 @@ class SignalStrength {
         case four_bars = 4
     }
     
-    enum SignalType {
-        case no_signal
-        case two_g
-        case edge
-        case three_g
-        case hsdpa
-        case lte
+    enum SignalType: String {
+        case no_signal = ""
+        case two_g = "2G"
+        case edge = "E"
+        case three_g = "3G"
+        case hsdpa = "H"
+        case lte = "LTE"
+        case five_g = "5G"
     }
     
     public func setSignalStrength(signalQuality: SignalQuality, signalType: SignalType) {
@@ -84,15 +85,32 @@ class SignalStrength {
                 }
                 
                 func drawSignalType() {
-//                    let textView = NSTextView(frame: NSRect(x: 0, y: 0, width: 18, height: 18))
+                    let fontSmall = NSFont.systemFont(ofSize: 6)
+                    let fontBig = NSFont.systemFont(ofSize: 7)
+
+                    var font: NSFont
+                    if self.signalType == SignalType.lte {
+                        // the string "LTE" requires more space
+                        font = fontSmall
+                    } else {
+                        font = fontBig
+                    }
+
+                    let textFontAttributes = [
+                        NSAttributedString.Key.font: font,
+                        NSAttributedString.Key.foregroundColor: NSColor.black,
+                    ]
+
+                    let signalTypeStr = NSString(string: self.signalType.rawValue)
+                    signalTypeStr.draw(in: dstRect, withAttributes: textFontAttributes)
                 }
                 
                 drawSignalBars()
                 drawSignalType()
-                
+
                 return true
         })
-        
+
         statusItem.button?.image = statusItemImage
     }
 }
