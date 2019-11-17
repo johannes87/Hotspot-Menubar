@@ -57,31 +57,30 @@ class SignalStrength {
                     
                     let bar1Rect = NSRect(x: NSMinX(dstRect), y: NSMinY(dstRect), width: signalBarRectWidth, height: 3)
                     path.appendRect(bar1Rect)
-                    path.stroke()
-                    if self.signalQuality.rawValue > 0 {
+                    if self.signalQuality.rawValue == 1 {
                         path.fill()
                     }
                     
                     let bar2Rect = NSRect(x: NSMinX(dstRect) + signalBarRectWidth+2, y: NSMinY(dstRect), width: signalBarRectWidth, height: 6)
                     path.appendRect(bar2Rect)
-                    path.stroke()
-                    if self.signalQuality.rawValue > 1 {
+                    if self.signalQuality.rawValue == 2 {
                         path.fill()
                     }
                     
                     let bar3Rect = NSRect(x: NSMinX(dstRect) + signalBarRectWidth*2+4, y: NSMinY(dstRect), width: signalBarRectWidth, height: 10)
                     path.appendRect(bar3Rect)
-                    path.stroke()
-                    if self.signalQuality.rawValue > 2 {
+                    if self.signalQuality.rawValue == 3 {
                         path.fill()
                     }
                     
                     let bar4Rect = NSRect(x: NSMinX(dstRect) + signalBarRectWidth*3+6, y: NSMinY(dstRect), width: signalBarRectWidth, height: 14)
                     path.appendRect(bar4Rect)
-                    path.stroke()
-                    if self.signalQuality.rawValue > 3 {
+                    if self.signalQuality.rawValue == 4 {
                         path.fill()
                     }
+
+                    // stroke all the appended rects
+                    path.stroke()
                 }
                 
                 func drawSignalType() {
