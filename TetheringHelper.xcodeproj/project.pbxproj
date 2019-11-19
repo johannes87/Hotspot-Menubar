@@ -7,13 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F1DD414238430ED0038AAE2 /* AndroidConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1DD413238430ED0038AAE2 /* AndroidConnector.swift */; };
 		8F5D7E5922F5CCE200FED4BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D7E5822F5CCE200FED4BE /* AppDelegate.swift */; };
 		8F5D7E5B22F5CCE200FED4BE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D7E5A22F5CCE200FED4BE /* ViewController.swift */; };
 		8F5D7E5D22F5CCE300FED4BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F5D7E5C22F5CCE300FED4BE /* Assets.xcassets */; };
 		8F5D7E6022F5CCE300FED4BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F5D7E5E22F5CCE300FED4BE /* Main.storyboard */; };
+		8FCEF61C23018DA600CB726E /* CellularSignal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCEF61B23018DA600CB726E /* CellularSignal.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8F1DD413238430ED0038AAE2 /* AndroidConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AndroidConnector.swift; sourceTree = "<group>"; };
 		8F5D7E5522F5CCE200FED4BE /* TetheringHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TetheringHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F5D7E5822F5CCE200FED4BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8F5D7E5A22F5CCE200FED4BE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -21,6 +24,7 @@
 		8F5D7E5F22F5CCE300FED4BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8F5D7E6122F5CCE300FED4BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F5D7E6222F5CCE300FED4BE /* TetheringHelper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TetheringHelper.entitlements; sourceTree = "<group>"; };
+		8FCEF61B23018DA600CB726E /* CellularSignal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellularSignal.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +59,8 @@
 			children = (
 				8F5D7E5822F5CCE200FED4BE /* AppDelegate.swift */,
 				8F5D7E5A22F5CCE200FED4BE /* ViewController.swift */,
+				8F1DD413238430ED0038AAE2 /* AndroidConnector.swift */,
+				8FCEF61B23018DA600CB726E /* CellularSignal.swift */,
 				8F5D7E5C22F5CCE300FED4BE /* Assets.xcassets */,
 				8F5D7E5E22F5CCE300FED4BE /* Main.storyboard */,
 				8F5D7E6122F5CCE300FED4BE /* Info.plist */,
@@ -90,7 +96,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1030;
-				LastUpgradeCheck = 1030;
+				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = "Johannes Bittner";
 				TargetAttributes = {
 					8F5D7E5422F5CCE200FED4BE = {
@@ -134,7 +140,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F5D7E5B22F5CCE200FED4BE /* ViewController.swift in Sources */,
+				8F1DD414238430ED0038AAE2 /* AndroidConnector.swift in Sources */,
 				8F5D7E5922F5CCE200FED4BE /* AppDelegate.swift in Sources */,
+				8FCEF61C23018DA600CB726E /* CellularSignal.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,6 +280,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TetheringHelper/TetheringHelper.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = R98YXK78YZ;
@@ -291,6 +300,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TetheringHelper/TetheringHelper.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = R98YXK78YZ;
