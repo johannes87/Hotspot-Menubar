@@ -10,27 +10,9 @@ import Cocoa
 
 class CellularSignal {
     let statusItem: NSStatusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
-    
+
     var signalQuality = SignalQuality.no_signal
     var signalType = SignalType.no_signal
-    
-    enum SignalQuality: Int {
-        case no_signal = 0
-        case one_bar = 1
-        case two_bars = 2
-        case three_bars = 3
-        case four_bars = 4
-    }
-    
-    enum SignalType: String {
-        case no_signal = ""
-        case two_g = "2G"
-        case edge = "E"
-        case three_g = "3G"
-        case hsdpa = "H"
-        case lte = "LTE"
-        case five_g = "5G"
-    }
     
     public func setSignal(signalQuality: SignalQuality, signalType: SignalType) {
         self.signalQuality = signalQuality

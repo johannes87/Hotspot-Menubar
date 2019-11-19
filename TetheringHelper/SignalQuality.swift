@@ -1,0 +1,18 @@
+//
+//  SignalQuality.swift
+//  TetheringHelper
+//
+//  Created by Johannes Bittner on 19.11.19.
+//  Copyright © 2019 Johannes Bittner. All rights reserved.
+//
+
+import Foundation
+
+// TODO: CaseIterable for testing, remove
+enum SignalQuality: Int, CaseIterable {
+    case no_signal = 0
+    case one_bar = 1
+    case two_bars = 2
+    case three_bars = 3
+    case four_bars = 4
+}
