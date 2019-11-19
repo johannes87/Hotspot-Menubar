@@ -35,6 +35,8 @@ class CellularSignal {
     public func setSignal(signalQuality: SignalQuality, signalType: SignalType) {
         self.signalQuality = signalQuality
         self.signalType = signalType
+
+        // explicitly draw UI in main thread, necessary if called from another thread
         DispatchQueue.main.async { self.drawStatusItem() }
     }
     
