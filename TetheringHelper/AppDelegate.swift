@@ -13,31 +13,28 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let cellularSignal = CellularSignal()
     let androidConnector = AndroidConnector()
 
-    func applicationDidFinishLaunching(_ aNotification: Notification) {
-        cellularSignal.setSignal(
-            signalQuality: SignalQuality.no_signal,
-            signalType: SignalType.no_signal)
-
-
+    private func startNetworkLoop() {
         let networkQueue = DispatchQueue(label: "network-queue")
         networkQueue.async {
             while true {
                 print("timestamp \(NSDate().timeIntervalSince1970)")
 
+                self.androidConnector.fetchSignal()
+
                 self.cellularSignal.setSignal(
-                    signalQuality: SignalQuality.allCases.randomElement()!,
-                    signalType: SignalType.allCases.randomElement()!)
+                    signalQuality: self.androidConnector.signalQuality,
+                    signalType: self.androidConnector.signalType)
 
                 // TODO: put time interval into preferences
                 Thread.sleep(forTimeInterval: 1)
             }
         }
+    }
 
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
+        startNetworkLoop()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
     }
-
-
 }
-
