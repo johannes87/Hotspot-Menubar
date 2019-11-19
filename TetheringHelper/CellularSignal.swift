@@ -9,10 +9,9 @@
 import Cocoa
 
 class CellularSignal {
-    let statusItem: NSStatusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
-
-    var signalQuality = SignalQuality.no_signal
-    var signalType = SignalType.no_signal
+    private let statusItem: NSStatusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
+    private var signalQuality = SignalQuality.no_signal
+    private var signalType = SignalType.no_signal
     
     public func setSignal(signalQuality: SignalQuality, signalType: SignalType) {
         self.signalQuality = signalQuality
