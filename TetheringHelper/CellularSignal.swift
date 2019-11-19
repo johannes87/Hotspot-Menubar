@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class SignalStrength {
+class CellularSignal {
     let statusItem: NSStatusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
     
     var signalQuality = SignalQuality.no_signal
@@ -32,7 +32,7 @@ class SignalStrength {
         case five_g = "5G"
     }
     
-    public func setSignalStrength(signalQuality: SignalQuality, signalType: SignalType) {
+    public func setSignal(signalQuality: SignalQuality, signalType: SignalType) {
         self.signalQuality = signalQuality
         self.signalType = signalType
         drawStatusItem()
@@ -55,26 +55,26 @@ class SignalStrength {
                     path.lineWidth = CGFloat(signalBarLineWidth)
                     NSColor.black.setStroke()
                     
-                    let bar1Rect = NSRect(x: NSMinX(dstRect), y: NSMinY(dstRect), width: signalBarRectWidth, height: 3)
-                    path.appendRect(bar1Rect)
+                    let signalBar1Rect = NSRect(x: NSMinX(dstRect), y: NSMinY(dstRect), width: signalBarRectWidth, height: 3)
+                    path.appendRect(signalBar1Rect)
                     if self.signalQuality.rawValue == 1 {
                         path.fill()
                     }
                     
-                    let bar2Rect = NSRect(x: NSMinX(dstRect) + signalBarRectWidth+2, y: NSMinY(dstRect), width: signalBarRectWidth, height: 6)
-                    path.appendRect(bar2Rect)
+                    let signalBar2Rect = NSRect(x: NSMinX(dstRect) + signalBarRectWidth+2, y: NSMinY(dstRect), width: signalBarRectWidth, height: 6)
+                    path.appendRect(signalBar2Rect)
                     if self.signalQuality.rawValue == 2 {
                         path.fill()
                     }
                     
-                    let bar3Rect = NSRect(x: NSMinX(dstRect) + signalBarRectWidth*2+4, y: NSMinY(dstRect), width: signalBarRectWidth, height: 10)
-                    path.appendRect(bar3Rect)
+                    let signalBar3Rect = NSRect(x: NSMinX(dstRect) + signalBarRectWidth*2+4, y: NSMinY(dstRect), width: signalBarRectWidth, height: 10)
+                    path.appendRect(signalBar3Rect)
                     if self.signalQuality.rawValue == 3 {
                         path.fill()
                     }
                     
-                    let bar4Rect = NSRect(x: NSMinX(dstRect) + signalBarRectWidth*3+6, y: NSMinY(dstRect), width: signalBarRectWidth, height: 14)
-                    path.appendRect(bar4Rect)
+                    let signalBar4Rect = NSRect(x: NSMinX(dstRect) + signalBarRectWidth*3+6, y: NSMinY(dstRect), width: signalBarRectWidth, height: 14)
+                    path.appendRect(signalBar4Rect)
                     if self.signalQuality.rawValue == 4 {
                         path.fill()
                     }

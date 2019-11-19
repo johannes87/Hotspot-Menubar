@@ -10,16 +10,16 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-    let signalStrength = SignalStrength()
-    
+    let cellularSignal = CellularSignal()
+
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        signalStrength.setSignalStrength(
-            signalQuality: SignalStrength.SignalQuality.three_bars,
-            signalType: SignalStrength.SignalType.three_g)
+        cellularSignal.setSignal(
+            signalQuality: CellularSignal.SignalQuality.no_signal,
+            signalType: CellularSignal.SignalType.no_signal)
+
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
     }
 
 
