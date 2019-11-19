@@ -35,7 +35,7 @@ class CellularSignal {
     public func setSignal(signalQuality: SignalQuality, signalType: SignalType) {
         self.signalQuality = signalQuality
         self.signalType = signalType
-        drawStatusItem()
+        DispatchQueue.main.async { self.drawStatusItem() }
     }
     
     private func drawStatusItem() {
