@@ -17,7 +17,7 @@ class AndroidConnector {
     }
 
     private func fetchSignal() {
-        // TODO remove dummy values
+        // TODO fetch data from android here
         signalQuality = SignalQuality.allCases.randomElement()!
         signalType = SignalType.allCases.randomElement()!
     }
