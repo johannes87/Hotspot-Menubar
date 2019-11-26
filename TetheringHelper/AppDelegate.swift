@@ -17,9 +17,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let networkQueue = DispatchQueue(label: "network-queue")
         networkQueue.async {
             while true {
-                print("timestamp \(NSDate().timeIntervalSince1970)")
+                print("network loop: time=\(NSDate().timeIntervalSince1970)")
 
-                self.androidConnector.fetchSignal()
+                self.androidConnector.updateSignal()
 
                 self.cellularSignal.setSignal(
                     signalQuality: self.androidConnector.signalQuality,

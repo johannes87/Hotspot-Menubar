@@ -7,3 +7,18 @@
 //
 
 import Foundation
+
+class AndroidConnector {
+    private(set) var signalQuality = SignalQuality.no_signal
+    private(set) var signalType = SignalType.no_signal
+    
+    public func updateSignal() {
+        fetchSignal()
+    }
+
+    private func fetchSignal() {
+        // TODO remove dummy values
+        signalQuality = SignalQuality.allCases.randomElement()!
+        signalType = SignalType.allCases.randomElement()!
+    }
+}
