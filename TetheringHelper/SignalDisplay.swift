@@ -1,5 +1,5 @@
 //
-//  SignalStrengthImage.swift
+//  SignalDisplay.swift
 //  TetheringHelper
 //
 //  Created by Johannes Bittner on 12.08.19.
