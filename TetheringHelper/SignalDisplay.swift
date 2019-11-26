@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class CellularSignal {
+class SignalDisplay {
     private let statusItem: NSStatusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
     private var signalQuality = SignalQuality.no_signal
     private var signalType = SignalType.no_signal
