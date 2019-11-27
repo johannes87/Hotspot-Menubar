@@ -1,5 +1,5 @@
 //
-//  SignalDisplay.swift
+//  SignalStatusItem.swift
 //  TetheringHelper
 //
 //  Created by Johannes Bittner on 12.08.19.
@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class SignalDisplay {
+class SignalStatusItem {
     private let statusItem: NSStatusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
     private var signalQuality = SignalQuality.no_signal
     private var signalType = SignalType.no_signal

@@ -10,7 +10,7 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-    let signalDisplay = SignalDisplay()
+    let signalStatusItem = SignalStatusItem()
     let androidConnector = AndroidConnector()
 
     private func startNetworkLoop() {
@@ -21,7 +21,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
                 self.androidConnector.updateSignal()
 
-                self.signalDisplay.setSignal(
+                self.signalStatusItem.setSignal(
                     signalQuality: self.androidConnector.signalQuality,
                     signalType: self.androidConnector.signalType)
 
