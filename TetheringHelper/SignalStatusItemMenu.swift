@@ -12,18 +12,20 @@ class SignalStatusItemMenu {
     var menu: NSMenu
 
     private var dataUsedMB = 0.0
+
     private static let dataStatisticsMenuItemTitle = NSLocalizedString(
         "Data used: %.2f MB",
         comment: "amount of data used, shown in status item menu")
+
+    private static let pairMenuItemUnpairedTitle = NSLocalizedString(
+        "Pair with phone...",
+        comment: "status item menu item title when phone is not paired yet")
 
     private var dataStatisticsMenuItem = NSMenuItem(
         title: String(format: dataStatisticsMenuItemTitle, 0.0),
         action: #selector(showDataStatistics(sender:)),
         keyEquivalent: "")
 
-    private static let pairMenuItemUnpairedTitle = NSLocalizedString(
-        "Pair with phone...",
-        comment: "status item menu item title when phone is not paired yet")
 
     private var pairMenuItem = NSMenuItem(
         title: pairMenuItemUnpairedTitle,
@@ -31,7 +33,7 @@ class SignalStatusItemMenu {
         keyEquivalent: "")
 
     init() {
-        menu = NSMenu(title: "Some title, where is it?") // TODO: find out where it is
+        menu = NSMenu(title: "")
         menu.autoenablesItems = false
 
         dataStatisticsMenuItem.target = self
