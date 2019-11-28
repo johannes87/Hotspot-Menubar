@@ -9,12 +9,35 @@
 import Cocoa
 
 class SignalStatusItem {
-    private let statusItem: NSStatusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
+    private let statusItem: NSStatusItem = NSStatusBar.system.statusItem(
+        withLength: NSStatusItem.squareLength)
+
     private var signalQuality = SignalQuality.no_signal
     private var signalType = SignalType.no_signal
 
+    private var dataUsedMB = 0.0
+    private static let dataStatisticsMenuItemTitle = NSLocalizedString(
+        "Data used: %.2f MB",
+        comment: "amount of data used, shown in status item menu")
+
+    private var dataStatisticsMenuItem = NSMenuItem(
+        title: String(format: dataStatisticsMenuItemTitle, 0.0),
+        action: #selector(showDataStatistics(sender:)),
+        keyEquivalent: "")
+
+    private static let pairMenuItemUnpairedTitle = NSLocalizedString(
+        "Pair with phone...",
+        comment: "status item menu item title when phone is not paired yet")
+
+    private var pairMenuItem = NSMenuItem(
+        title: pairMenuItemUnpairedTitle,
+        action: #selector(pairPhone(sender:)),
+        keyEquivalent: "")
+
+
     init() {
         self.drawStatusItem()
+        self.createMenu()
     }
 
     public func setSignal(signalQuality: SignalQuality, signalType: SignalType) {
@@ -23,6 +46,31 @@ class SignalStatusItem {
 
         self.drawStatusItem()
     }
+
+    private func createMenu() {
+        let menu = NSMenu(title: "Some title, where is it?") // TODO: find out where it is
+        menu.autoenablesItems = false
+        statusItem.menu = menu
+
+        dataStatisticsMenuItem.target = self
+        menu.insertItem(dataStatisticsMenuItem, at: 0)
+
+        menu.insertItem(NSMenuItem.separator(), at: 1)
+
+        pairMenuItem.target = self
+        menu.insertItem(pairMenuItem, at: 2)
+    }
+
+    @IBAction private func showDataStatistics(sender: Any) {
+        print("show data statistics")
+        dataUsedMB += 1.0 // TODO remove
+        dataStatisticsMenuItem.title = String(format: SignalStatusItem.dataStatisticsMenuItemTitle, dataUsedMB)
+    }
+
+    @IBAction private func pairPhone(sender: Any) {
+        print("pair phone action")
+    }
+
     
     private func drawStatusItem() {
         // explicitly draw UI in main thread, necessary if called from another thread
