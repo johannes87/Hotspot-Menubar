@@ -18,6 +18,7 @@
 		8F71806B23915B230001B80F /* DataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F71806A23915B230001B80F /* DataStorage.swift */; };
 		8FAD0BB2239093C700DDB470 /* SignalStatusItemMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAD0BB1239093C700DDB470 /* SignalStatusItemMenu.swift */; };
 		8FCEF61C23018DA600CB726E /* SignalStatusItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCEF61B23018DA600CB726E /* SignalStatusItem.swift */; };
+		8FED217023A92A15000BCB30 /* ServiceDiscovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FED216F23A92A15000BCB30 /* ServiceDiscovery.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		8F71806A23915B230001B80F /* DataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStorage.swift; sourceTree = "<group>"; };
 		8FAD0BB1239093C700DDB470 /* SignalStatusItemMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalStatusItemMenu.swift; sourceTree = "<group>"; };
 		8FCEF61B23018DA600CB726E /* SignalStatusItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalStatusItem.swift; sourceTree = "<group>"; };
+		8FED216F23A92A15000BCB30 /* ServiceDiscovery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDiscovery.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 				8F1DD417238448DD0038AAE2 /* SignalQuality.swift */,
 				8F1DD415238448B70038AAE2 /* SignalType.swift */,
 				8F1DD413238430ED0038AAE2 /* AndroidConnector.swift */,
+				8FED216F23A92A15000BCB30 /* ServiceDiscovery.swift */,
 				8F5D7E5A22F5CCE200FED4BE /* ViewController.swift */,
 				8F5D7E5C22F5CCE300FED4BE /* Assets.xcassets */,
 				8F5D7E5E22F5CCE300FED4BE /* Main.storyboard */,
@@ -166,6 +169,7 @@
 				8F71806B23915B230001B80F /* DataStorage.swift in Sources */,
 				8F1DD414238430ED0038AAE2 /* AndroidConnector.swift in Sources */,
 				8F5D7E5922F5CCE200FED4BE /* AppDelegate.swift in Sources */,
+				8FED217023A92A15000BCB30 /* ServiceDiscovery.swift in Sources */,
 				8FCEF61C23018DA600CB726E /* SignalStatusItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
