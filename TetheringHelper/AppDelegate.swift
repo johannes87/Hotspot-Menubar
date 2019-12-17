@@ -17,6 +17,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var signalStatusItem: SignalStatusItem!
 
     private func startNetworkThread() {
+        // TODO: check if we can use global .background queue instead, to avoid creating unnecessary queues
         let networkQueue = DispatchQueue(label: "network", qos: .background)
         networkQueue.async {
             while true {
@@ -29,7 +30,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     signalType: self.androidConnector.signalType)
 
                 // TODO: put time interval into preferences
-                Thread.sleep(forTimeInterval: 4)
+                Thread.sleep(forTimeInterval: 10)
             }
         }
     }

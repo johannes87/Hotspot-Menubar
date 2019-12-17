@@ -63,10 +63,4 @@ class SignalStatusItemMenu {
             format: SignalStatusItemMenu.dataStatisticsMenuItemTitle,
             dataUsedMB)
     }
-
-    @IBAction private func pairPhone(sender: Any) {
-
-        
-        print("pair phone action")
-    }
 }
