@@ -8,33 +8,35 @@
 
 import Cocoa
 
+// TODO: implement dark mode
+
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-    let signalStatusItem = SignalStatusItem()
     let androidConnector = AndroidConnector()
+    let dataStorage = DataStorage()
+    var signalStatusItem: SignalStatusItem!
 
-    private func startNetworkLoop() {
-        let networkQueue = DispatchQueue(label: "network-queue")
+    private func startNetworkThread() {
+        let networkQueue = DispatchQueue(label: "network", qos: .background)
         networkQueue.async {
             while true {
                 print("network loop: time=\(NSDate().timeIntervalSince1970)")
 
-                self.androidConnector.updateSignal()
+                self.androidConnector.getSignal()
 
                 self.signalStatusItem.setSignal(
                     signalQuality: self.androidConnector.signalQuality,
                     signalType: self.androidConnector.signalType)
 
                 // TODO: put time interval into preferences
-                Thread.sleep(forTimeInterval: 1)
+                Thread.sleep(forTimeInterval: 4)
             }
         }
     }
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        startNetworkLoop()
+        signalStatusItem = SignalStatusItem(androidConnector)
+        startNetworkThread()
     }
 
-    func applicationWillTerminate(_ aNotification: Notification) {
-    }
 }

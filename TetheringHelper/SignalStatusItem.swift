@@ -9,27 +9,27 @@
 import Cocoa
 
 class SignalStatusItem {
-    private let statusItem: NSStatusItem = NSStatusBar.system.statusItem(
-        withLength: NSStatusItem.squareLength)
-    private let statusItemMenu = SignalStatusItemMenu()
+    private let statusItem: NSStatusItem
+    private var signalStatusItemMenu: SignalStatusItemMenu!
 
     private var signalQuality = SignalQuality.no_signal
     private var signalType = SignalType.no_signal
 
-    init() {
-        statusItem.menu = statusItemMenu.menu
+    init(_ androidConnector: AndroidConnector) {
+        signalStatusItemMenu = SignalStatusItemMenu(androidConnector: androidConnector)
+        statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
+        statusItem.menu = signalStatusItemMenu.menu
         self.drawStatusItem()
     }
 
     public func setSignal(signalQuality: SignalQuality, signalType: SignalType) {
         self.signalQuality = signalQuality
         self.signalType = signalType
-
         self.drawStatusItem()
     }
 
     private func drawStatusItem() {
-        // explicitly draw UI in main thread, necessary if called from another thread
+        // TODO: understand why DispatchQueue.main.sync doesn't work
         DispatchQueue.main.async {
             // https://stackoverflow.com/questions/12714923/os-x-icons-size
             let imageSize = NSSize.init(width: 18.0, height: 18.0)
@@ -47,7 +47,7 @@ class SignalStatusItem {
         }
     }
 
-    // Used in drawStatusItem to draw the bar shapes for the signalQuality
+    /// Used in drawStatusItem to draw the bar shapes for the signalQuality
     private func drawSignalBars(_ dstRect: NSRect) {
         // TODO: figure out why some lines are drawn fuzzy
         let signalBarLineWidth = 1
@@ -85,7 +85,7 @@ class SignalStatusItem {
         path.stroke()
     }
 
-    // Used in drawStatusItem to draw the text for the signalType (2G, 3G, ...)
+    /// Used in drawStatusItem to draw the text for the signalType (2G, 3G, ...)
     private func drawSignalType(_ dstRect: NSRect) {
         let fontSmall = NSFont.systemFont(ofSize: 6)
         let fontBig = NSFont.systemFont(ofSize: 7)
