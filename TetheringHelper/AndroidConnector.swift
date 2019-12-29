@@ -59,6 +59,7 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate {
 
         netServiceBrowser.delegate = self
         netServiceBrowser.searchForServices(ofType: "_tetheringhelper._tcp.", inDomain: "")
+        // TODO: implement timeout mecahnism for when search didn't find anything
     }
 
     // MARK: Service discovery
@@ -74,9 +75,41 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate {
 
     func netServiceBrowserDidStopSearch(_ browser: NetServiceBrowser) {
         print("Search stopped")
-        // TODO: make sure we detect if service is not found
+        // TODO: implement case where no phone was found
         // https://stackoverflow.com/questions/42717027/ios-bonjour-swift-3-search-never-stops
 
+    }
+
+    func netServiceBrowser(_ browser: NetServiceBrowser, didNotSearch errorDict: [String : NSNumber]) {
+        // TODO: stop search before new search, otherwise activityInProgress
+
+        print("netServiceBrowser didNotSearch")
+        let errorCode = errorDict[NetService.errorCode]!.intValue
+        let error = NetService.ErrorCode.init(rawValue: errorCode)
+
+        print("NetService Error code is:")
+        switch error {
+        case .activityInProgress:
+            print("activityInProgress")
+        case .badArgumentError:
+            print("badArgumentError")
+        case .cancelledError:
+            print("cancelledError")
+        case .collisionError:
+            print("collisionError")
+        case .notFoundError:
+            print("notFoundError")
+        case .none:
+            print("none")
+        case .some(.unknownError):
+            print("some(.unknownError")
+        case .some(.invalidError):
+            print("some(.invalidError)")
+        case .some(.timeoutError):
+            print("some(.timeoutError")
+        case .some(_):
+            print("some(_)")
+        }
     }
 
 }
