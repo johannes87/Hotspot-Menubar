@@ -16,12 +16,11 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate {
     private(set) var signalQuality = SignalQuality.no_signal
     private(set) var signalType = SignalType.no_signal
 
-    private var paired = false
     private var tetheringHelperService: NetService?
 
 
     public func getSignal() {
-        if paired {
+        if tetheringHelperService != nil {
 
 //            let json = getJSONFromAndroid()
 //            let json = JSONSerialization.jsonObject(with: data, options: [])
