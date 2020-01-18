@@ -63,13 +63,13 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate {
 
     // MARK: Service discovery
 
-    func netServiceBrowser(_ browser: NetServiceBrowser, didFind svc: NetService, moreComing: Bool) {
+    func netServiceBrowser(_ browser: NetServiceBrowser, didFind service: NetService, moreComing: Bool) {
         print("Discovered the service")
-        print("- name:", svc.name)
-        print("- type", svc.type)
-        print("- domain:", svc.domain)
+        print("- name:", service.name)
+        print("- type", service.type)
+        print("- domain:", service.domain)
 
-        tetheringHelperService = svc
+        tetheringHelperService = service
     }
 
     func netServiceBrowserDidStopSearch(_ browser: NetServiceBrowser) {
