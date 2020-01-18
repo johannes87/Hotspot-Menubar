@@ -56,9 +56,26 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate {
     @IBAction public func pair(sender: Any) {
         print("connector pair!")
 
+
+        tetheringHelperService = nil
         netServiceBrowser.delegate = self
+        // stop before searching, searchForServices otherwise works only once (subsequent searches
+        // return activityInProgress error)
+        netServiceBrowser.stop()
         netServiceBrowser.searchForServices(ofType: "_tetheringhelper._tcp.", inDomain: "")
-        // TODO: implement timeout mecahnism for when search didn't find anything
+
+        // show user a message if service couldn't be found
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+            self.netServiceBrowser.stop()
+            if self.tetheringHelperService == nil {
+                let alert = NSAlert()
+                alert.messageText = NSLocalizedString("No phone could be found in your network",
+                                                      comment: "user clicks 'pair' and phone couldn't be found: NSAlert messageText")
+                alert.informativeText = NSLocalizedString("Make sure your phone has tethering enabled, the TetheringHelper Android app is running, and you're tethered with your phone.",
+                                                          comment: "explanation what to do when no phone to pair was found")
+                alert.runModal()
+            }
+        })
     }
 
     // MARK: Service discovery
