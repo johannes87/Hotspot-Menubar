@@ -10,10 +10,9 @@
 		8F1DD414238430ED0038AAE2 /* AndroidConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1DD413238430ED0038AAE2 /* AndroidConnector.swift */; };
 		8F1DD416238448B70038AAE2 /* SignalType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1DD415238448B70038AAE2 /* SignalType.swift */; };
 		8F1DD418238448DD0038AAE2 /* SignalQuality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1DD417238448DD0038AAE2 /* SignalQuality.swift */; };
+		8F3D29C523D4DA3700193C23 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F3D29C423D4DA3700193C23 /* MainMenu.xib */; };
 		8F5D7E5922F5CCE200FED4BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D7E5822F5CCE200FED4BE /* AppDelegate.swift */; };
-		8F5D7E5B22F5CCE200FED4BE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D7E5A22F5CCE200FED4BE /* ViewController.swift */; };
 		8F5D7E5D22F5CCE300FED4BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F5D7E5C22F5CCE300FED4BE /* Assets.xcassets */; };
-		8F5D7E6022F5CCE300FED4BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F5D7E5E22F5CCE300FED4BE /* Main.storyboard */; };
 		8F6C36F123995B84009C7865 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8F6C36EF23995B84009C7865 /* DataModel.xcdatamodeld */; };
 		8F71806B23915B230001B80F /* DataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F71806A23915B230001B80F /* DataStorage.swift */; };
 		8FAD0BB2239093C700DDB470 /* SignalStatusItemMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAD0BB1239093C700DDB470 /* SignalStatusItemMenu.swift */; };
@@ -25,11 +24,10 @@
 		8F1DD413238430ED0038AAE2 /* AndroidConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AndroidConnector.swift; sourceTree = "<group>"; };
 		8F1DD415238448B70038AAE2 /* SignalType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalType.swift; sourceTree = "<group>"; };
 		8F1DD417238448DD0038AAE2 /* SignalQuality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalQuality.swift; sourceTree = "<group>"; };
+		8F3D29C423D4DA3700193C23 /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		8F5D7E5522F5CCE200FED4BE /* TetheringHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TetheringHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F5D7E5822F5CCE200FED4BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8F5D7E5A22F5CCE200FED4BE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8F5D7E5C22F5CCE300FED4BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		8F5D7E5F22F5CCE300FED4BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8F5D7E6122F5CCE300FED4BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F5D7E6222F5CCE300FED4BE /* TetheringHelper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TetheringHelper.entitlements; sourceTree = "<group>"; };
 		8F6C36F023995B84009C7865 /* TetheringHelper.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TetheringHelper.xcdatamodel; sourceTree = "<group>"; };
@@ -77,10 +75,9 @@
 				8F1DD417238448DD0038AAE2 /* SignalQuality.swift */,
 				8F1DD415238448B70038AAE2 /* SignalType.swift */,
 				8F1DD413238430ED0038AAE2 /* AndroidConnector.swift */,
+				8F3D29C423D4DA3700193C23 /* MainMenu.xib */,
 				8FED216F23A92A15000BCB30 /* ServiceDiscovery.swift */,
-				8F5D7E5A22F5CCE200FED4BE /* ViewController.swift */,
 				8F5D7E5C22F5CCE300FED4BE /* Assets.xcassets */,
-				8F5D7E5E22F5CCE300FED4BE /* Main.storyboard */,
 				8F5D7E6122F5CCE300FED4BE /* Info.plist */,
 				8F5D7E6222F5CCE300FED4BE /* TetheringHelper.entitlements */,
 			);
@@ -150,7 +147,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F5D7E5D22F5CCE300FED4BE /* Assets.xcassets in Resources */,
-				8F5D7E6022F5CCE300FED4BE /* Main.storyboard in Resources */,
+				8F3D29C523D4DA3700193C23 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,7 +160,6 @@
 			files = (
 				8F1DD416238448B70038AAE2 /* SignalType.swift in Sources */,
 				8F1DD418238448DD0038AAE2 /* SignalQuality.swift in Sources */,
-				8F5D7E5B22F5CCE200FED4BE /* ViewController.swift in Sources */,
 				8FAD0BB2239093C700DDB470 /* SignalStatusItemMenu.swift in Sources */,
 				8F6C36F123995B84009C7865 /* DataModel.xcdatamodeld in Sources */,
 				8F71806B23915B230001B80F /* DataStorage.swift in Sources */,
@@ -175,17 +171,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		8F5D7E5E22F5CCE300FED4BE /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8F5D7E5F22F5CCE300FED4BE /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		8F5D7E6322F5CCE300FED4BE /* Debug */ = {
