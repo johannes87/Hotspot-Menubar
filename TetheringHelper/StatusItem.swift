@@ -1,5 +1,5 @@
 //
-//  SignalStatusItem.swift
+//  StatusItem.swift
 //  TetheringHelper
 //
 //  Created by Johannes Bittner on 12.08.19.
@@ -8,15 +8,15 @@
 
 import Cocoa
 
-class SignalStatusItem {
+class StatusItem {
     private let statusItem: NSStatusItem
-    private var signalStatusItemMenu: SignalStatusItemMenu!
+    private var signalStatusItemMenu: StatusItemMenu!
 
     private var signalQuality = SignalQuality.no_signal
     private var signalType = SignalType.no_signal
 
     init(_ androidConnector: AndroidConnector) {
-        signalStatusItemMenu = SignalStatusItemMenu(androidConnector: androidConnector)
+        signalStatusItemMenu = StatusItemMenu(androidConnector)
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
         statusItem.menu = signalStatusItemMenu.menu
         self.drawStatusItem()

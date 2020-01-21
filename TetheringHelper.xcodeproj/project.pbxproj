@@ -15,8 +15,8 @@
 		8F5D7E5D22F5CCE300FED4BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F5D7E5C22F5CCE300FED4BE /* Assets.xcassets */; };
 		8F6C36F123995B84009C7865 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8F6C36EF23995B84009C7865 /* DataModel.xcdatamodeld */; };
 		8F71806B23915B230001B80F /* DataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F71806A23915B230001B80F /* DataStorage.swift */; };
-		8FAD0BB2239093C700DDB470 /* SignalStatusItemMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAD0BB1239093C700DDB470 /* SignalStatusItemMenu.swift */; };
-		8FCEF61C23018DA600CB726E /* SignalStatusItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCEF61B23018DA600CB726E /* SignalStatusItem.swift */; };
+		8FAD0BB2239093C700DDB470 /* StatusItemMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAD0BB1239093C700DDB470 /* StatusItemMenu.swift */; };
+		8FCEF61C23018DA600CB726E /* StatusItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCEF61B23018DA600CB726E /* StatusItem.swift */; };
 		8FED217023A92A15000BCB30 /* ServiceDiscovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FED216F23A92A15000BCB30 /* ServiceDiscovery.swift */; };
 /* End PBXBuildFile section */
 
@@ -32,8 +32,8 @@
 		8F5D7E6222F5CCE300FED4BE /* TetheringHelper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TetheringHelper.entitlements; sourceTree = "<group>"; };
 		8F6C36F023995B84009C7865 /* TetheringHelper.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TetheringHelper.xcdatamodel; sourceTree = "<group>"; };
 		8F71806A23915B230001B80F /* DataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStorage.swift; sourceTree = "<group>"; };
-		8FAD0BB1239093C700DDB470 /* SignalStatusItemMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalStatusItemMenu.swift; sourceTree = "<group>"; };
-		8FCEF61B23018DA600CB726E /* SignalStatusItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalStatusItem.swift; sourceTree = "<group>"; };
+		8FAD0BB1239093C700DDB470 /* StatusItemMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusItemMenu.swift; sourceTree = "<group>"; };
+		8FCEF61B23018DA600CB726E /* StatusItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusItem.swift; sourceTree = "<group>"; };
 		8FED216F23A92A15000BCB30 /* ServiceDiscovery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDiscovery.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -70,8 +70,8 @@
 				8F5D7E5822F5CCE200FED4BE /* AppDelegate.swift */,
 				8F6C36EF23995B84009C7865 /* DataModel.xcdatamodeld */,
 				8F71806A23915B230001B80F /* DataStorage.swift */,
-				8FCEF61B23018DA600CB726E /* SignalStatusItem.swift */,
-				8FAD0BB1239093C700DDB470 /* SignalStatusItemMenu.swift */,
+				8FCEF61B23018DA600CB726E /* StatusItem.swift */,
+				8FAD0BB1239093C700DDB470 /* StatusItemMenu.swift */,
 				8F1DD417238448DD0038AAE2 /* SignalQuality.swift */,
 				8F1DD415238448B70038AAE2 /* SignalType.swift */,
 				8F1DD413238430ED0038AAE2 /* AndroidConnector.swift */,
@@ -160,13 +160,13 @@
 			files = (
 				8F1DD416238448B70038AAE2 /* SignalType.swift in Sources */,
 				8F1DD418238448DD0038AAE2 /* SignalQuality.swift in Sources */,
-				8FAD0BB2239093C700DDB470 /* SignalStatusItemMenu.swift in Sources */,
+				8FAD0BB2239093C700DDB470 /* StatusItemMenu.swift in Sources */,
 				8F6C36F123995B84009C7865 /* DataModel.xcdatamodeld in Sources */,
 				8F71806B23915B230001B80F /* DataStorage.swift in Sources */,
 				8F1DD414238430ED0038AAE2 /* AndroidConnector.swift in Sources */,
 				8F5D7E5922F5CCE200FED4BE /* AppDelegate.swift in Sources */,
 				8FED217023A92A15000BCB30 /* ServiceDiscovery.swift in Sources */,
-				8FCEF61C23018DA600CB726E /* SignalStatusItem.swift in Sources */,
+				8FCEF61C23018DA600CB726E /* StatusItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

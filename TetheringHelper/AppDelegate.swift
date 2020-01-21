@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import UserNotifications
 
 // TODO: implement dark mode
 
@@ -14,7 +15,13 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
     let androidConnector = AndroidConnector()
     let dataStorage = DataStorage()
-    var signalStatusItem: SignalStatusItem!
+    var signalStatusItem: StatusItem!
+
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
+        signalStatusItem = StatusItem(androidConnector)
+        startNetworkThread()
+        requestNotificationAuthorization()
+    }
 
     private func startNetworkThread() {
         // TODO: check if we can use global .background queue instead, to avoid creating unnecessary queues
@@ -35,9 +42,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
 
-    func applicationDidFinishLaunching(_ aNotification: Notification) {
-        signalStatusItem = SignalStatusItem(androidConnector)
-        startNetworkThread()
+    private func requestNotificationAuthorization() {
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.alert, .sound]) { granted, error in
+            print("requestNotificationAuthorization: granted=\(granted) error=\(String(describing: error))")
+            // Enable or disable features based on authorization.
+        }
     }
-
 }
