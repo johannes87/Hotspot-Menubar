@@ -50,6 +50,7 @@ class StatusItem {
     /// Used in drawStatusItem to draw the bar shapes for the signalQuality
     private func drawSignalBars(_ dstRect: NSRect) {
         // TODO: figure out why some lines are drawn fuzzy
+        // https://stackoverflow.com/questions/58904168/how-do-i-draw-a-rectangle-with-equal-line-widths-into-an-nsstatusitembutton
         let signalBarLineWidth = 1
         let signalBarRectWidth: CGFloat = 3
 
