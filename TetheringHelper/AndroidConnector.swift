@@ -59,7 +59,7 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate {
 
         tetheringHelperService = nil
         netServiceBrowser.delegate = self
-        // stop before searching, searchForServices otherwise works only once (subsequent searches
+        // stop before searching, because searchForServices otherwise works only once (subsequent searches
         // return activityInProgress error)
         netServiceBrowser.stop()
         netServiceBrowser.searchForServices(ofType: "_tetheringhelper._tcp.", inDomain: "")
@@ -73,11 +73,9 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate {
                 let alert = NSAlert()
                 alert.messageText = NSLocalizedString("No phone could be found for pairing",
                                                       comment: "user clicks 'pair' and phone couldn't be found: NSAlert messageText")
-                alert.informativeText = NSLocalizedString("Make sure you're tethered to your Android phone and the TetheringHelper app is running on your phone.",
+                alert.informativeText = NSLocalizedString("Make sure you're tethered to your Android phone and the TetheringHelper app is running on Android.",
                                                           comment: "explanation what to do when no phone to pair was found")
                 alert.runModal()
-                // TODO: ensure dialog is shown when no app window is there, or not in focus
-                // TODO: use notification instead?
             }
         })
     }
@@ -94,15 +92,14 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate {
     }
 
     func netServiceBrowserDidStopSearch(_ browser: NetServiceBrowser) {
+        // TODO: consider removing
         print("Search stopped")
-        // TODO: implement case where no phone was found
         // https://stackoverflow.com/questions/42717027/ios-bonjour-swift-3-search-never-stops
 
     }
 
     func netServiceBrowser(_ browser: NetServiceBrowser, didNotSearch errorDict: [String : NSNumber]) {
-        // TODO: stop search before new search, otherwise activityInProgress
-
+        // TODO: consider removing
         print("netServiceBrowser didNotSearch")
         let errorCode = errorDict[NetService.errorCode]!.intValue
         let error = NetService.ErrorCode.init(rawValue: errorCode)
