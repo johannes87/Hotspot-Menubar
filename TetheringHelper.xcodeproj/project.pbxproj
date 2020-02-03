@@ -48,6 +48,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8F3FE78523E89818003CFB6D /* Swift files */ = {
+			isa = PBXGroup;
+			children = (
+				8F5D7E5822F5CCE200FED4BE /* AppDelegate.swift */,
+				8F71806A23915B230001B80F /* DataStorage.swift */,
+				8FCEF61B23018DA600CB726E /* StatusItem.swift */,
+				8FAD0BB1239093C700DDB470 /* StatusItemMenu.swift */,
+				8F1DD417238448DD0038AAE2 /* SignalQuality.swift */,
+				8F1DD415238448B70038AAE2 /* SignalType.swift */,
+				8F1DD413238430ED0038AAE2 /* AndroidConnector.swift */,
+				8FED216F23A92A15000BCB30 /* ServiceDiscovery.swift */,
+			);
+			name = "Swift files";
+			sourceTree = "<group>";
+		};
 		8F5D7E4C22F5CCE100FED4BE = {
 			isa = PBXGroup;
 			children = (
@@ -67,16 +82,9 @@
 		8F5D7E5722F5CCE200FED4BE /* TetheringHelper */ = {
 			isa = PBXGroup;
 			children = (
-				8F5D7E5822F5CCE200FED4BE /* AppDelegate.swift */,
+				8F3FE78523E89818003CFB6D /* Swift files */,
 				8F6C36EF23995B84009C7865 /* DataModel.xcdatamodeld */,
-				8F71806A23915B230001B80F /* DataStorage.swift */,
-				8FCEF61B23018DA600CB726E /* StatusItem.swift */,
-				8FAD0BB1239093C700DDB470 /* StatusItemMenu.swift */,
-				8F1DD417238448DD0038AAE2 /* SignalQuality.swift */,
-				8F1DD415238448B70038AAE2 /* SignalType.swift */,
-				8F1DD413238430ED0038AAE2 /* AndroidConnector.swift */,
 				8F3D29C423D4DA3700193C23 /* Main.xib */,
-				8FED216F23A92A15000BCB30 /* ServiceDiscovery.swift */,
 				8F5D7E5C22F5CCE300FED4BE /* Assets.xcassets */,
 				8F5D7E6122F5CCE300FED4BE /* Info.plist */,
 				8F5D7E6222F5CCE300FED4BE /* TetheringHelper.entitlements */,
