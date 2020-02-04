@@ -9,13 +9,18 @@
 import Cocoa
 import UserNotifications
 
+// TODO: rename to TetheringStatus
 // TODO: implement dark mode
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCenterDelegate {
     let androidConnector = AndroidConnector()
     let dataStorage = DataStorage()
     var signalStatusItem: StatusItem!
+
+    func applicationWillFinishLaunching(_ notification: Notification) {
+        UNUserNotificationCenter.current().delegate = self
+    }
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         signalStatusItem = StatusItem(androidConnector)
@@ -43,10 +48,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     private func requestNotificationAuthorization() {
-        let center = UNUserNotificationCenter.current()
-        center.requestAuthorization(options: [.alert, .sound]) { granted, error in
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
             print("requestNotificationAuthorization: granted=\(granted) error=\(String(describing: error))")
             // Enable or disable features based on authorization.
         }
     }
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        
+        completionHandler(.alert)
+    }
+
 }

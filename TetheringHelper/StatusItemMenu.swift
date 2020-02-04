@@ -49,7 +49,7 @@ class StatusItemMenu {
 
         let fooMenuItem = NSMenuItem(
             title: "foo",
-            action: #selector(createNotification(sender:)),
+            action: #selector(createNotificationFoo(sender:)),
             keyEquivalent: "")
         fooMenuItem.target = self
 
@@ -62,25 +62,19 @@ class StatusItemMenu {
     }
 
     // create user notification for macos 10.14+
-    @IBAction private func createNotification(sender: Any) {
+    @IBAction private func createNotificationFoo(sender: Any) {
         // TODO: why is notif. not always shown, sometimes only in notif.center?
         let content = UNMutableNotificationContent()
-        content.title = NSLocalizedString("Successfully connected to phone", comment: "notification title when successfully connected")
+        content.title = NSLocalizedString("Connected to phone", comment: "notification title when successfully connected")
 
         // TODO: if: automatically connect
-        content.body = NSLocalizedString("I will automatically connect to this phone when tethered to WiFi TODO. You can change this behaviour in the preferences.", comment: "notification title when successfully connected and autoconnect is enabled")
+        content.body = NSLocalizedString("Will automatically connect to this phone in the future.", comment: "notification body when successfully connected and autoconnect is enabled")
+        content.categoryIdentifier = "alarm"
         
         let uuidString = UUID().uuidString
         let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: nil)
 
-        let notificationCenter = UNUserNotificationCenter.current()
-
-        notificationCenter.add(request) { (error) in
-            if error != nil {
-                print("notifaction center error: \(String(describing: error))")
-                // Handle any errors.
-            }
-        }
+        UNUserNotificationCenter.current().add(request)
     }
 
     @IBAction private func showDataStatistics(sender: Any) {
