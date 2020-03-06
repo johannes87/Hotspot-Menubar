@@ -47,6 +47,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCenterDele
         }
     }
 
+    // TODO: remove UNUserNotification stuff if not needed in the end
     private func requestNotificationAuthorization() {
         let notificationCenter = UNUserNotificationCenter.current()
         notificationCenter.requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
