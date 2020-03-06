@@ -10,7 +10,7 @@ import Foundation
 import Network
 import AppKit
 
-class AndroidConnector: NSObject, NetServiceBrowserDelegate {
+class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate {
     private let netServiceBrowser = NetServiceBrowser()
 
     private(set) var signalQuality = SignalQuality.no_signal
@@ -99,7 +99,7 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate {
         })
     }
 
-    // MARK: Service discovery
+    // MARK: NetServiceBrowserDelegate
 
     func netServiceBrowser(_ browser: NetServiceBrowser, didFind service: NetService, moreComing: Bool) {
         print("Discovered the service")
@@ -108,6 +108,7 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate {
         print("- domain:", service.domain)
 
         tetheringHelperService = service
+        tetheringHelperService?.delegate = self
     }
 
     func netServiceBrowserDidStopSearch(_ browser: NetServiceBrowser) {
@@ -148,4 +149,8 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate {
         }
     }
 
+    // MARK: NetServiceDelegate
+    func netService(_ sender: NetService, didAcceptConnectionWith inputStream: InputStream, outputStream: OutputStream) {
+        print("netService: client connected to service")
+    }
 }
