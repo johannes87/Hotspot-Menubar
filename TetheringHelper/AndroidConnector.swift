@@ -73,7 +73,7 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate {
                 let alert = NSAlert()
                 alert.messageText = NSLocalizedString("No phone could be found for pairing",
                                                       comment: "user clicks 'pair' and phone couldn't be found: NSAlert messageText")
-                alert.informativeText = NSLocalizedString("Make sure you're tethered to your Android phone and the TetheringHelper app is running on Android.",
+                alert.informativeText = NSLocalizedString("Make sure you are tethered with your Android phone and the TetheringHelper app is running on Android.",
                                                           comment: "explanation what to do when no phone to pair was found")
                 alert.runModal()
             }
