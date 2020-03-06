@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Network
 import AppKit
 
 class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate {
