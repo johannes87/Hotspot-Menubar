@@ -20,20 +20,39 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate {
 
 
     public func getSignal() {
-        if tetheringHelperService != nil {
-
-//            let json = getJSONFromAndroid()
-//            let json = JSONSerialization.jsonObject(with: data, options: [])
-            
-
+        if tetheringHelperService == nil {
+            print("getSignal: no tetheringHelperService; exiting")
+            return
         }
 
-        // TODO: fetch data from android here
-        signalQuality = SignalQuality.allCases.randomElement()!
-        signalType = SignalType.allCases.randomElement()!
+        print("getSignal: tetheringHelperService exists")
+
+        var inputStream: InputStream? = InputStream()
+        if tetheringHelperService?.getInputStream(&inputStream, outputStream: nil) == false {
+            print("getSignal: getInputStream failed. exiting")
+            return
+        }
+
+        inputStream!.open()
+        // TODO: check if .close() is mendatory
+
+        let bufferSize = 256
+        let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: bufferSize)
+        let bytesRead = inputStream!.read(buffer, maxLength: bufferSize)
+
+        if bytesRead <= 0 {
+            print("getSignal: unexpected bytesRead = \(String(describing: bytesRead)); exiting")
+            return
+        }
+
+        buffer[bytesRead] = 0
+
+        // NOTE! data is received correctly, but weird backtrace happens: similar to this => https://forums.developer.apple.com/thread/112967
+        // consider using alternative network framework or use sockets directly.
+
+        let bytesString: String = String(cString: buffer)
+        print("getSignal: received bytes: \(bytesString)")
     }
-
-
 
 
     private func createNSAlertFooTODO() {
