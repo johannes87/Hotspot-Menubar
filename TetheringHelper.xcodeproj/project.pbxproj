@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F15A995244F46820094CCC4 /* Socket in Frameworks */ = {isa = PBXBuildFile; productRef = 8F15A994244F46820094CCC4 /* Socket */; };
 		8F1DD414238430ED0038AAE2 /* AndroidConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1DD413238430ED0038AAE2 /* AndroidConnector.swift */; };
 		8F1DD416238448B70038AAE2 /* SignalType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1DD415238448B70038AAE2 /* SignalType.swift */; };
 		8F1DD418238448DD0038AAE2 /* SignalQuality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1DD417238448DD0038AAE2 /* SignalQuality.swift */; };
@@ -42,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F15A995244F46820094CCC4 /* Socket in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,6 +119,7 @@
 			);
 			name = TetheringHelper;
 			packageProductDependencies = (
+				8F15A994244F46820094CCC4 /* Socket */,
 			);
 			productName = TetheringHelper;
 			productReference = 8F5D7E5522F5CCE200FED4BE /* TetheringHelper.app */;
@@ -147,6 +150,7 @@
 			);
 			mainGroup = 8F5D7E4C22F5CCE100FED4BE;
 			packageReferences = (
+				8F15A993244F46820094CCC4 /* XCRemoteSwiftPackageReference "BlueSocket" */,
 			);
 			productRefGroup = 8F5D7E5622F5CCE200FED4BE /* Products */;
 			projectDirPath = "";
@@ -366,6 +370,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8F15A993244F46820094CCC4 /* XCRemoteSwiftPackageReference "BlueSocket" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/IBM-Swift/BlueSocket";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.52;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8F15A994244F46820094CCC4 /* Socket */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8F15A993244F46820094CCC4 /* XCRemoteSwiftPackageReference "BlueSocket" */;
+			productName = Socket;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		8F6C36EF23995B84009C7865 /* DataModel.xcdatamodeld */ = {
