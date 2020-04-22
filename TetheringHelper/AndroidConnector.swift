@@ -10,12 +10,11 @@ import Foundation
 import AppKit
 
 class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate {
-    private let netServiceBrowser = NetServiceBrowser()
-
     private(set) var signalQuality = SignalQuality.no_signal
     private(set) var signalType = SignalType.no_signal
 
-    private var tetheringHelperService: NetService?
+    private var tetheringHelperServiceUnresolved: NetService?
+    private var tetheringHelperServiceResolved: NetService?
 
     private func alertPairingFailed(_ netServiceBrowser: NetServiceBrowser, timeout: TimeInterval) {
         DispatchQueue.main.asyncAfter(deadline: .now() + timeout, execute: {
@@ -67,14 +66,10 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate 
     }
 
     @IBAction public func pair(sender: Any) {
-        print("connector pair!")
+        tetheringHelperServiceResolved = nil
 
-
-        tetheringHelperService = nil
+        let netServiceBrowser = NetServiceBrowser()
         netServiceBrowser.delegate = self
-        // stop before searching, because searchForServices otherwise works only once (subsequent searches
-        // return activityInProgress error)
-        netServiceBrowser.stop()
         netServiceBrowser.searchForServices(ofType: "_tetheringhelper._tcp.", inDomain: "")
 
         // TODO: show progress icon in status item during pairing
@@ -82,18 +77,16 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate 
     }
 
     // MARK: NetServiceBrowserDelegate
-
     func netServiceBrowser(_ browser: NetServiceBrowser, didFind service: NetService, moreComing: Bool) {
-        print("Discovered the service")
-        print("- name:", service.name)
-        print("- type", service.type)
-        print("- domain:", service.domain)
-
-        tetheringHelperService = service
-        tetheringHelperService?.delegate = self
-    }
+        print("Discovered the service: name=\(service.name), type=\(service.type)")
+        // without this, the service goes out of scope and no delegate gets called
+        tetheringHelperServiceUnresolved = service
+        service.delegate = self
+        service.resolve(withTimeout: 1)
     }
 
     // MARK: NetServiceDelegate
+    func netServiceDidResolveAddress(_ sender: NetService) {
+        tetheringHelperServiceResolved = sender
     }
 }
