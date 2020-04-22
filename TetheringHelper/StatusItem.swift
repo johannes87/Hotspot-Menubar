@@ -22,7 +22,7 @@ class StatusItem {
         self.drawStatusItem()
     }
 
-    public func setSignal(signalQuality: SignalQuality, signalType: SignalType) {
+    func setSignal(signalQuality: SignalQuality, signalType: SignalType) {
         self.signalQuality = signalQuality
         self.signalType = signalType
         self.drawStatusItem()

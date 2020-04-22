@@ -31,7 +31,7 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate 
         })
     }
 
-    public func getSignal() {
+    func getSignal() {
         guard tetheringHelperServiceResolved != nil else { return }
 
         var serviceResponse: String
@@ -48,7 +48,7 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate 
         print("Read data from service: \(serviceResponse)")
     }
 
-    @IBAction public func pair(sender: Any) {
+    @IBAction func pair(sender: Any) {
         tetheringHelperServiceResolved = nil
 
         let netServiceBrowser = NetServiceBrowser()
