@@ -17,6 +17,19 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate 
 
     private var tetheringHelperService: NetService?
 
+    private func alertPairingFailed(_ netServiceBrowser: NetServiceBrowser, timeout: TimeInterval) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + timeout, execute: {
+            netServiceBrowser.stop()
+            if self.tetheringHelperServiceResolved == nil {
+                let alert = NSAlert()
+                alert.messageText = NSLocalizedString("No phone could be found for pairing",
+                                                      comment: "user clicks 'pair' and phone couldn't be found: NSAlert messageText")
+                alert.informativeText = NSLocalizedString("Make sure you are tethered with your Android phone and the TetheringHelper app is running on Android.",
+                                                          comment: "explanation what to do when no phone to pair was found")
+                alert.runModal()
+            }
+        })
+    }
 
     public func getSignal() {
         if tetheringHelperService == nil {
@@ -65,19 +78,7 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate 
         netServiceBrowser.searchForServices(ofType: "_tetheringhelper._tcp.", inDomain: "")
 
         // TODO: show progress icon in status item during pairing
-
-        // show user a message if service couldn't be found
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
-            self.netServiceBrowser.stop()
-            if self.tetheringHelperService == nil {
-                let alert = NSAlert()
-                alert.messageText = NSLocalizedString("No phone could be found for pairing",
-                                                      comment: "user clicks 'pair' and phone couldn't be found: NSAlert messageText")
-                alert.informativeText = NSLocalizedString("Make sure you are tethered with your Android phone and the TetheringHelper app is running on Android.",
-                                                          comment: "explanation what to do when no phone to pair was found")
-                alert.runModal()
-            }
-        })
+        alertPairingFailed(netServiceBrowser, timeout: 3)
     }
 
     // MARK: NetServiceBrowserDelegate
