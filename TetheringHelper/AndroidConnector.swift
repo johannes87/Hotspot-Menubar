@@ -53,24 +53,6 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate 
         print("getSignal: received bytes: \(bytesString)")
     }
 
-
-    private func createNSAlertFooTODO() {
-        // TODO: consider not showing any alert, just the icon change when successfully paired
-        let alert = NSAlert()
-        // TODO: add "Pairing successful!"
-        alert.messageText = NSLocalizedString("Would you like to remember this pairing?",
-                                              comment: "pair phone NSAlert")
-        alert.informativeText = NSLocalizedString("When you choose to remember the pairing, TetheringHelper will automatically connect to the phone when it is available. You can later reset your choices in the preferences.",
-                                                  comment: "pair phone NSAlert")
-        alert.alertStyle = .informational
-        alert.addButton(withTitle: NSLocalizedString("Remember pairing", comment: "pair phone NSAlert"))
-        alert.addButton(withTitle: NSLocalizedString("Don't remember", comment: "pair phone NSAlert"))
-        alert.showsSuppressionButton = true // TODO: make suppression button work
-        alert.runModal()
-
-    }
-
-
     @IBAction public func pair(sender: Any) {
         print("connector pair!")
 
@@ -109,47 +91,8 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate 
         tetheringHelperService = service
         tetheringHelperService?.delegate = self
     }
-
-    func netServiceBrowserDidStopSearch(_ browser: NetServiceBrowser) {
-        // TODO: consider removing
-        print("Search stopped")
-        // https://stackoverflow.com/questions/42717027/ios-bonjour-swift-3-search-never-stops
-
-    }
-
-    func netServiceBrowser(_ browser: NetServiceBrowser, didNotSearch errorDict: [String : NSNumber]) {
-        // TODO: consider removing
-        print("netServiceBrowser didNotSearch")
-        let errorCode = errorDict[NetService.errorCode]!.intValue
-        let error = NetService.ErrorCode.init(rawValue: errorCode)
-
-        print("NetService Error code is:")
-        switch error {
-        case .activityInProgress:
-            print("activityInProgress")
-        case .badArgumentError:
-            print("badArgumentError")
-        case .cancelledError:
-            print("cancelledError")
-        case .collisionError:
-            print("collisionError")
-        case .notFoundError:
-            print("notFoundError")
-        case .none:
-            print("none")
-        case .some(.unknownError):
-            print("some(.unknownError")
-        case .some(.invalidError):
-            print("some(.invalidError)")
-        case .some(.timeoutError):
-            print("some(.timeoutError")
-        case .some(_):
-            print("some(_)")
-        }
     }
 
     // MARK: NetServiceDelegate
-    func netService(_ sender: NetService, didAcceptConnectionWith inputStream: InputStream, outputStream: OutputStream) {
-        print("netService: client connected to service")
     }
 }
