@@ -15,7 +15,6 @@ class StatusItemMenu {
     private var dataStatisticsMenuItem: NSMenuItem!
     private var pairMenuItem: NSMenuItem!
 
-
     private static let dataStatisticsMenuItemTitle = NSLocalizedString(
         "Data used: %.2f MB",
         comment: "amount of data used, shown in status item menu")
