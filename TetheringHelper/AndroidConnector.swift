@@ -8,6 +8,7 @@
 
 import Foundation
 import AppKit
+import Socket
 
 class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate {
     private(set) var signalQuality = SignalQuality.no_signal
@@ -31,38 +32,20 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate 
     }
 
     public func getSignal() {
-        if tetheringHelperService == nil {
-            print("getSignal: no tetheringHelperService; exiting")
+        guard tetheringHelperServiceResolved != nil else { return }
+
+        var serviceResponse: String
+        do {
+            let socket = try Socket.create()
+            try socket.connect(to: (tetheringHelperServiceResolved?.hostName)!, port: Int32((tetheringHelperServiceResolved?.port)!))
+            serviceResponse = try socket.readString()!
+            socket.close()
+        } catch let error {
+            print("Could not communicate with service: \(error)")
             return
         }
 
-        print("getSignal: tetheringHelperService exists")
-
-        var inputStream: InputStream? = InputStream()
-        if tetheringHelperService?.getInputStream(&inputStream, outputStream: nil) == false {
-            print("getSignal: getInputStream failed. exiting")
-            return
-        }
-
-        inputStream!.open()
-        // TODO: check if .close() is mendatory
-
-        let bufferSize = 256
-        let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: bufferSize)
-        let bytesRead = inputStream!.read(buffer, maxLength: bufferSize)
-
-        if bytesRead <= 0 {
-            print("getSignal: unexpected bytesRead = \(String(describing: bytesRead)); exiting")
-            return
-        }
-
-        buffer[bytesRead] = 0
-
-        // NOTE! data is received correctly, but weird backtrace happens: similar to this => https://forums.developer.apple.com/thread/112967
-        // consider using alternative network framework or use sockets directly.
-
-        let bytesString: String = String(cString: buffer)
-        print("getSignal: received bytes: \(bytesString)")
+        print("Read data from service: \(serviceResponse)")
     }
 
     @IBAction public func pair(sender: Any) {
