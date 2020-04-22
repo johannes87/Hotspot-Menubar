@@ -13,19 +13,14 @@ import UserNotifications
 // TODO: implement dark mode
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCenterDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate {
     let androidConnector = AndroidConnector()
     let dataStorage = DataStorage()
     var signalStatusItem: StatusItem!
 
-    func applicationWillFinishLaunching(_ notification: Notification) {
-        UNUserNotificationCenter.current().delegate = self
-    }
-
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         signalStatusItem = StatusItem(androidConnector)
         startNetworkThread()
-        requestNotificationAuthorization()
     }
 
     private func startNetworkThread() {
@@ -46,19 +41,4 @@ class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCenterDele
             }
         }
     }
-
-    // TODO: remove UNUserNotification stuff if not needed in the end
-    private func requestNotificationAuthorization() {
-        let notificationCenter = UNUserNotificationCenter.current()
-        notificationCenter.requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
-            print("requestNotificationAuthorization: granted=\(granted) error=\(String(describing: error))")
-            // Enable or disable features based on authorization.
-        }
-    }
-
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        
-        completionHandler(.alert)
-    }
-
 }
