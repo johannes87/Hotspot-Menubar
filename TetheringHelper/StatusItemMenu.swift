@@ -9,21 +9,21 @@
 import Cocoa
 
 class StatusItemMenu {
+    private static let dataStatisticsMenuItemTitle = NSLocalizedString(
+        "Data used: %.2f MB",
+        comment: "amount of data used, shown in status item menu")
+    private static let pairMenuItemUnpairedTitle = NSLocalizedString(
+        "Pair with phone...",
+        comment: "shown in status item menu when not paired yet")
+
     let androidConnector: AndroidConnector
 
     var menu: NSMenu!
     private var dataStatisticsMenuItem: NSMenuItem!
     private var pairMenuItem: NSMenuItem!
 
-    private static let dataStatisticsMenuItemTitle = NSLocalizedString(
-        "Data used: %.2f MB",
-        comment: "amount of data used, shown in status item menu")
 
-    private static let pairMenuItemUnpairedTitle = NSLocalizedString(
-        "Pair with phone...",
-        comment: "shown in status item menu when not paired yet")
-
-    init(_ androidConnector: AndroidConnector) {
+    init(androidConnector: AndroidConnector) {
         self.androidConnector = androidConnector
         createMenu()
     }

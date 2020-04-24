@@ -9,16 +9,19 @@
 import Cocoa
 
 class StatusItem {
-    private let statusItem: NSStatusItem
-    private var signalStatusItemMenu: StatusItemMenu!
+    private let cocoaStatusItem: NSStatusItem
 
+    private var statusItemMenu: StatusItemMenu!
     private var signalQuality = SignalQuality.no_signal
     private var signalType = SignalType.no_signal
 
-    init(_ androidConnector: AndroidConnector) {
-        signalStatusItemMenu = StatusItemMenu(androidConnector)
-        statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
-        statusItem.menu = signalStatusItemMenu.menu
+
+    init(androidConnector: AndroidConnector) {
+        statusItemMenu = StatusItemMenu(androidConnector: androidConnector)
+
+        cocoaStatusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
+        cocoaStatusItem.menu = statusItemMenu.menu
+
         self.drawStatusItem()
     }
 
@@ -36,14 +39,13 @@ class StatusItem {
 
             let statusItemImage = NSImage(
                 size: imageSize,
-                flipped: false,
-                drawingHandler: { (dstRect: NSRect) -> Bool in
+                flipped: false) { (dstRect: NSRect) -> Bool in
                     self.drawSignalBars(dstRect)
                     self.drawSignalType(dstRect)
                     return true
-            })
+            }
 
-            self.statusItem.button?.image = statusItemImage
+            self.cocoaStatusItem.button?.image = statusItemImage
         }
     }
 

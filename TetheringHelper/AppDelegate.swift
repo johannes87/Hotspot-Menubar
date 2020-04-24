@@ -14,12 +14,16 @@ import UserNotifications
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-    let androidConnector = AndroidConnector()
     let dataStorage = DataStorage()
-    var signalStatusItem: StatusItem!
+    let androidConnector = AndroidConnector()
+
+    var statusItem: StatusItem!
+
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        signalStatusItem = StatusItem(androidConnector)
+        statusItem = StatusItem(androidConnector: androidConnector)
+        androidConnector.setStatusItem(statusItem: statusItem)
+
         startNetworkThread()
     }
 
@@ -32,7 +36,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
                 self.androidConnector.getSignal()
 
-                self.signalStatusItem.setSignal(
+                self.statusItem.setSignal(
                     signalQuality: self.androidConnector.signalQuality,
                     signalType: self.androidConnector.signalType)
 

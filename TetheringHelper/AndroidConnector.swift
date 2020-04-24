@@ -46,7 +46,8 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate 
     }
 
     private func alertPairingFailed(_ netServiceBrowser: NetServiceBrowser, timeout: TimeInterval) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + timeout, execute: {
+        DispatchQueue.main.asyncAfter(deadline: .now() + timeout) {
+            self.statusItem?.stopPairingProgressAnimation()
             netServiceBrowser.stop()
             if self.tetheringHelperServiceResolved == nil {
                 let alert = NSAlert()
@@ -56,13 +57,13 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate 
                                                           comment: "explanation what to do when no phone to pair was found")
                 alert.runModal()
             }
-        })
+        }
     }
 
     // MARK: NetServiceBrowserDelegate
     func netServiceBrowser(_ browser: NetServiceBrowser, didFind service: NetService, moreComing: Bool) {
         print("Discovered the service: name=\(service.name), type=\(service.type)")
-        // without this, the service goes out of scope and no delegate gets called
+        // without this variable, the service goes out of scope and no delegate gets called
         tetheringHelperServiceUnresolved = service
         service.delegate = self
         service.resolve(withTimeout: 1)
