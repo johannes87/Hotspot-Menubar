@@ -22,7 +22,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         statusItem = StatusItem(androidConnector: androidConnector)
-        androidConnector.setStatusItem(statusItem: statusItem)
+        androidConnector.setStatusItem(statusItem)
 
         startNetworkThread()
     }

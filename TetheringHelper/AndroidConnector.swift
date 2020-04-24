@@ -17,6 +17,9 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate 
     private var tetheringHelperServiceUnresolved: NetService?
     private var tetheringHelperServiceResolved: NetService?
 
+    private unowned var statusItem: StatusItem?
+
+
     func getSignal() {
         guard tetheringHelperServiceResolved != nil else { return }
 
@@ -34,6 +37,10 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate 
         print("Read data from service: \(serviceResponse)")
     }
 
+    func setStatusItem(_ statusItem: StatusItem) {
+        self.statusItem = statusItem
+    }
+
     @IBAction func pair(sender: Any) {
         tetheringHelperServiceResolved = nil
 
@@ -41,7 +48,7 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate 
         netServiceBrowser.delegate = self
         netServiceBrowser.searchForServices(ofType: "_tetheringhelper._tcp.", inDomain: "")
 
-        // TODO: show progress icon in status item during pairing
+        statusItem?.startPairingProgressAnimation()
         alertPairingFailed(netServiceBrowser, timeout: 3)
     }
 
@@ -72,5 +79,6 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate 
     // MARK: NetServiceDelegate
     func netServiceDidResolveAddress(_ sender: NetService) {
         tetheringHelperServiceResolved = sender
+        statusItem?.stopPairingProgressAnimation()
     }
 }

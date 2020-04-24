@@ -12,6 +12,7 @@ class StatusItem {
     private let cocoaStatusItem: NSStatusItem
 
     private var statusItemMenu: StatusItemMenu!
+    private var statusItemPairingProgress: StatusItemPairingProgress?
     private var signalQuality = SignalQuality.no_signal
     private var signalType = SignalType.no_signal
 
@@ -22,6 +23,8 @@ class StatusItem {
         cocoaStatusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
         cocoaStatusItem.menu = statusItemMenu.menu
 
+        statusItemPairingProgress = StatusItemPairingProgress(statusItem: self)
+
         self.drawStatusItem()
     }
 
@@ -29,6 +32,14 @@ class StatusItem {
         self.signalQuality = signalQuality
         self.signalType = signalType
         self.drawStatusItem()
+    }
+
+    func startPairingProgressAnimation() {
+        statusItemPairingProgress?.startAnimation()
+    }
+
+    func stopPairingProgressAnimation() {
+        statusItemPairingProgress?.stopAnimation()
     }
 
     private func drawStatusItem() {
