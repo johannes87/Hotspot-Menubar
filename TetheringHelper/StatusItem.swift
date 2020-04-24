@@ -32,7 +32,6 @@ class StatusItem {
     }
 
     private func drawStatusItem() {
-        // TODO: understand why DispatchQueue.main.sync doesn't work
         DispatchQueue.main.async {
             // https://stackoverflow.com/questions/12714923/os-x-icons-size
             let imageSize = NSSize.init(width: 18.0, height: 18.0)
