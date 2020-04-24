@@ -24,10 +24,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusItem = StatusItem(androidConnector: androidConnector)
         androidConnector.setStatusItem(statusItem)
 
-        startNetworkThread()
+        startNetworkLoop()
     }
 
-    private func startNetworkThread() {
+    private func startNetworkLoop() {
         // TODO: check if we can use global .background queue instead, to avoid creating unnecessary queues
         let networkQueue = DispatchQueue(label: "network", qos: .background)
         networkQueue.async {

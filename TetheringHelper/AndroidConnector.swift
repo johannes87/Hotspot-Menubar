@@ -49,10 +49,10 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate 
         netServiceBrowser.searchForServices(ofType: "_tetheringhelper._tcp.", inDomain: "")
 
         statusItem?.startPairingProgressAnimation()
-        alertPairingFailed(netServiceBrowser, timeout: 3)
+        checkPairingFailed(netServiceBrowser, timeout: 3)
     }
 
-    private func alertPairingFailed(_ netServiceBrowser: NetServiceBrowser, timeout: TimeInterval) {
+    private func checkPairingFailed(_ netServiceBrowser: NetServiceBrowser, timeout: TimeInterval) {
         DispatchQueue.main.asyncAfter(deadline: .now() + timeout) {
             self.statusItem?.stopPairingProgressAnimation()
             netServiceBrowser.stop()
