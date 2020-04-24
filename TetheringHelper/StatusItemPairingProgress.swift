@@ -30,7 +30,6 @@ class StatusItemPairingProgress {
     }
 
     func stopAnimation() {
-        print("stopanimation called")
         animationTimer?.invalidate()
     }
 
