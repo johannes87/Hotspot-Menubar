@@ -19,22 +19,23 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate 
 
     private unowned var statusItem: StatusItem?
 
+    private struct ServiceResponse: Codable {
+        var quality: Int
+        var type: String
+    }
+
 
     func getSignal() {
         guard tetheringHelperServiceResolved != nil else { return }
+        let serviceResponseJson = AndroidConnector.fetchServiceResponse(
+            hostName: tetheringHelperServiceResolved!.hostName!,
+            port: tetheringHelperServiceResolved!.port)
+        let serviceResponse = AndroidConnector.decodeServiceResponse(
+            serviceResponseJson: serviceResponseJson!)
 
-        var serviceResponse: String
-        do {
-            let socket = try Socket.create()
-            try socket.connect(to: (tetheringHelperServiceResolved?.hostName)!, port: Int32((tetheringHelperServiceResolved?.port)!))
-            serviceResponse = try socket.readString()!
-            socket.close()
-        } catch let error {
-            print("Could not communicate with service: \(error)")
-            return
-        }
-
-        print("Read data from service: \(serviceResponse)")
+        print("Decoded response from service: quality=\(serviceResponse!.quality), type=\(serviceResponse!.type)")
+        signalQuality = SignalQuality(rawValue: serviceResponse!.quality)!
+        signalType = SignalType(rawValue: serviceResponse!.type)!
     }
 
     func setStatusItem(_ statusItem: StatusItem) {
@@ -50,6 +51,33 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate 
 
         statusItem?.startPairingProgressAnimation()
         checkPairingFailed(netServiceBrowser, timeout: 3)
+    }
+
+    private static func fetchServiceResponse(hostName: String, port: Int) -> String? {
+        var serviceResponseJson: String
+        do {
+            let socket = try Socket.create()
+            try socket.connect(to: hostName, port: Int32(port))
+            serviceResponseJson = try socket.readString()!
+            socket.close()
+        } catch let error {
+            print("Could not communicate with service: \(error)")
+            return nil
+        }
+        return serviceResponseJson
+    }
+
+    private static func decodeServiceResponse(serviceResponseJson: String) -> ServiceResponse? {
+        var serviceResponse: ServiceResponse
+        do {
+            let decoder = JSONDecoder()
+            serviceResponse = try decoder.decode(ServiceResponse.self,
+                                                 from: serviceResponseJson.data(using: .utf8)!)
+        } catch let error {
+            print("Could not decode service response: \(error)")
+            return nil
+        }
+        return serviceResponse
     }
 
     private func checkPairingFailed(_ netServiceBrowser: NetServiceBrowser, timeout: TimeInterval) {
