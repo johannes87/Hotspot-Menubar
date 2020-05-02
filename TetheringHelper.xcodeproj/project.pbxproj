@@ -19,7 +19,6 @@
 		8F71806B23915B230001B80F /* DataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F71806A23915B230001B80F /* DataStorage.swift */; };
 		8FAD0BB2239093C700DDB470 /* StatusItemMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAD0BB1239093C700DDB470 /* StatusItemMenu.swift */; };
 		8FCEF61C23018DA600CB726E /* StatusItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCEF61B23018DA600CB726E /* StatusItem.swift */; };
-		8FED217023A92A15000BCB30 /* ServiceDiscovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FED216F23A92A15000BCB30 /* ServiceDiscovery.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,7 +36,6 @@
 		8F71806A23915B230001B80F /* DataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStorage.swift; sourceTree = "<group>"; };
 		8FAD0BB1239093C700DDB470 /* StatusItemMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusItemMenu.swift; sourceTree = "<group>"; };
 		8FCEF61B23018DA600CB726E /* StatusItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusItem.swift; sourceTree = "<group>"; };
-		8FED216F23A92A15000BCB30 /* ServiceDiscovery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDiscovery.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +60,6 @@
 				8F12A35A24524419000C6FD1 /* StatusItemPairingProgress.swift */,
 				8FAD0BB1239093C700DDB470 /* StatusItemMenu.swift */,
 				8F1DD413238430ED0038AAE2 /* AndroidConnector.swift */,
-				8FED216F23A92A15000BCB30 /* ServiceDiscovery.swift */,
 			);
 			name = "Swift files";
 			sourceTree = "<group>";
@@ -188,7 +185,6 @@
 				8F71806B23915B230001B80F /* DataStorage.swift in Sources */,
 				8F1DD414238430ED0038AAE2 /* AndroidConnector.swift in Sources */,
 				8F5D7E5922F5CCE200FED4BE /* AppDelegate.swift in Sources */,
-				8FED217023A92A15000BCB30 /* ServiceDiscovery.swift in Sources */,
 				8F12A35B24524419000C6FD1 /* StatusItemPairingProgress.swift in Sources */,
 				8FCEF61C23018DA600CB726E /* StatusItem.swift in Sources */,
 			);
