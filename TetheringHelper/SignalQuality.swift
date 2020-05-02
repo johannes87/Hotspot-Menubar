@@ -8,8 +8,7 @@
 
 import Foundation
 
-// TODO: CaseIterable for testing, remove
-enum SignalQuality: Int, CaseIterable {
+enum SignalQuality: Int {
     case no_signal = 0
     case one_bar = 1
     case two_bars = 2

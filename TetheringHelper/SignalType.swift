@@ -8,8 +8,7 @@
 
 import Foundation
 
-// TODO: CaseIterable for testing, remove
-enum SignalType: String, CaseIterable {
+enum SignalType: String {
     case no_signal = ""
     case two_g = "2G"
     case edge = "E"
