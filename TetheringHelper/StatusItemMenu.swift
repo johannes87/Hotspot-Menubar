@@ -8,23 +8,31 @@
 
 import Cocoa
 
-class StatusItemMenu {
+class StatusItemMenu: NSObject, NSMenuItemValidation {
     private static let dataStatisticsMenuItemTitle = NSLocalizedString(
         "Data used: %.2f MB",
         comment: "amount of data used, shown in status item menu")
     private static let pairMenuItemUnpairedTitle = NSLocalizedString(
-        "Pair with phone...",
+        "Not paired, searching...",
         comment: "shown in status item menu when not paired yet")
-
-    let androidConnector: AndroidConnector
+    private static let pairMenuItemPairedTitle = NSLocalizedString(
+        "Paired with %@",
+        comment: "shown in status item menu when paired")
+    private static let quitMenuItemTitle = NSLocalizedString(
+        "Quit",
+        comment: "menu item for quitting the application")
 
     var menu: NSMenu!
+
     private var dataStatisticsMenuItem: NSMenuItem!
     private var pairMenuItem: NSMenuItem!
+    private var quitMenuItem: NSMenuItem!
+
+    private var pairingStatus = PairingStatus.unpaired
 
 
-    init(androidConnector: AndroidConnector) {
-        self.androidConnector = androidConnector
+    override init() {
+        super.init()
         createMenu()
     }
 
@@ -39,20 +47,50 @@ class StatusItemMenu {
             keyEquivalent: "")
         dataStatisticsMenuItem.target = self
 
+        // pairMenuItem is for information only, so it's disabled (action=nil)
         pairMenuItem = NSMenuItem(
             title: StatusItemMenu.pairMenuItemUnpairedTitle,
-            action: #selector(self.androidConnector.pair(sender:)),
+            action: nil,
             keyEquivalent: "")
-        pairMenuItem?.target = self.androidConnector
 
-        menu.autoenablesItems = false
+        quitMenuItem = NSMenuItem(
+            title: StatusItemMenu.quitMenuItemTitle,
+            action: #selector(quitApplication(sender:)),
+            keyEquivalent: "")
+        quitMenuItem.target = self
+
         menu.insertItem(dataStatisticsMenuItem, at: 0)
-        menu.insertItem(NSMenuItem.separator(), at: 1)
-        menu.insertItem(pairMenuItem!, at: 2)
+        menu.insertItem(pairMenuItem, at: 1)
+        menu.insertItem(NSMenuItem.separator(), at: 2)
+        menu.insertItem(quitMenuItem, at: 3)
+    }
+
+    func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+        return true
+    }
+
+    func setPairingStatus(pairingStatus: PairingStatus) {
+        self.pairingStatus = pairingStatus
+        updatePairMenuItemTitle()
+    }
+
+    private func updatePairMenuItemTitle() {
+        // UI needs to be updated in main loop
+        DispatchQueue.main.async {
+            switch self.pairingStatus {
+            case .paired(let phoneName):
+                self.pairMenuItem.title = String(format: StatusItemMenu.pairMenuItemPairedTitle, phoneName)
+            case .unpaired:
+                self.pairMenuItem.title = StatusItemMenu.pairMenuItemUnpairedTitle
+            }
+        }
     }
 
     @IBAction private func showDataStatistics(sender: Any) {
         print("show data statistics")
+    }
 
+    @IBAction private func quitApplication(sender: Any) {
+        NSApp.terminate(nil)
     }
 }

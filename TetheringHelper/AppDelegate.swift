@@ -14,15 +14,15 @@ import UserNotifications
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-    let dataStorage = DataStorage()
-    let androidConnector = AndroidConnector()
-
+    var dataStorage: DataStorage!
+    var androidConnector: AndroidConnector!
     var statusItem: StatusItem!
 
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        statusItem = StatusItem(androidConnector: androidConnector)
-        androidConnector.setStatusItem(statusItem)
+        dataStorage = DataStorage()
+        androidConnector = AndroidConnector()
+        statusItem = StatusItem()
 
         startNetworkLoop()
     }
@@ -32,16 +32,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let networkQueue = DispatchQueue(label: "network", qos: .background)
         networkQueue.async {
             while true {
-                print("network loop: time=\(NSDate().timeIntervalSince1970)")
+                print("Network loop: the time is \(String(describing: NSDate()))")
 
-                self.androidConnector.getSignal()
+                self.statusItem.setPairingStatus(
+                    pairingStatus: self.androidConnector.pairingStatus)
 
-                self.statusItem.setSignal(
-                    signalQuality: self.androidConnector.signalQuality,
-                    signalType: self.androidConnector.signalType)
+                if !self.androidConnector.isPaired  {
+                    print("Trying to pair...")
+                    self.androidConnector.pair()
+                } else {
+                    print("Paired, getting signal")
+                    self.androidConnector.getSignal()
+
+                    self.statusItem.setSignal(
+                        signalQuality: self.androidConnector.signalQuality,
+                        signalType: self.androidConnector.signalType)
+                }
 
                 // TODO: put time interval into preferences
-                Thread.sleep(forTimeInterval: 10)
+                Thread.sleep(forTimeInterval: 3)
             }
         }
     }

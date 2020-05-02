@@ -10,20 +10,16 @@ import Cocoa
 
 class StatusItem {
     private let cocoaStatusItem: NSStatusItem
+    private let statusItemMenu = StatusItemMenu()
 
-    private var statusItemMenu: StatusItemMenu!
-    private var statusItemPairingProgress: StatusItemPairingProgress?
     private var signalQuality = SignalQuality.no_signal
     private var signalType = SignalType.no_signal
+    private var pairingStatus = PairingStatus.unpaired
 
 
-    init(androidConnector: AndroidConnector) {
-        statusItemMenu = StatusItemMenu(androidConnector: androidConnector)
-
+    init() {
         cocoaStatusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
         cocoaStatusItem.menu = statusItemMenu.menu
-
-        statusItemPairingProgress = StatusItemPairingProgress(statusItem: self)
 
         self.drawStatusItem()
     }
@@ -34,17 +30,16 @@ class StatusItem {
         self.drawStatusItem()
     }
 
-    func startPairingProgressAnimation() {
-        statusItemPairingProgress?.startAnimation()
-    }
-
-    func stopPairingProgressAnimation() {
-        statusItemPairingProgress?.stopAnimation()
+    func setPairingStatus(pairingStatus: PairingStatus) {
+        print("StatusItem: setting pairingStatus to \(String(describing: pairingStatus))")
+        self.pairingStatus = pairingStatus
+        self.statusItemMenu.setPairingStatus(pairingStatus: pairingStatus)
+        // TODO set statusitem icon to "unpaired" if status is unpaired
     }
 
     private func drawStatusItem() {
         DispatchQueue.main.async {
-            // https://stackoverflow.com/questions/12714923/os-x-icons-size
+            // choosing 18/18: https://stackoverflow.com/questions/12714923/os-x-icons-size
             let imageSize = NSSize.init(width: 18.0, height: 18.0)
 
             let statusItemImage = NSImage(
