@@ -57,6 +57,8 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate 
             print("Got signal from service: quality=\(signalQuality), type=\(signalType)")
         } catch let error {
             print("Could not get signal from android device: \(error)")
+            signalQuality = SignalQuality.no_signal
+            signalType = SignalType.no_signal
             tetheringHelperServiceResolved = nil
         }
     }
