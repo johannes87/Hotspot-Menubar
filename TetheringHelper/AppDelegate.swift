@@ -37,7 +37,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 self.statusItem.setPairingStatus(
                     pairingStatus: self.androidConnector.pairingStatus)
 
-                if !self.androidConnector.isPaired  {
+                if !self.androidConnector.pairingStatus.isPaired  {
                     print("Trying to pair...")
                     self.androidConnector.pair()
                 } else {

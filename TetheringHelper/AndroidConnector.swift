@@ -28,9 +28,6 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate 
             }
         }
     }
-    var isPaired: Bool {
-        get { tetheringHelperServiceResolved != nil }
-    }
 
     private var tetheringHelperServiceUnresolved: NetService?
     private var tetheringHelperServiceResolved: NetService?
@@ -49,7 +46,7 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate 
     }
 
     func getSignal() {
-        guard isPaired else { return }
+        guard pairingStatus.isPaired else { return }
 
         do {
             let serviceResponse = try AndroidConnector.fetchAndDecodeServiceResponse(
