@@ -46,7 +46,10 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate 
     }
 
     func getSignal() {
-        guard pairingStatus.isPaired else { return }
+        guard pairingStatus.isPaired else {
+            pair()
+            return
+        }
 
         do {
             let serviceResponse = try AndroidConnector.fetchAndDecodeServiceResponse(
@@ -63,7 +66,7 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate 
         }
     }
 
-    func pair() {
+    private func pair() {
         tetheringHelperServiceResolved = nil
 
         // make NetServiceBrowser work by running it in the main thread

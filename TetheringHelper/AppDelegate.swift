@@ -34,20 +34,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             while true {
                 print("Network loop: the time is \(String(describing: NSDate()))")
 
+                self.androidConnector.getSignal()
+
                 self.statusItem.setPairingStatus(
                     pairingStatus: self.androidConnector.pairingStatus)
-
-                if !self.androidConnector.pairingStatus.isPaired  {
-                    print("Trying to pair...")
-                    self.androidConnector.pair()
-                } else {
-                    print("Paired, getting signal")
-                    self.androidConnector.getSignal()
-
-                    self.statusItem.setSignal(
-                        signalQuality: self.androidConnector.signalQuality,
-                        signalType: self.androidConnector.signalType)
-                }
+                self.statusItem.setSignal(
+                    signalQuality: self.androidConnector.signalQuality,
+                    signalType: self.androidConnector.signalType)
 
                 // TODO: put time interval into preferences
                 Thread.sleep(forTimeInterval: 3)
