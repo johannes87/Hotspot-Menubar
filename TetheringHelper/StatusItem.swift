@@ -34,7 +34,7 @@ class StatusItem {
         print("StatusItem: setting pairingStatus to \(String(describing: pairingStatus))")
         self.pairingStatus = pairingStatus
         self.statusItemMenu.setPairingStatus(pairingStatus: pairingStatus)
-        // TODO set statusitem icon to "unpaired" if status is unpaired
+        self.drawStatusItem()
     }
 
     private func drawStatusItem() {
@@ -46,7 +46,12 @@ class StatusItem {
                 size: imageSize,
                 flipped: false) { (dstRect: NSRect) -> Bool in
                     self.drawSignalBars(dstRect)
-                    self.drawSignalType(dstRect)
+
+                    if self.pairingStatus.isPaired {
+                        self.drawSignalType(dstRect)
+                    } else {
+                        self.drawUnpairedIcon(dstRect)
+                    }
                     return true
             }
 
@@ -113,5 +118,16 @@ class StatusItem {
 
         let signalTypeStr = NSString(string: self.signalType.rawValue)
         signalTypeStr.draw(in: dstRect, withAttributes: textFontAttributes)
+    }
+
+    /// Draw an "unpaired" icon in the top-left corner when this app is not paired with an Android device
+    private func drawUnpairedIcon(_ dstRect: NSRect) {
+        // TODO: fulfill icon license http://www.iconarchive.com/show/windows-8-icons-by-icons8/Network-Disconnected-icon.html
+        let unpairedIcon = NSImage(named: "unpairedIcon")!
+        guard dstRect.width == 18 && dstRect.height == 18 else { return }
+
+        // the destination is assumed to be 18x18 px here
+        unpairedIcon.draw(in: NSRect(x: 0, y: 8, width: 10, height: 10))
+
     }
 }
