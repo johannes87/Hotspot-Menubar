@@ -64,7 +64,7 @@ class StatusItemMenu: NSObject, NSMenuItemValidation {
         preferencesMenuItem = NSMenuItem(
             title: StatusItemMenu.preferencesMenuItemTitle,
             action: #selector(showPreferencesWindow(sender:)),
-            keyEquivalent: ";")
+            keyEquivalent: ",")
         preferencesMenuItem.target = self
 
         aboutMenuItem = NSMenuItem(
