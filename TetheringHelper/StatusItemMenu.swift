@@ -38,6 +38,7 @@ class StatusItemMenu: NSObject, NSMenuItemValidation {
 
     private var pairingStatus = PairingStatus.unpaired
 
+    private var preferencesWindowController: NSWindowController!
 
     override init() {
         super.init()
@@ -113,7 +114,12 @@ class StatusItemMenu: NSObject, NSMenuItemValidation {
     }
 
     @IBAction private func showPreferencesWindow(sender: Any) {
-        print("show preferences window")
+        if preferencesWindowController == nil {
+            let storyboard = NSStoryboard(name: "PreferencesWindow", bundle: nil)
+            preferencesWindowController = storyboard.instantiateInitialController() as? NSWindowController
+        }
+
+        preferencesWindowController!.showWindow(sender)
     }
 
     @IBAction private func showAboutWindow(sender: Any) {

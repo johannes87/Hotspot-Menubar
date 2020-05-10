@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Fs6-Kd-ZjQ">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14868"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Window Controller-->
+        <scene sceneID="pwh-6h-dxx">
+            <objects>
+                <windowController id="Fs6-Kd-ZjQ" customClass="PreferencesWindowController" customModule="TetheringHelper" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="G5f-Fk-3pJ">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="425" y="461" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
+                        <connections>
+                            <outlet property="delegate" destination="Fs6-Kd-ZjQ" id="SOy-6p-TA1"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="8p0-BP-4Sh" kind="relationship" relationship="window.shadowedContentViewController" id="pMf-At-mTi"/>
+                    </connections>
+                </windowController>
+                <customObject id="VSz-yc-RhO" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-212" y="-29"/>
+        </scene>
+        <!--Tab View Controller-->
+        <scene sceneID="dCa-L6-Z6E">
+            <objects>
+                <tabViewController selectedTabViewItemIndex="0" tabStyle="toolbar" id="8p0-BP-4Sh" sceneMemberID="viewController">
+                    <tabViewItems>
+                        <tabViewItem label="General" identifier="" image="NSPreferencesGeneral" id="mXh-6T-uZb"/>
+                        <tabViewItem label="Whitelist" identifier="" image="NSListViewTemplate" id="dgJ-Ff-mwt"/>
+                    </tabViewItems>
+                    <viewControllerTransitionOptions key="transitionOptions" allowUserInteraction="YES"/>
+                    <tabView key="tabView" type="noTabsNoBorder" id="QTl-jq-Bct">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <font key="font" metaFont="message"/>
+                        <connections>
+                            <outlet property="delegate" destination="8p0-BP-4Sh" id="M7A-uh-USL"/>
+                        </connections>
+                    </tabView>
+                    <connections>
+                        <outlet property="tabView" destination="QTl-jq-Bct" id="cKH-Pc-b9X"/>
+                        <segue destination="cIp-Ar-Thd" kind="relationship" relationship="tabItems" id="Dia-pV-Vw5"/>
+                        <segue destination="U34-q1-Nfw" kind="relationship" relationship="tabItems" id="eme-jh-YRe"/>
+                    </connections>
+                </tabViewController>
+                <customObject id="PkY-ua-Kuo" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="346" y="-44"/>
+        </scene>
+        <!--General-->
+        <scene sceneID="FL4-k5-KdL">
+            <objects>
+                <viewController title="General" id="cIp-Ar-Thd" customClass="PreferencesViewController" customModule="TetheringHelper" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="Tu2-S8-ZrN">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="GgR-su-5Gh" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1016" y="-230"/>
+        </scene>
+        <!--Whitelist-->
+        <scene sceneID="ziQ-5P-4xP">
+            <objects>
+                <viewController title="Whitelist" id="U34-q1-Nfw" customClass="PreferencesViewController" customModule="TetheringHelper" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="AVs-52-c1U">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="dKz-Ye-jMy" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1016" y="142"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="NSListViewTemplate" width="14" height="10"/>
+        <image name="NSPreferencesGeneral" width="32" height="32"/>
+    </resources>
+</document>
