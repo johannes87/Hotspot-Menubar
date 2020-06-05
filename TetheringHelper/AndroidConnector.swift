@@ -47,9 +47,9 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate 
     }
 
     func getSignal() {
-        guard pairingStatus.isPaired else {
+        if !pairingStatus.isPaired {
             pair()
-            return
+            guard waitForPairing(timeout: 1.0) else { return }
         }
 
         do {
@@ -65,6 +65,21 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate 
             signalType = SignalType.no_signal
             tetheringHelperServiceResolved = nil
         }
+    }
+
+    /// waitForPairing will return true if the pairing was successful, or false if it did not succeed before the timeout was reached
+    private func waitForPairing(timeout: TimeInterval) -> Bool {
+        var timeSlept: TimeInterval = 0
+        let sleepDuration: TimeInterval = 0.2
+
+        while timeSlept < timeout {
+            if pairingStatus.isPaired {
+                return true
+            }
+            Thread.sleep(forTimeInterval: sleepDuration)
+            timeSlept += sleepDuration
+        }
+        return false
     }
 
     private func pair() {
