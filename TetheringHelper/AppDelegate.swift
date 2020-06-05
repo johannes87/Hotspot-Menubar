@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import os
 
 // TODO: implement dark mode
 
@@ -30,7 +31,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let networkQueue = DispatchQueue(label: "network", qos: .background)
         networkQueue.async {
             while true {
-                print("Network loop: the time is \(String(describing: NSDate()))")
+                os_log(.debug, "Running network loop")
 
                 self.androidConnector.getSignal()
 

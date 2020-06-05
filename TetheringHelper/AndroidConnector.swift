@@ -9,6 +9,7 @@
 import Foundation
 import AppKit
 import Socket
+import os
 
 class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate {
     private struct ServiceResponse: Codable {
@@ -57,9 +58,9 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate 
                 port: tetheringHelperServiceResolved!.port)
             signalQuality = SignalQuality(rawValue: serviceResponse.quality)!
             signalType = SignalType(rawValue: serviceResponse.type)!
-            print("Got signal from service: quality=\(signalQuality), type=\(signalType)")
+            os_log(.info, "Got signal from device: quality=%@, type=%@", String(describing: signalQuality), String(describing: signalType))
         } catch let error {
-            print("Could not get signal from android device: \(error)")
+            os_log(.debug, "Could not get signal from android device: %@", String(describing: error))
             signalQuality = SignalQuality.no_signal
             signalType = SignalType.no_signal
             tetheringHelperServiceResolved = nil
@@ -80,7 +81,7 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate 
 
     // MARK: NetServiceBrowserDelegate
     func netServiceBrowser(_ browser: NetServiceBrowser, didFind service: NetService, moreComing: Bool) {
-        print("Discovered the service: name=\(service.name), type=\(service.type)")
+        os_log(.info, "Discovered device: %@", service.name)
 
         // without this variable, the service goes out of scope and no delegate gets called
         tetheringHelperServiceUnresolved = service
