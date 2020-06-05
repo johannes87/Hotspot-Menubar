@@ -27,9 +27,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     private func startNetworkLoop() {
-        // TODO: check if we can use global .background queue instead, to avoid creating unnecessary queues
-        let networkQueue = DispatchQueue(label: "network", qos: .background)
-        networkQueue.async {
+        DispatchQueue.global(qos: .background).async {
             while true {
                 os_log(.debug, "Running network loop")
 
