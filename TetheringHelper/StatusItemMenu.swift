@@ -110,6 +110,7 @@ class StatusItemMenu: NSObject, NSMenuItemValidation {
     }
 
     @IBAction private func showDataStatistics(sender: Any) {
+        // TODO implement showDataStatistics
         print("show data statistics")
     }
 
@@ -118,11 +119,11 @@ class StatusItemMenu: NSObject, NSMenuItemValidation {
             let storyboard = NSStoryboard(name: "PreferencesWindow", bundle: nil)
             preferencesWindowController = storyboard.instantiateInitialController() as? NSWindowController
         }
-
         preferencesWindowController!.showWindow(sender)
     }
 
     @IBAction private func showAboutWindow(sender: Any) {
+        // TODO implement showAboutWindow
         print("show about window")
     }
 

@@ -122,11 +122,11 @@ class StatusItem {
     /// Draw an "unpaired" icon in the top-left corner when this app is not paired with an Android device
     private func drawUnpairedIcon(_ dstRect: NSRect) {
         // TODO: fulfill icon license http://www.iconarchive.com/show/windows-8-icons-by-icons8/Network-Disconnected-icon.html
+        // TODO: draw icon again as vector image, by backdropping the bitmap and drawing on top
         let unpairedIcon = NSImage(named: "unpairedIcon")!
         guard dstRect.width == 18 && dstRect.height == 18 else { return }
 
         // the destination is assumed to be 18x18 px here
         unpairedIcon.draw(in: NSRect(x: 0, y: 8, width: 10, height: 10))
-
     }
 }

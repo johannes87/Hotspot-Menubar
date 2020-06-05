@@ -7,9 +7,7 @@
 //
 
 import Cocoa
-import UserNotifications
 
-// TODO: rename to TetheringStatus
 // TODO: implement dark mode
 
 @NSApplicationMain
