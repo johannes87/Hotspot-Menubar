@@ -77,7 +77,7 @@ class StatusItemMenu: NSObject, NSMenuItemValidation {
         quitMenuItem = NSMenuItem(
             title: StatusItemMenu.quitMenuItemTitle,
             action: #selector(quitApplication(sender:)),
-            keyEquivalent: "")
+            keyEquivalent: "q")
         quitMenuItem.target = self
 
         menu.insertItem(dataStatisticsMenuItem, at: 0)
@@ -127,6 +127,6 @@ class StatusItemMenu: NSObject, NSMenuItemValidation {
     }
 
     @IBAction private func quitApplication(sender: Any) {
-        NSApp.terminate(nil)
+        NSApp.terminate(sender)
     }
 }
