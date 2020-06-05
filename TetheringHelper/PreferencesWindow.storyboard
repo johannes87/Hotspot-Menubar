@@ -33,7 +33,6 @@
                 <tabViewController selectedTabViewItemIndex="0" tabStyle="toolbar" id="8p0-BP-4Sh" sceneMemberID="viewController">
                     <tabViewItems>
                         <tabViewItem label="General" identifier="" image="NSPreferencesGeneral" id="mXh-6T-uZb"/>
-                        <tabViewItem label="Whitelist" identifier="" image="NSListViewTemplate" id="dgJ-Ff-mwt"/>
                     </tabViewItems>
                     <viewControllerTransitionOptions key="transitionOptions" allowUserInteraction="YES"/>
                     <tabView key="tabView" type="noTabsNoBorder" id="QTl-jq-Bct">
@@ -47,7 +46,6 @@
                     <connections>
                         <outlet property="tabView" destination="QTl-jq-Bct" id="cKH-Pc-b9X"/>
                         <segue destination="cIp-Ar-Thd" kind="relationship" relationship="tabItems" id="Dia-pV-Vw5"/>
-                        <segue destination="U34-q1-Nfw" kind="relationship" relationship="tabItems" id="eme-jh-YRe"/>
                     </connections>
                 </tabViewController>
                 <customObject id="PkY-ua-Kuo" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -57,32 +55,59 @@
         <!--General-->
         <scene sceneID="FL4-k5-KdL">
             <objects>
-                <viewController title="General" id="cIp-Ar-Thd" customClass="PreferencesViewController" customModule="TetheringHelper" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="Tu2-S8-ZrN">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
-                        <autoresizingMask key="autoresizingMask"/>
+                <viewController title="General" id="cIp-Ar-Thd" customClass="GeneralPreferencesViewController" customModule="TetheringHelper" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" translatesAutoresizingMaskIntoConstraints="NO" id="Tu2-S8-ZrN">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="89"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jll-Eq-s4J">
+                                <rect key="frame" x="92" y="53" width="266" height="18"/>
+                                <buttonCell key="cell" type="check" title="Start TetheringHelper on system startup" bezelStyle="regularSquare" imagePosition="left" refusesFirstResponder="YES" inset="2" id="PGo-CZ-KTF">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tTM-Iz-OuA">
+                                <rect key="frame" x="18" y="23" width="224" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="220" id="H6d-uD-Uh3"/>
+                                </constraints>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="refreshStateLabel" id="I4J-l7-wJp">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="j8d-ri-2zy">
+                                <rect key="frame" x="246" y="18" width="186" height="24"/>
+                                <sliderCell key="cell" refusesFirstResponder="YES" alignment="left" minValue="1" maxValue="10" doubleValue="6" tickMarkPosition="above" numberOfTickMarks="10" allowsTickMarkValuesOnly="YES" sliderType="linear" id="NIv-9J-JK1"/>
+                                <connections>
+                                    <action selector="refreshStateSliderChanged:" target="cIp-Ar-Thd" id="Pxj-Ji-JT0"/>
+                                </connections>
+                            </slider>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="tTM-Iz-OuA" firstAttribute="leading" secondItem="Tu2-S8-ZrN" secondAttribute="leading" constant="20" symbolic="YES" id="806-ZZ-JGq"/>
+                            <constraint firstAttribute="height" constant="89" id="8Uq-z0-KnL"/>
+                            <constraint firstAttribute="trailing" secondItem="j8d-ri-2zy" secondAttribute="trailing" constant="20" symbolic="YES" id="Bj7-Gw-4DX"/>
+                            <constraint firstAttribute="bottom" secondItem="j8d-ri-2zy" secondAttribute="bottom" constant="20" symbolic="YES" id="Ibb-ih-NAi"/>
+                            <constraint firstItem="j8d-ri-2zy" firstAttribute="leading" secondItem="tTM-Iz-OuA" secondAttribute="trailing" constant="8" symbolic="YES" id="M8o-k6-hfK"/>
+                            <constraint firstAttribute="width" constant="450" id="e2l-v1-MEw"/>
+                            <constraint firstItem="jll-Eq-s4J" firstAttribute="top" secondItem="Tu2-S8-ZrN" secondAttribute="top" constant="20" symbolic="YES" id="fr1-CK-ukO"/>
+                            <constraint firstItem="jll-Eq-s4J" firstAttribute="centerX" secondItem="Tu2-S8-ZrN" secondAttribute="centerX" id="hHP-Ct-UPB"/>
+                            <constraint firstItem="tTM-Iz-OuA" firstAttribute="centerY" secondItem="j8d-ri-2zy" secondAttribute="centerY" id="mnN-7A-Mif"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="refreshStateLabel" destination="tTM-Iz-OuA" id="MNl-NL-Prj"/>
+                        <outlet property="refreshStateSlider" destination="j8d-ri-2zy" id="q8l-aS-u43"/>
+                    </connections>
                 </viewController>
                 <customObject id="GgR-su-5Gh" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1016" y="-230"/>
-        </scene>
-        <!--Whitelist-->
-        <scene sceneID="ziQ-5P-4xP">
-            <objects>
-                <viewController title="Whitelist" id="U34-q1-Nfw" customClass="PreferencesViewController" customModule="TetheringHelper" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="AVs-52-c1U">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </view>
-                </viewController>
-                <customObject id="dKz-Ye-jMy" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1016" y="142"/>
+            <point key="canvasLocation" x="1016" y="-335.5"/>
         </scene>
     </scenes>
     <resources>
-        <image name="NSListViewTemplate" width="14" height="10"/>
         <image name="NSPreferencesGeneral" width="32" height="32"/>
     </resources>
 </document>

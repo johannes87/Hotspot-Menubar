@@ -10,11 +10,11 @@ import Cocoa
 
 class PreferencesWindowController: NSWindowController, NSWindowDelegate {
     override func windowDidLoad() {
-        super.windowDidLoad()    
+        super.windowDidLoad()
+        bringToFront()
     }
 
-    func windowShouldClose(_ sender: NSWindow) -> Bool {
-        window?.orderOut(sender)
-        return false
+    private func bringToFront() {
+        NSApp.activate(ignoringOtherApps: true)
     }
 }
