@@ -31,7 +31,6 @@ class StatusItem {
     }
 
     func setPairingStatus(pairingStatus: PairingStatus) {
-        print("StatusItem: setting pairingStatus to \(String(describing: pairingStatus))")
         self.pairingStatus = pairingStatus
         self.statusItemMenu.setPairingStatus(pairingStatus: pairingStatus)
         self.drawStatusItem()
