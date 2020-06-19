@@ -9,23 +9,31 @@
 import Cocoa
 
 class GeneralPreferencesViewController: NSViewController {
-    @IBOutlet weak var refreshStateLabel: NSTextField!
-    @IBOutlet weak var refreshStateSlider: NSSlider!
+    @IBOutlet weak var refreshStatusLabel: NSTextField!
+    @IBOutlet weak var refreshStatusSlider: NSSlider!
 
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        updateRefreshStateLabel()
+        let refreshStatusDelay = PreferencesStorage.getRefreshStatusDelay()
+        updateRefreshStatusLabel(sliderValue: refreshStatusDelay)
+        refreshStatusSlider.integerValue = refreshStatusDelay
     }
 
-    @IBAction func refreshStateSliderChanged(_ sender: NSSlider) {
-        updateRefreshStateLabel()
+    @IBAction func autoStartCheckboxChanged(_ sender: NSButton) {
+        // TODO: implement auto starting of app
+        print("auto start checkbox", sender.integerValue != 0)
     }
 
-    private func updateRefreshStateLabel() {
-        refreshStateLabel.stringValue = String(
+    @IBAction func refreshStatusSliderChanged(_ sender: NSSlider) {
+        updateRefreshStatusLabel(sliderValue: sender.integerValue)
+        PreferencesStorage.setRefreshStatusDelay(newValue: sender.integerValue)
+    }
+
+    private func updateRefreshStatusLabel(sliderValue: Int) {
+        refreshStatusLabel.stringValue = String(
             format: NSLocalizedString("PreferencesRefreshStatusLabel",
                 comment: "The label for the refresh status slider in the preferences pane"),
-            refreshStateSlider.integerValue)
+            sliderValue)
     }
 }

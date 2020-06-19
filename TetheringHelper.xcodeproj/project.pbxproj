@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F0E960D249CFF22006A4AD2 /* PreferencesStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0E960C249CFF22006A4AD2 /* PreferencesStorage.swift */; };
 		8F15A995244F46820094CCC4 /* Socket in Frameworks */ = {isa = PBXBuildFile; productRef = 8F15A994244F46820094CCC4 /* Socket */; };
 		8F1CB93B2468564200614EA2 /* GeneralPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1CB93A2468564200614EA2 /* GeneralPreferencesViewController.swift */; };
 		8F1D5DAD245C711F001B1852 /* PairingStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1D5DAC245C711F001B1852 /* PairingStatus.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8F0E960C249CFF22006A4AD2 /* PreferencesStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesStorage.swift; sourceTree = "<group>"; };
 		8F1CB93A2468564200614EA2 /* GeneralPreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPreferencesViewController.swift; sourceTree = "<group>"; };
 		8F1D5DAC245C711F001B1852 /* PairingStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingStatus.swift; sourceTree = "<group>"; };
 		8F1DD413238430ED0038AAE2 /* AndroidConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AndroidConnector.swift; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 				8F3FE78623E898B8003CFB6D /* enums */,
 				8F1CB93E24685D1400614EA2 /* PreferencesWindow */,
 				8F5D7E5822F5CCE200FED4BE /* AppDelegate.swift */,
+				8F0E960C249CFF22006A4AD2 /* PreferencesStorage.swift */,
 				8F71806A23915B230001B80F /* DataStorage.swift */,
 				8FCEF61B23018DA600CB726E /* StatusItem.swift */,
 				8FAD0BB1239093C700DDB470 /* StatusItemMenu.swift */,
@@ -210,6 +213,7 @@
 			files = (
 				8F1DD416238448B70038AAE2 /* SignalType.swift in Sources */,
 				8F2C617224894A6C00A0C017 /* PreferencesWindowController.swift in Sources */,
+				8F0E960D249CFF22006A4AD2 /* PreferencesStorage.swift in Sources */,
 				8F1DD418238448DD0038AAE2 /* SignalQuality.swift in Sources */,
 				8FAD0BB2239093C700DDB470 /* StatusItemMenu.swift in Sources */,
 				8F1D5DAD245C711F001B1852 /* PairingStatus.swift in Sources */,

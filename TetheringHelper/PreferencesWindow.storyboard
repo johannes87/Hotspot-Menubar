@@ -65,13 +65,16 @@
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="autoStartCheckboxChanged:" target="cIp-Ar-Thd" id="ctM-s6-Sqf"/>
+                                </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tTM-Iz-OuA">
                                 <rect key="frame" x="18" y="23" width="224" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="220" id="H6d-uD-Uh3"/>
                                 </constraints>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="refreshStateLabel" id="I4J-l7-wJp">
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="replaced in code" id="I4J-l7-wJp">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -81,7 +84,7 @@
                                 <rect key="frame" x="246" y="18" width="186" height="24"/>
                                 <sliderCell key="cell" refusesFirstResponder="YES" alignment="left" minValue="1" maxValue="10" doubleValue="6" tickMarkPosition="above" numberOfTickMarks="10" allowsTickMarkValuesOnly="YES" sliderType="linear" id="NIv-9J-JK1"/>
                                 <connections>
-                                    <action selector="refreshStateSliderChanged:" target="cIp-Ar-Thd" id="Pxj-Ji-JT0"/>
+                                    <action selector="refreshStatusSliderChanged:" target="cIp-Ar-Thd" id="ccn-xC-Wte"/>
                                 </connections>
                             </slider>
                         </subviews>
@@ -98,8 +101,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="refreshStateLabel" destination="tTM-Iz-OuA" id="MNl-NL-Prj"/>
-                        <outlet property="refreshStateSlider" destination="j8d-ri-2zy" id="q8l-aS-u43"/>
+                        <outlet property="refreshStatusLabel" destination="tTM-Iz-OuA" id="3uO-TO-zVN"/>
+                        <outlet property="refreshStatusSlider" destination="j8d-ri-2zy" id="qLa-Oy-mMJ"/>
                     </connections>
                 </viewController>
                 <customObject id="GgR-su-5Gh" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

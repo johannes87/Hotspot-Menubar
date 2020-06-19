@@ -40,6 +40,7 @@ class StatusItemMenu: NSObject, NSMenuItemValidation {
 
     private var preferencesWindowController: NSWindowController!
 
+
     override init() {
         super.init()
         createMenu()

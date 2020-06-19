@@ -39,8 +39,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     signalQuality: self.androidConnector.signalQuality,
                     signalType: self.androidConnector.signalType)
 
-                // TODO: put time interval into preferences
-                Thread.sleep(forTimeInterval: 3)
+                let refreshStatusDelay = PreferencesStorage.getRefreshStatusDelay()
+                Thread.sleep(forTimeInterval: Double(refreshStatusDelay))
             }
         }
     }
