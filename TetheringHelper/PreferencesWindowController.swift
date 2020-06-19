@@ -9,12 +9,13 @@
 import Cocoa
 
 class PreferencesWindowController: NSWindowController, NSWindowDelegate {
-    override func windowDidLoad() {
-        super.windowDidLoad()
+    override func showWindow(_ sender: Any?) {
+        super.showWindow(sender)
         bringToFront()
     }
 
     private func bringToFront() {
+        window?.makeKeyAndOrderFront(self)
         NSApp.activate(ignoringOtherApps: true)
     }
 }
