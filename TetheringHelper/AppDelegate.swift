@@ -39,8 +39,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     signalQuality: self.androidConnector.signalQuality,
                     signalType: self.androidConnector.signalType)
 
-                let refreshStatusDelay = PreferencesStorage.getRefreshStatusDelay()
-                Thread.sleep(forTimeInterval: Double(refreshStatusDelay))
+                Thread.sleep(forTimeInterval: Double(PreferencesStorage.refreshStatusDelay))
             }
         }
     }

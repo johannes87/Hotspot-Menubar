@@ -9,6 +9,7 @@
 import Cocoa
 
 class GeneralPreferencesViewController: NSViewController {
+    // TODO: make UI elements selectable by TAB
     @IBOutlet weak var refreshStatusLabel: NSTextField!
     @IBOutlet weak var refreshStatusSlider: NSSlider!
     @IBOutlet weak var runOnStartupCheckbox: NSButton!
@@ -16,7 +17,7 @@ class GeneralPreferencesViewController: NSViewController {
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        let refreshStatusDelay = PreferencesStorage.getRefreshStatusDelay()
+        let refreshStatusDelay = PreferencesStorage.refreshStatusDelay
         updateRefreshStatusLabel(sliderValue: refreshStatusDelay)
         refreshStatusSlider.integerValue = refreshStatusDelay
         runOnStartupCheckbox.state = Autostart.isEnabled() ? .on : .off
@@ -29,7 +30,7 @@ class GeneralPreferencesViewController: NSViewController {
 
     @IBAction func refreshStatusSliderChanged(_ sender: NSSlider) {
         updateRefreshStatusLabel(sliderValue: sender.integerValue)
-        PreferencesStorage.setRefreshStatusDelay(newValue: sender.integerValue)
+        PreferencesStorage.refreshStatusDelay = sender.integerValue
     }
 
     private func updateRefreshStatusLabel(sliderValue: Int) {
