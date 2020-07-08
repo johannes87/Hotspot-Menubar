@@ -11,6 +11,7 @@ import Cocoa
 class GeneralPreferencesViewController: NSViewController {
     @IBOutlet weak var refreshStatusLabel: NSTextField!
     @IBOutlet weak var refreshStatusSlider: NSSlider!
+    @IBOutlet weak var runOnStartupCheckbox: NSButton!
 
 
     override func viewDidAppear() {
@@ -18,11 +19,12 @@ class GeneralPreferencesViewController: NSViewController {
         let refreshStatusDelay = PreferencesStorage.getRefreshStatusDelay()
         updateRefreshStatusLabel(sliderValue: refreshStatusDelay)
         refreshStatusSlider.integerValue = refreshStatusDelay
+        runOnStartupCheckbox.state = Autostart.isEnabled() ? .on : .off
     }
 
-    @IBAction func autoStartCheckboxChanged(_ sender: NSButton) {
-        // TODO: implement auto starting of app
-        print("auto start checkbox", sender.integerValue != 0)
+    @IBAction func runOnStartupCheckboxChanged(_ sender: NSButton) {
+        let runOnStartup = sender.integerValue != 0
+        Autostart.setAutostart(enabled: runOnStartup)
     }
 
     @IBAction func refreshStatusSliderChanged(_ sender: NSSlider) {

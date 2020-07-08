@@ -66,7 +66,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="autoStartCheckboxChanged:" target="cIp-Ar-Thd" id="ctM-s6-Sqf"/>
+                                    <action selector="runOnStartupCheckboxChanged:" target="cIp-Ar-Thd" id="BSK-V2-BsU"/>
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tTM-Iz-OuA">
@@ -103,6 +103,7 @@
                     <connections>
                         <outlet property="refreshStatusLabel" destination="tTM-Iz-OuA" id="3uO-TO-zVN"/>
                         <outlet property="refreshStatusSlider" destination="j8d-ri-2zy" id="qLa-Oy-mMJ"/>
+                        <outlet property="runOnStartupCheckbox" destination="jll-Eq-s4J" id="JTE-SH-UgW"/>
                     </connections>
                 </viewController>
                 <customObject id="GgR-su-5Gh" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
