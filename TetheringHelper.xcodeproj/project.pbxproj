@@ -3,13 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		8F0E960D249CFF22006A4AD2 /* PreferencesStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0E960C249CFF22006A4AD2 /* PreferencesStorage.swift */; };
 		8F0FDCB624A22A3D00B6BF60 /* Autostart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0FDCB524A22A3D00B6BF60 /* Autostart.swift */; };
-		8F15A995244F46820094CCC4 /* Socket in Frameworks */ = {isa = PBXBuildFile; productRef = 8F15A994244F46820094CCC4 /* Socket */; };
 		8F1CB93B2468564200614EA2 /* GeneralPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1CB93A2468564200614EA2 /* GeneralPreferencesViewController.swift */; };
 		8F1D5DAD245C711F001B1852 /* PairingStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1D5DAC245C711F001B1852 /* PairingStatus.swift */; };
 		8F1DD414238430ED0038AAE2 /* AndroidConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1DD413238430ED0038AAE2 /* AndroidConnector.swift */; };
@@ -26,11 +25,21 @@
 		8F6C36F123995B84009C7865 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8F6C36EF23995B84009C7865 /* DataModel.xcdatamodeld */; };
 		8F71806B23915B230001B80F /* DataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F71806A23915B230001B80F /* DataStorage.swift */; };
 		8F8195BB246B12D30066632D /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 8F8195BA246B12D30066632D /* Localizable.stringsdict */; };
+		8F8539AD24BDC5EA00EC6E3D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8539AC24BDC5EA00EC6E3D /* main.swift */; };
 		8FAD0BB2239093C700DDB470 /* StatusItemMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAD0BB1239093C700DDB470 /* StatusItemMenu.swift */; };
 		8FCEF61C23018DA600CB726E /* StatusItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCEF61B23018DA600CB726E /* StatusItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		8F8539A824BDC5EA00EC6E3D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		8FDD112E24A2325B008D4CA9 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -67,6 +76,8 @@
 		8F6C36F023995B84009C7865 /* TetheringHelper.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TetheringHelper.xcdatamodel; sourceTree = "<group>"; };
 		8F71806A23915B230001B80F /* DataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStorage.swift; sourceTree = "<group>"; };
 		8F8195BA246B12D30066632D /* Localizable.stringsdict */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; path = Localizable.stringsdict; sourceTree = "<group>"; };
+		8F8539AA24BDC5EA00EC6E3D /* TestBonjourService */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TestBonjourService; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F8539AC24BDC5EA00EC6E3D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		8FAD0BB1239093C700DDB470 /* StatusItemMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusItemMenu.swift; sourceTree = "<group>"; };
 		8FCEF61B23018DA600CB726E /* StatusItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -83,7 +94,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8F15A995244F46820094CCC4 /* Socket in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8F8539A724BDC5EA00EC6E3D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,6 +167,7 @@
 			children = (
 				8F5D7E5722F5CCE200FED4BE /* TetheringHelper */,
 				8F32AECC24A40BB60071890D /* TetheringHelperAutostart */,
+				8F8539AB24BDC5EA00EC6E3D /* TestBonjourService */,
 				8F5D7E5622F5CCE200FED4BE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -159,6 +177,7 @@
 			children = (
 				8F5D7E5522F5CCE200FED4BE /* TetheringHelper.app */,
 				8F32AECB24A40BB60071890D /* TetheringHelperAutostart.app */,
+				8F8539AA24BDC5EA00EC6E3D /* TestBonjourService */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -175,6 +194,14 @@
 				8F8195BA246B12D30066632D /* Localizable.stringsdict */,
 			);
 			path = TetheringHelper;
+			sourceTree = "<group>";
+		};
+		8F8539AB24BDC5EA00EC6E3D /* TestBonjourService */ = {
+			isa = PBXGroup;
+			children = (
+				8F8539AC24BDC5EA00EC6E3D /* main.swift */,
+			);
+			path = TestBonjourService;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,11 +239,27 @@
 			);
 			name = TetheringHelper;
 			packageProductDependencies = (
-				8F15A994244F46820094CCC4 /* Socket */,
 			);
 			productName = TetheringHelper;
 			productReference = 8F5D7E5522F5CCE200FED4BE /* TetheringHelper.app */;
 			productType = "com.apple.product-type.application";
+		};
+		8F8539A924BDC5EA00EC6E3D /* TestBonjourService */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8F8539B024BDC5EA00EC6E3D /* Build configuration list for PBXNativeTarget "TestBonjourService" */;
+			buildPhases = (
+				8F8539A624BDC5EA00EC6E3D /* Sources */,
+				8F8539A724BDC5EA00EC6E3D /* Frameworks */,
+				8F8539A824BDC5EA00EC6E3D /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TestBonjourService;
+			productName = TestBonjourService;
+			productReference = 8F8539AA24BDC5EA00EC6E3D /* TestBonjourService */;
+			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
@@ -234,6 +277,9 @@
 					8F5D7E5422F5CCE200FED4BE = {
 						CreatedOnToolsVersion = 10.3;
 					};
+					8F8539A924BDC5EA00EC6E3D = {
+						CreatedOnToolsVersion = 11.5;
+					};
 				};
 			};
 			buildConfigurationList = 8F5D7E5022F5CCE100FED4BE /* Build configuration list for PBXProject "TetheringHelper" */;
@@ -246,7 +292,6 @@
 			);
 			mainGroup = 8F5D7E4C22F5CCE100FED4BE;
 			packageReferences = (
-				8F15A993244F46820094CCC4 /* XCRemoteSwiftPackageReference "BlueSocket" */,
 			);
 			productRefGroup = 8F5D7E5622F5CCE200FED4BE /* Products */;
 			projectDirPath = "";
@@ -254,6 +299,7 @@
 			targets = (
 				8F5D7E5422F5CCE200FED4BE /* TetheringHelper */,
 				8F32AECA24A40BB60071890D /* TetheringHelperAutostart */,
+				8F8539A924BDC5EA00EC6E3D /* TestBonjourService */,
 			);
 		};
 /* End PBXProject section */
@@ -306,6 +352,14 @@
 				8F1DD414238430ED0038AAE2 /* AndroidConnector.swift in Sources */,
 				8F5D7E5922F5CCE200FED4BE /* AppDelegate.swift in Sources */,
 				8FCEF61C23018DA600CB726E /* StatusItem.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8F8539A624BDC5EA00EC6E3D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8F8539AD24BDC5EA00EC6E3D /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -526,6 +580,30 @@
 			};
 			name = Release;
 		};
+		8F8539AE24BDC5EA00EC6E3D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = R98YXK78YZ;
+				ENABLE_HARDENED_RUNTIME = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		8F8539AF24BDC5EA00EC6E3D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = R98YXK78YZ;
+				ENABLE_HARDENED_RUNTIME = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -556,26 +634,16 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		8F8539B024BDC5EA00EC6E3D /* Build configuration list for PBXNativeTarget "TestBonjourService" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8F8539AE24BDC5EA00EC6E3D /* Debug */,
+				8F8539AF24BDC5EA00EC6E3D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		8F15A993244F46820094CCC4 /* XCRemoteSwiftPackageReference "BlueSocket" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/IBM-Swift/BlueSocket";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.52;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		8F15A994244F46820094CCC4 /* Socket */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8F15A993244F46820094CCC4 /* XCRemoteSwiftPackageReference "BlueSocket" */;
-			productName = Socket;
-		};
-/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		8F6C36EF23995B84009C7865 /* DataModel.xcdatamodeld */ = {
