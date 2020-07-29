@@ -8,14 +8,16 @@
 
 import Foundation
 import AppKit
-import Socket
 import os
+import Network
 
 class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate {
     private struct ServiceResponse: Codable {
         var quality: Int
         var type: String
     }
+
+    private static let bonjourServiceType = "_tetheringhelper._tcp."
 
     private(set) var signalQuality = SignalQuality.no_signal
     private(set) var signalType = SignalType.no_signal
@@ -30,56 +32,77 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate 
         }
     }
 
+    private let networkQueue = DispatchQueue(label: "network")
+
     private var tetheringHelperServiceUnresolved: NetService?
     private var tetheringHelperServiceResolved: NetService?
     private var netServiceBrowser: NetServiceBrowser?
 
 
-    private static func fetchAndDecodeServiceResponse(hostName: String, port: Int) throws -> ServiceResponse {
-        let socket = try Socket.create()
-        try socket.connect(to: hostName, port: Int32(port))
-        let serviceResponseJson = try socket.readString()!
-
-        let decoder = JSONDecoder()
-        let serviceResponse = try decoder.decode(ServiceResponse.self, from: serviceResponseJson.data(using: .utf8)!)
-
-        return serviceResponse
-    }
-
     func getSignal() {
         if !pairingStatus.isPaired {
             pair()
-            guard waitForPairing(timeout: 1.0) else { return }
+            waitFor(timeout: 1.0) { self.pairingStatus.isPaired }
+            guard pairingStatus.isPaired else { return }
         }
 
-        do {
-            let serviceResponse = try AndroidConnector.fetchAndDecodeServiceResponse(
-                hostName: tetheringHelperServiceResolved!.hostName!,
-                port: tetheringHelperServiceResolved!.port)
-            signalQuality = SignalQuality(rawValue: serviceResponse.quality)!
-            signalType = SignalType(rawValue: serviceResponse.type)!
-            os_log(.info, "Got signal from device: quality=%@, type=%@", String(describing: signalQuality), String(describing: signalType))
-        } catch let error {
-            os_log(.debug, "Could not get signal from android device: %@", String(describing: error))
-            signalQuality = SignalQuality.no_signal
-            signalType = SignalType.no_signal
-            tetheringHelperServiceResolved = nil
+        let endpoint = NWEndpoint.hostPort(
+            host: NWEndpoint.Host(tetheringHelperServiceResolved!.hostName!),
+            port: NWEndpoint.Port(integerLiteral: NWEndpoint.Port.IntegerLiteralType(tetheringHelperServiceResolved!.port)))
+
+        let networkConnection = NWConnection(to: endpoint, using: .tcp)
+
+        networkConnection.stateUpdateHandler = { state in
+            switch state {
+            case .failed(_), .waiting(_):
+                // the waiting state happens when the connection is refused
+                os_log(.debug, "Connection to phone refused")
+                self.signalQuality = .no_signal
+                self.signalType = .no_signal
+                self.tetheringHelperServiceResolved = nil
+            default:
+                break
+            }
         }
+
+        var messageReceived = false
+        networkConnection.receiveMessage { data, _, messageComplete, error in
+            defer {
+                // cancel() needs to be called, otherwise networkConnection leaks memory
+                networkConnection.cancel()
+            }
+
+            if error != nil || !messageComplete {
+                return
+            }
+
+            messageReceived = true
+            let decoder = JSONDecoder()
+            let serviceResponse = try! decoder.decode(ServiceResponse.self, from: data!)
+            self.signalQuality = SignalQuality(rawValue: serviceResponse.quality)!
+            self.signalType = SignalType(rawValue: serviceResponse.type)!
+        }
+
+        networkConnection.start(queue: networkQueue)
+
+        // waitFor needed because receiveMessage will run asynchronously, and we want AndroidConnector
+        // to have the signal data once this function returns
+        waitFor(timeout: 1) { messageReceived }
     }
 
-    /// waitForPairing will return true if the pairing was successful, or false if it did not succeed before the timeout was reached
-    private func waitForPairing(timeout: TimeInterval) -> Bool {
+    /// waitFor will wait synchronously until timeout is reached or condition returns true
+    private func waitFor(timeout: TimeInterval, condition: () -> Bool) {
         var timeSlept: TimeInterval = 0
         let sleepDuration: TimeInterval = 0.2
 
         while timeSlept < timeout {
-            if pairingStatus.isPaired {
-                return true
+            if condition() {
+                return
             }
             Thread.sleep(forTimeInterval: sleepDuration)
             timeSlept += sleepDuration
         }
-        return false
+        return
     }
 
     private func pair() {
@@ -90,7 +113,7 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate 
         DispatchQueue.main.async {
             self.netServiceBrowser = NetServiceBrowser()
             self.netServiceBrowser?.delegate = self
-            self.netServiceBrowser?.searchForServices(ofType: "_tetheringhelper._tcp.", inDomain: "")
+            self.netServiceBrowser?.searchForServices(ofType: AndroidConnector.bonjourServiceType, inDomain: "")
         }
     }
 

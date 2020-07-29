@@ -13,11 +13,9 @@ enum PairingStatus {
     case unpaired
 
     var isPaired: Bool {
-        get {
-            switch self {
-                case .paired(_): return true
-                case .unpaired: return false
-            }
+        switch self {
+        case .paired(_): return true
+        case .unpaired: return false
         }
     }
 }

@@ -30,6 +30,7 @@ class StatusItem {
         self.drawStatusItem()
     }
 
+    // TODO: use _ for argument label
     func setPairingStatus(pairingStatus: PairingStatus) {
         self.pairingStatus = pairingStatus
         self.statusItemMenu.setPairingStatus(pairingStatus: pairingStatus)
@@ -37,7 +38,6 @@ class StatusItem {
     }
 
     private func drawStatusItem() {
-        // TODO: possible memory leak (memory inspector: CoreGraphics)
         DispatchQueue.main.async {
             // choosing 18/18: https://stackoverflow.com/questions/12714923/os-x-icons-size
             let imageSize = NSSize.init(width: 18.0, height: 18.0)
