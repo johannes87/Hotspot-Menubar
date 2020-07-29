@@ -23,13 +23,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         androidConnector = AndroidConnector()
         statusItem = StatusItem()
 
-        startNetworkLoop()
+        startBackgroundLoop()
     }
 
-    private func startNetworkLoop() {
+    private func startBackgroundLoop() {
         DispatchQueue.global(qos: .background).async {
             while true {
-                os_log(.debug, "Running network loop")
+                os_log(.debug, "Running background loop")
 
                 self.androidConnector.getSignal()
 
