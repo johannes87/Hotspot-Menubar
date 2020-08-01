@@ -56,7 +56,7 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate 
             switch state {
             case .failed(_), .waiting(_):
                 // the waiting state happens when the connection is refused
-                os_log(.debug, "Connection to phone refused")
+                os_log(.debug, "Pairing to phone lost")
                 self.signalQuality = .no_signal
                 self.signalType = .no_signal
                 self.tetheringHelperServiceResolved = nil
