@@ -30,8 +30,7 @@ class StatusItem {
         self.drawStatusItem()
     }
 
-    // TODO: use _ for argument label
-    func setPairingStatus(pairingStatus: PairingStatus) {
+    func setPairingStatus(_ pairingStatus: PairingStatus) {
         self.pairingStatus = pairingStatus
         self.statusItemMenu.setPairingStatus(pairingStatus: pairingStatus)
         self.drawStatusItem()

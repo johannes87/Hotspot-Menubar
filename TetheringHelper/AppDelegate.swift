@@ -33,8 +33,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
                 self.androidConnector.getSignal()
 
-                self.statusItem.setPairingStatus(
-                    pairingStatus: self.androidConnector.pairingStatus)
+                self.statusItem.setPairingStatus(self.androidConnector.pairingStatus)
                 self.statusItem.setSignal(
                     signalQuality: self.androidConnector.signalQuality,
                     signalType: self.androidConnector.signalType)
