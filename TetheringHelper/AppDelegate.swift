@@ -13,16 +13,12 @@ import os
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-    var dataStorage: DataStorage!
-    var androidConnector: AndroidConnector!
-    var statusItem: StatusItem!
+    let dataStorage = DataStorage()
+    let androidConnector = AndroidConnector()
+    let statusItem = StatusItem()
 
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        dataStorage = DataStorage()
-        androidConnector = AndroidConnector()
-        statusItem = StatusItem()
-
         startBackgroundLoop()
     }
 
