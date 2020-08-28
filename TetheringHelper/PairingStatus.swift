@@ -18,4 +18,11 @@ enum PairingStatus {
         case .unpaired: return false
         }
     }
+
+    var phoneName: String? {
+        switch self {
+        case .paired(let phoneName): return phoneName
+        case .unpaired: return nil
+        }
+    }
 }

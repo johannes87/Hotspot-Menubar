@@ -101,10 +101,9 @@ class StatusItemMenu: NSObject, NSMenuItemValidation {
     private func updatePairMenuItemTitle() {
         // UI needs to be updated in main loop
         DispatchQueue.main.async {
-            switch self.pairingStatus {
-            case .paired(let phoneName):
+            if let phoneName = self.pairingStatus.phoneName {
                 self.pairMenuItem.title = String(format: StatusItemMenu.pairMenuItemPairedTitle, phoneName)
-            case .unpaired:
+            } else {
                 self.pairMenuItem.title = StatusItemMenu.pairMenuItemUnpairedTitle
             }
         }

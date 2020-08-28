@@ -11,16 +11,11 @@ import AppKit
 import os
 import Network
 
+
 class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate {
-    private struct ServiceResponse: Codable {
-        var quality: Int
-        var type: String
-    }
-
-    private static let bonjourServiceType = "_tetheringhelper._tcp."
-
     private(set) var signalQuality = SignalQuality.no_signal
     private(set) var signalType = SignalType.no_signal
+    private(set) var localInterfaceName: String?
 
     var pairingStatus: PairingStatus {
         get {
@@ -31,6 +26,16 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate 
             }
         }
     }
+
+    /// `ServiceResponse` is the format of the JSON response sent by the Android device
+    private struct ServiceResponse: Codable {
+        /// `quality` is the signal quality, the number of signal bars shown on the Android device
+        var quality: Int
+        /// `type` is the network signal type, e.g. 4G or LTE
+        var type: String
+    }
+
+    private static let bonjourServiceType = "_tetheringhelper._tcp."
 
     private let networkQueue = DispatchQueue(label: "network")
 
@@ -46,20 +51,26 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate 
             guard pairingStatus.isPaired else { return }
         }
 
+        fetchSignalFromAndroid()
+    }
+
+    private func fetchSignalFromAndroid() {
+        // TODO: SUPER IMPORTANT! there's a memory leak here. again. shown in Instruments.
         let endpoint = NWEndpoint.hostPort(
             host: NWEndpoint.Host(tetheringHelperServiceResolved!.hostName!),
             port: NWEndpoint.Port(integerLiteral: NWEndpoint.Port.IntegerLiteralType(tetheringHelperServiceResolved!.port)))
-
         let networkConnection = NWConnection(to: endpoint, using: .tcp)
 
         networkConnection.stateUpdateHandler = { state in
             switch state {
-            case .failed(_), .waiting(_):
+            case .ready:
+                let interfaceName = networkConnection.currentPath!.localEndpoint!.interface!.name
+                os_log(.debug, "Found local interface used for connecting: %@", interfaceName)
+                self.localInterfaceName = interfaceName
+            case .waiting(_):
                 // the waiting state happens when the connection is refused
                 os_log(.debug, "Pairing to phone lost")
-                self.signalQuality = .no_signal
-                self.signalType = .no_signal
-                self.tetheringHelperServiceResolved = nil
+                self.resetState()
             default:
                 break
             }
@@ -71,16 +82,11 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate 
                 // cancel() needs to be called, otherwise networkConnection leaks memory
                 networkConnection.cancel()
             }
-
             if error != nil || !messageComplete {
                 return
             }
-
+            self.decodeServiceResponse(forData: data!)
             messageReceived = true
-            let decoder = JSONDecoder()
-            let serviceResponse = try! decoder.decode(ServiceResponse.self, from: data!)
-            self.signalQuality = SignalQuality(rawValue: serviceResponse.quality)!
-            self.signalType = SignalType(rawValue: serviceResponse.type)!
         }
 
         networkConnection.start(queue: networkQueue)
@@ -90,7 +96,21 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate 
         waitFor(timeout: 1) { messageReceived }
     }
 
-    /// waitFor will wait synchronously until timeout is reached or condition returns true
+    private func resetState() {
+        self.signalQuality = .no_signal
+        self.signalType = .no_signal
+        self.tetheringHelperServiceResolved = nil
+        self.localInterfaceName = nil
+    }
+
+    private func decodeServiceResponse(forData data: Data) {
+        let decoder = JSONDecoder()
+        let serviceResponse = try! decoder.decode(ServiceResponse.self, from: data)
+        self.signalQuality = SignalQuality(rawValue: serviceResponse.quality)!
+        self.signalType = SignalType(rawValue: serviceResponse.type)!
+    }
+
+    /// `waitFor` will wait synchronously until timeout is reached or condition returns true
     private func waitFor(timeout: TimeInterval, condition: () -> Bool) {
         var timeSlept: TimeInterval = 0
         let sleepDuration: TimeInterval = 0.2

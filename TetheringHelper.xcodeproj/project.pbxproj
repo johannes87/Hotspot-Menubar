@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F0D5B6524D5BAC000D41F16 /* SessionTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0D5B6424D5BAC000D41F16 /* SessionTracker.swift */; };
 		8F0E960D249CFF22006A4AD2 /* PreferencesStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0E960C249CFF22006A4AD2 /* PreferencesStorage.swift */; };
 		8F0FDCB624A22A3D00B6BF60 /* Autostart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0FDCB524A22A3D00B6BF60 /* Autostart.swift */; };
 		8F1CB93B2468564200614EA2 /* GeneralPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1CB93A2468564200614EA2 /* GeneralPreferencesViewController.swift */; };
@@ -53,6 +54,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8F0D5B6424D5BAC000D41F16 /* SessionTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTracker.swift; sourceTree = "<group>"; };
 		8F0E960C249CFF22006A4AD2 /* PreferencesStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesStorage.swift; sourceTree = "<group>"; };
 		8F0FDCB524A22A3D00B6BF60 /* Autostart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Autostart.swift; sourceTree = "<group>"; };
 		8F1CB93A2468564200614EA2 /* GeneralPreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPreferencesViewController.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				8FCEF61B23018DA600CB726E /* StatusItem.swift */,
 				8FAD0BB1239093C700DDB470 /* StatusItemMenu.swift */,
 				8F1DD413238430ED0038AAE2 /* AndroidConnector.swift */,
+				8F0D5B6424D5BAC000D41F16 /* SessionTracker.swift */,
 			);
 			name = "Swift files";
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 				8F1CB93B2468564200614EA2 /* GeneralPreferencesViewController.swift in Sources */,
 				8F71806B23915B230001B80F /* DataStorage.swift in Sources */,
 				8F1DD414238430ED0038AAE2 /* AndroidConnector.swift in Sources */,
+				8F0D5B6524D5BAC000D41F16 /* SessionTracker.swift in Sources */,
 				8F5D7E5922F5CCE200FED4BE /* AppDelegate.swift in Sources */,
 				8FCEF61C23018DA600CB726E /* StatusItem.swift in Sources */,
 			);
