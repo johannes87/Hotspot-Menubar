@@ -3,11 +3,14 @@ package com.gmail.bittner.johannes.tetheringhelper
 import android.content.Context
 import android.net.nsd.NsdManager
 import android.net.nsd.NsdServiceInfo
+import android.util.Log
 
 /**
  * This class publishes the TetheringHelper Bonjour service to the local network.
  */
 class BonjourPublisher (val serviceName: String, val port: Int, val context: Context) {
+    private val TAG = BonjourPublisher::class.qualifiedName
+
     private val serviceType = "_tetheringhelper._tcp"
     private var registeredServiceName: String? = null
     private var nsdManager: NsdManager? = null
@@ -21,16 +24,15 @@ class BonjourPublisher (val serviceName: String, val port: Int, val context: Con
         }
 
         override fun onRegistrationFailed(serviceInfo: NsdServiceInfo, errorCode: Int) {
-            // TODO: Registration failed! Put debugging code here to determine why.
+            Log.e(TAG, "Service registration failed. Error code: $errorCode")
         }
 
         override fun onServiceUnregistered(arg0: NsdServiceInfo) {
-            // TODO: Service has been unregistered. This only happens when you call
-            // NsdManager.unregisterService() and pass in this listener.
+            Log.d(TAG, "Service has been unregistered")
         }
 
         override fun onUnregistrationFailed(serviceInfo: NsdServiceInfo, errorCode: Int) {
-            // TODO: Unregistration failed. Put debugging code here to determine why.
+            Log.e(TAG, "Service unregistration failed. Error code: $errorCode")
         }
     }
 
