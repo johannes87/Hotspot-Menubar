@@ -10,7 +10,6 @@ import android.util.Log
  */
 class BonjourPublisher (val serviceName: String, val port: Int, val context: Context) {
     private val TAG = BonjourPublisher::class.qualifiedName
-
     private val serviceType = "_tetheringhelper._tcp"
     private var registeredServiceName: String? = null
     private var nsdManager: NsdManager? = null
@@ -36,16 +35,14 @@ class BonjourPublisher (val serviceName: String, val port: Int, val context: Con
         }
     }
 
-
     fun publish() {
         val serviceInfo = NsdServiceInfo().apply {
             // The name is subject to change based on conflicts
             // with other services advertised on the same network.
             serviceName = this@BonjourPublisher.serviceName
             serviceType = this@BonjourPublisher.serviceType
-            setPort(this@BonjourPublisher.port)
+            port = this@BonjourPublisher.port
         }
-
 
         nsdManager = (context.getSystemService(Context.NSD_SERVICE) as NsdManager).apply {
             registerService(serviceInfo, NsdManager.PROTOCOL_DNS_SD, this@BonjourPublisher.registrationListener)
