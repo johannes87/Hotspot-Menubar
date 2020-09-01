@@ -55,13 +55,12 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate 
     }
 
     private func fetchSignalFromAndroid() {
-        // TODO: SUPER IMPORTANT! there's a memory leak here. again. shown in Instruments.
         let endpoint = NWEndpoint.hostPort(
             host: NWEndpoint.Host(tetheringHelperServiceResolved!.hostName!),
             port: NWEndpoint.Port(integerLiteral: NWEndpoint.Port.IntegerLiteralType(tetheringHelperServiceResolved!.port)))
         let networkConnection = NWConnection(to: endpoint, using: .tcp)
 
-        networkConnection.stateUpdateHandler = { state in
+        networkConnection.stateUpdateHandler = { [unowned networkConnection] state in
             switch state {
             case .ready:
                 let interfaceName = networkConnection.currentPath!.localEndpoint!.interface!.name
