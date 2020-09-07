@@ -54,6 +54,11 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate 
         fetchSignalFromAndroid()
     }
 
+    private func getInterfaceName(networkConnection: NWConnection) -> String {
+        // localEndpoint sometimes has nil as "interface"
+        return networkConnection.currentPath!.remoteEndpoint!.interface!.name
+    }
+
     private func fetchSignalFromAndroid() {
         let endpoint = NWEndpoint.hostPort(
             host: NWEndpoint.Host(tetheringHelperServiceResolved!.hostName!),
@@ -63,7 +68,7 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate 
         networkConnection.stateUpdateHandler = { [unowned networkConnection] state in
             switch state {
             case .ready:
-                let interfaceName = networkConnection.currentPath!.localEndpoint!.interface!.name
+                let interfaceName = self.getInterfaceName(networkConnection: networkConnection)
                 os_log(.debug, "Found local interface used for connecting: %@", interfaceName)
                 self.localInterfaceName = interfaceName
             case .waiting(_):

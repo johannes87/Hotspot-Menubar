@@ -29,7 +29,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             while true {
                 os_log(.debug, "Running background loop")
 
+                // TODO: why does getSignal take so long?
                 self.androidConnector.getSignal()
+                // TODO: diablo 2 play disc transfer: 615MB shown vs 582MB filesize; check how much data was uploaded on xfer
                 self.sessionTracker.trackSession(
                     pairingStatus: self.androidConnector.pairingStatus,
                     localInterfaceName: self.androidConnector.localInterfaceName
