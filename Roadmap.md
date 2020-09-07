@@ -22,6 +22,12 @@
 *   * Make it hidden when not connected
 *   * Make preferences accessible when not connected
 
+* Add notification message when 100 MB (set by user, maybe on first
+    launch) are transferred
+
+* Create simple first launch screen, maybe just use defaults. Or a
+    simple first launch splash that tells the defaults.
+
 # Done
 
 * Gather data on how much data has been transferred on the interface
