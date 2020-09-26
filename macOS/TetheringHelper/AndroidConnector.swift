@@ -55,7 +55,7 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate 
     }
 
     private func getInterfaceName(networkConnection: NWConnection) -> String {
-        // localEndpoint sometimes has nil as "interface"
+        // localEndpoint sometimes has nil as "interface", so we use remoteEndpoint
         return networkConnection.currentPath!.remoteEndpoint!.interface!.name
     }
 
@@ -69,7 +69,6 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate 
             switch state {
             case .ready:
                 let interfaceName = self.getInterfaceName(networkConnection: networkConnection)
-                os_log(.debug, "Found local interface used for connecting: %@", interfaceName)
                 self.localInterfaceName = interfaceName
             case .waiting(_):
                 // the waiting state happens when the connection is refused

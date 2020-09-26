@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import os
 
 enum GetBytesTransferredError: Error {
     case getifaddrsFailed
@@ -20,6 +21,7 @@ class SessionTracker {
     private var sessionActive = false
     private var lastBytesTransferred: (inputBytes: UInt32, outputBytes: UInt32) = (0, 0)
 
+    // TODO: use this, and remove DataStorage.swift
     private lazy var persistentContainer: NSPersistentContainer = {
         // TODO: rename DataModel to something specific, e.g. SessionStorage.xcdatamodeld
         let container = NSPersistentContainer(name: "DataModel")
@@ -42,7 +44,7 @@ class SessionTracker {
             let bytesTransferred = try! getBytesTransferred(forInterface: localInterfaceName!)
 
             if !sessionActive {
-                print("Starting session to \(String(describing: pairingStatus.phoneName))")
+                os_log(.debug, "Starting session to %@", String(describing: pairingStatus.phoneName))
                 sessionActive = true
                 lastBytesTransferred = bytesTransferred
             } else {
@@ -55,11 +57,11 @@ class SessionTracker {
                 sessionBytesTransferred += UInt64(inputBytesDifference) + UInt64(outputBytesDifference)
 
 
-                print("Transferred \(Double(sessionBytesTransferred) / 1024 / 1024) MB this session")
+                os_log(.debug, "Transferred %f MB this session", Double(sessionBytesTransferred) / 1024 / 1024)
                 lastBytesTransferred = bytesTransferred
             }
         } else if sessionActive {
-            print("Session lost")
+            os_log(.debug, "Session lost")
             sessionActive = false
             lastBytesTransferred = (0, 0)
             sessionBytesTransferred = 0
