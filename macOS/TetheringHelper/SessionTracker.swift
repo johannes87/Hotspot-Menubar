@@ -20,6 +20,7 @@ class SessionTracker {
 
     private var sessionActive = false
     private var lastIfaddrsBytesTransferred: (inputBytes: UInt32, outputBytes: UInt32) = (0, 0)
+    private var statusItemMenuDelegate: StatusItemMenuDelegate
 
     // TODO: use this, and remove DataStorage.swift
     private lazy var persistentContainer: NSPersistentContainer = {
@@ -33,6 +34,10 @@ class SessionTracker {
         return container
     }()
 
+
+    init(statusItemMenuDelegate: StatusItemMenuDelegate) {
+        self.statusItemMenuDelegate = statusItemMenuDelegate
+    }
 
     func trackSession(pairingStatus: PairingStatus, localInterfaceName: String?) {
         if pairingStatus.isPaired {
@@ -56,6 +61,7 @@ class SessionTracker {
                     bytesNow: ifaddrsBytesTransferred.outputBytes)
                 bytesTransferred += UInt64(inputBytesDifference) + UInt64(outputBytesDifference)
 
+                statusItemMenuDelegate.sessionBytesTransferredUpdated(bytesTransferred: bytesTransferred)
 
                 os_log(.debug, "Transferred %f MB this session", Double(bytesTransferred) / 1024 / 1024)
                 lastIfaddrsBytesTransferred = ifaddrsBytesTransferred
@@ -65,6 +71,7 @@ class SessionTracker {
             sessionActive = false
             lastIfaddrsBytesTransferred = (0, 0)
             bytesTransferred = 0
+            statusItemMenuDelegate.sessionBytesTransferredUpdated(bytesTransferred: 0)
         }
     }
 

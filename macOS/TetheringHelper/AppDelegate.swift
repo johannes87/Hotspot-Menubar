@@ -11,17 +11,26 @@ import os
 
 // TODO: implement dark mode
 // TODO: put non-swift files like Assets.xcassets in xcode group
+// TODO: check metered connection support => https://apple.stackexchange.com/questions/215454/managing-metered-connections-on-osx
+
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-    let dataStorage = DataStorage()
-    let androidConnector = AndroidConnector()
-    let statusItem = StatusItem()
-    let sessionTracker = SessionTracker()
+    private let statusItem = StatusItem()
+    private var androidConnector: AndroidConnector!
+    private var sessionTracker: SessionTracker!
 
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         startBackgroundLoop()
+        androidConnector = AndroidConnector(
+            statusItemDelegate: statusItem,
+            statusItemMenuDelegate: statusItem.statusItemMenu
+        )
+        sessionTracker = SessionTracker(
+            statusItemMenuDelegate: statusItem.statusItemMenu
+        )
+
     }
 
     private func startBackgroundLoop() {
@@ -36,11 +45,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     pairingStatus: self.androidConnector.pairingStatus,
                     localInterfaceName: self.androidConnector.localInterfaceName
                 )
-
-                self.statusItem.setPairingStatus(self.androidConnector.pairingStatus)
-                self.statusItem.setSignal(
-                    signalQuality: self.androidConnector.signalQuality,
-                    signalType: self.androidConnector.signalType)
 
                 Thread.sleep(forTimeInterval: Double(PreferencesStorage.refreshStatusDelay))
             }

@@ -8,9 +8,10 @@
 
 import Cocoa
 
-class StatusItem {
+class StatusItem: StatusItemDelegate {
+    private(set) var statusItemMenu: StatusItemMenu!
+
     private let cocoaStatusItem: NSStatusItem
-    private let statusItemMenu = StatusItemMenu()
 
     private var signalQuality = SignalQuality.no_signal
     private var signalType = SignalType.no_signal
@@ -18,21 +19,10 @@ class StatusItem {
 
 
     init() {
+        statusItemMenu = StatusItemMenu()
         cocoaStatusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
         cocoaStatusItem.menu = statusItemMenu.menu
 
-        self.drawStatusItem()
-    }
-
-    func setSignal(signalQuality: SignalQuality, signalType: SignalType) {
-        self.signalQuality = signalQuality
-        self.signalType = signalType
-        self.drawStatusItem()
-    }
-
-    func setPairingStatus(_ pairingStatus: PairingStatus) {
-        self.pairingStatus = pairingStatus
-        self.statusItemMenu.setPairingStatus(pairingStatus: pairingStatus)
         self.drawStatusItem()
     }
 
@@ -129,4 +119,17 @@ class StatusItem {
         // the destination is assumed to be 18x18 px here
         unpairedIcon.draw(in: NSRect(x: 0, y: 8, width: 10, height: 10))
     }
+
+    // MARK: StatusItemDelegate
+    func signalUpdated(signalQuality: SignalQuality, signalType: SignalType) {
+        self.signalQuality = signalQuality
+        self.signalType = signalType
+        drawStatusItem()
+    }
+
+    func pairingStatusUpdated(pairingStatus: PairingStatus) {
+        self.pairingStatus = pairingStatus
+        drawStatusItem()
+    }
+
 }

@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class StatusItemMenu: NSObject, NSMenuItemValidation {
+class StatusItemMenu: NSObject, NSMenuItemValidation, StatusItemMenuDelegate {
     private static let dataStatisticsMenuItemTitle = NSLocalizedString(
         "Data used: %.2f MB",
         comment: "amount of data used, shown in status item menu")
@@ -28,6 +28,7 @@ class StatusItemMenu: NSObject, NSMenuItemValidation {
         "Quit",
         comment: "menu item for quitting the application")
 
+    // `menu` is non-private because it needs to be accessed from StatusItem.swift
     var menu: NSMenu!
 
     private var dataStatisticsMenuItem: NSMenuItem!
@@ -35,8 +36,6 @@ class StatusItemMenu: NSObject, NSMenuItemValidation {
     private var preferencesMenuItem: NSMenuItem!
     private var aboutMenuItem: NSMenuItem!
     private var quitMenuItem: NSMenuItem!
-
-    private var pairingStatus = PairingStatus.unpaired
 
     private var preferencesWindowController: NSWindowController!
 
@@ -89,28 +88,8 @@ class StatusItemMenu: NSObject, NSMenuItemValidation {
         menu.insertItem(quitMenuItem, at: 5)
     }
 
-    func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
-        return true
-    }
-
-    func setPairingStatus(pairingStatus: PairingStatus) {
-        self.pairingStatus = pairingStatus
-        updatePairMenuItemTitle()
-    }
-
-    private func updatePairMenuItemTitle() {
-        // UI needs to be updated in main loop
-        DispatchQueue.main.async {
-            if let phoneName = self.pairingStatus.phoneName {
-                self.pairMenuItem.title = String(format: StatusItemMenu.pairMenuItemPairedTitle, phoneName)
-            } else {
-                self.pairMenuItem.title = StatusItemMenu.pairMenuItemUnpairedTitle
-            }
-        }
-    }
-
     @IBAction private func showDataStatistics(sender: Any) {
-        // TODO implement showDataStatistics
+        // TODO: implement showDataStatistics
         print("show data statistics")
     }
 
@@ -123,11 +102,37 @@ class StatusItemMenu: NSObject, NSMenuItemValidation {
     }
 
     @IBAction private func showAboutWindow(sender: Any) {
-        // TODO implement showAboutWindow
+        // TODO: implement showAboutWindow
         print("show about window")
     }
 
     @IBAction private func quitApplication(sender: Any) {
         NSApp.terminate(sender)
+    }
+
+    // MARK: NSMenuItemValidation
+    func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+        return true
+    }
+
+    // MARK: StatusItemMenuDelegate
+    func sessionBytesTransferredUpdated(bytesTransferred: UInt64) {
+        // TODO: see TODO in pairingStatusUpdated
+        DispatchQueue.main.async {
+            let megabytesTransferred = Double(bytesTransferred) / 1024 / 1024
+            self.dataStatisticsMenuItem.title = String(format: StatusItemMenu.dataStatisticsMenuItemTitle, megabytesTransferred)
+        }
+    }
+
+    func pairingStatusUpdated(pairingStatus: PairingStatus) {
+        // UI needs to be updated in main loop
+        // TODO: it also works without, why?! :/
+        DispatchQueue.main.async {
+            if let phoneName = pairingStatus.phoneName {
+                self.pairMenuItem.title = String(format: StatusItemMenu.pairMenuItemPairedTitle, phoneName)
+            } else {
+                self.pairMenuItem.title = StatusItemMenu.pairMenuItemUnpairedTitle
+            }
+        }
     }
 }

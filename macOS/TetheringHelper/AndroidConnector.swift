@@ -42,7 +42,15 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate 
     private var tetheringHelperServiceUnresolved: NetService?
     private var tetheringHelperServiceResolved: NetService?
     private var netServiceBrowser: NetServiceBrowser?
+    private var statusItemDelegate: StatusItemDelegate!
+    private var statusItemMenuDelegate: StatusItemMenuDelegate!
 
+
+    init(statusItemDelegate: StatusItemDelegate, statusItemMenuDelegate: StatusItemMenuDelegate) {
+        super.init()
+        self.statusItemDelegate = statusItemDelegate
+        self.statusItemMenuDelegate = statusItemMenuDelegate
+    }
 
     func getSignal() {
         if !pairingStatus.isPaired {
@@ -88,7 +96,12 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate 
             if error != nil || !messageComplete {
                 return
             }
-            self.decodeServiceResponse(forData: data!)
+
+            self.setSignal(forEncodedData: data!)
+            self.statusItemDelegate.signalUpdated(signalQuality: self.signalQuality, signalType: self.signalType)
+            self.statusItemDelegate.pairingStatusUpdated(pairingStatus: self.pairingStatus)
+            self.statusItemMenuDelegate.pairingStatusUpdated(pairingStatus: self.pairingStatus)
+
             messageReceived = true
         }
 
@@ -104,9 +117,11 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate 
         self.signalType = .no_signal
         self.tetheringHelperServiceResolved = nil
         self.localInterfaceName = nil
+        self.statusItemDelegate.pairingStatusUpdated(pairingStatus: pairingStatus)
+        self.statusItemDelegate.signalUpdated(signalQuality: signalQuality, signalType: signalType)
     }
 
-    private func decodeServiceResponse(forData data: Data) {
+    private func setSignal(forEncodedData data: Data) {
         let decoder = JSONDecoder()
         let serviceResponse = try! decoder.decode(ServiceResponse.self, from: data)
         self.signalQuality = SignalQuality(rawValue: serviceResponse.quality)!
