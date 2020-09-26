@@ -10,6 +10,7 @@ import kotlin.concurrent.thread
  */
 class SignalSender(phoneName: String, context: Context) {
     private val bonjourPublisher: BonjourPublisher
+    // A port number of 0 means that the port number is automatically allocated
     private val serverSocket: ServerSocket = ServerSocket(0)
 
     init {
@@ -18,10 +19,11 @@ class SignalSender(phoneName: String, context: Context) {
             port = serverSocket.localPort,
             context = context
         )
-        bonjourPublisher.publish()
     }
 
     fun start() {
+        bonjourPublisher.publish()
+
         thread(start = true) {
             while (true) {
                 val clientSocket = serverSocket.accept()
@@ -40,5 +42,9 @@ class SignalSender(phoneName: String, context: Context) {
                 clientSocket.close()
             }
         }
+    }
+
+    fun stop() {
+        bonjourPublisher.unpublish()
     }
 }
