@@ -16,10 +16,10 @@ enum GetBytesTransferredError: Error {
 }
 
 class SessionTracker {
-    var sessionBytesTransferred: UInt64 = 0
+    private(set) var bytesTransferred: UInt64 = 0
 
     private var sessionActive = false
-    private var lastBytesTransferred: (inputBytes: UInt32, outputBytes: UInt32) = (0, 0)
+    private var lastIfaddrsBytesTransferred: (inputBytes: UInt32, outputBytes: UInt32) = (0, 0)
 
     // TODO: use this, and remove DataStorage.swift
     private lazy var persistentContainer: NSPersistentContainer = {
@@ -41,30 +41,30 @@ class SessionTracker {
                 return
             }
 
-            let bytesTransferred = try! getBytesTransferred(forInterface: localInterfaceName!)
+            let ifaddrsBytesTransferred = try! getIfaddrsBytesTransferred(forInterface: localInterfaceName!)
 
             if !sessionActive {
                 os_log(.debug, "Starting session to %@", String(describing: pairingStatus.phoneName))
                 sessionActive = true
-                lastBytesTransferred = bytesTransferred
+                lastIfaddrsBytesTransferred = ifaddrsBytesTransferred
             } else {
                 let inputBytesDifference = getBytesTransferredDifference(
-                    bytesPast: lastBytesTransferred.inputBytes,
-                    bytesNow: bytesTransferred.inputBytes)
+                    bytesPast: lastIfaddrsBytesTransferred.inputBytes,
+                    bytesNow: ifaddrsBytesTransferred.inputBytes)
                 let outputBytesDifference = getBytesTransferredDifference(
-                    bytesPast: lastBytesTransferred.outputBytes,
-                    bytesNow: bytesTransferred.outputBytes)
-                sessionBytesTransferred += UInt64(inputBytesDifference) + UInt64(outputBytesDifference)
+                    bytesPast: lastIfaddrsBytesTransferred.outputBytes,
+                    bytesNow: ifaddrsBytesTransferred.outputBytes)
+                bytesTransferred += UInt64(inputBytesDifference) + UInt64(outputBytesDifference)
 
 
-                os_log(.debug, "Transferred %f MB this session", Double(sessionBytesTransferred) / 1024 / 1024)
-                lastBytesTransferred = bytesTransferred
+                os_log(.debug, "Transferred %f MB this session", Double(bytesTransferred) / 1024 / 1024)
+                lastIfaddrsBytesTransferred = ifaddrsBytesTransferred
             }
         } else if sessionActive {
             os_log(.debug, "Session lost")
             sessionActive = false
-            lastBytesTransferred = (0, 0)
-            sessionBytesTransferred = 0
+            lastIfaddrsBytesTransferred = (0, 0)
+            bytesTransferred = 0
         }
     }
 
@@ -84,7 +84,7 @@ class SessionTracker {
     ///
     /// Parameter `forInterface`: The interface for which to acquire the number of bytes transferred
     /// Returns: a tuple with two UInt32, which corresponds to `getifaddrs`'s `ifi_ibytes` and `ifi_obytes`
-    private func getBytesTransferred(forInterface: String) throws -> (inputBytes: UInt32, outputBytes: UInt32) {
+    private func getIfaddrsBytesTransferred(forInterface: String) throws -> (inputBytes: UInt32, outputBytes: UInt32) {
         // the initial pointer is needed so it can be passwd to "freeifaddrs" at the end
         var initialIfaddrs: UnsafeMutablePointer<ifaddrs>!
 
