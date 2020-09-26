@@ -24,6 +24,12 @@ class SignalSender(phoneName: String, context: Context) {
     fun start() {
         bonjourPublisher.publish()
 
+        // TODO: use coroutines, easier to cancel
+        // https://kotlinlang.org/docs/reference/coroutines/basics.html
+        // https://kotlinlang.org/docs/reference/coroutines/cancellation-and-timeouts.html
+
+        // probably: use either launch or GlobalScope.launch
+
         thread(start = true) {
             while (true) {
                 val clientSocket = serverSocket.accept()
