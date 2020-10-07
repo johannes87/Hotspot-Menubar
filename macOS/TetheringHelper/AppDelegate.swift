@@ -22,7 +22,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        startBackgroundLoop()
         androidConnector = AndroidConnector(
             statusItemDelegate: statusItem,
             statusItemMenuDelegate: statusItem.statusItemMenu
@@ -30,7 +29,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         sessionTracker = SessionTracker(
             statusItemMenuDelegate: statusItem.statusItemMenu
         )
-
+        startBackgroundLoop()
     }
 
     private func startBackgroundLoop() {
