@@ -10,7 +10,6 @@ import Cocoa
 import os
 
 // TODO: implement dark mode
-// TODO: put non-swift files like Assets.xcassets in xcode group
 // TODO: check metered connection support => https://apple.stackexchange.com/questions/215454/managing-metered-connections-on-osx
 
 

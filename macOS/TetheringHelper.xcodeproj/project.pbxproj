@@ -116,6 +116,7 @@
 		8F090A112463029400308F22 /* UI files */ = {
 			isa = PBXGroup;
 			children = (
+				8F5D7E5C22F5CCE300FED4BE /* Assets.xcassets */,
 				8F3D29C423D4DA3700193C23 /* Main.xib */,
 				8F56898F246866F800C0090A /* PreferencesWindow.storyboard */,
 			);
@@ -193,15 +194,22 @@
 		8F5D7E5722F5CCE200FED4BE /* TetheringHelper */ = {
 			isa = PBXGroup;
 			children = (
+				8F64EC40254586BD00CEDA26 /* Other files */,
 				8F090A112463029400308F22 /* UI files */,
 				8F3FE78523E89818003CFB6D /* Swift files */,
+			);
+			path = TetheringHelper;
+			sourceTree = "<group>";
+		};
+		8F64EC40254586BD00CEDA26 /* Other files */ = {
+			isa = PBXGroup;
+			children = (
 				8F6C36EF23995B84009C7865 /* DataModel.xcdatamodeld */,
-				8F5D7E5C22F5CCE300FED4BE /* Assets.xcassets */,
 				8F5D7E6122F5CCE300FED4BE /* Info.plist */,
 				8F5D7E6222F5CCE300FED4BE /* TetheringHelper.entitlements */,
 				8F8195BA246B12D30066632D /* Localizable.stringsdict */,
 			);
-			path = TetheringHelper;
+			name = "Other files";
 			sourceTree = "<group>";
 		};
 		8F8539AB24BDC5EA00EC6E3D /* TestBonjourService */ = {
