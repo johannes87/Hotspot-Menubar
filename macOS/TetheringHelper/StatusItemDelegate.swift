@@ -9,6 +9,6 @@
 import Foundation
 
 protocol StatusItemDelegate {
-    func signalUpdated(signalQuality: SignalQuality, signalType: SignalType)
+    func signalUpdated(phoneSignal: PhoneSignal?)
     func pairingStatusUpdated(pairingStatus: PairingStatus)
 }

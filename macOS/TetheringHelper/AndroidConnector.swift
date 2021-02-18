@@ -13,19 +13,8 @@ import Network
 
 
 class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate {
-    private(set) var signalQuality = SignalQuality.no_signal
-    private(set) var signalType = SignalType.no_signal
-    private(set) var localInterfaceName: String?
-
-    var pairingStatus: PairingStatus {
-        get {
-            if let service = tetheringHelperServiceResolved {
-                return PairingStatus.paired(phoneName: service.name)
-            } else {
-                return PairingStatus.unpaired
-            }
-        }
-    }
+    private(set) var tetheringInterfaceName: String?
+    private(set) var pairingStatus: PairingStatus = PairingStatus.unpaired
 
     /// `ServiceResponse` is the format of the JSON response sent by the Android device
     private struct ServiceResponse: Codable {
@@ -39,9 +28,10 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate 
 
     private let networkQueue = DispatchQueue(label: "network")
 
-    private var tetheringHelperServiceUnresolved: NetService?
-    private var tetheringHelperServiceResolved: NetService?
+    private var phoneServiceUnresolved: NetService?
+    private var phoneService: NetService?
     private var netServiceBrowser: NetServiceBrowser?
+
     private var statusItemDelegate: StatusItemDelegate!
     private var statusItemMenuDelegate: StatusItemMenuDelegate!
 
@@ -53,41 +43,55 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate 
     }
 
     func getSignal() {
-        if !pairingStatus.isPaired {
-            pair()
-            waitFor(timeout: 1.0) { self.pairingStatus.isPaired }
-            guard pairingStatus.isPaired else { return }
+        var phoneSignal: PhoneSignal? = nil
+        var pairingStatus: PairingStatus = .unpaired
+
+        defer {
+            self.pairingStatus = pairingStatus
+            self.statusItemDelegate.signalUpdated(phoneSignal: phoneSignal)
+            self.statusItemDelegate.pairingStatusUpdated(pairingStatus: self.pairingStatus)
+            self.statusItemMenuDelegate.pairingStatusUpdated(pairingStatus: self.pairingStatus)
         }
 
-        fetchSignalFromAndroid()
+        if phoneService == nil {
+            discoverPhone()
+            Utils.waitFor(timeout: 1.0) { self.phoneService != nil }
+            guard self.phoneService != nil else { return }
+        }
+
+        phoneSignal = fetchSignalFromAndroid()
+        if phoneSignal != nil {
+            pairingStatus = .paired(phoneName: phoneService!.name)
+        } else {
+            // if no phone signal is returned, we want the phone discovery process to start again next time
+            phoneService = nil
+        }
     }
 
-    private func getInterfaceName(networkConnection: NWConnection) -> String {
+    private func getInterfaceName(forConnection networkConnection: NWConnection) -> String {
         // localEndpoint sometimes has nil as "interface", so we use remoteEndpoint
         return networkConnection.currentPath!.remoteEndpoint!.interface!.name
     }
 
-    private func fetchSignalFromAndroid() {
+    private func fetchSignalFromAndroid() -> PhoneSignal? {
         let endpoint = NWEndpoint.hostPort(
-            host: NWEndpoint.Host(tetheringHelperServiceResolved!.hostName!),
-            port: NWEndpoint.Port(integerLiteral: NWEndpoint.Port.IntegerLiteralType(tetheringHelperServiceResolved!.port)))
+            host: NWEndpoint.Host(phoneService!.hostName!),
+            port: NWEndpoint.Port(integerLiteral: NWEndpoint.Port.IntegerLiteralType(phoneService!.port)))
         let networkConnection = NWConnection(to: endpoint, using: .tcp)
+        var phoneSignal: PhoneSignal? = nil
 
         networkConnection.stateUpdateHandler = { [unowned networkConnection] state in
             switch state {
             case .ready:
-                let interfaceName = self.getInterfaceName(networkConnection: networkConnection)
-                self.localInterfaceName = interfaceName
+                self.tetheringInterfaceName = self.getInterfaceName(forConnection: networkConnection)
             case .waiting(_):
                 // the waiting state happens when the connection is refused
-                os_log(.debug, "Pairing to phone lost")
-                self.resetState()
+                os_log(.debug, "Connection to phone lost")
             default:
                 break
             }
         }
 
-        var messageReceived = false
         networkConnection.receiveMessage { data, _, messageComplete, error in
             defer {
                 // cancel() needs to be called, otherwise networkConnection leaks memory
@@ -97,54 +101,24 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate 
                 return
             }
 
-            self.setSignal(forEncodedData: data!)
-            self.statusItemDelegate.signalUpdated(signalQuality: self.signalQuality, signalType: self.signalType)
-            self.statusItemDelegate.pairingStatusUpdated(pairingStatus: self.pairingStatus)
-            self.statusItemMenuDelegate.pairingStatusUpdated(pairingStatus: self.pairingStatus)
-
-            messageReceived = true
+            let decoder = JSONDecoder()
+            let serviceResponse = try! decoder.decode(ServiceResponse.self, from: data!)
+            phoneSignal = PhoneSignal(
+                quality: SignalQuality(rawValue: serviceResponse.quality)!,
+                type: SignalType(rawValue: serviceResponse.type)!
+            )
         }
 
         networkConnection.start(queue: networkQueue)
 
         // waitFor needed because receiveMessage will run asynchronously, and we want AndroidConnector
         // to have the signal data once this function returns
-        waitFor(timeout: 1) { messageReceived }
+        Utils.waitFor(timeout: 1.0) { phoneSignal != nil }
+        return phoneSignal
     }
 
-    private func resetState() {
-        self.signalQuality = .no_signal
-        self.signalType = .no_signal
-        self.tetheringHelperServiceResolved = nil
-        self.localInterfaceName = nil
-        self.statusItemDelegate.pairingStatusUpdated(pairingStatus: pairingStatus)
-        self.statusItemDelegate.signalUpdated(signalQuality: signalQuality, signalType: signalType)
-    }
-
-    private func setSignal(forEncodedData data: Data) {
-        let decoder = JSONDecoder()
-        let serviceResponse = try! decoder.decode(ServiceResponse.self, from: data)
-        self.signalQuality = SignalQuality(rawValue: serviceResponse.quality)!
-        self.signalType = SignalType(rawValue: serviceResponse.type)!
-    }
-
-    /// `waitFor` will wait synchronously until timeout is reached or condition returns true
-    private func waitFor(timeout: TimeInterval, condition: () -> Bool) {
-        var timeSlept: TimeInterval = 0
-        let sleepDuration: TimeInterval = 0.2
-
-        while timeSlept < timeout {
-            if condition() {
-                return
-            }
-            Thread.sleep(forTimeInterval: sleepDuration)
-            timeSlept += sleepDuration
-        }
-        return
-    }
-
-    private func pair() {
-        tetheringHelperServiceResolved = nil
+    private func discoverPhone() {
+        phoneService = nil
 
         // make NetServiceBrowser work by running it in the main thread
         // see https://stackoverflow.com/q/3526661/96205
@@ -160,13 +134,13 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate 
         os_log(.info, "Discovered device: %@", service.name)
 
         // without this variable, the service goes out of scope and no delegate gets called
-        tetheringHelperServiceUnresolved = service
-        tetheringHelperServiceUnresolved?.delegate = self
-        tetheringHelperServiceUnresolved?.resolve(withTimeout: 1)
+        phoneServiceUnresolved = service
+        phoneServiceUnresolved?.delegate = self
+        phoneServiceUnresolved?.resolve(withTimeout: 1)
     }
 
     // MARK: NetServiceDelegate
     func netServiceDidResolveAddress(_ sender: NetService) {
-        tetheringHelperServiceResolved = sender
+        phoneService = sender
     }
 }

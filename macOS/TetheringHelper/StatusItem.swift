@@ -121,9 +121,14 @@ class StatusItem: StatusItemDelegate {
     }
 
     // MARK: StatusItemDelegate
-    func signalUpdated(signalQuality: SignalQuality, signalType: SignalType) {
-        self.signalQuality = signalQuality
-        self.signalType = signalType
+    func signalUpdated(phoneSignal: PhoneSignal?) {
+        if phoneSignal == nil {
+            self.signalQuality = .no_signal
+            self.signalType = .no_signal
+        } else {
+            self.signalQuality = phoneSignal!.quality
+            self.signalType = phoneSignal!.type
+        }
         drawStatusItem()
     }
 

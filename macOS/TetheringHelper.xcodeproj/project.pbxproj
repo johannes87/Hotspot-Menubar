@@ -23,6 +23,8 @@
 		8F568990246866F800C0090A /* PreferencesWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F56898F246866F800C0090A /* PreferencesWindow.storyboard */; };
 		8F5D7E5922F5CCE200FED4BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D7E5822F5CCE200FED4BE /* AppDelegate.swift */; };
 		8F5D7E5D22F5CCE300FED4BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F5D7E5C22F5CCE300FED4BE /* Assets.xcassets */; };
+		8F66AFA725DEB31C000B3842 /* PhoneSignal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F66AFA625DEB31C000B3842 /* PhoneSignal.swift */; };
+		8F66AFAF25DEBD96000B3842 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F66AFAE25DEBD96000B3842 /* Utils.swift */; };
 		8F6C36F123995B84009C7865 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8F6C36EF23995B84009C7865 /* DataModel.xcdatamodeld */; };
 		8F71806B23915B230001B80F /* DataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F71806A23915B230001B80F /* DataStorage.swift */; };
 		8F8195BB246B12D30066632D /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 8F8195BA246B12D30066632D /* Localizable.stringsdict */; };
@@ -76,6 +78,8 @@
 		8F5D7E5C22F5CCE300FED4BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8F5D7E6122F5CCE300FED4BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F5D7E6222F5CCE300FED4BE /* TetheringHelper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TetheringHelper.entitlements; sourceTree = "<group>"; };
+		8F66AFA625DEB31C000B3842 /* PhoneSignal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneSignal.swift; sourceTree = "<group>"; };
+		8F66AFAE25DEBD96000B3842 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		8F6C36F023995B84009C7865 /* TetheringHelper.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TetheringHelper.xcdatamodel; sourceTree = "<group>"; };
 		8F71806A23915B230001B80F /* DataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStorage.swift; sourceTree = "<group>"; };
 		8F8195BA246B12D30066632D /* Localizable.stringsdict */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; path = Localizable.stringsdict; sourceTree = "<group>"; };
@@ -145,7 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				8F8B93D5251F95120062C259 /* delegates */,
-				8F3FE78623E898B8003CFB6D /* enums */,
+				8F3FE78623E898B8003CFB6D /* datastructures */,
 				8F1CB93E24685D1400614EA2 /* PreferencesWindow */,
 				8F5D7E5822F5CCE200FED4BE /* AppDelegate.swift */,
 				8F0FDCB524A22A3D00B6BF60 /* Autostart.swift */,
@@ -155,18 +159,20 @@
 				8FAD0BB1239093C700DDB470 /* StatusItemMenu.swift */,
 				8F1DD413238430ED0038AAE2 /* AndroidConnector.swift */,
 				8F0D5B6424D5BAC000D41F16 /* SessionTracker.swift */,
+				8F66AFAE25DEBD96000B3842 /* Utils.swift */,
 			);
 			name = "Swift files";
 			sourceTree = "<group>";
 		};
-		8F3FE78623E898B8003CFB6D /* enums */ = {
+		8F3FE78623E898B8003CFB6D /* datastructures */ = {
 			isa = PBXGroup;
 			children = (
 				8F1DD417238448DD0038AAE2 /* SignalQuality.swift */,
 				8F1DD415238448B70038AAE2 /* SignalType.swift */,
 				8F1D5DAC245C711F001B1852 /* PairingStatus.swift */,
+				8F66AFA625DEB31C000B3842 /* PhoneSignal.swift */,
 			);
-			name = enums;
+			name = datastructures;
 			sourceTree = "<group>";
 		};
 		8F5D7E4C22F5CCE100FED4BE = {
@@ -359,10 +365,12 @@
 				8F2C617224894A6C00A0C017 /* PreferencesWindowController.swift in Sources */,
 				8F0E960D249CFF22006A4AD2 /* PreferencesStorage.swift in Sources */,
 				8F1DD418238448DD0038AAE2 /* SignalQuality.swift in Sources */,
+				8F66AFA725DEB31C000B3842 /* PhoneSignal.swift in Sources */,
 				8F8B93D7251F95250062C259 /* StatusItemMenuDelegate.swift in Sources */,
 				8FAD0BB2239093C700DDB470 /* StatusItemMenu.swift in Sources */,
 				8F1D5DAD245C711F001B1852 /* PairingStatus.swift in Sources */,
 				8F6C36F123995B84009C7865 /* DataModel.xcdatamodeld in Sources */,
+				8F66AFAF25DEBD96000B3842 /* Utils.swift in Sources */,
 				8F1CB93B2468564200614EA2 /* GeneralPreferencesViewController.swift in Sources */,
 				8F71806B23915B230001B80F /* DataStorage.swift in Sources */,
 				8F1DD414238430ED0038AAE2 /* AndroidConnector.swift in Sources */,
