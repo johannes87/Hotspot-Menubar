@@ -13,7 +13,7 @@ class StatusItemMenu: NSObject, NSMenuItemValidation, StatusItemMenuDelegate {
         "Data used: %.2f MB",
         comment: "amount of data used, shown in status item menu")
     private static let pairMenuItemUnpairedTitle = NSLocalizedString(
-        "Not paired, searching...",
+        "Not paired",
         comment: "shown in status item menu when not paired yet")
     private static let pairMenuItemPairedTitle = NSLocalizedString(
         "Paired with %@",
