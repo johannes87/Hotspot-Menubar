@@ -9,9 +9,7 @@
 import Cocoa
 import os
 
-// TODO: implement dark mode
 // TODO: check metered connection support => https://apple.stackexchange.com/questions/215454/managing-metered-connections-on-osx
-
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
