@@ -57,7 +57,7 @@ class StatusItem: StatusItemDelegate {
 
         let path = NSBezierPath()
         path.lineWidth = CGFloat(signalBarLineWidth)
-        NSColor.black.setStroke()
+        NSColor.labelColor.setStroke()
 
         let signalBar1Rect = NSRect(x: NSMinX(dstRect), y: NSMinY(dstRect), width: signalBarRectWidth, height: 3)
         path.appendRect(signalBar1Rect)
