@@ -148,7 +148,6 @@
 		8F3FE78523E89818003CFB6D /* Swift files */ = {
 			isa = PBXGroup;
 			children = (
-				8F8B93D5251F95120062C259 /* delegates */,
 				8F3FE78623E898B8003CFB6D /* datastructures */,
 				8F1CB93E24685D1400614EA2 /* PreferencesWindow */,
 				8F5D7E5822F5CCE200FED4BE /* AppDelegate.swift */,
@@ -167,6 +166,7 @@
 		8F3FE78623E898B8003CFB6D /* datastructures */ = {
 			isa = PBXGroup;
 			children = (
+				8F8B93D5251F95120062C259 /* delegates */,
 				8F1DD417238448DD0038AAE2 /* SignalQuality.swift */,
 				8F1DD415238448B70038AAE2 /* SignalType.swift */,
 				8F1D5DAC245C711F001B1852 /* PairingStatus.swift */,
