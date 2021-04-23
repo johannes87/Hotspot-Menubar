@@ -148,7 +148,7 @@
 		8F3FE78523E89818003CFB6D /* Swift files */ = {
 			isa = PBXGroup;
 			children = (
-				8F3FE78623E898B8003CFB6D /* datastructures */,
+				8F3FE78623E898B8003CFB6D /* data structures */,
 				8F1CB93E24685D1400614EA2 /* PreferencesWindow */,
 				8F5D7E5822F5CCE200FED4BE /* AppDelegate.swift */,
 				8F0FDCB524A22A3D00B6BF60 /* Autostart.swift */,
@@ -163,7 +163,7 @@
 			name = "Swift files";
 			sourceTree = "<group>";
 		};
-		8F3FE78623E898B8003CFB6D /* datastructures */ = {
+		8F3FE78623E898B8003CFB6D /* data structures */ = {
 			isa = PBXGroup;
 			children = (
 				8F8B93D5251F95120062C259 /* delegates */,
@@ -172,7 +172,7 @@
 				8F1D5DAC245C711F001B1852 /* PairingStatus.swift */,
 				8F66AFA625DEB31C000B3842 /* PhoneSignal.swift */,
 			);
-			name = datastructures;
+			name = "data structures";
 			sourceTree = "<group>";
 		};
 		8F5D7E4C22F5CCE100FED4BE = {
