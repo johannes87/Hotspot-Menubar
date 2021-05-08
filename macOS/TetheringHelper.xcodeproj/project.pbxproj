@@ -35,15 +35,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		8F8539A824BDC5EA00EC6E3D /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
 		8FDD112E24A2325B008D4CA9 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -83,7 +74,6 @@
 		8F6C36F023995B84009C7865 /* TetheringHelper.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TetheringHelper.xcdatamodel; sourceTree = "<group>"; };
 		8F71806A23915B230001B80F /* DataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStorage.swift; sourceTree = "<group>"; };
 		8F8195BA246B12D30066632D /* Localizable.stringsdict */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; path = Localizable.stringsdict; sourceTree = "<group>"; };
-		8F8539AA24BDC5EA00EC6E3D /* TestBonjourService */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TestBonjourService; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F8B93D6251F95250062C259 /* StatusItemMenuDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusItemMenuDelegate.swift; sourceTree = "<group>"; };
 		8F8B93D8251F96900062C259 /* StatusItemDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusItemDelegate.swift; sourceTree = "<group>"; };
 		8FAD0BB1239093C700DDB470 /* StatusItemMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusItemMenu.swift; sourceTree = "<group>"; };
@@ -99,13 +89,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		8F5D7E5222F5CCE200FED4BE /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8F8539A724BDC5EA00EC6E3D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -189,7 +172,6 @@
 			children = (
 				8F5D7E5522F5CCE200FED4BE /* TetheringHelper.app */,
 				8F32AECB24A40BB60071890D /* TetheringHelperAutostart.app */,
-				8F8539AA24BDC5EA00EC6E3D /* TestBonjourService */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -264,23 +246,6 @@
 			productReference = 8F5D7E5522F5CCE200FED4BE /* TetheringHelper.app */;
 			productType = "com.apple.product-type.application";
 		};
-		8F8539A924BDC5EA00EC6E3D /* TestBonjourService */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8F8539B024BDC5EA00EC6E3D /* Build configuration list for PBXNativeTarget "TestBonjourService" */;
-			buildPhases = (
-				8F8539A624BDC5EA00EC6E3D /* Sources */,
-				8F8539A724BDC5EA00EC6E3D /* Frameworks */,
-				8F8539A824BDC5EA00EC6E3D /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = TestBonjourService;
-			productName = TestBonjourService;
-			productReference = 8F8539AA24BDC5EA00EC6E3D /* TestBonjourService */;
-			productType = "com.apple.product-type.tool";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -296,9 +261,6 @@
 					};
 					8F5D7E5422F5CCE200FED4BE = {
 						CreatedOnToolsVersion = 10.3;
-					};
-					8F8539A924BDC5EA00EC6E3D = {
-						CreatedOnToolsVersion = 11.5;
 					};
 				};
 			};
@@ -319,7 +281,6 @@
 			targets = (
 				8F5D7E5422F5CCE200FED4BE /* TetheringHelper */,
 				8F32AECA24A40BB60071890D /* TetheringHelperAutostart */,
-				8F8539A924BDC5EA00EC6E3D /* TestBonjourService */,
 			);
 		};
 /* End PBXProject section */
@@ -377,13 +338,6 @@
 				8F0D5B6524D5BAC000D41F16 /* SessionTracker.swift in Sources */,
 				8F5D7E5922F5CCE200FED4BE /* AppDelegate.swift in Sources */,
 				8FCEF61C23018DA600CB726E /* StatusItem.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8F8539A624BDC5EA00EC6E3D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -606,32 +560,6 @@
 			};
 			name = Release;
 		};
-		8F8539AE24BDC5EA00EC6E3D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = R98YXK78YZ;
-				ENABLE_HARDENED_RUNTIME = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		8F8539AF24BDC5EA00EC6E3D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = R98YXK78YZ;
-				ENABLE_HARDENED_RUNTIME = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -658,15 +586,6 @@
 			buildConfigurations = (
 				8F5D7E6622F5CCE300FED4BE /* Debug */,
 				8F5D7E6722F5CCE300FED4BE /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		8F8539B024BDC5EA00EC6E3D /* Build configuration list for PBXNativeTarget "TestBonjourService" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8F8539AE24BDC5EA00EC6E3D /* Debug */,
-				8F8539AF24BDC5EA00EC6E3D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
