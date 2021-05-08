@@ -3,6 +3,7 @@ package com.gmail.bittner.johannes.tetheringhelper
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_main.*
 
 // TODO: make it possible to connect to service when phone is in standby mode
 // TODO: stop broadcasting service when app is swiped-away in android task manager
@@ -20,5 +21,7 @@ class MainActivity : AppCompatActivity() {
             context = this
         )
         signalSender.start()
+
+        networkPortTextView.text = signalSender.listenPort.toString()
     }
 }

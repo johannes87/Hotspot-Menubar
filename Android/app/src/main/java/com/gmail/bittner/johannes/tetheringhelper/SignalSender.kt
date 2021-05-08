@@ -50,6 +50,9 @@ class SignalSender(phoneName: String, context: Context) {
         }
     }
 
+    val listenPort: Int
+        get() = serverSocket.localPort
+
     fun stop() {
         bonjourPublisher.unpublish()
     }
