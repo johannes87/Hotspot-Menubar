@@ -1,10 +1,11 @@
-package com.gmail.bittner.johannes.tetheringhelper
+package com.gmail.bittner.johannes.tetheringhelper.ui
 
 
 import android.Manifest
 import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import com.gmail.bittner.johannes.tetheringhelper.SignalSender
 import com.gmail.bittner.johannes.tetheringhelper.databinding.ActivityMainBinding
 
 // TODO: make it possible to connect to service when phone is in standby mode
