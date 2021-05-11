@@ -5,13 +5,14 @@ import android.Manifest
 import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_main.*
+import com.gmail.bittner.johannes.tetheringhelper.databinding.ActivityMainBinding
 
 // TODO: make it possible to connect to service when phone is in standby mode
 // TODO: stop broadcasting service when app is swiped-away in android task manager
 
 class MainActivity : AppCompatActivity() {
     private lateinit var signalSender: SignalSender
+    private lateinit var binding: ActivityMainBinding
 
     // TODO use permission request activity with explanation
     // TODO handle no permission granted case
@@ -27,7 +28,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         requestRuntimePermissions()
 
@@ -37,6 +39,6 @@ class MainActivity : AppCompatActivity() {
         )
         signalSender.start()
 
-        networkPortTextView.text = signalSender.listenPort.toString()
+        binding.networkPortTextView.text = signalSender.listenPort.toString()
     }
 }
