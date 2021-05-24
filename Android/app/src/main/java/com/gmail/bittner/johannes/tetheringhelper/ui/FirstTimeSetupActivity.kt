@@ -15,6 +15,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.preference.PreferenceManager
 import com.gmail.bittner.johannes.tetheringhelper.R
+import com.gmail.bittner.johannes.tetheringhelper.SharedPreferencesKeys
 import com.gmail.bittner.johannes.tetheringhelper.databinding.ActivityFirstTimeSetupBinding
 
 class FirstTimeSetupActivity : AppCompatActivity() {
@@ -62,8 +63,8 @@ class FirstTimeSetupActivity : AppCompatActivity() {
 
     private fun finishFirstTimeSetup() {
         sharedPreferences.edit().apply {
-            putString("phone_name", binding.editTextPhoneName.text.toString())
-            putBoolean("first_time_setup_finished", true)
+            putString(SharedPreferencesKeys.phoneName, binding.editTextPhoneName.text.toString())
+            putBoolean(SharedPreferencesKeys.firstTimeSetupFinished, true)
             apply()
         }
 

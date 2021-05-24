@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.preference.PreferenceManager
 import com.gmail.bittner.johannes.tetheringhelper.R
+import com.gmail.bittner.johannes.tetheringhelper.SharedPreferencesKeys
 import com.gmail.bittner.johannes.tetheringhelper.SignalSender
 import com.gmail.bittner.johannes.tetheringhelper.databinding.ActivityMainBinding
 
@@ -24,14 +25,14 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
 
-        if (!sharedPreferences.getBoolean("first_time_setup_finished", false)) {
+        if (!sharedPreferences.getBoolean(SharedPreferencesKeys.firstTimeSetupFinished, false)) {
             startActivity(Intent(this, FirstTimeSetupActivity::class.java))
             finish();
             return;
         }
 
         signalSender = SignalSender(
-            phoneName = sharedPreferences.getString("phone_name", "")!!,
+            phoneName = sharedPreferences.getString(SharedPreferencesKeys.phoneName, "")!!,
             context = this
         )
         signalSender.start()
