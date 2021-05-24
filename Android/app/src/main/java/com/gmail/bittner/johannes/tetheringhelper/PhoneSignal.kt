@@ -59,7 +59,7 @@ class PhoneSignal(private val quality: SignalQuality, private val type: SignalTy
                 type = SignalType.fromDataNetworkType(telephonyManager.dataNetworkType)
             } catch (e: SecurityException) {
                 Log.e("TetheringHelper",
-                    "Required permissions missing. This should never happen")
+                    "Required permissions missing. This should never happen, please report a bug.")
             }
 
             return PhoneSignal(quality, type!!)
