@@ -2,10 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.gmail.bittner.johannes.tetheringhelper">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-
-    <!-- needed for TelephonyManager::dataNetworkType -->
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- needed for opening network port -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- needed for getting dataNetworkType -->
 
     <application
         android:allowBackup="true"
@@ -14,6 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.FirstTimeSetupActivity"></activity>
+
         <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

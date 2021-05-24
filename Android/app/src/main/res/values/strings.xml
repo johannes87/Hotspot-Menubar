@@ -1,4 +1,15 @@
 <resources>
     <string name="app_name">TetheringHelper</string>
     <string name="port">Port</string>
+    <string name="first_time_setup_need_permissions">I need some permissions to run. Please click the green button to grant them. You can click on the \"Why?\" button for the reason why I need those.</string>
+    <string name="first_time_setup_grant_button_text">Okay</string>
+    <string name="first_time_setup_continue_button_text">Continue</string>
+    <string name="first_time_setup_still_need_permissions">You need to grant me permissions to continue.</string>
+    <string name="first_time_setup_phone_name_label">Phone name:</string>
+    <string name="first_time_setup_need_phone_name">And finally I need a name for your phone of your choosing, so macOS knows who it is talking to.</string>
+    <string name="first_time_setup_welcome">Welcome to the first time setup of TetheringHelper!</string>
+    <string name="first_time_setup_why_button_text">Why?</string>
+    <string name="first_time_setup_why_dialog_title">Why the permissions are required</string>
+    <string name="first_time_setup_why_dialog_message">TetheringHelper needs to figure out how good the signal quality to your phone carrier is. To do this it needs the permission to make and manage phone calls.</string>
+    <string name="first_time_setup_why_dialog_positive_button_text">Back to first time setup</string>
 </resources>

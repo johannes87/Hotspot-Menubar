@@ -1,42 +1,37 @@
 package com.gmail.bittner.johannes.tetheringhelper.ui
 
-
-import android.Manifest
+import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
-import androidx.activity.result.contract.ActivityResultContracts
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.preference.PreferenceManager
 import com.gmail.bittner.johannes.tetheringhelper.R
 import com.gmail.bittner.johannes.tetheringhelper.SignalSender
 import com.gmail.bittner.johannes.tetheringhelper.databinding.ActivityMainBinding
 
 // TODO: make it possible to connect to service when phone is in standby mode
-// TODO: stop broadcasting service when app is swiped-away in android task manager
+// TODO: stop broadcasting service when app is swiped-away in android task manager (or disabled, or not in hotspot mode, etc)
 
 class MainActivity : AppCompatActivity() {
     private lateinit var signalSender: SignalSender
     private lateinit var binding: ActivityMainBinding
-
-    // TODO use permission request activity with explanation
-    // TODO handle no permission granted case
-    private fun requestRuntimePermissions() {
-        val runtimePermissions = arrayOf(Manifest.permission.READ_PHONE_STATE)
-
-        val requestMultiplePermissions = registerForActivityResult(
-            ActivityResultContracts.RequestMultiplePermissions()
-        ) {}
-
-        requestMultiplePermissions.launch(runtimePermissions)
-    }
+    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
 
-        requestRuntimePermissions()
+        if (!sharedPreferences.getBoolean("first_time_setup_finished", false)) {
+            startActivity(Intent(this, FirstTimeSetupActivity::class.java))
+            finish();
+            return;
+        }
 
         signalSender = SignalSender(
-            phoneName = "Sony Xperia XZ1 Compact",
+            phoneName = sharedPreferences.getString("phone_name", "")!!,
             context = this
         )
         signalSender.start()
