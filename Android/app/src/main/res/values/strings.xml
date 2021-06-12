@@ -12,4 +12,8 @@
     <string name="first_time_setup_why_dialog_title">Why the permissions are required</string>
     <string name="first_time_setup_why_dialog_message">TetheringHelper needs to figure out how good the signal quality to your phone carrier is. To do this it needs the permission to make and manage phone calls.</string>
     <string name="first_time_setup_why_dialog_positive_button_text">Back to first time setup</string>
+    <string name="service_notification_content_title">TetheringHelper</string>
+    <string name="service_notification_content_text">TetheringHelper is running</string>
+    <string name="service_notification_ticker_text">TetheringHelper is running</string>
+    <string name="service_notification_channel_name">TetheringHelper active</string>
 </resources>
