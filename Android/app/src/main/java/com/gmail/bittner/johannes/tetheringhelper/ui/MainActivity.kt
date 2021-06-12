@@ -25,10 +25,8 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
 
-        if (!sharedPreferences.getBoolean(SharedPreferencesKeys.firstTimeSetupFinished, false)) {
-            startActivity(Intent(this, FirstTimeSetupActivity::class.java))
-            finish();
-            return;
+        if (maybeStartFirstTimeSetup()) {
+            return
         }
 
         signalSender = SignalSender(
@@ -38,5 +36,21 @@ class MainActivity : AppCompatActivity() {
         signalSender.start()
 
         binding.networkPortTextView.text = signalSender.listenPort.toString()
+    }
+
+    /**
+     * Starts the first time setup if necessary
+     *
+     * @return true if first time setup is necessary, false otherwise
+     */
+    private fun maybeStartFirstTimeSetup(): Boolean {
+        val firstTimeSetupFinished = sharedPreferences.getBoolean(SharedPreferencesKeys.firstTimeSetupFinished, false)
+        if (firstTimeSetupFinished) {
+            return false
+        }
+
+        startActivity(Intent(this, FirstTimeSetupActivity::class.java))
+        finish();
+        return true;
     }
 }
