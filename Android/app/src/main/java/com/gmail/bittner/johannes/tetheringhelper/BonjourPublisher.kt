@@ -9,7 +9,7 @@ import android.util.Log
  * This class publishes the TetheringHelper Bonjour service to the local network.
  */
 class BonjourPublisher (val serviceName: String, val port: Int, val context: Context) {
-    private val TAG = BonjourPublisher::class.qualifiedName
+    private val TAG = "BonjourPublisher"
     private val serviceType = "_tetheringhelper._tcp"
     private var registeredServiceName: String? = null
     private var nsdManager: NsdManager? = null

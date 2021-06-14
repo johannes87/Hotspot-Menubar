@@ -51,6 +51,7 @@ enum class SignalType(val type: String) {
 
 class PhoneSignal(private val quality: SignalQuality, private val type: SignalType) {
     companion object {
+        private const val TAG = "PhoneSignal"
         fun getSignal(telephonyManager: TelephonyManager): PhoneSignal {
             val quality = SignalQuality.fromQuality(telephonyManager.signalStrength!!.level)
             var type: SignalType? = null
@@ -58,8 +59,7 @@ class PhoneSignal(private val quality: SignalQuality, private val type: SignalTy
             try {
                 type = SignalType.fromDataNetworkType(telephonyManager.dataNetworkType)
             } catch (e: SecurityException) {
-                Log.e("TetheringHelper",
-                    "Required permissions missing. This should never happen, please report a bug.")
+                Log.e(TAG, "Required permissions missing. This should never happen, please report a bug.")
             }
 
             return PhoneSignal(quality, type!!)
