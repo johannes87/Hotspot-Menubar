@@ -10,7 +10,10 @@ import androidx.preference.PreferenceManager
 import com.gmail.bittner.johannes.tetheringhelper.ui.MainActivity
 
 /**
- * SignalSenderService is a long-running background service that contains SignalSender
+ * SignalSenderService is a long-running background service that contains SignalSender.
+ * This is needed so that SignalSender keeps running even if the Activity is closed.
+ *
+ * @see https://robertohuertas.com/2019/06/29/android_foreground_services/
  */
 class SignalSenderService : Service() {
     private var isRunning = false

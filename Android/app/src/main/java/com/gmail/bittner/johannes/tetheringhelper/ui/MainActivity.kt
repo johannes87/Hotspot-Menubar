@@ -39,7 +39,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Starts the first time setup if necessary
+     * Starts the first time setup if necessary. First time setup is used to grant permissions
+     * and to set the phone name that is being shown in macOS.
      *
      * @return true if first time setup is necessary, false otherwise
      */
