@@ -46,7 +46,6 @@ class SignalSender(phoneName: String, val context: Context) {
         val wifiManager = context.getSystemService(Context.WIFI_SERVICE) as WifiManager
 
         while (true) {
-            val hotspotActive = isWifiHotspotActive(wifiManager)
             val clientSocket = serverSocket.accept()
             val output = PrintWriter(clientSocket.getOutputStream(), true)
             val phoneSignal = PhoneSignal.getSignal(telephonyManager)
