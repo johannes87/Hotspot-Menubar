@@ -28,14 +28,7 @@ class MainActivity : AppCompatActivity() {
         if (maybeStartFirstTimeSetup()) {
             return
         }
-
-        Intent(this, SignalSenderService::class.java).also { intent ->
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                startForegroundService(intent)
-            } else {
-                startService(intent)
-            }
-        }
+        startSignalSenderService()
     }
 
     /**
@@ -53,5 +46,15 @@ class MainActivity : AppCompatActivity() {
         startActivity(Intent(this, FirstTimeSetupActivity::class.java))
         finish();
         return true;
+    }
+
+    private fun startSignalSenderService() {
+        Intent(this, SignalSenderService::class.java).also { intent ->
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                startForegroundService(intent)
+            } else {
+                startService(intent)
+            }
+        }
     }
 }
