@@ -50,11 +50,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun startSignalSenderService() {
         Intent(this, SignalSenderService::class.java).also { intent ->
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                startForegroundService(intent)
-            } else {
-                startService(intent)
-            }
+            startForegroundService(intent)
         }
     }
 }
