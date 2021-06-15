@@ -67,7 +67,7 @@ class SignalSender(private val phoneName: String, private val context: Context) 
         runInterruptible {
             while (true) {
                 Log.d(TAG, "serverLoop is waiting for connection")
-                var clientSocket: Socket? = null
+                var clientSocket: Socket?
                 try {
                     clientSocket = serverSocket.accept()
                 } catch (e: SocketException) {
