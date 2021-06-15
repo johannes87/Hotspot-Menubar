@@ -1,4 +1,4 @@
-package com.gmail.bittner.johannes.tetheringhelper
+package com.gmail.bittner.johannes.tetheringhelper.service
 
 import android.content.Context
 import android.telephony.TelephonyManager

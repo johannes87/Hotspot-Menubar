@@ -1,4 +1,4 @@
-package com.gmail.bittner.johannes.tetheringhelper
+package com.gmail.bittner.johannes.tetheringhelper.service
 
 import android.app.*
 import android.content.*
@@ -7,6 +7,8 @@ import android.os.IBinder
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.preference.PreferenceManager
+import com.gmail.bittner.johannes.tetheringhelper.R
+import com.gmail.bittner.johannes.tetheringhelper.SharedPreferencesKeys
 import com.gmail.bittner.johannes.tetheringhelper.ui.MainActivity
 
 /**

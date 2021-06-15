@@ -8,7 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.preference.PreferenceManager
 import com.gmail.bittner.johannes.tetheringhelper.R
 import com.gmail.bittner.johannes.tetheringhelper.SharedPreferencesKeys
-import com.gmail.bittner.johannes.tetheringhelper.SignalSenderService
+import com.gmail.bittner.johannes.tetheringhelper.service.SignalSenderService
 import com.gmail.bittner.johannes.tetheringhelper.databinding.ActivityMainBinding
 
 // TODO: make it possible to connect to service when phone is in standby mode

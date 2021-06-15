@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <service
-            android:name=".SignalSenderService"/>
+            android:name=".service.SignalSenderService"/>
 
         <activity android:name=".ui.FirstTimeSetupActivity"/>
 
