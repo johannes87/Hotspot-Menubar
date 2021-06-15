@@ -27,6 +27,7 @@ enum class SignalType(val type: String) {
 
     companion object {
         fun fromDataNetworkType(dataNetworkType: Int): SignalType {
+            // TODO: support 5G
             return when (dataNetworkType) {
                 TelephonyManager.NETWORK_TYPE_GPRS -> TWO_G
                 TelephonyManager.NETWORK_TYPE_EDGE -> EDGE
