@@ -13,7 +13,7 @@ import java.net.SocketException
  * SignalSender sends the current signal type and quality to connecting clients.
  * It is also responsible for publishing and unpublishing a Bonjour service.
  */
-class SignalSender(val phoneName: String, val context: Context) {
+class SignalSender(private val phoneName: String, private val context: Context) {
     private val TAG = "SignalSender"
     private val coroutineScope = CoroutineScope(Job() + Dispatchers.IO)
 
