@@ -64,6 +64,7 @@ class SignalSender(private val phoneName: String, private val context: Context) 
     private suspend fun serverLoop() {
         val telephonyManager = context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
 
+        // runInterruptible is needed so the coroutine can be cancelled while in serverSocket.accept()
         runInterruptible {
             while (true) {
                 Log.d(TAG, "serverLoop is waiting for connection")
