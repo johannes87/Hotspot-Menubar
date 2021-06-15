@@ -49,9 +49,10 @@ enum class SignalType(val type: String) {
     }
 }
 
-class PhoneSignal(private val quality: SignalQuality, private val type: SignalType) {
+class PhoneSignal(val quality: SignalQuality, val type: SignalType) {
     companion object {
         private const val TAG = "PhoneSignal"
+
         fun getSignal(telephonyManager: TelephonyManager): PhoneSignal {
             val quality = SignalQuality.fromQuality(telephonyManager.signalStrength!!.level)
             var type: SignalType? = null

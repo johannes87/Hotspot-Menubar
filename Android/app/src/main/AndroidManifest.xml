@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" /> <!-- needed for opening network port -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- needed for getting dataNetworkType -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- needed for call to "isWifiApEnabled" -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" /> <!-- for SignalSenderService -->
 
     <application

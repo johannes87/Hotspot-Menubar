@@ -14,27 +14,7 @@ class BonjourPublisher (val serviceName: String, val port: Int, val context: Con
     private var registeredServiceName: String? = null
     private var nsdManager: NsdManager? = null
 
-    private val registrationListener = object : NsdManager.RegistrationListener {
-        override fun onServiceRegistered(serviceInfo: NsdServiceInfo) {
-            // Save the service name. Android may have changed it in order to
-            // resolve a conflict, so update the name you initially requested
-            // with the name Android actually used.
-            registeredServiceName = serviceInfo.serviceName
-            Log.d(TAG, "Service has been registered. Name: $registeredServiceName")
-        }
-
-        override fun onRegistrationFailed(serviceInfo: NsdServiceInfo, errorCode: Int) {
-            Log.e(TAG, "Service registration failed. Error code: $errorCode")
-        }
-
-        override fun onServiceUnregistered(serviceInfo: NsdServiceInfo) {
-            Log.d(TAG, "Service has been unregistered")
-        }
-
-        override fun onUnregistrationFailed(serviceInfo: NsdServiceInfo, errorCode: Int) {
-            Log.e(TAG, "Service unregistration failed. Error code: $errorCode")
-        }
-    }
+    private lateinit var nsdRegistrationListener: NsdManager.RegistrationListener
 
     fun publish() {
         val serviceInfo = NsdServiceInfo().apply {
@@ -45,12 +25,34 @@ class BonjourPublisher (val serviceName: String, val port: Int, val context: Con
             port = this@BonjourPublisher.port
         }
 
+        nsdRegistrationListener = object : NsdManager.RegistrationListener {
+            override fun onServiceRegistered(serviceInfo: NsdServiceInfo) {
+                // Save the service name. Android may have changed it in order to
+                // resolve a conflict, so update the name you initially requested
+                // with the name Android actually used.
+                registeredServiceName = serviceInfo.serviceName
+                Log.d(TAG, "Service has been registered. Name: $registeredServiceName")
+            }
+
+            override fun onRegistrationFailed(serviceInfo: NsdServiceInfo, errorCode: Int) {
+                Log.e(TAG, "Service registration failed. Error code: $errorCode")
+            }
+
+            override fun onServiceUnregistered(serviceInfo: NsdServiceInfo) {
+                Log.d(TAG, "Service has been unregistered")
+            }
+
+            override fun onUnregistrationFailed(serviceInfo: NsdServiceInfo, errorCode: Int) {
+                Log.e(TAG, "Service unregistration failed. Error code: $errorCode")
+            }
+        }
+
         nsdManager = (context.getSystemService(Context.NSD_SERVICE) as NsdManager).apply {
-            registerService(serviceInfo, NsdManager.PROTOCOL_DNS_SD, this@BonjourPublisher.registrationListener)
+            registerService(serviceInfo, NsdManager.PROTOCOL_DNS_SD, nsdRegistrationListener)
         }
     }
 
     fun unpublish() {
-        nsdManager?.unregisterService(registrationListener)
+        nsdManager?.unregisterService(nsdRegistrationListener)
     }
 }
