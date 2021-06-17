@@ -6,10 +6,16 @@ import android.util.Log
 private const val TAG = "PhoneSignal"
 
 enum class SignalQuality(val quality: Int) {
+    // Suppress "unused" warnings because all these classes are used via "fromQuality"
+    @Suppress("unused")
     NO_SIGNAL(0),
+    @Suppress("unused")
     ONE_BAR(1),
+    @Suppress("unused")
     TWO_BARS(2),
+    @Suppress("unused")
     THREE_BARS(3),
+    @Suppress("unused")
     FOUR_BARS(4);
 
     companion object {
