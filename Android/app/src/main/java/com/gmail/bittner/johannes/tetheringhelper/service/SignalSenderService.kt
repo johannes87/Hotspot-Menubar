@@ -25,6 +25,17 @@ class SignalSenderService : Service() {
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var hotspotStateReceiver: BroadcastReceiver
 
+    override fun onCreate() {
+        super.onCreate()
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        signalSender = SignalSender(
+            sharedPreferences.getString(SharedPreferencesKeys.phoneName, "")!!,
+            this)
+
+        setupForegroundService()
+        createHotspotStateListener()
+    }
+
     override fun onBind(intent: Intent?): IBinder? {
         return null
     }
@@ -43,17 +54,6 @@ class SignalSenderService : Service() {
             Log.d(TAG, "Wifi hotspot not active in onStartCommand, not starting SignalSender")
         }
         return START_STICKY
-    }
-
-    override fun onCreate() {
-        super.onCreate()
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-        signalSender = SignalSender(
-            sharedPreferences.getString(SharedPreferencesKeys.phoneName, "")!!,
-            this)
-
-        setupForegroundService()
-        createHotspotStateListener()
     }
 
     override fun onDestroy() {
