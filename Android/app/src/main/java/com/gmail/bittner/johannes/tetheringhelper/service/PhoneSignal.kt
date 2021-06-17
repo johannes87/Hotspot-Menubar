@@ -3,6 +3,8 @@ package com.gmail.bittner.johannes.tetheringhelper.service
 import android.telephony.TelephonyManager
 import android.util.Log
 
+private const val TAG = "PhoneSignal"
+
 enum class SignalQuality(val quality: Int) {
     NO_SIGNAL(0),
     ONE_BAR(1),
@@ -52,8 +54,6 @@ enum class SignalType(val type: String) {
 
 class PhoneSignal(val quality: SignalQuality, val type: SignalType) {
     companion object {
-        private const val TAG = "PhoneSignal"
-
         fun getSignal(telephonyManager: TelephonyManager): PhoneSignal {
             val quality = SignalQuality.fromQuality(telephonyManager.signalStrength!!.level)
             var type: SignalType? = null

@@ -5,11 +5,11 @@ import android.net.nsd.NsdManager
 import android.net.nsd.NsdServiceInfo
 import android.util.Log
 
+private const val TAG = "BonjourPublisher"
 /**
  * This class publishes the TetheringHelper Bonjour service to the local network.
  */
 class BonjourPublisher (val serviceName: String, val port: Int, val context: Context) {
-    private val TAG = "BonjourPublisher"
     private val serviceType = "_tetheringhelper._tcp"
     private var registeredServiceName: String? = null
     private var nsdManager: NsdManager? = null

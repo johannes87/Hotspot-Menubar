@@ -11,6 +11,8 @@ import com.gmail.bittner.johannes.tetheringhelper.R
 import com.gmail.bittner.johannes.tetheringhelper.SharedPreferencesKeys
 import com.gmail.bittner.johannes.tetheringhelper.ui.MainActivity
 
+private const val TAG = "SignalSenderService"
+
 /**
  * SignalSenderService is a long-running background service that contains SignalSender.
  * This is needed so that SignalSender keeps running even if the Activity is closed.
@@ -18,7 +20,6 @@ import com.gmail.bittner.johannes.tetheringhelper.ui.MainActivity
  * @see https://robertohuertas.com/2019/06/29/android_foreground_services/
  */
 class SignalSenderService : Service() {
-    private val TAG = "SignalSenderService"
     private var isRunning = false
     private lateinit var signalSender: SignalSender
     private lateinit var sharedPreferences: SharedPreferences

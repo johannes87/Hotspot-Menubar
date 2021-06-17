@@ -9,12 +9,13 @@ import java.net.ServerSocket
 import java.net.Socket
 import java.net.SocketException
 
+private const val TAG = "SignalSender"
+
 /**
  * SignalSender sends the current signal type and quality to connecting clients.
  * It is also responsible for publishing and unpublishing a Bonjour service.
  */
 class SignalSender(private val phoneName: String, private val context: Context) {
-    private val TAG = "SignalSender"
     private val coroutineScope = CoroutineScope(Job() + Dispatchers.IO)
 
     private lateinit var serverSocket: ServerSocket
