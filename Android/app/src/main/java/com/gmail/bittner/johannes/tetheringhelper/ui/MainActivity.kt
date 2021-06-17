@@ -42,8 +42,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         startActivity(Intent(this, FirstTimeSetupActivity::class.java))
-        finish();
-        return true;
+        finish()
+        return true
     }
 
     private fun startSignalSenderService() {
