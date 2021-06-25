@@ -3,6 +3,7 @@ package com.gmail.bittner.johannes.tetheringhelper.service
 import android.app.*
 import android.content.*
 import android.net.wifi.WifiManager
+import android.os.Binder
 import android.os.IBinder
 import android.util.Log
 import androidx.core.app.NotificationCompat
@@ -12,6 +13,25 @@ import com.gmail.bittner.johannes.tetheringhelper.SharedPreferencesKeys
 import com.gmail.bittner.johannes.tetheringhelper.ui.MainActivity
 
 private const val TAG = "SignalSenderService"
+
+/**
+ * SignalSenderServiceBinder is needed for communication between Service and Activity
+ */
+class SignalSenderServiceBinder(val service: SignalSenderService) : Binder()
+
+/**
+ * SignalSenderStatus is used to communicate the activity status of SignalSender
+ */
+enum class SignalSenderStatus {
+    /**
+     * INACTIVE means SignalSender is not sending its status because the
+     * run conditions are not fulfilled (e.g. hotspot is not active)
+     */
+    INACTIVE,
+
+    /** ACTIVE means that SignalSender is sending its status when connected */
+    ACTIVE
+}
 
 /**
  * SignalSenderService is a long-running background service that contains SignalSender.
@@ -25,6 +45,14 @@ class SignalSenderService : Service() {
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var hotspotStateReceiver: BroadcastReceiver
 
+    var signalSenderStatus: SignalSenderStatus = SignalSenderStatus.INACTIVE
+        private set
+
+    /**
+     * statusUpdateCallback will be set by connecting components who want to receive status updates
+     */
+    var statusUpdateCallback: ((status: SignalSenderStatus) -> Unit)? = null
+
     override fun onCreate() {
         super.onCreate()
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
@@ -36,11 +64,12 @@ class SignalSenderService : Service() {
         createHotspotStateListener()
     }
 
-    override fun onBind(intent: Intent?): IBinder? {
-        return null
+    override fun onBind(intent: Intent?): IBinder {
+        return SignalSenderServiceBinder(this)
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        Log.d(TAG, "onStartCommand, isRunning: $isRunning")
         if (isRunning) {
             return super.onStartCommand(intent, flags, startId)
         }
@@ -49,7 +78,7 @@ class SignalSenderService : Service() {
         isRunning = true
 
         if (isWifiHotspotActive()) {
-            signalSender.start()
+            startSignalSender()
         } else {
             Log.d(TAG, "Wifi hotspot not active in onStartCommand, not starting SignalSender")
         }
@@ -57,10 +86,23 @@ class SignalSenderService : Service() {
     }
 
     override fun onDestroy() {
+        Log.d(TAG, "onDestroy")
         super.onDestroy()
-        signalSender.stop()
+        stopSignalSender()
         stopForeground(true)
         unregisterReceiver(hotspotStateReceiver)
+    }
+
+    private fun startSignalSender() {
+        signalSender.start()
+        signalSenderStatus = SignalSenderStatus.ACTIVE
+        statusUpdateCallback?.let { it(signalSenderStatus) }
+    }
+
+    private fun stopSignalSender() {
+        signalSender.stop()
+        signalSenderStatus = SignalSenderStatus.INACTIVE
+        statusUpdateCallback?.let { it(signalSenderStatus) }
     }
 
     /**
@@ -118,10 +160,10 @@ class SignalSenderService : Service() {
                 val wifiState = extra % 10
                 if (wifiState == WifiManager.WIFI_STATE_ENABLED) {
                     Log.d(TAG, "Hotspot state changed: enabled")
-                    signalSender.start()
+                    startSignalSender()
                 } else if (wifiState == WifiManager.WIFI_STATE_DISABLED) {
                     Log.d(TAG, "Hotspot state changed: disabled")
-                    signalSender.stop()
+                    stopSignalSender()
                 }
             }
         }
