@@ -18,6 +18,9 @@
             android:name=".service.SignalSenderService"/>
 
         <activity android:name=".ui.FirstTimeSetupActivity"/>
+        <activity android:name=".ui.SettingsActivity"
+            android:label="@string/settings_activity_label"
+            android:parentActivityName=".ui.MainActivity"/>
 
         <activity
             android:name=".ui.MainActivity"
