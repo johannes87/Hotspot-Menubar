@@ -26,6 +26,10 @@ class MainActivity : AppCompatActivity() {
         if (maybeStartFirstTimeSetup()) {
             return
         }
+
+        binding.buttonSettings.setOnClickListener {
+            startActivity(Intent(this, SettingsActivity::class.java))
+        }
         startSignalSenderService()
     }
 
