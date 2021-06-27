@@ -15,6 +15,7 @@ import androidx.preference.PreferenceManager
 import com.gmail.bittner.johannes.tetheringhelper.R
 import com.gmail.bittner.johannes.tetheringhelper.SharedPreferencesKeys
 import com.gmail.bittner.johannes.tetheringhelper.databinding.ActivityFirstTimeSetupBinding
+import com.gmail.bittner.johannes.tetheringhelper.utils.Permissions
 
 class FirstTimeSetupActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFirstTimeSetupBinding
@@ -33,10 +34,7 @@ class FirstTimeSetupActivity : AppCompatActivity() {
             binding.permissionsGranted = result.entries.all { it.value == true }
         }
 
-        binding.permissionsGranted = requiredRuntimePermissions.all { permission ->
-            val permissionCheckResult = ContextCompat.checkSelfPermission(this, permission)
-            permissionCheckResult == PackageManager.PERMISSION_GRANTED
-        }
+        binding.permissionsGranted = Permissions.arePermissionsGranted(this)
 
         binding.editTextPhoneName.setText(android.os.Build.MODEL)
         binding.buttonRequestPermissions.setOnClickListener { requestRuntimePermissions() }

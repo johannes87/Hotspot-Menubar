@@ -17,6 +17,7 @@ import com.gmail.bittner.johannes.tetheringhelper.service.RunConditionMonitor
 import com.gmail.bittner.johannes.tetheringhelper.service.SignalSenderService
 import com.gmail.bittner.johannes.tetheringhelper.service.SignalSenderServiceBinder
 import com.gmail.bittner.johannes.tetheringhelper.service.SignalSenderStatus
+import com.gmail.bittner.johannes.tetheringhelper.utils.Permissions
 
 /**
  * TetheringHelperStatus encapsulates the status of the whole Android app that is
@@ -149,7 +150,7 @@ class MainActivity : AppCompatActivity() {
      */
     private fun maybeStartFirstTimeSetup(): Boolean {
         val firstTimeSetupFinished = sharedPreferences.getBoolean(SharedPreferencesKeys.firstTimeSetupFinished, false)
-        if (firstTimeSetupFinished) {
+        if (firstTimeSetupFinished && Permissions.arePermissionsGranted(this)) {
             return false
         }
 

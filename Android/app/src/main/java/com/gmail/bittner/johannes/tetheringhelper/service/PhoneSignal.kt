@@ -68,6 +68,7 @@ class PhoneSignal(val quality: SignalQuality, val type: SignalType) {
                 type = SignalType.fromDataNetworkType(telephonyManager.dataNetworkType)
             } catch (e: SecurityException) {
                 Log.e(TAG, "Required permissions missing. This should never happen, please report a bug.")
+                throw e
             }
 
             return PhoneSignal(quality, type!!)
