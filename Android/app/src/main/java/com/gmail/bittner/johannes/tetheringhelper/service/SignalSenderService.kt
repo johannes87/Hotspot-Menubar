@@ -40,6 +40,7 @@ enum class SignalSenderStatus {
  * @see https://robertohuertas.com/2019/06/29/android_foreground_services/
  */
 class SignalSenderService : Service() {
+    private var isRunning = false
     private lateinit var signalSender: SignalSender
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var hotspotStateReceiver: BroadcastReceiver
@@ -60,12 +61,6 @@ class SignalSenderService : Service() {
             sharedPreferences.getString(SharedPreferencesKeys.phoneName, "")!!,
             this)
 
-        if (isWifiHotspotActive()) {
-            startSignalSender()
-        } else {
-            Log.d(TAG, "Wifi hotspot not active, not starting SignalSender")
-            setupForegroundService()
-        }
 
         createHotspotStateListener()
     }
@@ -76,6 +71,19 @@ class SignalSenderService : Service() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         Log.d(TAG, "onStartCommand")
+        if (!isRunning) {
+            return super.onStartCommand(intent, flags, startId)
+        }
+        isRunning = true
+
+        if (isWifiHotspotActive()) {
+            // startSignalSender creates the foreground notification
+            startSignalSender()
+        } else {
+            Log.d(TAG, "Wifi hotspot not active, not starting SignalSender")
+            createForegroundNotification()
+        }
+
         super.onStartCommand(intent, flags, startId)
         return START_STICKY
     }
@@ -91,14 +99,14 @@ class SignalSenderService : Service() {
     private fun startSignalSender() {
         signalSender.start()
         signalSenderStatus = SignalSenderStatus.ACTIVE
-        setupForegroundService()
+        createForegroundNotification()
         statusUpdateCallback?.let { it(signalSenderStatus) }
     }
 
     private fun stopSignalSender() {
         signalSender.stop()
         signalSenderStatus = SignalSenderStatus.INACTIVE
-        setupForegroundService()
+        createForegroundNotification()
         statusUpdateCallback?.let { it(signalSenderStatus) }
     }
 
@@ -108,8 +116,7 @@ class SignalSenderService : Service() {
      *
      * @see https://robertohuertas.com/2019/06/29/android_foreground_services/
      */
-    private fun setupForegroundService() {
-        // TODO: find out why SOMETIMES (?!) the notification isn't displayed
+    private fun createForegroundNotification() {
         val notificationChannelId = "NOTIFICATION_CHANNEL_TETHERING_HELPER_STATUS"
         val notificationId = 1
 
