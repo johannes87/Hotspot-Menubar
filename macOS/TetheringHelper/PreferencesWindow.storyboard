@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Fs6-Kd-ZjQ">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Fs6-Kd-ZjQ">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14868"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -60,7 +60,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="450" height="89"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jll-Eq-s4J">
-                                <rect key="frame" x="92" y="53" width="266" height="18"/>
+                                <rect key="frame" x="89" y="52" width="270" height="18"/>
                                 <buttonCell key="cell" type="check" title="Start TetheringHelper on system startup" bezelStyle="regularSquare" imagePosition="left" refusesFirstResponder="YES" inset="2" id="PGo-CZ-KTF">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -70,7 +70,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tTM-Iz-OuA">
-                                <rect key="frame" x="18" y="23" width="224" height="16"/>
+                                <rect key="frame" x="18" y="22" width="224" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="220" id="H6d-uD-Uh3"/>
                                 </constraints>
@@ -81,7 +81,7 @@
                                 </textFieldCell>
                             </textField>
                             <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="j8d-ri-2zy">
-                                <rect key="frame" x="246" y="18" width="186" height="24"/>
+                                <rect key="frame" x="246" y="14" width="186" height="28"/>
                                 <sliderCell key="cell" refusesFirstResponder="YES" alignment="left" minValue="1" maxValue="10" doubleValue="6" tickMarkPosition="above" numberOfTickMarks="10" allowsTickMarkValuesOnly="YES" sliderType="linear" id="NIv-9J-JK1"/>
                                 <connections>
                                     <action selector="refreshStatusSliderChanged:" target="cIp-Ar-Thd" id="ccn-xC-Wte"/>
