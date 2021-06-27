@@ -105,8 +105,8 @@ class StatusItemMenu: NSObject, NSMenuItemValidation, StatusItemMenuDelegate {
     }
 
     @IBAction private func showAboutWindow(sender: Any) {
-        // TODO: implement showAboutWindow
-        print("show about window")
+        NSApp.orderFrontStandardAboutPanel(sender)
+        NSApp.activate(ignoringOtherApps: true)
     }
 
     @IBAction private func quitApplication(sender: Any) {
