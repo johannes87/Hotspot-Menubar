@@ -108,6 +108,14 @@
 			name = "UI files";
 			sourceTree = "<group>";
 		};
+		8F19AD592688D4CE007718F1 /* windows */ = {
+			isa = PBXGroup;
+			children = (
+				8F1CB93E24685D1400614EA2 /* PreferencesWindow */,
+			);
+			name = windows;
+			sourceTree = "<group>";
+		};
 		8F1CB93E24685D1400614EA2 /* PreferencesWindow */ = {
 			isa = PBXGroup;
 			children = (
@@ -131,8 +139,8 @@
 		8F3FE78523E89818003CFB6D /* Swift files */ = {
 			isa = PBXGroup;
 			children = (
+				8F19AD592688D4CE007718F1 /* windows */,
 				8F3FE78623E898B8003CFB6D /* data structures */,
-				8F1CB93E24685D1400614EA2 /* PreferencesWindow */,
 				8F5D7E5822F5CCE200FED4BE /* AppDelegate.swift */,
 				8F0FDCB524A22A3D00B6BF60 /* Autostart.swift */,
 				8F0E960C249CFF22006A4AD2 /* PreferencesStorage.swift */,
