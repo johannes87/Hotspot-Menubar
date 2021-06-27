@@ -102,12 +102,15 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate 
             }
 
             let decoder = JSONDecoder()
-            // TODO: fix problem: try! causes program exit when malformed json is received
-            let serviceResponse = try! decoder.decode(ServiceResponse.self, from: data!)
-            phoneSignal = PhoneSignal(
-                quality: SignalQuality(rawValue: serviceResponse.quality)!,
-                type: SignalType(rawValue: serviceResponse.type)!
-            )
+
+            if let serviceResponse = try? decoder.decode(ServiceResponse.self, from: data!) {
+                phoneSignal = PhoneSignal(
+                    quality: SignalQuality(rawValue: serviceResponse.quality)!,
+                    type: SignalType(rawValue: serviceResponse.type)!
+                )
+            } else {
+                os_log(.debug, "Unexpected data received: %@", String(decoding: data!, as: UTF8.self))
+            }
         }
 
         networkConnection.start(queue: networkQueue)
