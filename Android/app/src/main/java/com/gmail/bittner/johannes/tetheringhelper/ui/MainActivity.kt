@@ -13,6 +13,7 @@ import androidx.preference.PreferenceManager
 import com.gmail.bittner.johannes.tetheringhelper.R
 import com.gmail.bittner.johannes.tetheringhelper.SharedPreferencesKeys
 import com.gmail.bittner.johannes.tetheringhelper.databinding.ActivityMainBinding
+import com.gmail.bittner.johannes.tetheringhelper.service.RunConditionMonitor
 import com.gmail.bittner.johannes.tetheringhelper.service.SignalSenderService
 import com.gmail.bittner.johannes.tetheringhelper.service.SignalSenderServiceBinder
 import com.gmail.bittner.johannes.tetheringhelper.service.SignalSenderStatus
@@ -37,6 +38,7 @@ private const val TAG = "MainActivity"
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var runConditionMonitor: RunConditionMonitor
     private var signalSenderService: SignalSenderService? = null
     private val tetheringHelperEnabled: Boolean
         get() = sharedPreferences.getBoolean(SharedPreferencesKeys.tetheringHelperEnabled, false)
@@ -59,6 +61,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        runConditionMonitor = RunConditionMonitor(this)
+        lifecycle.addObserver(runConditionMonitor)
 
         if (maybeStartFirstTimeSetup()) {
             return
@@ -72,7 +76,15 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         Log.d(TAG, "onResume")
         super.onResume()
-        manageServiceRunConditions()
+
+        if (tetheringHelperEnabled && signalSenderService == null) {
+            Intent(this, SignalSenderService::class.java).also { intent ->
+                bindService(intent, serviceConnection, 0)
+            }
+        }
+        if (!tetheringHelperEnabled) {
+            showTetheringHelperStatus(TetheringHelperStatus.DISABLED)
+        }
     }
 
     override fun onPause() {
@@ -81,27 +93,6 @@ class MainActivity : AppCompatActivity() {
         if (signalSenderService != null) {
             unbindService(serviceConnection)
             signalSenderService = null
-        }
-    }
-
-    /**
-     * manageRunConditions is called in onResume, it determines if SignalSenderService
-     * needs to be started or stopped
-     */
-    private fun manageServiceRunConditions() {
-        val signalSenderServiceIntent = Intent(this, SignalSenderService::class.java)
-
-        if (tetheringHelperEnabled) {
-            Log.d(TAG, "Starting service because TetheringHelper is enabled")
-            startForegroundService(signalSenderServiceIntent)
-
-            if (signalSenderService == null) {
-                bindService(signalSenderServiceIntent, serviceConnection, 0)
-            }
-        } else {
-            Log.d(TAG, "Stopping service because TetheringHelper is disabled")
-            stopService(signalSenderServiceIntent)
-            showTetheringHelperStatus(TetheringHelperStatus.DISABLED)
         }
     }
 

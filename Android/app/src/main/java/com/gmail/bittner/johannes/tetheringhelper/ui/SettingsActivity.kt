@@ -7,8 +7,11 @@ import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
 import com.gmail.bittner.johannes.tetheringhelper.R
 import com.gmail.bittner.johannes.tetheringhelper.SharedPreferencesKeys
+import com.gmail.bittner.johannes.tetheringhelper.service.RunConditionMonitor
 
 class SettingsActivity : AppCompatActivity() {
+    private lateinit var runConditionMonitor: RunConditionMonitor
+
     companion object {
         class SettingsFragment : PreferenceFragmentCompat() {
             override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
@@ -34,6 +37,9 @@ class SettingsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        runConditionMonitor = RunConditionMonitor(this)
+        lifecycle.addObserver(runConditionMonitor)
 
         setContentView(R.layout.activity_settings)
 
