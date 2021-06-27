@@ -9,7 +9,7 @@
         <!--Window Controller-->
         <scene sceneID="pwh-6h-dxx">
             <objects>
-                <windowController id="Fs6-Kd-ZjQ" customClass="PreferencesWindowController" customModule="TetheringHelper" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController id="Fs6-Kd-ZjQ" customClass="StatusItemWindowController" customModule="TetheringHelper" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="G5f-Fk-3pJ">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>

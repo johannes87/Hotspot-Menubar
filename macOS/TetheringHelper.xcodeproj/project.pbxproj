@@ -10,12 +10,13 @@
 		8F0D5B6524D5BAC000D41F16 /* SessionTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0D5B6424D5BAC000D41F16 /* SessionTracker.swift */; };
 		8F0E960D249CFF22006A4AD2 /* PreferencesStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0E960C249CFF22006A4AD2 /* PreferencesStorage.swift */; };
 		8F0FDCB624A22A3D00B6BF60 /* Autostart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0FDCB524A22A3D00B6BF60 /* Autostart.swift */; };
+		8F19AD602688D946007718F1 /* DataUsageWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F19AD5F2688D946007718F1 /* DataUsageWindow.storyboard */; };
+		8F19AD622688E09D007718F1 /* StatusItemWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F19AD612688E09D007718F1 /* StatusItemWindowController.swift */; };
 		8F1CB93B2468564200614EA2 /* GeneralPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1CB93A2468564200614EA2 /* GeneralPreferencesViewController.swift */; };
 		8F1D5DAD245C711F001B1852 /* PairingStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1D5DAC245C711F001B1852 /* PairingStatus.swift */; };
 		8F1DD414238430ED0038AAE2 /* AndroidConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1DD413238430ED0038AAE2 /* AndroidConnector.swift */; };
 		8F1DD416238448B70038AAE2 /* SignalType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1DD415238448B70038AAE2 /* SignalType.swift */; };
 		8F1DD418238448DD0038AAE2 /* SignalQuality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1DD417238448DD0038AAE2 /* SignalQuality.swift */; };
-		8F2C617224894A6C00A0C017 /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2C617124894A6C00A0C017 /* PreferencesWindowController.swift */; };
 		8F32AECE24A40BB60071890D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F32AECD24A40BB60071890D /* AppDelegate.swift */; };
 		8F32AED524A40BB60071890D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F32AED324A40BB60071890D /* Main.storyboard */; };
 		8F32AEDB24A4119A0071890D /* TetheringHelperAutostart.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8F32AECB24A40BB60071890D /* TetheringHelperAutostart.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -51,12 +52,13 @@
 		8F0D5B6424D5BAC000D41F16 /* SessionTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTracker.swift; sourceTree = "<group>"; };
 		8F0E960C249CFF22006A4AD2 /* PreferencesStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesStorage.swift; sourceTree = "<group>"; };
 		8F0FDCB524A22A3D00B6BF60 /* Autostart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Autostart.swift; sourceTree = "<group>"; };
+		8F19AD5F2688D946007718F1 /* DataUsageWindow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DataUsageWindow.storyboard; sourceTree = "<group>"; };
+		8F19AD612688E09D007718F1 /* StatusItemWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusItemWindowController.swift; sourceTree = "<group>"; };
 		8F1CB93A2468564200614EA2 /* GeneralPreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPreferencesViewController.swift; sourceTree = "<group>"; };
 		8F1D5DAC245C711F001B1852 /* PairingStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingStatus.swift; sourceTree = "<group>"; };
 		8F1DD413238430ED0038AAE2 /* AndroidConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AndroidConnector.swift; sourceTree = "<group>"; };
 		8F1DD415238448B70038AAE2 /* SignalType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalType.swift; sourceTree = "<group>"; };
 		8F1DD417238448DD0038AAE2 /* SignalQuality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalQuality.swift; sourceTree = "<group>"; };
-		8F2C617124894A6C00A0C017 /* PreferencesWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
 		8F32AECB24A40BB60071890D /* TetheringHelperAutostart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TetheringHelperAutostart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F32AECD24A40BB60071890D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8F32AED424A40BB60071890D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				8F5D7E5C22F5CCE300FED4BE /* Assets.xcassets */,
 				8F3D29C423D4DA3700193C23 /* Main.xib */,
 				8F56898F246866F800C0090A /* PreferencesWindow.storyboard */,
+				8F19AD5F2688D946007718F1 /* DataUsageWindow.storyboard */,
 			);
 			name = "UI files";
 			sourceTree = "<group>";
@@ -112,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				8F1CB93E24685D1400614EA2 /* PreferencesWindow */,
+				8F19AD612688E09D007718F1 /* StatusItemWindowController.swift */,
 			);
 			name = windows;
 			sourceTree = "<group>";
@@ -120,7 +124,6 @@
 			isa = PBXGroup;
 			children = (
 				8F1CB93A2468564200614EA2 /* GeneralPreferencesViewController.swift */,
-				8F2C617124894A6C00A0C017 /* PreferencesWindowController.swift */,
 			);
 			name = PreferencesWindow;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 				8F5D7E5D22F5CCE300FED4BE /* Assets.xcassets in Resources */,
 				8F8195BB246B12D30066632D /* Localizable.stringsdict in Resources */,
 				8F568990246866F800C0090A /* PreferencesWindow.storyboard in Resources */,
+				8F19AD602688D946007718F1 /* DataUsageWindow.storyboard in Resources */,
 				8F3D29C523D4DA3700193C23 /* Main.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -328,10 +332,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F19AD622688E09D007718F1 /* StatusItemWindowController.swift in Sources */,
 				8F1DD416238448B70038AAE2 /* SignalType.swift in Sources */,
 				8F8B93D9251F96900062C259 /* StatusItemDelegate.swift in Sources */,
 				8F0FDCB624A22A3D00B6BF60 /* Autostart.swift in Sources */,
-				8F2C617224894A6C00A0C017 /* PreferencesWindowController.swift in Sources */,
 				8F0E960D249CFF22006A4AD2 /* PreferencesStorage.swift in Sources */,
 				8F1DD418238448DD0038AAE2 /* SignalQuality.swift in Sources */,
 				8F66AFA725DEB31C000B3842 /* PhoneSignal.swift in Sources */,

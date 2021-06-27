@@ -38,7 +38,7 @@ class StatusItemMenu: NSObject, NSMenuItemValidation, StatusItemMenuDelegate {
     private var quitMenuItem: NSMenuItem!
 
     private var preferencesWindowController: NSWindowController!
-
+    private var dataUsageWindowController: NSWindowController!
 
     override init() {
         super.init()
@@ -52,7 +52,7 @@ class StatusItemMenu: NSObject, NSMenuItemValidation, StatusItemMenuDelegate {
             title: String(
                 format: StatusItemMenu.dataStatisticsMenuItemTitle,
                 0.0),
-            action: #selector(showDataStatistics(sender:)),
+            action: #selector(showDataUsageWindow(sender:)),
             keyEquivalent: "")
         dataStatisticsMenuItem.target = self
 
@@ -88,9 +88,12 @@ class StatusItemMenu: NSObject, NSMenuItemValidation, StatusItemMenuDelegate {
         menu.insertItem(quitMenuItem, at: 5)
     }
 
-    @IBAction private func showDataStatistics(sender: Any) {
-        // TODO: implement showDataStatistics
-        print("show data statistics")
+    @IBAction private func showDataUsageWindow(sender: Any) {
+        if dataUsageWindowController == nil {
+            let storyboard = NSStoryboard(name: "DataUsageWindow", bundle: nil)
+            dataUsageWindowController = storyboard.instantiateInitialController() as? NSWindowController
+        }
+        dataUsageWindowController!.showWindow(sender)
     }
 
     @IBAction private func showPreferencesWindow(sender: Any) {
