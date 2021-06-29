@@ -9,6 +9,10 @@ import com.gmail.bittner.johannes.tetheringhelper.utils.SharedPreferencesKeys
 
 private const val TAG = "AutostartReceiver"
 
+/**
+ * AutostartReceiver's job is to react to device restarts and to start SignalSenderService
+ * if necessary
+ */
 class AutostartReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
