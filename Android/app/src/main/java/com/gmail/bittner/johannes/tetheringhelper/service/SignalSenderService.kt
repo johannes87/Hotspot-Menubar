@@ -71,8 +71,8 @@ class SignalSenderService : Service() {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        Log.d(TAG, "onStartCommand")
-        if (!isRunning) {
+        Log.d(TAG, "onStartCommand; isRunning=$isRunning")
+        if (isRunning) {
             return super.onStartCommand(intent, flags, startId)
         }
         isRunning = true
