@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- needed for getting dataNetworkType -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- needed for call to "isWifiApEnabled" -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" /> <!-- for SignalSenderService -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> <!-- for AutostartReceiver -->
 
     <application
         android:allowBackup="true"
@@ -16,6 +17,12 @@
         android:theme="@style/AppTheme">
         <service
             android:name=".service.SignalSenderService"/>
+
+        <receiver android:name=".service.AutostartReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
 
         <activity android:name=".ui.FirstTimeSetupActivity"/>
         <activity android:name=".ui.SettingsActivity"

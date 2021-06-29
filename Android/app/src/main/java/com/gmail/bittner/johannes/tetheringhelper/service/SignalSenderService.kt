@@ -62,7 +62,6 @@ class SignalSenderService : Service() {
             sharedPreferences.getString(SharedPreferencesKeys.phoneName, "")!!,
             this)
 
-
         createHotspotStateListener()
     }
 
