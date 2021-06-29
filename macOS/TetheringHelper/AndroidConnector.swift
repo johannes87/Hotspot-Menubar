@@ -11,8 +11,9 @@ import AppKit
 import os
 import Network
 
-
-class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate {
+/// AndroidConnector discovers the Android device and fetches the signal from it
+/// NSObject base class is needed for service discovery
+class AndroidConnector: NSObject {
     private(set) var tetheringInterfaceName: String?
     private(set) var pairingStatus: PairingStatus = PairingStatus.unpaired
 
@@ -23,8 +24,6 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate 
         /// `type` is the network signal type, e.g. 4G or LTE
         var type: String
     }
-
-    private static let bonjourServiceType = "_tetheringhelper._tcp."
 
     private let networkQueue = DispatchQueue(label: "network")
 
@@ -68,6 +67,8 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate 
         }
     }
 
+    /// getInterfaceName returns the network interface that is used for connecting to the Android device
+    /// The interface is needed to measure the amount of data transferred
     private func getInterfaceName(forConnection networkConnection: NWConnection) -> String {
         // localEndpoint sometimes has nil as "interface", so we use remoteEndpoint
         return networkConnection.currentPath!.remoteEndpoint!.interface!.name
@@ -120,6 +121,10 @@ class AndroidConnector: NSObject, NetServiceBrowserDelegate, NetServiceDelegate 
         Utils.waitFor(timeout: 1.0) { phoneSignal != nil }
         return phoneSignal
     }
+}
+
+extension AndroidConnector: NetServiceBrowserDelegate, NetServiceDelegate {
+    private static let bonjourServiceType = "_tetheringhelper._tcp."
 
     private func discoverPhone() {
         phoneService = nil
