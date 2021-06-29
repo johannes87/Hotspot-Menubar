@@ -150,7 +150,7 @@ class MainActivity : AppCompatActivity() {
      */
     private fun maybeStartFirstTimeSetup(): Boolean {
         val firstTimeSetupFinished = sharedPreferences.getBoolean(SharedPreferencesKeys.firstTimeSetupFinished, false)
-        if (firstTimeSetupFinished && Permissions.arePermissionsGranted(this)) {
+        if (firstTimeSetupFinished && Permissions.allPermissionsGranted(this)) {
             return false
         }
 

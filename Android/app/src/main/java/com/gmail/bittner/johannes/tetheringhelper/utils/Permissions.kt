@@ -9,7 +9,7 @@ class Permissions {
     companion object {
         val requiredRuntimePermissions = arrayOf(Manifest.permission.READ_PHONE_STATE)
 
-        fun arePermissionsGranted(context: Context): Boolean {
+        fun allPermissionsGranted(context: Context): Boolean {
             return requiredRuntimePermissions.all { permission ->
                 val permissionCheckResult = ContextCompat.checkSelfPermission(context, permission)
                 permissionCheckResult == PackageManager.PERMISSION_GRANTED
