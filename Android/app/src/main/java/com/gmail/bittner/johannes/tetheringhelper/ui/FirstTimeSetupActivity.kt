@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.preference.PreferenceManager
 import com.gmail.bittner.johannes.tetheringhelper.R
-import com.gmail.bittner.johannes.tetheringhelper.SharedPreferencesKeys
+import com.gmail.bittner.johannes.tetheringhelper.utils.SharedPreferencesKeys
 import com.gmail.bittner.johannes.tetheringhelper.databinding.ActivityFirstTimeSetupBinding
 import com.gmail.bittner.johannes.tetheringhelper.utils.Permissions
 

@@ -6,7 +6,7 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
 import com.gmail.bittner.johannes.tetheringhelper.R
-import com.gmail.bittner.johannes.tetheringhelper.SharedPreferencesKeys
+import com.gmail.bittner.johannes.tetheringhelper.utils.SharedPreferencesKeys
 import com.gmail.bittner.johannes.tetheringhelper.service.RunConditionMonitor
 
 class SettingsActivity : AppCompatActivity() {

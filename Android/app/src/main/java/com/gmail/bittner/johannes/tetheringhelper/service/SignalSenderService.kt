@@ -9,7 +9,7 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.preference.PreferenceManager
 import com.gmail.bittner.johannes.tetheringhelper.R
-import com.gmail.bittner.johannes.tetheringhelper.SharedPreferencesKeys
+import com.gmail.bittner.johannes.tetheringhelper.utils.SharedPreferencesKeys
 import com.gmail.bittner.johannes.tetheringhelper.ui.MainActivity
 
 private const val TAG = "SignalSenderService"

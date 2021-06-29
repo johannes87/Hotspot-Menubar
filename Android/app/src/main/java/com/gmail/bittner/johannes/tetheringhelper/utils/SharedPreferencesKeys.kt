@@ -1,4 +1,4 @@
-package com.gmail.bittner.johannes.tetheringhelper
+package com.gmail.bittner.johannes.tetheringhelper.utils
 
 class SharedPreferencesKeys {
     companion object Keys {

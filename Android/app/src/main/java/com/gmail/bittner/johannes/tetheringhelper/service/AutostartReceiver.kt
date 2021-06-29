@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import androidx.preference.PreferenceManager
-import com.gmail.bittner.johannes.tetheringhelper.SharedPreferencesKeys
+import com.gmail.bittner.johannes.tetheringhelper.utils.SharedPreferencesKeys
 
 private const val TAG = "AutostartReceiver"
 

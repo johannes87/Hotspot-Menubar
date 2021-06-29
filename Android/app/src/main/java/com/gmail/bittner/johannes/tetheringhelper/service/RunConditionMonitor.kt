@@ -8,7 +8,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.preference.PreferenceManager
-import com.gmail.bittner.johannes.tetheringhelper.SharedPreferencesKeys
+import com.gmail.bittner.johannes.tetheringhelper.utils.SharedPreferencesKeys
 
 private const val TAG = "RunConditionMonitor"
 
