@@ -12,6 +12,7 @@ import os
 import Network
 
 /// AndroidConnector discovers the Android device and fetches the signal from it
+///
 /// NSObject base class is needed for service discovery
 class AndroidConnector: NSObject {
     private(set) var tetheringInterfaceName: String?
@@ -68,6 +69,7 @@ class AndroidConnector: NSObject {
     }
 
     /// getInterfaceName returns the network interface that is used for connecting to the Android device
+    ///
     /// The interface is needed to measure the amount of data transferred
     private func getInterfaceName(forConnection networkConnection: NWConnection) -> String {
         // localEndpoint sometimes has nil as "interface", so we use remoteEndpoint
