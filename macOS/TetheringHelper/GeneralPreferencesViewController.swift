@@ -34,6 +34,8 @@ class GeneralPreferencesViewController: NSViewController {
     }
 
     private func updateRefreshStatusLabel(sliderValue: Int) {
+        // TODO: make it like Activity Monitor: Very often / Often / Normal
+        // name it "Status update frequency"
         refreshStatusLabel.stringValue = String(
             format: NSLocalizedString("PreferencesRefreshStatusLabel",
                 comment: "The label for the refresh status slider in the preferences pane"),
