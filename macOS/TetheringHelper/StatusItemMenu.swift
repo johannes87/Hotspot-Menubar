@@ -31,7 +31,7 @@ class StatusItemMenu: NSObject, NSMenuItemValidation, StatusItemMenuDelegate {
     // `menu` is non-private because it needs to be accessed from StatusItem.swift
     var menu: NSMenu!
 
-    private var dataStatisticsMenuItem: NSMenuItem!
+    private var dataUsageMenuItem: NSMenuItem!
     private var pairMenuItem: NSMenuItem!
     private var preferencesMenuItem: NSMenuItem!
     private var aboutMenuItem: NSMenuItem!
@@ -48,13 +48,13 @@ class StatusItemMenu: NSObject, NSMenuItemValidation, StatusItemMenuDelegate {
     private func createMenu() {
         menu = NSMenu(title: "")
 
-        dataStatisticsMenuItem = NSMenuItem(
+        dataUsageMenuItem = NSMenuItem(
             title: String(
                 format: StatusItemMenu.dataStatisticsMenuItemTitle,
                 0.0),
             action: #selector(showDataUsageWindow(sender:)),
             keyEquivalent: "")
-        dataStatisticsMenuItem.target = self
+        dataUsageMenuItem.target = self
 
         // pairMenuItem is for information only, so it's disabled (action=nil and no target)
         pairMenuItem = NSMenuItem(
@@ -80,7 +80,7 @@ class StatusItemMenu: NSObject, NSMenuItemValidation, StatusItemMenuDelegate {
             keyEquivalent: "q")
         quitMenuItem.target = self
 
-        menu.insertItem(dataStatisticsMenuItem, at: 0)
+        menu.insertItem(dataUsageMenuItem, at: 0)
         menu.insertItem(pairMenuItem, at: 1)
         menu.insertItem(NSMenuItem.separator(), at: 2)
         menu.insertItem(preferencesMenuItem, at: 3)
@@ -120,16 +120,14 @@ class StatusItemMenu: NSObject, NSMenuItemValidation, StatusItemMenuDelegate {
 
     // MARK: StatusItemMenuDelegate
     func sessionBytesTransferredUpdated(bytesTransferred: UInt64) {
-        // TODO: see TODO in pairingStatusUpdated
         DispatchQueue.main.async {
             let megabytesTransferred = Double(bytesTransferred) / 1024 / 1024
-            self.dataStatisticsMenuItem.title = String(format: StatusItemMenu.dataStatisticsMenuItemTitle, megabytesTransferred)
+            self.dataUsageMenuItem.title = String(format: StatusItemMenu.dataStatisticsMenuItemTitle, megabytesTransferred)
         }
     }
 
     func pairingStatusUpdated(pairingStatus: PairingStatus) {
         // UI needs to be updated in main loop
-        // TODO: it also works without, why?! :/
         DispatchQueue.main.async {
             if let phoneName = pairingStatus.phoneName {
                 self.pairMenuItem.title = String(format: StatusItemMenu.pairMenuItemPairedTitle, phoneName)
