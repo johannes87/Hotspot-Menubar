@@ -15,6 +15,8 @@ enum GetBytesTransferredError: Error {
     case noDataFound
 }
 
+/// SessionTracker's responsibility is to determine when a tethering session with a phone starts and ends, determine the amount
+/// of data transferred in a session, and persistently store that information via SessionStorage
 class SessionTracker {
     private(set) var bytesTransferred: UInt64 = 0
 
@@ -22,18 +24,8 @@ class SessionTracker {
     private var lastIfaddrsBytesTransferred: (inputBytes: UInt32, outputBytes: UInt32) = (0, 0)
     private var statusItemMenuDelegate: StatusItemMenuDelegate
 
-    // TODO: use this, and remove DataStorage.swift
-    private lazy var persistentContainer: NSPersistentContainer = {
-        // TODO: rename DataModel to something specific, e.g. SessionStorage.xcdatamodeld
-        let container = NSPersistentContainer(name: "DataModel")
-        container.loadPersistentStores { description, error in
-            if let error = error {
-                fatalError("Unable to load persistent stores: \(error)")
-            }
-        }
-        return container
-    }()
-
+    private let sessionStorage = SessionStorage()
+    private var currentTetheringSession: TetheringSession? = nil
 
     init(statusItemMenuDelegate: StatusItemMenuDelegate) {
         self.statusItemMenuDelegate = statusItemMenuDelegate
@@ -42,7 +34,7 @@ class SessionTracker {
     func trackSession(pairingStatus: PairingStatus, localInterfaceName: String?) {
         if pairingStatus.isPaired {
             if localInterfaceName == nil {
-                // We can't track the session if there's no interface
+                // tetheringInterfaceName in AndroidConnector might not be set. We need it to track the session.
                 return
             }
 
@@ -51,7 +43,11 @@ class SessionTracker {
             if !sessionActive {
                 os_log(.debug, "Starting session to %@", String(describing: pairingStatus.phoneName))
                 sessionActive = true
+
                 lastIfaddrsBytesTransferred = ifaddrsBytesTransferred
+
+                currentTetheringSession = sessionStorage.createNewTetheringSession(withPhoneName: pairingStatus.phoneName!)
+                sessionStorage.save()
             } else {
                 let inputBytesDifference = getBytesTransferredDifference(
                     bytesPast: lastIfaddrsBytesTransferred.inputBytes,
@@ -63,6 +59,9 @@ class SessionTracker {
 
                 statusItemMenuDelegate.sessionBytesTransferredUpdated(bytesTransferred: bytesTransferred)
 
+                currentTetheringSession?.bytesTransferred = Int64(bytesTransferred)
+                sessionStorage.save()
+
                 os_log(.debug, "Transferred %f MB this session", Double(bytesTransferred) / 1024 / 1024)
                 lastIfaddrsBytesTransferred = ifaddrsBytesTransferred
             }
@@ -72,6 +71,7 @@ class SessionTracker {
             lastIfaddrsBytesTransferred = (0, 0)
             bytesTransferred = 0
             statusItemMenuDelegate.sessionBytesTransferredUpdated(bytesTransferred: 0)
+            currentTetheringSession = nil
         }
     }
 
