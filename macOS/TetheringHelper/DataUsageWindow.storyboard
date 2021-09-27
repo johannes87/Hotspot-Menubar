@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="7xb-sn-KMt">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="7xb-sn-KMt">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19162"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -11,10 +11,10 @@
             <objects>
                 <windowController id="7xb-sn-KMt" customClass="StatusItemWindowController" customModule="TetheringHelper" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Data usage" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="DTf-WQ-qCY">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="2105" y="158" width="480" height="270"/>
-                        <rect key="screenRect" x="1680" y="-304" width="2560" height="1415"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1175"/>
                         <view key="contentView" id="TRB-Hg-VOw">
                             <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                             <autoresizingMask key="autoresizingMask"/>
@@ -31,18 +31,100 @@
             </objects>
             <point key="canvasLocation" x="-13" y="45"/>
         </scene>
-        <!--View Controller-->
+        <!--Data Usage View Controller-->
         <scene sceneID="v71-ph-GM0">
             <objects>
-                <viewController id="j7e-sW-Ewm" sceneMemberID="viewController">
-                    <view key="view" id="DX1-Yo-aRa">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </view>
-                </viewController>
                 <customObject id="1ie-EV-MYo" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <viewController id="j7e-sW-Ewm" customClass="DataUsageViewController" customModule="TetheringHelper" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="DX1-Yo-aRa">
+                        <rect key="frame" x="0.0" y="0.0" width="715" height="304"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sYK-Ef-aiC" customClass="DataUsageVisualization" customModule="TetheringHelper" customModuleProvider="target">
+                                <rect key="frame" x="44" y="46" width="627" height="238"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </customView>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bpE-ut-e0W">
+                                <rect key="frame" x="679" y="157" width="16" height="15"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSGoForwardTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" refusesFirstResponder="YES" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Epr-oI-b5Z">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="nextMonthButtonClicked:" target="j7e-sW-Ewm" id="yk4-bE-1Zt"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uos-be-ate">
+                                <rect key="frame" x="20" y="157" width="16" height="15"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSGoLeftTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" refusesFirstResponder="YES" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1gU-VD-MS3">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="prevMonthButtonClicked:" target="j7e-sW-Ewm" id="2WH-5O-fAE"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Wn-3k-8Di">
+                                <rect key="frame" x="196" y="20" width="130" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="1312.42 MB used in" id="a3n-wb-f5Y">
+                                    <font key="font" metaFont="systemBold"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BwN-0u-CiV">
+                                <rect key="frame" x="325" y="11" width="120" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" refusesFirstResponder="YES" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" arrowPosition="noArrow" selectedItem="thO-GA-MVh" id="cMe-SV-ymb">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="C1U-Bj-w5f">
+                                        <items>
+                                            <menuItem title="Item 1" state="on" id="thO-GA-MVh"/>
+                                            <menuItem title="Item 2" id="nL0-S0-Cor"/>
+                                            <menuItem title="Item 3" id="UEM-id-dVp"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                                <connections>
+                                    <action selector="monthPopUpButtonChanged:" target="j7e-sW-Ewm" id="bCX-4z-kKf"/>
+                                </connections>
+                            </popUpButton>
+                            <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8d4-WQ-Arx">
+                                <rect key="frame" x="439" y="11" width="85" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" refusesFirstResponder="YES" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" arrowPosition="noArrow" selectedItem="Er2-H8-hYD" id="we5-1Q-MDu">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="BxN-bN-Nsu">
+                                        <items>
+                                            <menuItem title="Item 1" state="on" id="Er2-H8-hYD"/>
+                                            <menuItem title="Item 2" id="yxd-0x-e1A"/>
+                                            <menuItem title="Item 3" id="kok-Wt-34D"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                                <connections>
+                                    <action selector="yearPopUpButtonChanged:" target="j7e-sW-Ewm" id="HRx-cf-s1f"/>
+                                </connections>
+                            </popUpButton>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="dataUsageVisualization" destination="sYK-Ef-aiC" id="vml-Ml-afS"/>
+                        <outlet property="monthPopUpButton" destination="BwN-0u-CiV" id="pQj-oi-e0a"/>
+                        <outlet property="yearPopUpButton" destination="8d4-WQ-Arx" id="eGT-fn-geK"/>
+                    </connections>
+                </viewController>
             </objects>
-            <point key="canvasLocation" x="-13" y="392"/>
+            <point key="canvasLocation" x="90.5" y="409"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="NSGoForwardTemplate" width="10" height="14"/>
+        <image name="NSGoLeftTemplate" width="10" height="14"/>
+    </resources>
 </document>
