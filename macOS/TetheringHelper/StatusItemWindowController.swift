@@ -8,13 +8,15 @@
 
 import Cocoa
 
-/// StatusItemWindowController is used for windows started from the status item
+/// StatusItemWindowController is used for windows created by StatusItem.swift
 class StatusItemWindowController: NSWindowController {
     override func showWindow(_ sender: Any?) {
         super.showWindow(sender)
         bringToFront()
         window?.center()
     }
+
+    // TODO: make window close with cmd+w
 
     /// bringToFront is needed so that the created window isn't obscured by other windows
     private func bringToFront() {
