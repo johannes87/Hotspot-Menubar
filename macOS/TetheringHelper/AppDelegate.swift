@@ -9,8 +9,6 @@
 import Cocoa
 import os
 
-// TODO: check metered connection support => https://apple.stackexchange.com/questions/215454/managing-metered-connections-on-osx
-
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     private let statusItem = StatusItem()
