@@ -3,104 +3,104 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8F0D5B6524D5BAC000D41F16 /* SessionTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0D5B6424D5BAC000D41F16 /* SessionTracker.swift */; };
-		8F0E960D249CFF22006A4AD2 /* PreferencesStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0E960C249CFF22006A4AD2 /* PreferencesStorage.swift */; };
-		8F0FDCB624A22A3D00B6BF60 /* Autostart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0FDCB524A22A3D00B6BF60 /* Autostart.swift */; };
-		8F19AD602688D946007718F1 /* DataUsageWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F19AD5F2688D946007718F1 /* DataUsageWindow.storyboard */; };
-		8F19AD622688E09D007718F1 /* StatusItemWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F19AD612688E09D007718F1 /* StatusItemWindowController.swift */; };
-		8F19AD67268B4CE0007718F1 /* DataUsageVisualization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F19AD66268B4CE0007718F1 /* DataUsageVisualization.swift */; };
-		8F19AD69268B59D0007718F1 /* DataUsageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F19AD68268B59D0007718F1 /* DataUsageViewController.swift */; };
-		8F1CB93B2468564200614EA2 /* GeneralPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1CB93A2468564200614EA2 /* GeneralPreferencesViewController.swift */; };
-		8F1D5DAD245C711F001B1852 /* PairingStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1D5DAC245C711F001B1852 /* PairingStatus.swift */; };
-		8F1DD414238430ED0038AAE2 /* AndroidConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1DD413238430ED0038AAE2 /* AndroidConnector.swift */; };
-		8F1DD416238448B70038AAE2 /* SignalType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1DD415238448B70038AAE2 /* SignalType.swift */; };
-		8F1DD418238448DD0038AAE2 /* SignalQuality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1DD417238448DD0038AAE2 /* SignalQuality.swift */; };
-		8F32AECE24A40BB60071890D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F32AECD24A40BB60071890D /* AppDelegate.swift */; };
-		8F32AED524A40BB60071890D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F32AED324A40BB60071890D /* Main.storyboard */; };
-		8F32AEDB24A4119A0071890D /* TetheringHelperAutostart.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8F32AECB24A40BB60071890D /* TetheringHelperAutostart.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		8F3D29C523D4DA3700193C23 /* Main.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F3D29C423D4DA3700193C23 /* Main.xib */; };
-		8F4F3A3F26B1B6DA002E7CCE /* Date+Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4F3A3E26B1B6DA002E7CCE /* Date+Components.swift */; };
-		8F4F3A4126B9C82D002E7CCE /* Date+clamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4F3A4026B9C82D002E7CCE /* Date+clamp.swift */; };
-		8F568990246866F800C0090A /* PreferencesWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F56898F246866F800C0090A /* PreferencesWindow.storyboard */; };
-		8F59F89A2694646F00CFE9D6 /* TestSessionStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F59F8992694646F00CFE9D6 /* TestSessionStorage.swift */; };
-		8F5D7E5922F5CCE200FED4BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D7E5822F5CCE200FED4BE /* AppDelegate.swift */; };
-		8F5D7E5D22F5CCE300FED4BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F5D7E5C22F5CCE300FED4BE /* Assets.xcassets */; };
-		8F66AFA725DEB31C000B3842 /* PhoneSignal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F66AFA625DEB31C000B3842 /* PhoneSignal.swift */; };
-		8F66AFAF25DEBD96000B3842 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F66AFAE25DEBD96000B3842 /* Utils.swift */; };
-		8F6C36F123995B84009C7865 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8F6C36EF23995B84009C7865 /* DataModel.xcdatamodeld */; };
-		8F71806B23915B230001B80F /* SessionStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F71806A23915B230001B80F /* SessionStorage.swift */; };
-		8F8195BB246B12D30066632D /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 8F8195BA246B12D30066632D /* Localizable.stringsdict */; };
-		8F8B93D7251F95250062C259 /* StatusItemMenuDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8B93D6251F95250062C259 /* StatusItemMenuDelegate.swift */; };
-		8F8B93D9251F96900062C259 /* StatusItemDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8B93D8251F96900062C259 /* StatusItemDelegate.swift */; };
-		8FAD0BB2239093C700DDB470 /* StatusItemMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAD0BB1239093C700DDB470 /* StatusItemMenu.swift */; };
-		8FCEF61C23018DA600CB726E /* StatusItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCEF61B23018DA600CB726E /* StatusItem.swift */; };
+		8F1F5C08270207E800FD1B4F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F1F5C07270207E800FD1B4F /* Assets.xcassets */; };
+		8F1F5C0B270207E800FD1B4F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F1F5C09270207E800FD1B4F /* MainMenu.xib */; };
+		8F1F5C1B2702083700FD1B4F /* StatusItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1F5C192702083700FD1B4F /* StatusItem.swift */; };
+		8F1F5C1C2702083700FD1B4F /* StatusItemMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1F5C1A2702083700FD1B4F /* StatusItemMenu.swift */; };
+		8F1F5C1F2702085500FD1B4F /* StatusItemMenuDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1F5C1D2702085500FD1B4F /* StatusItemMenuDelegate.swift */; };
+		8F1F5C202702085500FD1B4F /* StatusItemDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1F5C1E2702085500FD1B4F /* StatusItemDelegate.swift */; };
+		8F1F5C252702085D00FD1B4F /* PairingStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1F5C212702085C00FD1B4F /* PairingStatus.swift */; };
+		8F1F5C262702085D00FD1B4F /* SignalType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1F5C222702085C00FD1B4F /* SignalType.swift */; };
+		8F1F5C272702085D00FD1B4F /* SignalQuality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1F5C232702085C00FD1B4F /* SignalQuality.swift */; };
+		8F1F5C282702085D00FD1B4F /* PhoneSignal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1F5C242702085C00FD1B4F /* PhoneSignal.swift */; };
+		8F1F5C2C2702087E00FD1B4F /* GeneralPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1F5C2B2702087E00FD1B4F /* GeneralPreferencesViewController.swift */; };
+		8F1F5C2F2702088500FD1B4F /* DataUsageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1F5C2D2702088400FD1B4F /* DataUsageViewController.swift */; };
+		8F1F5C302702088500FD1B4F /* DataUsageVisualization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1F5C2E2702088500FD1B4F /* DataUsageVisualization.swift */; };
+		8F1F5C332702088F00FD1B4F /* Date+clamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1F5C312702088F00FD1B4F /* Date+clamp.swift */; };
+		8F1F5C342702088F00FD1B4F /* Date+Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1F5C322702088F00FD1B4F /* Date+Components.swift */; };
+		8F1F5C3E2702089A00FD1B4F /* Autostart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1F5C352702089A00FD1B4F /* Autostart.swift */; };
+		8F1F5C3F2702089A00FD1B4F /* PreferencesStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1F5C362702089A00FD1B4F /* PreferencesStorage.swift */; };
+		8F1F5C402702089A00FD1B4F /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1F5C372702089A00FD1B4F /* Utils.swift */; };
+		8F1F5C412702089A00FD1B4F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1F5C382702089A00FD1B4F /* AppDelegate.swift */; };
+		8F1F5C422702089A00FD1B4F /* SessionStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1F5C392702089A00FD1B4F /* SessionStorage.swift */; };
+		8F1F5C432702089A00FD1B4F /* SessionTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1F5C3A2702089A00FD1B4F /* SessionTracker.swift */; };
+		8F1F5C442702089A00FD1B4F /* AndroidConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1F5C3B2702089A00FD1B4F /* AndroidConnector.swift */; };
+		8F1F5C49270208E100FD1B4F /* DataUsageWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F1F5C47270208E100FD1B4F /* DataUsageWindow.storyboard */; };
+		8F1F5C4A270208E100FD1B4F /* PreferencesWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F1F5C48270208E100FD1B4F /* PreferencesWindow.storyboard */; };
+		8F1F5C4C2702091200FD1B4F /* StatusItemWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1F5C4B2702091200FD1B4F /* StatusItemWindowController.swift */; };
+		8F1F5C4F270209A300FD1B4F /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8F1F5C4D270209A300FD1B4F /* DataModel.xcdatamodeld */; };
+		8F1F5C51270209AE00FD1B4F /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 8F1F5C50270209AE00FD1B4F /* Localizable.stringsdict */; };
+		8F1F5C5727020AFE00FD1B4F /* TestSessionStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1F5C5627020AFE00FD1B4F /* TestSessionStorage.swift */; };
+		8F1F5C5F27020D1E00FD1B4F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1F5C5E27020D1E00FD1B4F /* AppDelegate.swift */; };
+		8F1F5C6127020D2000FD1B4F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F1F5C6027020D2000FD1B4F /* Assets.xcassets */; };
+		8F1F5C6427020D2000FD1B4F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F1F5C6227020D2000FD1B4F /* MainMenu.xib */; };
+		8FA5CF142703286C00E40092 /* TetheringHelperAutostart.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8F1F5C5C27020D1E00FD1B4F /* TetheringHelperAutostart.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		8FDD112E24A2325B008D4CA9 /* CopyFiles */ = {
+		8FA5CF13270327C400E40092 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = Contents/Library/LoginItems;
 			dstSubfolderSpec = 1;
 			files = (
-				8F32AEDB24A4119A0071890D /* TetheringHelperAutostart.app in CopyFiles */,
+				8FA5CF142703286C00E40092 /* TetheringHelperAutostart.app in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		8F0D5B6424D5BAC000D41F16 /* SessionTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTracker.swift; sourceTree = "<group>"; };
-		8F0E960C249CFF22006A4AD2 /* PreferencesStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesStorage.swift; sourceTree = "<group>"; };
-		8F0FDCB524A22A3D00B6BF60 /* Autostart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Autostart.swift; sourceTree = "<group>"; };
-		8F19AD5F2688D946007718F1 /* DataUsageWindow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DataUsageWindow.storyboard; sourceTree = "<group>"; };
-		8F19AD612688E09D007718F1 /* StatusItemWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusItemWindowController.swift; sourceTree = "<group>"; };
-		8F19AD66268B4CE0007718F1 /* DataUsageVisualization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataUsageVisualization.swift; sourceTree = "<group>"; };
-		8F19AD68268B59D0007718F1 /* DataUsageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataUsageViewController.swift; sourceTree = "<group>"; };
-		8F1CB93A2468564200614EA2 /* GeneralPreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPreferencesViewController.swift; sourceTree = "<group>"; };
-		8F1D5DAC245C711F001B1852 /* PairingStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingStatus.swift; sourceTree = "<group>"; };
-		8F1DD413238430ED0038AAE2 /* AndroidConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AndroidConnector.swift; sourceTree = "<group>"; };
-		8F1DD415238448B70038AAE2 /* SignalType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalType.swift; sourceTree = "<group>"; };
-		8F1DD417238448DD0038AAE2 /* SignalQuality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalQuality.swift; sourceTree = "<group>"; };
-		8F32AECB24A40BB60071890D /* TetheringHelperAutostart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TetheringHelperAutostart.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		8F32AECD24A40BB60071890D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8F32AED424A40BB60071890D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		8F32AED624A40BB60071890D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8F32AED724A40BB60071890D /* TetheringHelperAutostart.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TetheringHelperAutostart.entitlements; sourceTree = "<group>"; };
-		8F3D29C423D4DA3700193C23 /* Main.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Main.xib; sourceTree = "<group>"; };
-		8F4F3A3E26B1B6DA002E7CCE /* Date+Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Components.swift"; sourceTree = "<group>"; };
-		8F4F3A4026B9C82D002E7CCE /* Date+clamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+clamp.swift"; sourceTree = "<group>"; };
-		8F56898F246866F800C0090A /* PreferencesWindow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PreferencesWindow.storyboard; sourceTree = "<group>"; };
-		8F59F8992694646F00CFE9D6 /* TestSessionStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSessionStorage.swift; sourceTree = "<group>"; };
-		8F5D7E5522F5CCE200FED4BE /* TetheringHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TetheringHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		8F5D7E5822F5CCE200FED4BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8F5D7E5C22F5CCE300FED4BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		8F5D7E6122F5CCE300FED4BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8F5D7E6222F5CCE300FED4BE /* TetheringHelper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TetheringHelper.entitlements; sourceTree = "<group>"; };
-		8F66AFA625DEB31C000B3842 /* PhoneSignal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneSignal.swift; sourceTree = "<group>"; };
-		8F66AFAE25DEBD96000B3842 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		8F6C36F023995B84009C7865 /* TetheringHelper.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TetheringHelper.xcdatamodel; sourceTree = "<group>"; };
-		8F71806A23915B230001B80F /* SessionStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStorage.swift; sourceTree = "<group>"; };
-		8F8195BA246B12D30066632D /* Localizable.stringsdict */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; path = Localizable.stringsdict; sourceTree = "<group>"; };
-		8F8B93D6251F95250062C259 /* StatusItemMenuDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusItemMenuDelegate.swift; sourceTree = "<group>"; };
-		8F8B93D8251F96900062C259 /* StatusItemDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusItemDelegate.swift; sourceTree = "<group>"; };
-		8FAD0BB1239093C700DDB470 /* StatusItemMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusItemMenu.swift; sourceTree = "<group>"; };
-		8FCEF61B23018DA600CB726E /* StatusItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusItem.swift; sourceTree = "<group>"; };
+		8F1F5C02270207E600FD1B4F /* TetheringHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TetheringHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F1F5C07270207E800FD1B4F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8F1F5C0A270207E800FD1B4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		8F1F5C0C270207E800FD1B4F /* TetheringHelper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TetheringHelper.entitlements; sourceTree = "<group>"; };
+		8F1F5C192702083700FD1B4F /* StatusItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusItem.swift; sourceTree = "<group>"; };
+		8F1F5C1A2702083700FD1B4F /* StatusItemMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusItemMenu.swift; sourceTree = "<group>"; };
+		8F1F5C1D2702085500FD1B4F /* StatusItemMenuDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusItemMenuDelegate.swift; sourceTree = "<group>"; };
+		8F1F5C1E2702085500FD1B4F /* StatusItemDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusItemDelegate.swift; sourceTree = "<group>"; };
+		8F1F5C212702085C00FD1B4F /* PairingStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PairingStatus.swift; sourceTree = "<group>"; };
+		8F1F5C222702085C00FD1B4F /* SignalType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignalType.swift; sourceTree = "<group>"; };
+		8F1F5C232702085C00FD1B4F /* SignalQuality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignalQuality.swift; sourceTree = "<group>"; };
+		8F1F5C242702085C00FD1B4F /* PhoneSignal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneSignal.swift; sourceTree = "<group>"; };
+		8F1F5C2B2702087E00FD1B4F /* GeneralPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralPreferencesViewController.swift; sourceTree = "<group>"; };
+		8F1F5C2D2702088400FD1B4F /* DataUsageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataUsageViewController.swift; sourceTree = "<group>"; };
+		8F1F5C2E2702088500FD1B4F /* DataUsageVisualization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataUsageVisualization.swift; sourceTree = "<group>"; };
+		8F1F5C312702088F00FD1B4F /* Date+clamp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+clamp.swift"; sourceTree = "<group>"; };
+		8F1F5C322702088F00FD1B4F /* Date+Components.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Components.swift"; sourceTree = "<group>"; };
+		8F1F5C352702089A00FD1B4F /* Autostart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Autostart.swift; sourceTree = "<group>"; };
+		8F1F5C362702089A00FD1B4F /* PreferencesStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesStorage.swift; sourceTree = "<group>"; };
+		8F1F5C372702089A00FD1B4F /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		8F1F5C382702089A00FD1B4F /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8F1F5C392702089A00FD1B4F /* SessionStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionStorage.swift; sourceTree = "<group>"; };
+		8F1F5C3A2702089A00FD1B4F /* SessionTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionTracker.swift; sourceTree = "<group>"; };
+		8F1F5C3B2702089A00FD1B4F /* AndroidConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AndroidConnector.swift; sourceTree = "<group>"; };
+		8F1F5C47270208E100FD1B4F /* DataUsageWindow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DataUsageWindow.storyboard; sourceTree = "<group>"; };
+		8F1F5C48270208E100FD1B4F /* PreferencesWindow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PreferencesWindow.storyboard; sourceTree = "<group>"; };
+		8F1F5C4B2702091200FD1B4F /* StatusItemWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusItemWindowController.swift; sourceTree = "<group>"; };
+		8F1F5C4E270209A300FD1B4F /* TetheringHelper.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TetheringHelper.xcdatamodel; sourceTree = "<group>"; };
+		8F1F5C50270209AE00FD1B4F /* Localizable.stringsdict */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.stringsdict; path = Localizable.stringsdict; sourceTree = "<group>"; };
+		8F1F5C5627020AFE00FD1B4F /* TestSessionStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestSessionStorage.swift; sourceTree = "<group>"; };
+		8F1F5C5C27020D1E00FD1B4F /* TetheringHelperAutostart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TetheringHelperAutostart.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F1F5C5E27020D1E00FD1B4F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8F1F5C6027020D2000FD1B4F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8F1F5C6327020D2000FD1B4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		8F1F5C6527020D2000FD1B4F /* TetheringHelperAutostart.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TetheringHelperAutostart.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		8F32AEC824A40BB60071890D /* Frameworks */ = {
+		8F1F5BFF270207E600FD1B4F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8F5D7E5222F5CCE200FED4BE /* Frameworks */ = {
+		8F1F5C5927020D1E00FD1B4F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -110,162 +110,179 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8F090A112463029400308F22 /* UI files */ = {
+		8F1F5BF9270207E600FD1B4F = {
 			isa = PBXGroup;
 			children = (
-				8F5D7E5C22F5CCE300FED4BE /* Assets.xcassets */,
-				8F3D29C423D4DA3700193C23 /* Main.xib */,
-				8F56898F246866F800C0090A /* PreferencesWindow.storyboard */,
-				8F19AD5F2688D946007718F1 /* DataUsageWindow.storyboard */,
-			);
-			name = "UI files";
-			sourceTree = "<group>";
-		};
-		8F19AD592688D4CE007718F1 /* windows */ = {
-			isa = PBXGroup;
-			children = (
-				8F19AD65268B4B21007718F1 /* DataUsageWindow */,
-				8F1CB93E24685D1400614EA2 /* PreferencesWindow */,
-				8F19AD612688E09D007718F1 /* StatusItemWindowController.swift */,
-			);
-			name = windows;
-			sourceTree = "<group>";
-		};
-		8F19AD65268B4B21007718F1 /* DataUsageWindow */ = {
-			isa = PBXGroup;
-			children = (
-				8F19AD66268B4CE0007718F1 /* DataUsageVisualization.swift */,
-				8F19AD68268B59D0007718F1 /* DataUsageViewController.swift */,
-			);
-			name = DataUsageWindow;
-			sourceTree = "<group>";
-		};
-		8F1CB93E24685D1400614EA2 /* PreferencesWindow */ = {
-			isa = PBXGroup;
-			children = (
-				8F1CB93A2468564200614EA2 /* GeneralPreferencesViewController.swift */,
-			);
-			name = PreferencesWindow;
-			sourceTree = "<group>";
-		};
-		8F32AECC24A40BB60071890D /* TetheringHelperAutostart */ = {
-			isa = PBXGroup;
-			children = (
-				8F32AECD24A40BB60071890D /* AppDelegate.swift */,
-				8F32AED324A40BB60071890D /* Main.storyboard */,
-				8F32AED624A40BB60071890D /* Info.plist */,
-				8F32AED724A40BB60071890D /* TetheringHelperAutostart.entitlements */,
-			);
-			path = TetheringHelperAutostart;
-			sourceTree = "<group>";
-		};
-		8F3FE78523E89818003CFB6D /* Swift files */ = {
-			isa = PBXGroup;
-			children = (
-				8F4F3A3D26B1B694002E7CCE /* extensions */,
-				8F19AD592688D4CE007718F1 /* windows */,
-				8F3FE78623E898B8003CFB6D /* data structures */,
-				8F5D7E5822F5CCE200FED4BE /* AppDelegate.swift */,
-				8F0FDCB524A22A3D00B6BF60 /* Autostart.swift */,
-				8F0E960C249CFF22006A4AD2 /* PreferencesStorage.swift */,
-				8FCEF61B23018DA600CB726E /* StatusItem.swift */,
-				8FAD0BB1239093C700DDB470 /* StatusItemMenu.swift */,
-				8F1DD413238430ED0038AAE2 /* AndroidConnector.swift */,
-				8F0D5B6424D5BAC000D41F16 /* SessionTracker.swift */,
-				8F71806A23915B230001B80F /* SessionStorage.swift */,
-				8F66AFAE25DEBD96000B3842 /* Utils.swift */,
-			);
-			name = "Swift files";
-			sourceTree = "<group>";
-		};
-		8F3FE78623E898B8003CFB6D /* data structures */ = {
-			isa = PBXGroup;
-			children = (
-				8F8B93D5251F95120062C259 /* delegates */,
-				8F1DD417238448DD0038AAE2 /* SignalQuality.swift */,
-				8F1DD415238448B70038AAE2 /* SignalType.swift */,
-				8F1D5DAC245C711F001B1852 /* PairingStatus.swift */,
-				8F66AFA625DEB31C000B3842 /* PhoneSignal.swift */,
-			);
-			name = "data structures";
-			sourceTree = "<group>";
-		};
-		8F4F3A3D26B1B694002E7CCE /* extensions */ = {
-			isa = PBXGroup;
-			children = (
-				8F4F3A3E26B1B6DA002E7CCE /* Date+Components.swift */,
-				8F4F3A4026B9C82D002E7CCE /* Date+clamp.swift */,
-			);
-			name = extensions;
-			sourceTree = "<group>";
-		};
-		8F59F8982694641B00CFE9D6 /* TetheringHelperTests */ = {
-			isa = PBXGroup;
-			children = (
-				8F59F8992694646F00CFE9D6 /* TestSessionStorage.swift */,
-			);
-			path = TetheringHelperTests;
-			sourceTree = "<group>";
-		};
-		8F5D7E4C22F5CCE100FED4BE = {
-			isa = PBXGroup;
-			children = (
-				8F59F8982694641B00CFE9D6 /* TetheringHelperTests */,
-				8F5D7E5722F5CCE200FED4BE /* TetheringHelper */,
-				8F32AECC24A40BB60071890D /* TetheringHelperAutostart */,
-				8F5D7E5622F5CCE200FED4BE /* Products */,
+				8F1F5C5427020A9200FD1B4F /* TetheringHelperTests */,
+				8F1F5C04270207E600FD1B4F /* TetheringHelper */,
+				8F1F5C5D27020D1E00FD1B4F /* TetheringHelperAutostart */,
+				8F1F5C03270207E600FD1B4F /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		8F5D7E5622F5CCE200FED4BE /* Products */ = {
+		8F1F5C03270207E600FD1B4F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8F5D7E5522F5CCE200FED4BE /* TetheringHelper.app */,
-				8F32AECB24A40BB60071890D /* TetheringHelperAutostart.app */,
+				8F1F5C02270207E600FD1B4F /* TetheringHelper.app */,
+				8F1F5C5C27020D1E00FD1B4F /* TetheringHelperAutostart.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8F5D7E5722F5CCE200FED4BE /* TetheringHelper */ = {
+		8F1F5C04270207E600FD1B4F /* TetheringHelper */ = {
 			isa = PBXGroup;
 			children = (
-				8F64EC40254586BD00CEDA26 /* Other files */,
-				8F090A112463029400308F22 /* UI files */,
-				8F3FE78523E89818003CFB6D /* Swift files */,
+				8F1F5C13270207F400FD1B4F /* Swift */,
+				8F1F5C12270207ED00FD1B4F /* UI */,
+				8F1F5C0C270207E800FD1B4F /* TetheringHelper.entitlements */,
+				8F1F5C4D270209A300FD1B4F /* DataModel.xcdatamodeld */,
+				8F1F5C50270209AE00FD1B4F /* Localizable.stringsdict */,
 			);
 			path = TetheringHelper;
 			sourceTree = "<group>";
 		};
-		8F64EC40254586BD00CEDA26 /* Other files */ = {
+		8F1F5C12270207ED00FD1B4F /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				8F6C36EF23995B84009C7865 /* DataModel.xcdatamodeld */,
-				8F5D7E6122F5CCE300FED4BE /* Info.plist */,
-				8F5D7E6222F5CCE300FED4BE /* TetheringHelper.entitlements */,
-				8F8195BA246B12D30066632D /* Localizable.stringsdict */,
+				8F1F5C07270207E800FD1B4F /* Assets.xcassets */,
+				8F1F5C09270207E800FD1B4F /* MainMenu.xib */,
+				8F1F5C47270208E100FD1B4F /* DataUsageWindow.storyboard */,
+				8F1F5C48270208E100FD1B4F /* PreferencesWindow.storyboard */,
 			);
-			name = "Other files";
+			path = UI;
 			sourceTree = "<group>";
 		};
-		8F8B93D5251F95120062C259 /* delegates */ = {
+		8F1F5C13270207F400FD1B4F /* Swift */ = {
 			isa = PBXGroup;
 			children = (
-				8F8B93D6251F95250062C259 /* StatusItemMenuDelegate.swift */,
-				8F8B93D8251F96900062C259 /* StatusItemDelegate.swift */,
+				8F1F5C182702082200FD1B4F /* statusitem */,
+				8F1F5C172702081900FD1B4F /* delegates */,
+				8F1F5C162702080E00FD1B4F /* model */,
+				8F1F5C152702080600FD1B4F /* windows */,
+				8F1F5C14270207FA00FD1B4F /* extensions */,
+				8F1F5C382702089A00FD1B4F /* AppDelegate.swift */,
+				8F1F5C3B2702089A00FD1B4F /* AndroidConnector.swift */,
+				8F1F5C352702089A00FD1B4F /* Autostart.swift */,
+				8F1F5C362702089A00FD1B4F /* PreferencesStorage.swift */,
+				8F1F5C392702089A00FD1B4F /* SessionStorage.swift */,
+				8F1F5C3A2702089A00FD1B4F /* SessionTracker.swift */,
+				8F1F5C372702089A00FD1B4F /* Utils.swift */,
 			);
-			name = delegates;
+			path = Swift;
+			sourceTree = "<group>";
+		};
+		8F1F5C14270207FA00FD1B4F /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8F1F5C312702088F00FD1B4F /* Date+clamp.swift */,
+				8F1F5C322702088F00FD1B4F /* Date+Components.swift */,
+			);
+			path = extensions;
+			sourceTree = "<group>";
+		};
+		8F1F5C152702080600FD1B4F /* windows */ = {
+			isa = PBXGroup;
+			children = (
+				8F1F5C292702086400FD1B4F /* DataUsageWindow */,
+				8F1F5C2A2702087000FD1B4F /* PreferencesWindow */,
+				8F1F5C4B2702091200FD1B4F /* StatusItemWindowController.swift */,
+			);
+			path = windows;
+			sourceTree = "<group>";
+		};
+		8F1F5C162702080E00FD1B4F /* model */ = {
+			isa = PBXGroup;
+			children = (
+				8F1F5C212702085C00FD1B4F /* PairingStatus.swift */,
+				8F1F5C242702085C00FD1B4F /* PhoneSignal.swift */,
+				8F1F5C232702085C00FD1B4F /* SignalQuality.swift */,
+				8F1F5C222702085C00FD1B4F /* SignalType.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		8F1F5C172702081900FD1B4F /* delegates */ = {
+			isa = PBXGroup;
+			children = (
+				8F1F5C1E2702085500FD1B4F /* StatusItemDelegate.swift */,
+				8F1F5C1D2702085500FD1B4F /* StatusItemMenuDelegate.swift */,
+			);
+			path = delegates;
+			sourceTree = "<group>";
+		};
+		8F1F5C182702082200FD1B4F /* statusitem */ = {
+			isa = PBXGroup;
+			children = (
+				8F1F5C192702083700FD1B4F /* StatusItem.swift */,
+				8F1F5C1A2702083700FD1B4F /* StatusItemMenu.swift */,
+			);
+			path = statusitem;
+			sourceTree = "<group>";
+		};
+		8F1F5C292702086400FD1B4F /* DataUsageWindow */ = {
+			isa = PBXGroup;
+			children = (
+				8F1F5C2D2702088400FD1B4F /* DataUsageViewController.swift */,
+				8F1F5C2E2702088500FD1B4F /* DataUsageVisualization.swift */,
+			);
+			path = DataUsageWindow;
+			sourceTree = "<group>";
+		};
+		8F1F5C2A2702087000FD1B4F /* PreferencesWindow */ = {
+			isa = PBXGroup;
+			children = (
+				8F1F5C2B2702087E00FD1B4F /* GeneralPreferencesViewController.swift */,
+			);
+			path = PreferencesWindow;
+			sourceTree = "<group>";
+		};
+		8F1F5C5427020A9200FD1B4F /* TetheringHelperTests */ = {
+			isa = PBXGroup;
+			children = (
+				8F1F5C5627020AFE00FD1B4F /* TestSessionStorage.swift */,
+			);
+			path = TetheringHelperTests;
+			sourceTree = "<group>";
+		};
+		8F1F5C5D27020D1E00FD1B4F /* TetheringHelperAutostart */ = {
+			isa = PBXGroup;
+			children = (
+				8F1F5C5E27020D1E00FD1B4F /* AppDelegate.swift */,
+				8F1F5C6027020D2000FD1B4F /* Assets.xcassets */,
+				8F1F5C6227020D2000FD1B4F /* MainMenu.xib */,
+				8F1F5C6527020D2000FD1B4F /* TetheringHelperAutostart.entitlements */,
+			);
+			path = TetheringHelperAutostart;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8F32AECA24A40BB60071890D /* TetheringHelperAutostart */ = {
+		8F1F5C01270207E600FD1B4F /* TetheringHelper */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8F32AEDA24A40BB60071890D /* Build configuration list for PBXNativeTarget "TetheringHelperAutostart" */;
+			buildConfigurationList = 8F1F5C0F270207E800FD1B4F /* Build configuration list for PBXNativeTarget "TetheringHelper" */;
 			buildPhases = (
-				8F32AEC724A40BB60071890D /* Sources */,
-				8F32AEC824A40BB60071890D /* Frameworks */,
-				8F32AEC924A40BB60071890D /* Resources */,
+				8F1F5BFE270207E600FD1B4F /* Sources */,
+				8F1F5BFF270207E600FD1B4F /* Frameworks */,
+				8F1F5C00270207E600FD1B4F /* Resources */,
+				8FA5CF13270327C400E40092 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TetheringHelper;
+			productName = TetheringHelper;
+			productReference = 8F1F5C02270207E600FD1B4F /* TetheringHelper.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8F1F5C5B27020D1E00FD1B4F /* TetheringHelperAutostart */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8F1F5C6627020D2000FD1B4F /* Build configuration list for PBXNativeTarget "TetheringHelperAutostart" */;
+			buildPhases = (
+				8F1F5C5827020D1E00FD1B4F /* Sources */,
+				8F1F5C5927020D1E00FD1B4F /* Frameworks */,
+				8F1F5C5A27020D1E00FD1B4F /* Resources */,
 			);
 			buildRules = (
 			);
@@ -273,198 +290,138 @@
 			);
 			name = TetheringHelperAutostart;
 			productName = TetheringHelperAutostart;
-			productReference = 8F32AECB24A40BB60071890D /* TetheringHelperAutostart.app */;
-			productType = "com.apple.product-type.application";
-		};
-		8F5D7E5422F5CCE200FED4BE /* TetheringHelper */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8F5D7E6522F5CCE300FED4BE /* Build configuration list for PBXNativeTarget "TetheringHelper" */;
-			buildPhases = (
-				8F5D7E5122F5CCE200FED4BE /* Sources */,
-				8F5D7E5222F5CCE200FED4BE /* Frameworks */,
-				8F5D7E5322F5CCE200FED4BE /* Resources */,
-				8FDD112E24A2325B008D4CA9 /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = TetheringHelper;
-			packageProductDependencies = (
-			);
-			productName = TetheringHelper;
-			productReference = 8F5D7E5522F5CCE200FED4BE /* TetheringHelper.app */;
+			productReference = 8F1F5C5C27020D1E00FD1B4F /* TetheringHelperAutostart.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		8F5D7E4D22F5CCE100FED4BE /* Project object */ = {
+		8F1F5BFA270207E600FD1B4F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1150;
-				LastUpgradeCheck = 1200;
-				ORGANIZATIONNAME = "Johannes Bittner";
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1300;
+				LastUpgradeCheck = 1300;
 				TargetAttributes = {
-					8F32AECA24A40BB60071890D = {
-						CreatedOnToolsVersion = 11.5;
+					8F1F5C01270207E600FD1B4F = {
+						CreatedOnToolsVersion = 13.0;
 					};
-					8F5D7E5422F5CCE200FED4BE = {
-						CreatedOnToolsVersion = 10.3;
+					8F1F5C5B27020D1E00FD1B4F = {
+						CreatedOnToolsVersion = 13.0;
 					};
 				};
 			};
-			buildConfigurationList = 8F5D7E5022F5CCE100FED4BE /* Build configuration list for PBXProject "TetheringHelper" */;
-			compatibilityVersion = "Xcode 9.3";
+			buildConfigurationList = 8F1F5BFD270207E600FD1B4F /* Build configuration list for PBXProject "TetheringHelper" */;
+			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 8F5D7E4C22F5CCE100FED4BE;
-			packageReferences = (
-			);
-			productRefGroup = 8F5D7E5622F5CCE200FED4BE /* Products */;
+			mainGroup = 8F1F5BF9270207E600FD1B4F;
+			productRefGroup = 8F1F5C03270207E600FD1B4F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8F5D7E5422F5CCE200FED4BE /* TetheringHelper */,
-				8F32AECA24A40BB60071890D /* TetheringHelperAutostart */,
+				8F1F5C01270207E600FD1B4F /* TetheringHelper */,
+				8F1F5C5B27020D1E00FD1B4F /* TetheringHelperAutostart */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		8F32AEC924A40BB60071890D /* Resources */ = {
+		8F1F5C00270207E600FD1B4F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8F32AED524A40BB60071890D /* Main.storyboard in Resources */,
+				8F1F5C08270207E800FD1B4F /* Assets.xcassets in Resources */,
+				8F1F5C4A270208E100FD1B4F /* PreferencesWindow.storyboard in Resources */,
+				8F1F5C0B270207E800FD1B4F /* MainMenu.xib in Resources */,
+				8F1F5C51270209AE00FD1B4F /* Localizable.stringsdict in Resources */,
+				8F1F5C49270208E100FD1B4F /* DataUsageWindow.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8F5D7E5322F5CCE200FED4BE /* Resources */ = {
+		8F1F5C5A27020D1E00FD1B4F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8F5D7E5D22F5CCE300FED4BE /* Assets.xcassets in Resources */,
-				8F8195BB246B12D30066632D /* Localizable.stringsdict in Resources */,
-				8F568990246866F800C0090A /* PreferencesWindow.storyboard in Resources */,
-				8F19AD602688D946007718F1 /* DataUsageWindow.storyboard in Resources */,
-				8F3D29C523D4DA3700193C23 /* Main.xib in Resources */,
+				8F1F5C6127020D2000FD1B4F /* Assets.xcassets in Resources */,
+				8F1F5C6427020D2000FD1B4F /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		8F32AEC724A40BB60071890D /* Sources */ = {
+		8F1F5BFE270207E600FD1B4F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8F32AECE24A40BB60071890D /* AppDelegate.swift in Sources */,
+				8F1F5C272702085D00FD1B4F /* SignalQuality.swift in Sources */,
+				8F1F5C332702088F00FD1B4F /* Date+clamp.swift in Sources */,
+				8F1F5C2C2702087E00FD1B4F /* GeneralPreferencesViewController.swift in Sources */,
+				8F1F5C5727020AFE00FD1B4F /* TestSessionStorage.swift in Sources */,
+				8F1F5C2F2702088500FD1B4F /* DataUsageViewController.swift in Sources */,
+				8F1F5C422702089A00FD1B4F /* SessionStorage.swift in Sources */,
+				8F1F5C442702089A00FD1B4F /* AndroidConnector.swift in Sources */,
+				8F1F5C1B2702083700FD1B4F /* StatusItem.swift in Sources */,
+				8F1F5C3F2702089A00FD1B4F /* PreferencesStorage.swift in Sources */,
+				8F1F5C3E2702089A00FD1B4F /* Autostart.swift in Sources */,
+				8F1F5C4F270209A300FD1B4F /* DataModel.xcdatamodeld in Sources */,
+				8F1F5C402702089A00FD1B4F /* Utils.swift in Sources */,
+				8F1F5C252702085D00FD1B4F /* PairingStatus.swift in Sources */,
+				8F1F5C432702089A00FD1B4F /* SessionTracker.swift in Sources */,
+				8F1F5C342702088F00FD1B4F /* Date+Components.swift in Sources */,
+				8F1F5C202702085500FD1B4F /* StatusItemDelegate.swift in Sources */,
+				8F1F5C282702085D00FD1B4F /* PhoneSignal.swift in Sources */,
+				8F1F5C1C2702083700FD1B4F /* StatusItemMenu.swift in Sources */,
+				8F1F5C302702088500FD1B4F /* DataUsageVisualization.swift in Sources */,
+				8F1F5C1F2702085500FD1B4F /* StatusItemMenuDelegate.swift in Sources */,
+				8F1F5C4C2702091200FD1B4F /* StatusItemWindowController.swift in Sources */,
+				8F1F5C412702089A00FD1B4F /* AppDelegate.swift in Sources */,
+				8F1F5C262702085D00FD1B4F /* SignalType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8F5D7E5122F5CCE200FED4BE /* Sources */ = {
+		8F1F5C5827020D1E00FD1B4F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8F19AD67268B4CE0007718F1 /* DataUsageVisualization.swift in Sources */,
-				8F19AD622688E09D007718F1 /* StatusItemWindowController.swift in Sources */,
-				8F19AD69268B59D0007718F1 /* DataUsageViewController.swift in Sources */,
-				8F1DD416238448B70038AAE2 /* SignalType.swift in Sources */,
-				8F8B93D9251F96900062C259 /* StatusItemDelegate.swift in Sources */,
-				8F0FDCB624A22A3D00B6BF60 /* Autostart.swift in Sources */,
-				8F0E960D249CFF22006A4AD2 /* PreferencesStorage.swift in Sources */,
-				8F4F3A4126B9C82D002E7CCE /* Date+clamp.swift in Sources */,
-				8F1DD418238448DD0038AAE2 /* SignalQuality.swift in Sources */,
-				8F66AFA725DEB31C000B3842 /* PhoneSignal.swift in Sources */,
-				8F4F3A3F26B1B6DA002E7CCE /* Date+Components.swift in Sources */,
-				8F8B93D7251F95250062C259 /* StatusItemMenuDelegate.swift in Sources */,
-				8FAD0BB2239093C700DDB470 /* StatusItemMenu.swift in Sources */,
-				8F1D5DAD245C711F001B1852 /* PairingStatus.swift in Sources */,
-				8F6C36F123995B84009C7865 /* DataModel.xcdatamodeld in Sources */,
-				8F66AFAF25DEBD96000B3842 /* Utils.swift in Sources */,
-				8F59F89A2694646F00CFE9D6 /* TestSessionStorage.swift in Sources */,
-				8F1CB93B2468564200614EA2 /* GeneralPreferencesViewController.swift in Sources */,
-				8F71806B23915B230001B80F /* SessionStorage.swift in Sources */,
-				8F1DD414238430ED0038AAE2 /* AndroidConnector.swift in Sources */,
-				8F0D5B6524D5BAC000D41F16 /* SessionTracker.swift in Sources */,
-				8F5D7E5922F5CCE200FED4BE /* AppDelegate.swift in Sources */,
-				8FCEF61C23018DA600CB726E /* StatusItem.swift in Sources */,
+				8F1F5C5F27020D1E00FD1B4F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		8F32AED324A40BB60071890D /* Main.storyboard */ = {
+		8F1F5C09270207E800FD1B4F /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				8F32AED424A40BB60071890D /* Base */,
+				8F1F5C0A270207E800FD1B4F /* Base */,
 			);
-			name = Main.storyboard;
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		8F1F5C6227020D2000FD1B4F /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8F1F5C6327020D2000FD1B4F /* Base */,
+			);
+			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		8F32AED824A40BB60071890D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = TetheringHelperAutostart/TetheringHelperAutostart.entitlements;
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = R98YXK78YZ;
-				ENABLE_HARDENED_RUNTIME = YES;
-				INFOPLIST_FILE = TetheringHelperAutostart/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				PRODUCT_BUNDLE_IDENTIFIER = com.gmail.bittner.johannes.TetheringHelperAutostart;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		8F32AED924A40BB60071890D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = TetheringHelperAutostart/TetheringHelperAutostart.entitlements;
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = R98YXK78YZ;
-				ENABLE_HARDENED_RUNTIME = YES;
-				INFOPLIST_FILE = TetheringHelperAutostart/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				PRODUCT_BUNDLE_IDENTIFIER = com.gmail.bittner.johannes.TetheringHelperAutostart;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
-		8F5D7E6322F5CCE300FED4BE /* Debug */ = {
+		8F1F5C0D270207E800FD1B4F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -491,7 +448,6 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -510,7 +466,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -520,14 +476,13 @@
 			};
 			name = Debug;
 		};
-		8F5D7E6422F5CCE300FED4BE /* Release */ = {
+		8F1F5C0E270207E800FD1B4F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -554,7 +509,6 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -567,7 +521,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -576,48 +530,114 @@
 			};
 			name = Release;
 		};
-		8F5D7E6622F5CCE300FED4BE /* Debug */ = {
+		8F1F5C10270207E800FD1B4F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = TetheringHelper/TetheringHelper.entitlements;
-				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = R98YXK78YZ;
 				ENABLE_HARDENED_RUNTIME = YES;
-				INFOPLIST_FILE = TetheringHelper/Info.plist;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainNibFile = MainMenu;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gmail.bittner.johannes.TetheringHelper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
-		8F5D7E6722F5CCE300FED4BE /* Release */ = {
+		8F1F5C11270207E800FD1B4F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = TetheringHelper/TetheringHelper.entitlements;
-				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = R98YXK78YZ;
 				ENABLE_HARDENED_RUNTIME = YES;
-				INFOPLIST_FILE = TetheringHelper/Info.plist;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainNibFile = MainMenu;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gmail.bittner.johannes.TetheringHelper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		8F1F5C6727020D2000FD1B4F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TetheringHelperAutostart/TetheringHelperAutostart.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = R98YXK78YZ;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainNibFile = MainMenu;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gmail.bittner.johannes.TetheringHelperAutostart;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		8F1F5C6827020D2000FD1B4F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TetheringHelperAutostart/TetheringHelperAutostart.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = R98YXK78YZ;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainNibFile = MainMenu;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gmail.bittner.johannes.TetheringHelperAutostart;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -625,29 +645,29 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8F32AEDA24A40BB60071890D /* Build configuration list for PBXNativeTarget "TetheringHelperAutostart" */ = {
+		8F1F5BFD270207E600FD1B4F /* Build configuration list for PBXProject "TetheringHelper" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8F32AED824A40BB60071890D /* Debug */,
-				8F32AED924A40BB60071890D /* Release */,
+				8F1F5C0D270207E800FD1B4F /* Debug */,
+				8F1F5C0E270207E800FD1B4F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8F5D7E5022F5CCE100FED4BE /* Build configuration list for PBXProject "TetheringHelper" */ = {
+		8F1F5C0F270207E800FD1B4F /* Build configuration list for PBXNativeTarget "TetheringHelper" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8F5D7E6322F5CCE300FED4BE /* Debug */,
-				8F5D7E6422F5CCE300FED4BE /* Release */,
+				8F1F5C10270207E800FD1B4F /* Debug */,
+				8F1F5C11270207E800FD1B4F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8F5D7E6522F5CCE300FED4BE /* Build configuration list for PBXNativeTarget "TetheringHelper" */ = {
+		8F1F5C6627020D2000FD1B4F /* Build configuration list for PBXNativeTarget "TetheringHelperAutostart" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8F5D7E6622F5CCE300FED4BE /* Debug */,
-				8F5D7E6722F5CCE300FED4BE /* Release */,
+				8F1F5C6727020D2000FD1B4F /* Debug */,
+				8F1F5C6827020D2000FD1B4F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -655,17 +675,17 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		8F6C36EF23995B84009C7865 /* DataModel.xcdatamodeld */ = {
+		8F1F5C4D270209A300FD1B4F /* DataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				8F6C36F023995B84009C7865 /* TetheringHelper.xcdatamodel */,
+				8F1F5C4E270209A300FD1B4F /* TetheringHelper.xcdatamodel */,
 			);
-			currentVersion = 8F6C36F023995B84009C7865 /* TetheringHelper.xcdatamodel */;
+			currentVersion = 8F1F5C4E270209A300FD1B4F /* TetheringHelper.xcdatamodel */;
 			path = DataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
 /* End XCVersionGroup section */
 	};
-	rootObject = 8F5D7E4D22F5CCE100FED4BE /* Project object */;
+	rootObject = 8F1F5BFA270207E600FD1B4F /* Project object */;
 }

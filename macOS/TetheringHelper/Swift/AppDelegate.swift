@@ -17,6 +17,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        // don't show dock icon or application menu
+        NSApp.setActivationPolicy(.accessory)
+
         androidConnector = AndroidConnector(
             statusItemDelegate: statusItem,
             statusItemMenuDelegate: statusItem.statusItemMenu
