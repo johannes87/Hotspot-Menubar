@@ -35,9 +35,6 @@ class DataUsageViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        var calendar = Calendar.current
-        calendar.locale = Locale.autoupdatingCurrent
-
         monthFormatter.dateFormat = "LLLL"
 
         let sessionStorage = SessionStorage()
