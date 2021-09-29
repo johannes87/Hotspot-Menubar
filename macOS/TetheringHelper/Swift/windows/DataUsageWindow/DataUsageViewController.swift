@@ -18,7 +18,8 @@ class DataUsageViewController: NSViewController {
     @IBOutlet weak var dataUsageVisualization: DataUsageVisualization!
     @IBOutlet weak var monthPopUpButton: NSPopUpButton!
     @IBOutlet weak var yearPopUpButton: NSPopUpButton!
-
+    @IBOutlet weak var monthlyDataUsageTextField: NSTextField!
+    
     private var firstSessionCreated: Date? = nil
     private var lastSessionCreated: Date? = nil
 
@@ -149,10 +150,32 @@ class DataUsageViewController: NSViewController {
     }
 
     private func visualizeDataUsageOfCurrentDate() {
+        var monthlyBytesUsage: Int64 = 0
         if let monthUsage = dataUsageByMonthAndDay[currentDate.yearMonthKey] {
             dataUsageVisualization.dataUsage = monthUsage
+            monthlyBytesUsage = monthUsage.reduce(0, { dayA, dayB in dayA + dayB})
         } else {
             dataUsageVisualization.dataUsage = [Int64](repeating: 0, count: currentDate.daysInMonth)
+        }
+
+        let monthlyDataUsageTextMB = NSLocalizedString(
+            "%.2f MB used in",
+            comment: "text for monthly data usage in data usage window next to date selection (less than or equal 1 gigabyte)"
+        )
+        let monthlyDataUsageTextGB = NSLocalizedString(
+            "%.2f GB used in",
+            comment: "text for monthly data usage in data usage window next to date selection (more than 1 gigabyte)"
+        )
+
+        let monthlyMegaBytesUsage = Double(monthlyBytesUsage) / 1024 / 1024
+
+        if monthlyMegaBytesUsage <= 1024 {
+            monthlyDataUsageTextField.stringValue = String(format: monthlyDataUsageTextMB,
+                                                           monthlyMegaBytesUsage)
+        } else {
+            monthlyDataUsageTextField.stringValue = String(format: monthlyDataUsageTextGB,
+                                                           monthlyMegaBytesUsage / 1024
+            )
         }
     }
 

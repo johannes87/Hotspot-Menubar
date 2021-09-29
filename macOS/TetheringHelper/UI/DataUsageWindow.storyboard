@@ -67,9 +67,9 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Wn-3k-8Di">
-                                <rect key="frame" x="196" y="20" width="130" height="16"/>
+                                <rect key="frame" x="110" y="20" width="216" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="1312.42 MB used in" id="a3n-wb-f5Y">
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="1312.42 MB used in" id="a3n-wb-f5Y">
                                     <font key="font" metaFont="systemBold"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -116,6 +116,7 @@
                     <connections>
                         <outlet property="dataUsageVisualization" destination="sYK-Ef-aiC" id="vml-Ml-afS"/>
                         <outlet property="monthPopUpButton" destination="BwN-0u-CiV" id="pQj-oi-e0a"/>
+                        <outlet property="monthlyDataUsageTextField" destination="6Wn-3k-8Di" id="vUY-Nu-b2j"/>
                         <outlet property="yearPopUpButton" destination="8d4-WQ-Arx" id="eGT-fn-geK"/>
                     </connections>
                 </viewController>
