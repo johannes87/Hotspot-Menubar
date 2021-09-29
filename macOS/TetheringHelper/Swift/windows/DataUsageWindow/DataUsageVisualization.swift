@@ -9,6 +9,7 @@
 import Cocoa
 import CoreGraphics
 
+private let trackingAreaKeyBytesTransferred = "bytesTransferred"
 
 @IBDesignable
 class DataUsageVisualization : NSView {
@@ -18,10 +19,16 @@ class DataUsageVisualization : NSView {
         }
     }
 
-    // try this: https://developer.apple.com/documentation/appkit/nstrackingarea
+    private var dailyDataUsagePopover: NSPopover?
+
     override func draw(_ dirtyRect: NSRect) {
         let daysInMonth = dataUsage.count
         let maxUsageInMonth = dataUsage.max()
+
+        // Ensure old tracking areas from previous draw are removed
+        trackingAreas.forEach { trackingArea in
+            removeTrackingArea(trackingArea)
+        }
 
         // Graphical appearance
         let barWidth = 15
@@ -39,9 +46,10 @@ class DataUsageVisualization : NSView {
         for day in 1...daysInMonth {
             let dayXPos = (day - 1) * (barWidth + barMarginX) + chartStartX
             let maxBarHeight = Int(bounds.height) - labelHeight - marginYBetweenBarAndLabel - marginYBetweenBarAndTopEdge
+            let dayDataUsage = dataUsage[day - 1]
 
             let barHeight = maxUsageInMonth != 0
-                ? Int((Double(dataUsage[day - 1]) / Double(maxUsageInMonth!)) * Double(maxBarHeight))
+                ? Int((Double(dayDataUsage) / Double(maxUsageInMonth!)) * Double(maxBarHeight))
                 : 0
 
             // Draw the bar showing the data usage for a day
@@ -52,6 +60,15 @@ class DataUsageVisualization : NSView {
                 height: barHeight
             )
             barChartPath.appendRoundedRect(barRect, xRadius: 5.0, yRadius: 5.0)
+
+            addTrackingArea(
+                NSTrackingArea(
+                    rect: barRect,
+                    options: [.activeAlways, .mouseEnteredAndExited],
+                    owner: self,
+                    userInfo: [trackingAreaKeyBytesTransferred: dayDataUsage])
+            )
+
 
             // Draw the label for a day
             let dayLabel = String(day) as NSString
@@ -72,5 +89,54 @@ class DataUsageVisualization : NSView {
         outlinePath.appendRoundedRect(bounds, xRadius: 5.0, yRadius: 5.0)
         NSColor.labelColor.setStroke()
         outlinePath.stroke()
+    }
+
+    override func mouseEntered(with event: NSEvent) {
+        let bytesTransferred = event.trackingArea?.userInfo?[trackingAreaKeyBytesTransferred]! as! Int64
+        let megaBytesTransferredText = String(format: "%.2f MB", Double(bytesTransferred) / 1024 / 1024)
+
+        let contentViewController = NSViewController()
+        contentViewController.view = NSView()
+
+        let textField = NSTextField(labelWithAttributedString: NSAttributedString(
+            string: megaBytesTransferredText,
+            attributes: [.font: NSFont.boldSystemFont(ofSize: 12)]
+        ))
+
+        // Center textField in contentViewController
+        contentViewController.view.frame = NSRect(
+            x: 0,
+            y: 0,
+            width: textField.frame.width + 10,
+            height: textField.frame.height + 10
+        )
+        textField.frame = NSRect(
+            x: (contentViewController.view.frame.width - textField.frame.width) / 2,
+            y: (contentViewController.view.frame.height - textField.frame.height) / 2,
+            width: textField.frame.width,
+            height: textField.frame.height
+        )
+        contentViewController.view.addSubview(textField)
+
+        textField.allowsEditingTextAttributes = true
+
+        if dailyDataUsagePopover != nil {
+            dailyDataUsagePopover!.close()
+        }
+
+        dailyDataUsagePopover = NSPopover()
+        dailyDataUsagePopover!.contentSize = contentViewController.view.frame.size
+        dailyDataUsagePopover!.behavior = .transient
+        dailyDataUsagePopover!.animates = false
+        dailyDataUsagePopover!.contentViewController = contentViewController
+
+        dailyDataUsagePopover!.show(relativeTo: event.trackingArea!.rect, of: self, preferredEdge: .maxY)
+    }
+
+    override func mouseExited(with event: NSEvent) {
+        if let popover = dailyDataUsagePopover {
+            popover.close()
+            dailyDataUsagePopover = nil
+        }
     }
 }
