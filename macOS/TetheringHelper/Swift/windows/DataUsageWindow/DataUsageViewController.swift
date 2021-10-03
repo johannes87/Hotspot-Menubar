@@ -20,8 +20,8 @@ class DataUsageViewController: NSViewController {
     @IBOutlet weak var yearPopUpButton: NSPopUpButton!
     @IBOutlet weak var monthlyDataUsageTextField: NSTextField!
     
-    private var firstSessionCreated: Date? = nil
-    private var lastSessionCreated: Date? = nil
+    private var firstSessionCreated: Date?
+    private var lastSessionCreated: Date?
 
     /// Aggregated data usage, the dictionary values are ready for being passed to DataUsageVisualization
     /// It's also used to check if a data for a given YearMonthKey exists

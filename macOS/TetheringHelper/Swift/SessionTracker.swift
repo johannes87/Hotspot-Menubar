@@ -25,7 +25,7 @@ class SessionTracker {
     private var statusItemMenuDelegate: StatusItemMenuDelegate
 
     private let sessionStorage = SessionStorage()
-    private var currentTetheringSession: TetheringSession? = nil
+    private var currentTetheringSession: TetheringSession?
 
     init(statusItemMenuDelegate: StatusItemMenuDelegate) {
         self.statusItemMenuDelegate = statusItemMenuDelegate
