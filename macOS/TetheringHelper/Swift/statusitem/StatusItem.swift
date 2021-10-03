@@ -50,42 +50,34 @@ class StatusItem: StatusItemDelegate {
 
     /// Used in drawStatusItem to draw the bar shapes for the signalQuality
     private func drawSignalBars(_ dstRect: NSRect) {
-        // TODO: figure out why some lines are drawn fuzzy
-        // https://stackoverflow.com/questions/58904168/how-do-i-draw-a-rectangle-with-equal-line-widths-into-an-nsstatusitembutton
-        let signalBarLineWidth = 1
         let signalBarRectWidth: CGFloat = 3
 
-        let path = NSBezierPath()
-        path.lineWidth = CGFloat(signalBarLineWidth)
-        NSColor.labelColor.setStroke()
-        NSColor.labelColor.setFill()
-
         let signalBar1Rect = NSRect(x: NSMinX(dstRect), y: NSMinY(dstRect), width: signalBarRectWidth, height: 3)
-        path.appendRect(signalBar1Rect)
-        if self.signalQuality.rawValue == 1 {
-            path.fill()
-        }
+        drawSignalBar(signalBarRect: signalBar1Rect, minActiveQuality: 1)
 
         let signalBar2Rect = NSRect(x: NSMinX(dstRect) + signalBarRectWidth+2, y: NSMinY(dstRect), width: signalBarRectWidth, height: 6)
-        path.appendRect(signalBar2Rect)
-        if self.signalQuality.rawValue == 2 {
-            path.fill()
-        }
+        drawSignalBar(signalBarRect: signalBar2Rect, minActiveQuality: 2)
 
         let signalBar3Rect = NSRect(x: NSMinX(dstRect) + signalBarRectWidth*2+4, y: NSMinY(dstRect), width: signalBarRectWidth, height: 10)
-        path.appendRect(signalBar3Rect)
-        if self.signalQuality.rawValue == 3 {
-            path.fill()
-        }
+        drawSignalBar(signalBarRect: signalBar3Rect, minActiveQuality: 3)
 
         let signalBar4Rect = NSRect(x: NSMinX(dstRect) + signalBarRectWidth*3+6, y: NSMinY(dstRect), width: signalBarRectWidth, height: 14)
-        path.appendRect(signalBar4Rect)
-        if self.signalQuality.rawValue == 4 {
-            path.fill()
+        drawSignalBar(signalBarRect: signalBar4Rect, minActiveQuality: 4)
+    }
+
+    private func drawSignalBar(signalBarRect rect: NSRect, minActiveQuality: Int) {
+        let alphaBarInactive: CGFloat = 0.2
+        let alphaBarActive: CGFloat = 1
+
+        if self.signalQuality.rawValue >= minActiveQuality {
+            NSColor.labelColor.withAlphaComponent(alphaBarActive).setFill()
+        } else {
+            NSColor.labelColor.withAlphaComponent(alphaBarInactive).setFill()
         }
 
-        // stroke all the appended rects
-        path.stroke()
+        let path = NSBezierPath()
+        path.appendRoundedRect(rect, xRadius: 2, yRadius: 2)
+        path.fill()
     }
 
     /// Used in drawStatusItem to draw the text for the signalType (2G, 3G, ...)
