@@ -109,8 +109,14 @@ class StatusItem: StatusItemDelegate {
         let unpairedIcon = NSImage(named: "unpairedIcon")!
         guard dstRect.width == 18 && dstRect.height == 18 else { return }
 
+        let opacity = 0.3
+
         // the destination is assumed to be 18x18 px here
-        unpairedIcon.draw(in: NSRect(x: 0, y: 8, width: 10, height: 10))
+        unpairedIcon.draw(
+            in: NSRect(x: 0, y: 8, width: 10, height: 10),
+            from: .zero,
+            operation: .sourceOver,
+            fraction: opacity)
     }
 
     // MARK: StatusItemDelegate
