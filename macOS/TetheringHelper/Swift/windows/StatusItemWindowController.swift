@@ -8,7 +8,7 @@
 
 import Cocoa
 
-/// StatusItemWindowController is used for windows created by StatusItem.swift
+/// StatusItemWindowController is used for windows created by NSStatusItem
 class StatusItemWindowController: NSWindowController {
     override func showWindow(_ sender: Any?) {
         super.showWindow(sender)
