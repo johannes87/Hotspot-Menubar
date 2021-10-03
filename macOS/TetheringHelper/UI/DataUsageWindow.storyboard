@@ -37,28 +37,17 @@
                 <customObject id="1ie-EV-MYo" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <viewController id="j7e-sW-Ewm" customClass="DataUsageViewController" customModule="TetheringHelper" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="DX1-Yo-aRa">
-                        <rect key="frame" x="0.0" y="0.0" width="715" height="304"/>
+                        <rect key="frame" x="0.0" y="0.0" width="747" height="304"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sYK-Ef-aiC" customClass="DataUsageVisualization" customModule="TetheringHelper" customModuleProvider="target">
-                                <rect key="frame" x="44" y="46" width="627" height="238"/>
+                                <rect key="frame" x="60" y="46" width="627" height="238"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </customView>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bpE-ut-e0W">
-                                <rect key="frame" x="679" y="157" width="16" height="15"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSGoForwardTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" refusesFirstResponder="YES" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Epr-oI-b5Z">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="nextMonthButtonClicked:" target="j7e-sW-Ewm" id="yk4-bE-1Zt"/>
-                                </connections>
-                            </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uos-be-ate">
-                                <rect key="frame" x="20" y="157" width="16" height="15"/>
+                                <rect key="frame" x="20" y="149" width="32" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSGoLeftTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" refusesFirstResponder="YES" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1gU-VD-MS3">
+                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSGoBackTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" refusesFirstResponder="YES" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1gU-VD-MS3">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -67,7 +56,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Wn-3k-8Di">
-                                <rect key="frame" x="110" y="20" width="216" height="16"/>
+                                <rect key="frame" x="126" y="20" width="216" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="1312.42 MB used in" id="a3n-wb-f5Y">
                                     <font key="font" metaFont="systemBold"/>
@@ -76,9 +65,9 @@
                                 </textFieldCell>
                             </textField>
                             <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BwN-0u-CiV">
-                                <rect key="frame" x="325" y="11" width="120" height="32"/>
+                                <rect key="frame" x="345" y="14" width="113" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" refusesFirstResponder="YES" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" arrowPosition="noArrow" selectedItem="thO-GA-MVh" id="cMe-SV-ymb">
+                                <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" refusesFirstResponder="YES" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" arrowPosition="arrowAtCenter" selectedItem="thO-GA-MVh" id="cMe-SV-ymb">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" id="C1U-Bj-w5f">
@@ -94,9 +83,9 @@
                                 </connections>
                             </popUpButton>
                             <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8d4-WQ-Arx">
-                                <rect key="frame" x="439" y="11" width="85" height="32"/>
+                                <rect key="frame" x="459" y="14" width="78" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" refusesFirstResponder="YES" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" arrowPosition="noArrow" selectedItem="Er2-H8-hYD" id="we5-1Q-MDu">
+                                <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" refusesFirstResponder="YES" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" arrowPosition="arrowAtCenter" selectedItem="Er2-H8-hYD" id="we5-1Q-MDu">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" id="BxN-bN-Nsu">
@@ -111,6 +100,17 @@
                                     <action selector="yearPopUpButtonChanged:" target="j7e-sW-Ewm" id="HRx-cf-s1f"/>
                                 </connections>
                             </popUpButton>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bpE-ut-e0W">
+                                <rect key="frame" x="695" y="149" width="32" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSGoForwardTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" refusesFirstResponder="YES" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Epr-oI-b5Z">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="nextMonthButtonClicked:" target="j7e-sW-Ewm" id="yk4-bE-1Zt"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
@@ -121,11 +121,11 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="90.5" y="409"/>
+            <point key="canvasLocation" x="106.5" y="409"/>
         </scene>
     </scenes>
     <resources>
+        <image name="NSGoBackTemplate" width="10" height="14"/>
         <image name="NSGoForwardTemplate" width="10" height="14"/>
-        <image name="NSGoLeftTemplate" width="10" height="14"/>
     </resources>
 </document>
