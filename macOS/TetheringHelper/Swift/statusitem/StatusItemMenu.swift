@@ -9,10 +9,10 @@
 import Cocoa
 
 class StatusItemMenu: NSObject, StatusItemMenuDelegate {
-    private static let dataStatisticsMenuItemUnpairedTitle = NSLocalizedString(
+    private static let dataUsageMenuItemUnpairedTitle = NSLocalizedString(
         "Show data usage",
         comment: "statusitem menu item, shown instead of data usage of session when not paired")
-    private static let dataStatisticsMenuItemPairedTitle = NSLocalizedString(
+    private static let dataUsageMenuItemPairedTitle = NSLocalizedString(
         "Data used: %.2f MB",
         comment: "statusitem menu item, shows amount of data used when paired")
     private static let pairMenuItemUnpairedTitle = NSLocalizedString(
@@ -52,7 +52,7 @@ class StatusItemMenu: NSObject, StatusItemMenuDelegate {
         menu = NSMenu(title: "")
 
         dataUsageMenuItem = NSMenuItem(
-            title: StatusItemMenu.dataStatisticsMenuItemUnpairedTitle,
+            title: StatusItemMenu.dataUsageMenuItemUnpairedTitle,
             action: #selector(showDataUsageWindow(sender:)),
             keyEquivalent: "")
         dataUsageMenuItem.target = self
@@ -118,7 +118,7 @@ class StatusItemMenu: NSObject, StatusItemMenuDelegate {
     func sessionBytesTransferredUpdated(bytesTransferred: UInt64) {
         DispatchQueue.main.async {
             let megabytesTransferred = Double(bytesTransferred) / 1024 / 1024
-            self.dataUsageMenuItem.title = String(format: StatusItemMenu.dataStatisticsMenuItemPairedTitle, megabytesTransferred)
+            self.dataUsageMenuItem.title = String(format: StatusItemMenu.dataUsageMenuItemPairedTitle, megabytesTransferred)
         }
     }
 
@@ -127,10 +127,10 @@ class StatusItemMenu: NSObject, StatusItemMenuDelegate {
         DispatchQueue.main.async {
             if let phoneName = pairingStatus.phoneName {
                 self.pairMenuItem.title = String(format: StatusItemMenu.pairMenuItemPairedTitle, phoneName)
-                self.dataUsageMenuItem.title = String(format: StatusItemMenu.dataStatisticsMenuItemPairedTitle, 0)
+                self.dataUsageMenuItem.title = String(format: StatusItemMenu.dataUsageMenuItemPairedTitle, 0)
             } else {
                 self.pairMenuItem.title = StatusItemMenu.pairMenuItemUnpairedTitle
-                self.dataUsageMenuItem.title = StatusItemMenu.dataStatisticsMenuItemUnpairedTitle
+                self.dataUsageMenuItem.title = StatusItemMenu.dataUsageMenuItemUnpairedTitle
             }
         }
     }
