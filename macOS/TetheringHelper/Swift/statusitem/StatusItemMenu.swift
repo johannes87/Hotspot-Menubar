@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class StatusItemMenu: NSObject, NSMenuItemValidation, StatusItemMenuDelegate {
+class StatusItemMenu: NSObject, StatusItemMenuDelegate {
     private static let dataStatisticsMenuItemTitle = NSLocalizedString(
         "Data used: %.2f MB",
         comment: "amount of data used, shown in status item menu")
@@ -111,11 +111,6 @@ class StatusItemMenu: NSObject, NSMenuItemValidation, StatusItemMenuDelegate {
 
     @IBAction private func quitApplication(sender: Any) {
         NSApp.terminate(sender)
-    }
-
-    // MARK: NSMenuItemValidation
-    func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
-        return true
     }
 
     // MARK: StatusItemMenuDelegate
