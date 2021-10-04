@@ -70,7 +70,6 @@ class SessionTracker {
             sessionActive = false
             lastIfaddrsBytesTransferred = (0, 0)
             bytesTransferred = 0
-            statusItemMenuDelegate.sessionBytesTransferredUpdated(bytesTransferred: 0)
             currentTetheringSession = nil
         }
     }
