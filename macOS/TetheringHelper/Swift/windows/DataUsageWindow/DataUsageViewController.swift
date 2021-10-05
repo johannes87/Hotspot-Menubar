@@ -51,6 +51,9 @@ class DataUsageViewController: NSViewController {
         populateYearPopupButton()
         populateMonthPopupButton()
         selectCurrentDateInDateButtons()
+    }
+
+    override func viewDidAppear() {
         visualizeDataUsageOfCurrentDate()
     }
 
