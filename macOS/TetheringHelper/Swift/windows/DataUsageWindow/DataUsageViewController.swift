@@ -174,8 +174,7 @@ class DataUsageViewController: NSViewController {
                                                            monthlyMegaBytesUsage)
         } else {
             monthlyDataUsageTextField.stringValue = String(format: monthlyDataUsageTextGB,
-                                                           monthlyMegaBytesUsage / 1024
-            )
+                                                           monthlyMegaBytesUsage / 1024)
         }
     }
 
