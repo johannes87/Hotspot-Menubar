@@ -40,7 +40,7 @@ class TestSessionStorage : SessionStorage {
         let firstYearStartMonth = 4
 
         let currentDate = Date()
-        let calendar = Calendar.current
+        let calendar = Calendar.init(identifier: .gregorian)
         let currentYear = calendar.component(.year, from: currentDate)
         let currentMonth = calendar.component(.month, from: currentDate)
         let currentDay = calendar.component(.day, from: currentDate)

@@ -13,7 +13,6 @@ enum MonthSearchDirection {
     case previous
 }
 
-// TODO: test with other locales
 class DataUsageViewController: NSViewController {
     @IBOutlet weak var dataUsageVisualization: DataUsageVisualization!
     @IBOutlet weak var monthPopUpButton: NSPopUpButton!
@@ -37,6 +36,7 @@ class DataUsageViewController: NSViewController {
         super.viewDidLoad()
 
         monthFormatter.dateFormat = "LLLL"
+        monthFormatter.calendar = Calendar.init(identifier: .gregorian)
 
         let sessionStorage = SessionStorage()
         let tetheringSessions = sessionStorage.getTetheringSessions()
@@ -56,12 +56,12 @@ class DataUsageViewController: NSViewController {
 
     @IBAction func monthPopUpButtonChanged(_ sender: Any) {
         let nameOfSelectedMonth = monthPopUpButton.titleOfSelectedItem!
-        let monthNumberOfSelectedMonth = monthFormatter.date(from: nameOfSelectedMonth)?.monthNumber
+        let monthNumberOfSelectedMonth = monthFormatter.date(from: nameOfSelectedMonth)!.monthNumber
 
-        let componentsOfCurrentDate = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: currentDate)
-        var componentsOfNewDate = componentsOfCurrentDate
-        componentsOfNewDate.month = monthNumberOfSelectedMonth
-        currentDate = Calendar.current.date(from: componentsOfNewDate)!
+        currentDate = Date.fromYearAndMonth(
+            year: currentDate.yearNumber,
+            month: monthNumberOfSelectedMonth
+        )!
 
         visualizeDataUsageOfCurrentDate()
     }
@@ -69,12 +69,9 @@ class DataUsageViewController: NSViewController {
     @IBAction func yearPopUpButtonChanged(_ sender: Any) {
         let selectedYear = Int(yearPopUpButton.titleOfSelectedItem!)!
 
-        let componentsOfCurrentDate = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: currentDate)
-        var componentsOfNewDate = componentsOfCurrentDate
-        componentsOfNewDate.year = selectedYear
-        let newDate = Calendar.current.date(from: componentsOfNewDate)!
+        currentDate = Date
+            .fromYearAndMonth(year: selectedYear, month: currentDate.monthNumber)!
             .clamp(from: firstSessionCreated!, until: lastSessionCreated!)
-        currentDate = newDate
         
         // Month button contents depends on the selected year
         populateMonthPopupButton()
@@ -108,7 +105,7 @@ class DataUsageViewController: NSViewController {
         var monthFound = false
 
         while !monthFound && currentDateIsInBounds() {
-            currentDate = Calendar.current.date(byAdding: DateComponents(month: currentDateSummand), to: currentDate)!
+            currentDate = Calendar.init(identifier: .gregorian).date(byAdding: DateComponents(month: currentDateSummand), to: currentDate)!
             if dataUsageByMonthAndDay[currentDate.yearMonthKey] != nil {
                 monthFound = true
             }
@@ -124,7 +121,7 @@ class DataUsageViewController: NSViewController {
 
     /// Populate the "month" popup button based on the current year.
     private func populateMonthPopupButton() {
-        let standaloneMonthSymbols = DateFormatter().standaloneMonthSymbols!
+        let standaloneMonthSymbols = monthFormatter.standaloneMonthSymbols!
 
         let monthsWithData = (1...12)
             .filter { monthNumber in dataUsageByMonthAndDay["\(currentDate.yearNumber)-\(monthNumber)"] != nil }
