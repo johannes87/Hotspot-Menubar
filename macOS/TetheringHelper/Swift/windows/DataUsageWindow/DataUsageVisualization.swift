@@ -61,20 +61,19 @@ class DataUsageVisualization : NSView {
             )
             barChartPath.appendRoundedRect(barRect, xRadius: 5.0, yRadius: 5.0)
 
-            // Make small bars easier to select
-            var trackingRect = barRect
-            if trackingRect.height > 0 && trackingRect.height < 10 {
-                trackingRect.size.height = 10
+            // Make tracking rect slightly higher for easier selection and aesthetics
+            if barRect.height > 0 {
+                var trackingRect = barRect
+                trackingRect.size.height += 5
+
+                addTrackingArea(
+                    NSTrackingArea(
+                        rect: trackingRect,
+                        options: [.activeAlways, .mouseEnteredAndExited],
+                        owner: self,
+                        userInfo: [trackingAreaKeyBytesTransferred: dayDataUsage])
+                )
             }
-
-            addTrackingArea(
-                NSTrackingArea(
-                    rect: trackingRect,
-                    options: [.activeAlways, .mouseEnteredAndExited],
-                    owner: self,
-                    userInfo: [trackingAreaKeyBytesTransferred: dayDataUsage])
-            )
-
 
             // Draw the label for a day
             let dayLabel = String(day) as NSString
