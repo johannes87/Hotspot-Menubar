@@ -176,6 +176,16 @@ class DataUsageViewController: NSViewController {
             monthlyDataUsageTextField.stringValue = String(format: monthlyDataUsageTextGB,
                                                            monthlyMegaBytesUsage / 1024)
         }
+
+        let monthYearFormatter = DateFormatter()
+        monthYearFormatter.calendar = Calendar.init(identifier: .gregorian)
+        monthYearFormatter.setLocalizedDateFormatFromTemplate("MMMMyyyy")
+
+        let windowTitle = NSLocalizedString(
+            "Data usage on %@",
+            comment: "window title for data usage window, e.g. 'Data usage on September 2021'")
+
+        view.window?.title = String(format: windowTitle, monthYearFormatter.string(from: currentDate))
     }
 
     private func aggregateDataUsageByMonthAndDay(tetheringSessions: [TetheringSession]) {
