@@ -61,9 +61,15 @@ class DataUsageVisualization : NSView {
             )
             barChartPath.appendRoundedRect(barRect, xRadius: 5.0, yRadius: 5.0)
 
+            // Make small bars easier to select
+            var trackingRect = barRect
+            if trackingRect.height > 0 && trackingRect.height < 10 {
+                trackingRect.size.height = 10
+            }
+
             addTrackingArea(
                 NSTrackingArea(
-                    rect: barRect,
+                    rect: trackingRect,
                     options: [.activeAlways, .mouseEnteredAndExited],
                     owner: self,
                     userInfo: [trackingAreaKeyBytesTransferred: dayDataUsage])
