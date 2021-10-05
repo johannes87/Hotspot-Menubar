@@ -93,13 +93,11 @@ class StatusItem: StatusItemDelegate {
             font = fontBig
         }
 
-        let textFontAttributes = [
-            NSAttributedString.Key.font: font,
-            NSAttributedString.Key.foregroundColor: NSColor.labelColor,
-        ]
-
         let signalTypeStr = NSString(string: self.signalType.rawValue)
-        signalTypeStr.draw(in: dstRect, withAttributes: textFontAttributes)
+        signalTypeStr.draw(
+            in: dstRect,
+            withAttributes: [.font: font, .foregroundColor: NSColor.labelColor]
+        )
     }
 
     /// Draw an "unpaired" icon in the top-left corner when this app is not paired with an Android device
