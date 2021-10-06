@@ -13,6 +13,15 @@ enum MonthSearchDirection {
     case previous
 }
 
+struct DataUsage: Comparable {
+    static func < (lhs: DataUsage, rhs: DataUsage) -> Bool {
+        return lhs.bytesTransferred < rhs.bytesTransferred
+    }
+
+    var bytesTransferred: Int64
+    var date: Date?
+}
+
 class DataUsageViewController: NSViewController {
     @IBOutlet weak var dataUsageVisualization: DataUsageVisualization!
     @IBOutlet weak var monthPopUpButton: NSPopUpButton!
@@ -24,7 +33,7 @@ class DataUsageViewController: NSViewController {
 
     /// Aggregated data usage, the dictionary values are ready for being passed to DataUsageVisualization
     /// It's also used to check if a data for a given YearMonthKey exists
-    private var dataUsageByMonthAndDay: [YearMonthKey: [Int64]] = [:]
+    private var dataUsageByMonthAndDay: [YearMonthKey: [DataUsage]] = [:]
 
     /// Converts long names of months (e.g. "September") to numbers, and extracts names from `Date` objects.
     private let monthFormatter = DateFormatter()
@@ -153,9 +162,11 @@ class DataUsageViewController: NSViewController {
         var monthlyBytesUsage: Int64 = 0
         if let monthUsage = dataUsageByMonthAndDay[currentDate.yearMonthKey] {
             dataUsageVisualization.dataUsage = monthUsage
-            monthlyBytesUsage = monthUsage.reduce(0, { dayA, dayB in dayA + dayB})
+            monthlyBytesUsage = monthUsage
+                .map { $0.bytesTransferred }
+                .reduce(0, { dayA, dayB in dayA + dayB })
         } else {
-            dataUsageVisualization.dataUsage = [Int64](repeating: 0, count: currentDate.daysInMonth)
+            dataUsageVisualization.dataUsage = nil
         }
 
         let monthlyDataUsageTextMB = NSLocalizedString(
@@ -191,7 +202,7 @@ class DataUsageViewController: NSViewController {
     private func aggregateDataUsageByMonthAndDay(tetheringSessions: [TetheringSession]) {
         var dailyBytesTransferred: Int64 = 0
         var prevDay: Int?
-        var prevYearMonthKey: String?
+        var prevYearMonthKey: YearMonthKey?
         var prevSession: TetheringSession?
 
         // The aggregation assumes tetheringSessions is sorted
@@ -204,9 +215,12 @@ class DataUsageViewController: NSViewController {
 
             if dayChanged || isLastSession {
                 if dataUsageByMonthAndDay[prevYearMonthKey!] == nil {
-                    dataUsageByMonthAndDay[prevYearMonthKey!] = [Int64](repeating: 0, count: prevSession!.created!.daysInMonth)
+                    dataUsageByMonthAndDay[prevYearMonthKey!] = [DataUsage](
+                        repeating: DataUsage(bytesTransferred: 0, date: nil),
+                        count: prevSession!.created!.daysInMonth)
                 }
-                dataUsageByMonthAndDay[prevYearMonthKey!]![prevDay! - 1] = dailyBytesTransferred
+                dataUsageByMonthAndDay[prevYearMonthKey!]![prevDay! - 1].bytesTransferred = dailyBytesTransferred
+                dataUsageByMonthAndDay[prevYearMonthKey!]![prevDay! - 1].date = prevSession?.created
                 dailyBytesTransferred = 0
             }
 

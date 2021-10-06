@@ -9,21 +9,31 @@
 import Cocoa
 import CoreGraphics
 
-private let trackingAreaKeyBytesTransferred = "bytesTransferred"
+private let trackingAreaKeyDataUsage = "dataUsage"
 
 @IBDesignable
 class DataUsageVisualization : NSView {
-    var dataUsage: [Int64] = [Int64](repeating: 50, count: 31) {
+    var dataUsage: [DataUsage]? {
         didSet {
             needsDisplay = true
         }
     }
 
     private var dailyDataUsagePopover: NSPopover?
+    private let popoverDateFormatter = DateFormatter()
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        popoverDateFormatter.calendar = Calendar(identifier: .gregorian)
+        popoverDateFormatter.dateStyle = .medium
+        popoverDateFormatter.timeStyle = .none
+    }
 
     override func draw(_ dirtyRect: NSRect) {
-        let daysInMonth = dataUsage.count
-        let maxUsageInMonth = dataUsage.max()
+        guard dataUsage != nil else { return }
+
+        let daysInMonth = dataUsage!.count
+        let maxUsageInMonth = dataUsage!.max()!.bytesTransferred
 
         // Ensure old tracking areas from previous draw are removed
         trackingAreas.forEach { trackingArea in
@@ -46,10 +56,10 @@ class DataUsageVisualization : NSView {
         for day in 1...daysInMonth {
             let dayXPos = (day - 1) * (barWidth + barMarginX) + chartStartX
             let maxBarHeight = Int(bounds.height) - labelHeight - marginYBetweenBarAndLabel - marginYBetweenBarAndTopEdge
-            let dayDataUsage = dataUsage[day - 1]
+            let dayDataUsage = dataUsage![day - 1]
 
             let barHeight = maxUsageInMonth != 0
-                ? Int((Double(dayDataUsage) / Double(maxUsageInMonth!)) * Double(maxBarHeight))
+                ? Int((Double(dayDataUsage.bytesTransferred) / Double(maxUsageInMonth)) * Double(maxBarHeight))
                 : 0
 
             // Draw the bar showing the data usage for a day
@@ -71,7 +81,7 @@ class DataUsageVisualization : NSView {
                         rect: trackingRect,
                         options: [.activeAlways, .mouseEnteredAndExited],
                         owner: self,
-                        userInfo: [trackingAreaKeyBytesTransferred: dayDataUsage])
+                        userInfo: [trackingAreaKeyDataUsage: dayDataUsage])
                 )
             }
 
@@ -97,14 +107,18 @@ class DataUsageVisualization : NSView {
     }
 
     override func mouseEntered(with event: NSEvent) {
-        let bytesTransferred = event.trackingArea?.userInfo?[trackingAreaKeyBytesTransferred]! as! Int64
-        let megaBytesTransferredText = String(format: "%.2f MB", Double(bytesTransferred) / 1024 / 1024)
+        let dataUsage = event.trackingArea?.userInfo?[trackingAreaKeyDataUsage]! as! DataUsage
+        let popoverTextTemplate = NSLocalizedString("%.2f MB on %@",
+                                                    comment: "text shown in popover in data usage window, e.g. '2.34 MB used on 4. Oct 2021'")
+        let popoverText = String(format: popoverTextTemplate,
+                                 Double(dataUsage.bytesTransferred) / 1024 / 1024,
+                                 popoverDateFormatter.string(from: dataUsage.date!))
 
         let contentViewController = NSViewController()
         contentViewController.view = NSView()
 
         let textField = NSTextField(labelWithAttributedString: NSAttributedString(
-            string: megaBytesTransferredText,
+            string: popoverText,
             attributes: [.font: NSFont.boldSystemFont(ofSize: 12)]
         ))
 
