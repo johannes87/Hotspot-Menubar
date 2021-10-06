@@ -27,13 +27,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         sessionTracker = SessionTracker(
             statusItemMenuDelegate: statusItem.statusItemMenu
         )
-        startBackgroundLoop()
+        startBackgroundThread()
     }
 
-    private func startBackgroundLoop() {
+    private func startBackgroundThread() {
         DispatchQueue.global(qos: .background).async {
             while true {
-                os_log(.debug, "Running background loop")
+                os_log(.debug, "Running background thread")
 
                 // TODO: why does getSignal take so long?
                 self.androidConnector.getSignal()
