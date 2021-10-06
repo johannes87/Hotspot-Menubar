@@ -30,10 +30,12 @@ class DataUsageVisualization : NSView {
     }
 
     override func draw(_ dirtyRect: NSRect) {
-        guard dataUsage != nil else { return }
+        guard
+            let unwrappedDataUsage = dataUsage,
+            let maxUsageInMonth = unwrappedDataUsage.max()?.bytesTransferred
+        else { return }
 
-        let daysInMonth = dataUsage!.count
-        let maxUsageInMonth = dataUsage!.max()!.bytesTransferred
+        let daysInMonth = unwrappedDataUsage.count
 
         // Ensure old tracking areas from previous draw are removed
         trackingAreas.forEach { trackingArea in
@@ -56,7 +58,7 @@ class DataUsageVisualization : NSView {
         for day in 1...daysInMonth {
             let dayXPos = (day - 1) * (barWidth + barMarginX) + chartStartX
             let maxBarHeight = Int(bounds.height) - labelHeight - marginYBetweenBarAndLabel - marginYBetweenBarAndTopEdge
-            let dayDataUsage = dataUsage![day - 1]
+            let dayDataUsage = unwrappedDataUsage[day - 1]
 
             let barHeight = maxUsageInMonth != 0
                 ? Int((Double(dayDataUsage.bytesTransferred) / Double(maxUsageInMonth)) * Double(maxBarHeight))
