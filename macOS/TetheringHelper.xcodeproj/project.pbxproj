@@ -31,7 +31,7 @@
 		8F1F5C442702089A00FD1B4F /* AndroidConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1F5C3B2702089A00FD1B4F /* AndroidConnector.swift */; };
 		8F1F5C49270208E100FD1B4F /* DataUsageWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F1F5C47270208E100FD1B4F /* DataUsageWindow.storyboard */; };
 		8F1F5C4A270208E100FD1B4F /* PreferencesWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F1F5C48270208E100FD1B4F /* PreferencesWindow.storyboard */; };
-		8F1F5C4C2702091200FD1B4F /* StatusItemWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1F5C4B2702091200FD1B4F /* StatusItemWindowController.swift */; };
+		8F1F5C4C2702091200FD1B4F /* FrontCenterWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1F5C4B2702091200FD1B4F /* FrontCenterWindowController.swift */; };
 		8F1F5C4F270209A300FD1B4F /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8F1F5C4D270209A300FD1B4F /* DataModel.xcdatamodeld */; };
 		8F1F5C51270209AE00FD1B4F /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 8F1F5C50270209AE00FD1B4F /* Localizable.stringsdict */; };
 		8F1F5C5727020AFE00FD1B4F /* TestSessionStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1F5C5627020AFE00FD1B4F /* TestSessionStorage.swift */; };
@@ -81,7 +81,7 @@
 		8F1F5C3B2702089A00FD1B4F /* AndroidConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AndroidConnector.swift; sourceTree = "<group>"; };
 		8F1F5C47270208E100FD1B4F /* DataUsageWindow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DataUsageWindow.storyboard; sourceTree = "<group>"; };
 		8F1F5C48270208E100FD1B4F /* PreferencesWindow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PreferencesWindow.storyboard; sourceTree = "<group>"; };
-		8F1F5C4B2702091200FD1B4F /* StatusItemWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusItemWindowController.swift; sourceTree = "<group>"; };
+		8F1F5C4B2702091200FD1B4F /* FrontCenterWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrontCenterWindowController.swift; sourceTree = "<group>"; };
 		8F1F5C4E270209A300FD1B4F /* TetheringHelper.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TetheringHelper.xcdatamodel; sourceTree = "<group>"; };
 		8F1F5C50270209AE00FD1B4F /* Localizable.stringsdict */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.stringsdict; path = Localizable.stringsdict; sourceTree = "<group>"; };
 		8F1F5C5627020AFE00FD1B4F /* TestSessionStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestSessionStorage.swift; sourceTree = "<group>"; };
@@ -185,7 +185,7 @@
 			children = (
 				8F1F5C292702086400FD1B4F /* DataUsageWindow */,
 				8F1F5C2A2702087000FD1B4F /* PreferencesWindow */,
-				8F1F5C4B2702091200FD1B4F /* StatusItemWindowController.swift */,
+				8F1F5C4B2702091200FD1B4F /* FrontCenterWindowController.swift */,
 			);
 			path = windows;
 			sourceTree = "<group>";
@@ -379,7 +379,7 @@
 				8F1F5C1C2702083700FD1B4F /* StatusItemMenu.swift in Sources */,
 				8F1F5C302702088500FD1B4F /* DataUsageVisualization.swift in Sources */,
 				8F1F5C1F2702085500FD1B4F /* StatusItemMenuDelegate.swift in Sources */,
-				8F1F5C4C2702091200FD1B4F /* StatusItemWindowController.swift in Sources */,
+				8F1F5C4C2702091200FD1B4F /* FrontCenterWindowController.swift in Sources */,
 				8F1F5C412702089A00FD1B4F /* AppDelegate.swift in Sources */,
 				8F1F5C262702085D00FD1B4F /* SignalType.swift in Sources */,
 			);

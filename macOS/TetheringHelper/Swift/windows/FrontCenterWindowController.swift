@@ -8,8 +8,8 @@
 
 import Cocoa
 
-/// StatusItemWindowController is used for windows created by NSStatusItem
-class StatusItemWindowController: NSWindowController {
+/// FrontCenterWindowController is used to bring a window to front and center it
+class FrontCenterWindowController: NSWindowController {
     override func showWindow(_ sender: Any?) {
         super.showWindow(sender)
         bringToFront()
