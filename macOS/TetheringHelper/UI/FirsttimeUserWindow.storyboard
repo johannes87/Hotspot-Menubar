@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="V3u-Nq-k5d">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19162"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Window Controller-->
+        <scene sceneID="Ko8-w9-lN3">
+            <objects>
+                <windowController id="V3u-Nq-k5d" customClass="FrontCenterWindowController" customModule="TetheringHelper" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" title="Hello and welcome!" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="wRr-KK-7FB">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="294" y="363" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1175"/>
+                        <view key="contentView" id="6u1-V8-3IG">
+                            <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </view>
+                        <connections>
+                            <outlet property="delegate" destination="V3u-Nq-k5d" id="xw9-bM-r14"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="TRt-nZ-aM3" kind="relationship" relationship="window.shadowedContentViewController" id="39t-HW-OOg"/>
+                    </connections>
+                </windowController>
+                <customObject id="aCe-Tv-Fum" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-370" y="48"/>
+        </scene>
+        <!--Firsttime User View Controller-->
+        <scene sceneID="Pt1-iT-eoe">
+            <objects>
+                <viewController id="TRt-nZ-aM3" customClass="FirsttimeUserViewController" customModule="TetheringHelper" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="p0f-Uq-bwb">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="344"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oSR-ln-3Ic">
+                                <rect key="frame" x="18" y="261" width="439" height="71"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" id="KA0-b4-E1I">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <string key="title">Welcome to Hotspot Menubar. To make this app work, you need to install the Hotspot Menubar Android app. Below is a QR code that you can scan with your Android phone to install it. Alternatively, click on the Google Play button below.
+</string>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LkA-4C-n6Y">
+                                <rect key="frame" x="62" y="92" width="158" height="158"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="groove" id="30x-Ll-LMC"/>
+                            </imageView>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wmL-Tq-lfw" customClass="GooglePlayBadgeButton" customModule="TetheringHelper" customModuleProvider="target">
+                                <rect key="frame" x="254" y="148" width="168" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="GooglePlayBadge" imagePosition="only" alignment="center" refusesFirstResponder="YES" imageScaling="proportionallyUpOrDown" inset="2" id="pZK-jm-MVu">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="googlePlayBadgeClicked:" target="TRt-nZ-aM3" id="OYR-Q2-8bx"/>
+                                </connections>
+                            </button>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3uE-a0-1b2">
+                                <rect key="frame" x="19" y="20" width="437" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" selectable="YES" id="ivu-pP-v2s">
+                                    <font key="font" metaFont="system"/>
+                                    <string key="title">This window will appear on launch until Hotspot Menubar successfully connected with your Android phone. To do so, enable Hotspot Menubar on Android, and enable and connect to your phone's hotspot from macOS. </string>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="qrCodeImageView" destination="LkA-4C-n6Y" id="10I-s3-28D"/>
+                    </connections>
+                </viewController>
+                <customObject id="Dk4-Ks-zi3" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-370" y="432"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="GooglePlayBadge" width="135" height="40"/>
+    </resources>
+</document>

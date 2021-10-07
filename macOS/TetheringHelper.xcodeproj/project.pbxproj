@@ -38,7 +38,10 @@
 		8F1F5C5F27020D1E00FD1B4F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1F5C5E27020D1E00FD1B4F /* AppDelegate.swift */; };
 		8F1F5C6127020D2000FD1B4F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F1F5C6027020D2000FD1B4F /* Assets.xcassets */; };
 		8F1F5C6427020D2000FD1B4F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F1F5C6227020D2000FD1B4F /* MainMenu.xib */; };
+		8F6DD81D270DBC6800A434DB /* FirsttimeUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6DD81C270DBC6800A434DB /* FirsttimeUserViewController.swift */; };
 		8FA5CF142703286C00E40092 /* TetheringHelperAutostart.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8F1F5C5C27020D1E00FD1B4F /* TetheringHelperAutostart.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		8FA835FA270F3AFC002827D8 /* GooglePlayBadgeImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA835F9270F3AFC002827D8 /* GooglePlayBadgeImageView.swift */; };
+		8FDB7253270F1EDA00BD2785 /* FirsttimeUserWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FDB7252270F1EDA00BD2785 /* FirsttimeUserWindow.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -90,6 +93,9 @@
 		8F1F5C6027020D2000FD1B4F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8F1F5C6327020D2000FD1B4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		8F1F5C6527020D2000FD1B4F /* TetheringHelperAutostart.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TetheringHelperAutostart.entitlements; sourceTree = "<group>"; };
+		8F6DD81C270DBC6800A434DB /* FirsttimeUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirsttimeUserViewController.swift; sourceTree = "<group>"; };
+		8FA835F9270F3AFC002827D8 /* GooglePlayBadgeImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlayBadgeImageView.swift; sourceTree = "<group>"; };
+		8FDB7252270F1EDA00BD2785 /* FirsttimeUserWindow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FirsttimeUserWindow.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +154,7 @@
 				8F1F5C09270207E800FD1B4F /* MainMenu.xib */,
 				8F1F5C47270208E100FD1B4F /* DataUsageWindow.storyboard */,
 				8F1F5C48270208E100FD1B4F /* PreferencesWindow.storyboard */,
+				8FDB7252270F1EDA00BD2785 /* FirsttimeUserWindow.storyboard */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -183,6 +190,7 @@
 		8F1F5C152702080600FD1B4F /* windows */ = {
 			isa = PBXGroup;
 			children = (
+				8F6DD81B270DBC5100A434DB /* FirsttimeUserWindow */,
 				8F1F5C292702086400FD1B4F /* DataUsageWindow */,
 				8F1F5C2A2702087000FD1B4F /* PreferencesWindow */,
 				8F1F5C4B2702091200FD1B4F /* FrontCenterWindowController.swift */,
@@ -253,6 +261,15 @@
 				8F1F5C6527020D2000FD1B4F /* TetheringHelperAutostart.entitlements */,
 			);
 			path = TetheringHelperAutostart;
+			sourceTree = "<group>";
+		};
+		8F6DD81B270DBC5100A434DB /* FirsttimeUserWindow */ = {
+			isa = PBXGroup;
+			children = (
+				8F6DD81C270DBC6800A434DB /* FirsttimeUserViewController.swift */,
+				8FA835F9270F3AFC002827D8 /* GooglePlayBadgeImageView.swift */,
+			);
+			path = FirsttimeUserWindow;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -340,6 +357,7 @@
 				8F1F5C0B270207E800FD1B4F /* MainMenu.xib in Resources */,
 				8F1F5C51270209AE00FD1B4F /* Localizable.stringsdict in Resources */,
 				8F1F5C49270208E100FD1B4F /* DataUsageWindow.storyboard in Resources */,
+				8FDB7253270F1EDA00BD2785 /* FirsttimeUserWindow.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,6 +380,7 @@
 				8F1F5C272702085D00FD1B4F /* SignalQuality.swift in Sources */,
 				8F1F5C332702088F00FD1B4F /* Date+clamp.swift in Sources */,
 				8F1F5C2C2702087E00FD1B4F /* GeneralPreferencesViewController.swift in Sources */,
+				8F6DD81D270DBC6800A434DB /* FirsttimeUserViewController.swift in Sources */,
 				8F1F5C5727020AFE00FD1B4F /* TestSessionStorage.swift in Sources */,
 				8F1F5C2F2702088500FD1B4F /* DataUsageViewController.swift in Sources */,
 				8F1F5C422702089A00FD1B4F /* SessionStorage.swift in Sources */,
@@ -376,6 +395,7 @@
 				8F1F5C342702088F00FD1B4F /* Date+Components.swift in Sources */,
 				8F1F5C202702085500FD1B4F /* StatusItemDelegate.swift in Sources */,
 				8F1F5C282702085D00FD1B4F /* PhoneSignal.swift in Sources */,
+				8FA835FA270F3AFC002827D8 /* GooglePlayBadgeImageView.swift in Sources */,
 				8F1F5C1C2702083700FD1B4F /* StatusItemMenu.swift in Sources */,
 				8F1F5C302702088500FD1B4F /* DataUsageVisualization.swift in Sources */,
 				8F1F5C1F2702085500FD1B4F /* StatusItemMenuDelegate.swift in Sources */,

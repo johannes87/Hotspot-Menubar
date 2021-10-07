@@ -12,13 +12,19 @@ import os
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     private let statusItem = StatusItem()
+    private let sessionStorage = SessionStorage()
+
     private var androidConnector: AndroidConnector!
     private var sessionTracker: SessionTracker!
+
+    private var firsttimeUserWindowController: NSWindowController?
 
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // don't show dock icon or application menu
         NSApp.setActivationPolicy(.accessory)
+
+        firsttimeUserDialog()
 
         androidConnector = AndroidConnector(
             statusItemDelegate: statusItem,
@@ -28,6 +34,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             statusItemMenuDelegate: statusItem.statusItemMenu
         )
         startBackgroundThread()
+    }
+
+    private func firsttimeUserDialog() {
+        // No sessions means the user hasn't connected to the phone yet
+        if sessionStorage.getTetheringSessions().count != 0 {
+            return
+        }
+
+        if firsttimeUserWindowController == nil {
+            let storyboard = NSStoryboard(name: "FirsttimeUserWindow", bundle: nil)
+            firsttimeUserWindowController = storyboard.instantiateInitialController() as? NSWindowController
+        }
+        firsttimeUserWindowController!.showWindow(nil)
     }
 
     private func startBackgroundThread() {

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AppKit
 
 class Utils {
     /// `waitFor` will wait synchronously until timeout is reached or condition returns true
@@ -22,5 +23,24 @@ class Utils {
             timeSlept += sleepDuration
         }
         return
+    }
+
+    // adapted from https://www.hackingwithswift.com/example-code/media/how-to-create-a-qr-code
+    static func generateQRCode(from string: String) -> NSImage? {
+        let data = string.data(using: String.Encoding.ascii)
+
+        if let filter = CIFilter(name: "CIQRCodeGenerator") {
+            filter.setValue(data, forKey: "inputMessage")
+            let transform = CGAffineTransform(scaleX: 9, y: 9)
+
+            if let output = filter.outputImage?.transformed(by: transform) {
+                let rep = NSCIImageRep(ciImage: output)
+                let nsImage = NSImage(size: rep.size)
+                nsImage.addRepresentation(rep)
+                return nsImage
+            }
+        }
+
+        return nil
     }
 }
