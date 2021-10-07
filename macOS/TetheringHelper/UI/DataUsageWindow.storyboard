@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="7xb-sn-KMt">
     <dependencies>
+        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19162"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -8,7 +9,7 @@
         <!--Window Controller-->
         <scene sceneID="saw-Lf-tAa">
             <objects>
-                <windowController id="7xb-sn-KMt" customClass="FrontAndCenterWindowController" customModule="TetheringHelper" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController id="7xb-sn-KMt" customClass="FrontCenterWindowController" customModule="TetheringHelper" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Data usage" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="DTf-WQ-qCY">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
