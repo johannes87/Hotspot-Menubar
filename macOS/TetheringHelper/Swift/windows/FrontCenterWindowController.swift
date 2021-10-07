@@ -10,9 +10,10 @@ import Cocoa
 
 /// FrontCenterWindowController is used to bring a window to front and center it
 class FrontCenterWindowController: NSWindowController {
-    override func showWindow(_ sender: Any?) {
-        super.showWindow(sender)
+    override func windowDidLoad() {
         bringToFront()
+        // make sure window position is not restored, so centering works
+        window?.isRestorable = false
         window?.center()
     }
 
