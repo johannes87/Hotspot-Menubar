@@ -20,11 +20,11 @@ enum GetBytesTransferredError: Error {
 class SessionTracker {
     private(set) var bytesTransferred: UInt64 = 0
 
+    private let statusItemMenuDelegate: StatusItemMenuDelegate
+    private let sessionStorage: SessionStorage
+
     private var sessionActive = false
     private var lastIfaddrsBytesTransferred: (inputBytes: UInt32, outputBytes: UInt32) = (0, 0)
-    private var statusItemMenuDelegate: StatusItemMenuDelegate
-
-    private let sessionStorage: SessionStorage
     private var currentTetheringSession: TetheringSession?
 
     init(sessionStorage: SessionStorage, statusItemMenuDelegate: StatusItemMenuDelegate) {
