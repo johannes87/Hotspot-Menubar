@@ -31,6 +31,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             statusItemMenuDelegate: statusItem.statusItemMenu
         )
         sessionTracker = SessionTracker(
+            sessionStorage: sessionStorage,
             statusItemMenuDelegate: statusItem.statusItemMenu
         )
         startBackgroundThread()

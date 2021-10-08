@@ -24,10 +24,11 @@ class SessionTracker {
     private var lastIfaddrsBytesTransferred: (inputBytes: UInt32, outputBytes: UInt32) = (0, 0)
     private var statusItemMenuDelegate: StatusItemMenuDelegate
 
-    private let sessionStorage = SessionStorage()
+    private let sessionStorage: SessionStorage
     private var currentTetheringSession: TetheringSession?
 
-    init(statusItemMenuDelegate: StatusItemMenuDelegate) {
+    init(sessionStorage: SessionStorage, statusItemMenuDelegate: StatusItemMenuDelegate) {
+        self.sessionStorage = sessionStorage
         self.statusItemMenuDelegate = statusItemMenuDelegate
     }
 
