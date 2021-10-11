@@ -55,7 +55,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
                 // TODO: why does getSignal take so long?
                 self.androidConnector.getSignal()
-                // TODO: diablo 2 play disc transfer: 615MB shown vs 582MB filesize; check how much data was uploaded on xfer
                 self.sessionTracker.trackSession(
                     pairingStatus: self.androidConnector.pairingStatus,
                     localInterfaceName: self.androidConnector.tetheringInterfaceName
