@@ -90,7 +90,7 @@ class SessionTracker {
     /// Parameter `forInterface`: The interface for which to acquire the number of bytes transferred
     /// Returns: a tuple with two UInt32, which corresponds to `getifaddrs`'s `ifi_ibytes` and `ifi_obytes`
     private func getIfaddrsBytesTransferred(forInterface: String) throws -> (inputBytes: UInt32, outputBytes: UInt32) {
-        // the initial pointer is needed so it can be passwd to "freeifaddrs" at the end
+        // the initial pointer is needed so it can be passed to "freeifaddrs" at the end
         var initialIfaddrs: UnsafeMutablePointer<ifaddrs>!
 
         var foundData = false
