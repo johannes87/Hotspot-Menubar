@@ -21,14 +21,12 @@ class SessionTracker {
     private(set) var bytesTransferred: UInt64 = 0
 
     private let statusItemMenuDelegate: StatusItemMenuDelegate
-    private let sessionStorage: SessionStorage
 
     private var sessionActive = false
     private var lastIfaddrsBytesTransferred: (inputBytes: UInt32, outputBytes: UInt32) = (0, 0)
     private var currentTetheringSession: TetheringSession?
 
-    init(sessionStorage: SessionStorage, statusItemMenuDelegate: StatusItemMenuDelegate) {
-        self.sessionStorage = sessionStorage
+    init(statusItemMenuDelegate: StatusItemMenuDelegate) {
         self.statusItemMenuDelegate = statusItemMenuDelegate
     }
 
@@ -47,8 +45,8 @@ class SessionTracker {
 
                 lastIfaddrsBytesTransferred = ifaddrsBytesTransferred
 
-                currentTetheringSession = sessionStorage.createNewTetheringSession(withPhoneName: pairingStatus.phoneName!)
-                sessionStorage.save()
+                currentTetheringSession = PersistentContainer.shared.createNewTetheringSession(withPhoneName: pairingStatus.phoneName!)
+                PersistentContainer.shared.save()
             } else {
                 let inputBytesDifference = getBytesTransferredDifference(
                     bytesPast: lastIfaddrsBytesTransferred.inputBytes,
@@ -61,7 +59,7 @@ class SessionTracker {
                 statusItemMenuDelegate.sessionBytesTransferredUpdated(bytesTransferred: bytesTransferred)
 
                 currentTetheringSession?.bytesTransferred = Int64(bytesTransferred)
-                sessionStorage.save()
+                PersistentContainer.shared.save()
 
                 os_log(.debug, "Transferred %f MB this session", Double(bytesTransferred) / 1024 / 1024)
                 lastIfaddrsBytesTransferred = ifaddrsBytesTransferred

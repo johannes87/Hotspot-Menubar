@@ -12,7 +12,6 @@ import os
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     private let statusItem = StatusItem()
-    private let sessionStorage = SessionStorage()
 
     private var androidConnector: AndroidConnector!
     private var sessionTracker: SessionTracker!
@@ -31,7 +30,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             statusItemMenuDelegate: statusItem.statusItemMenu
         )
         sessionTracker = SessionTracker(
-            sessionStorage: sessionStorage,
             statusItemMenuDelegate: statusItem.statusItemMenu
         )
         startBackgroundThread()
@@ -39,7 +37,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     private func firsttimeUserDialog() {
         // No sessions means the user hasn't connected to the phone yet
-        if sessionStorage.getTetheringSessions().count != 0 {
+        if PersistentContainer.shared.getTetheringSessions().count != 0 {
             return
         }
 

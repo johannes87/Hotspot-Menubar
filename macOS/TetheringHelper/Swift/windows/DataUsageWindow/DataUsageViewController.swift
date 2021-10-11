@@ -47,8 +47,7 @@ class DataUsageViewController: NSViewController {
         monthFormatter.dateFormat = "LLLL"
         monthFormatter.calendar = Calendar.init(identifier: .gregorian)
 
-        let sessionStorage = SessionStorage()
-        let tetheringSessions = sessionStorage.getTetheringSessions()
+        let tetheringSessions = PersistentContainer.shared.getTetheringSessions()
 
         firstSessionCreated = tetheringSessions.last?.created
         lastSessionCreated = tetheringSessions.first?.created

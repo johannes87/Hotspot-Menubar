@@ -1,24 +1,21 @@
 //
-//  TestSessionStorage.swift
+//  TestPersistentContainer.swift
 //  TetheringHelper
 //
-//  Created by Johannes Bittner on 06.07.21.
-//  Copyright © 2021 Johannes Bittner. All rights reserved.
+//  Created by Johannes Bittner on 11.10.21.
 //
 
 import Foundation
 import CoreData
 
-/// A SessionStorage that creates in-memory test TetheringSession objects for at least a full year until the current time
-/// Used in places like DataUsageVisualiziation manually, by replacing SessionStorage with TestSessionStorage
-class TestSessionStorage : SessionStorage {
-    override init() {
-        super.init()
-
+/// Intended to be used by replacing "PersistentContainer.shared" in the codebase with one of the statically defined TestPersistentContainers
+class TestPersistentContainer: PersistentContainer {
+    /// An empty in-memory container containing no sessions
+    static let emptyInMemoryShared: TestPersistentContainer = {
         let persistentStoreDescription = NSPersistentStoreDescription()
         persistentStoreDescription.type = NSInMemoryStoreType
 
-        let container = NSPersistentContainer(name: modelName)
+        let container = TestPersistentContainer(name: modelName)
         container.persistentStoreDescriptions = [persistentStoreDescription]
 
         container.loadPersistentStores { _, error in
@@ -27,12 +24,17 @@ class TestSessionStorage : SessionStorage {
             }
         }
 
-        persistentContainer = container
+        return container
+    }()
 
-        createTestSessions()
-    }
+    /// A container containing test sessions for a few years
+    static let testSessionsShared: TestPersistentContainer = {
+        let container = emptyInMemoryShared
+        container.createTestSessions()
+        return container
+    }()
 
-    func createTestSessions() {
+    private func createTestSessions() {
         // Configuration
         let phoneName = "TestSessionStoragePhone"
         let sessionsPerDay = 3
@@ -81,11 +83,10 @@ class TestSessionStorage : SessionStorage {
                         // use sessionNumber for hour value. Assuming sessionsPerDay < 24 here
                         let dateComponents = DateComponents(year: year, month: month, day: day, hour: sessionNumber)
                         session.created = calendar.date(from: dateComponents)
-                        
+
                         let megaByte: Int64 = 1024*1024
                         session.bytesTransferred = Int64.random(in: 3 * megaByte...300 * megaByte)
 
-                        save()
                         print("Created test session with created=\(String(describing: session.created!)), bytesTransferred=\(session.bytesTransferred)")
                     }
                 }
