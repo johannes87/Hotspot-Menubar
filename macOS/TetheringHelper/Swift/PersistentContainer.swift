@@ -23,36 +23,54 @@ class PersistentContainer: NSPersistentContainer {
     }()
 
     func createNewTetheringSession(withPhoneName phoneName: String) -> TetheringSession {
-        let session = TetheringSession(context: viewContext)
-        session.created = Date()
-        session.bytesTransferred = 0
-        session.phoneName = phoneName
-        viewContext.insert(session)
-        return session
+        var newSession: TetheringSession!
+        
+        viewContext.performAndWait {
+            newSession = TetheringSession(context: viewContext)
+            newSession.created = Date()
+            newSession.bytesTransferred = 0
+            newSession.phoneName = phoneName
+            viewContext.insert(newSession)
+            save()
+        }
+        
+        return newSession
+    }
+    
+    func updateTetheringSession(_ session: TetheringSession, withBytesTransferred bytesTransferred: Int64) {
+        viewContext.performAndWait {
+            session.bytesTransferred = bytesTransferred
+            save()
+        }
     }
 
     /// getTetheringSessions retrieves all TetheringSession objects, sorted descending by creation date
     func getTetheringSessions() -> [TetheringSession] {
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(
-            entityName: String(describing: TetheringSession.self))
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "created", ascending: false)]
-
-        do {
-            let fetechedTetheringSessions = try viewContext
-                .fetch(fetchRequest) as! [TetheringSession]
-
-            return fetechedTetheringSessions
-        } catch {
-            fatalError("Error fetching sessions in PersistentContainer, please report a bug: \(error)")
+        var fetchedTetheringSessions: [TetheringSession] = []
+        
+        viewContext.performAndWait {
+            do {
+                let fetchRequest = NSFetchRequest<NSFetchRequestResult>(
+                    entityName: String(describing: TetheringSession.self))
+                fetchRequest.sortDescriptors = [NSSortDescriptor(key: "created", ascending: false)]
+                
+                fetchedTetheringSessions = try viewContext.fetch(fetchRequest) as! [TetheringSession]
+            } catch {
+                fatalError("Error fetching sessions in PersistentContainer, please report a bug: \(error)")
+            }
         }
+        
+        return fetchedTetheringSessions
     }
 
     /// Convenience function that handles exception when saving
-    func save() {
-        do {
-            try viewContext.save()
-        } catch {
-            fatalError("Error saving viewContext in PersistentContainer, please report a bug: \(error)")
+    private func save() {
+        viewContext.performAndWait {
+            do {
+                try viewContext.save()
+            } catch {
+                fatalError("Error saving viewContext in PersistentContainer, please report a bug: \(error)")
+            }
         }
     }
 }
