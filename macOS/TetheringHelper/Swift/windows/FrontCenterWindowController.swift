@@ -16,6 +16,11 @@ class FrontCenterWindowController: NSWindowController {
         window?.isRestorable = false
         window?.center()
     }
+    
+    override func showWindow(_ sender: Any?) {
+        // ensure window is brought to front even if it's been loaded before
+        bringToFront()
+    }
 
     // TODO: make window close with cmd+w
 
