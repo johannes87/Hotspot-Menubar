@@ -40,6 +40,8 @@ class DataUsageViewController: NSViewController {
 
     /// The date that is being visualized. Only the year and month components of the date are used
     private var currentDate = Date()
+    
+    private var sessionChangeObserver: Any?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,14 +49,7 @@ class DataUsageViewController: NSViewController {
         monthFormatter.dateFormat = "LLLL"
         monthFormatter.calendar = Calendar.init(identifier: .gregorian)
 
-        let tetheringSessions = PersistentContainer.shared.getTetheringSessions()
-
-        firstSessionCreated = tetheringSessions.last?.created
-        lastSessionCreated = tetheringSessions.first?.created
-
-        currentDate = lastSessionCreated!
-
-        aggregateDataUsageByMonthAndDay(tetheringSessions: tetheringSessions)
+        processSessions()
 
         populateYearPopupButton()
         populateMonthPopupButton()
@@ -62,7 +57,12 @@ class DataUsageViewController: NSViewController {
     }
 
     override func viewDidAppear() {
+        observeSessionChanges()
         visualizeDataUsageOfCurrentDate()
+    }
+    
+    override func viewDidDisappear() {
+        removeSessionChangeObserver()
     }
 
     @IBAction func monthPopUpButtonChanged(_ sender: Any) {
@@ -203,6 +203,9 @@ class DataUsageViewController: NSViewController {
         var prevDay: Int?
         var prevYearMonthKey: YearMonthKey?
         var prevSession: TetheringSession?
+        
+        // reset because it's going to be called again
+        dataUsageByMonthAndDay = [:]
 
         // The aggregation assumes tetheringSessions is sorted
         tetheringSessions.forEach { session in
@@ -228,6 +231,41 @@ class DataUsageViewController: NSViewController {
             prevDay = day
             prevYearMonthKey = yearMonthKey
             prevSession = session
+        }
+    }
+    
+    private func processSessions() {
+        let tetheringSessions = PersistentContainer.shared.getTetheringSessions()
+
+        firstSessionCreated = tetheringSessions.last?.created
+        lastSessionCreated = tetheringSessions.first?.created
+
+        currentDate = lastSessionCreated!
+
+        aggregateDataUsageByMonthAndDay(tetheringSessions: tetheringSessions)
+    }
+    
+    private func observeSessionChanges() {
+        sessionChangeObserver = NotificationCenter.default.addObserver(
+            forName: .NSManagedObjectContextObjectsDidChange,
+            object: nil,
+            queue: nil) { [weak self] notification in
+                let insertedSessionSet = notification.userInfo?[NSInsertedObjectsKey] as? Set<TetheringSession>
+                let updatedSessionSet = notification.userInfo?[NSUpdatedObjectsKey] as? Set<TetheringSession>
+                // we're only interested in TetheringSession changes
+                if insertedSessionSet == nil && updatedSessionSet == nil {
+                    return
+                }
+                
+                self?.processSessions()
+                self?.visualizeDataUsageOfCurrentDate()
+        }
+    }
+    
+    private func removeSessionChangeObserver() {
+        if let observer = sessionChangeObserver {
+            NotificationCenter.default.removeObserver(observer)
+            sessionChangeObserver = nil
         }
     }
 }
