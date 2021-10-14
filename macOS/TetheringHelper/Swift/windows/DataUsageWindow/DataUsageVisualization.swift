@@ -154,8 +154,17 @@ class DataUsageVisualization : NSView {
         dailyDataUsagePopover!.behavior = .transient
         dailyDataUsagePopover!.animates = false
         dailyDataUsagePopover!.contentViewController = contentViewController
-
-        dailyDataUsagePopover!.show(relativeTo: event.trackingArea!.rect, of: self, preferredEdge: .maxY)
+        
+        // ensure the popover is shown inside the view
+        var preferredEdge: NSRectEdge
+        let popoverDecorationSize: CGFloat = 15
+        if contentViewController.view.frame.width + popoverDecorationSize > event.trackingArea!.rect.origin.x {
+            preferredEdge = .maxX
+        } else {
+            preferredEdge = .minX
+        }
+        
+        dailyDataUsagePopover!.show(relativeTo: event.trackingArea!.rect, of: self, preferredEdge: preferredEdge)
     }
 
     override func mouseExited(with event: NSEvent) {
