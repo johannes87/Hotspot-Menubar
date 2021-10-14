@@ -64,8 +64,8 @@ class DataUsageVisualization : NSView {
             if dayDataUsage.bytesTransferred > 0 {
                 barHeight = Int((Double(dayDataUsage.bytesTransferred) / Double(maxUsageInMonth)) * Double(maxBarHeight))
                 
-                // barHeight might be rounded to 0 for small `bytesTransferred`, make its height at least 1 point
-                barHeight = barHeight == 0 ? 1 : barHeight
+                // barHeight might be rounded to 0 for small `bytesTransferred`; make its height at least 2 points
+                barHeight = barHeight < 2 ? 2 : barHeight
             }
             
             // Draw the bar showing the data usage for a day
