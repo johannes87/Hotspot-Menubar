@@ -19,7 +19,7 @@ class StatusItemMenu: NSObject, StatusItemMenuDelegate {
         "Not paired",
         comment: "shown in status item menu when not paired yet")
     private static let pairMenuItemPairedTitle = NSLocalizedString(
-        "Paired with %@",
+        "Connected to %@",
         comment: "shown in status item menu when paired")
     private static let sessionDurationMenuItemTitle = NSLocalizedString(
         "Online since %@",
