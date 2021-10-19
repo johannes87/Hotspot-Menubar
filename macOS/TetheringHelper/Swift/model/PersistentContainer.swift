@@ -21,6 +21,28 @@ class PersistentContainer: NSPersistentContainer {
         }
         return container
     }()
+    
+    /// Observes when a TetheringSession is changed by CoreData
+    ///
+    /// - Parameter onChange:the block that executes when the a session changes
+    /// - Returns: The object returned by `NotificationCenter.addObserver`. You are responsible for removing the observation using this object.
+    static func observeSessionChanges(onChange: @escaping (TetheringSession) -> ()) -> Any {
+        return NotificationCenter.default.addObserver(
+            forName: .NSManagedObjectContextObjectsDidChange,
+            object: nil,
+            queue: nil) { notification in
+                let insertedSession = (notification.userInfo?[NSInsertedObjectsKey] as? Set<TetheringSession>)?.first
+                let updatedSession = (notification.userInfo?[NSUpdatedObjectsKey] as? Set<TetheringSession>)?.first
+                
+                if insertedSession != nil {
+                    onChange(insertedSession!)
+                } else if updatedSession != nil {
+                    onChange(updatedSession!)
+                } else {
+                    return
+                }
+        }
+    }
 
     func createNewTetheringSession(withPhoneName phoneName: String) -> TetheringSession {
         var newSession: TetheringSession!

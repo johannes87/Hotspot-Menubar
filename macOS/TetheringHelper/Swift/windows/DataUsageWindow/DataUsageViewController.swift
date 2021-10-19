@@ -246,19 +246,9 @@ class DataUsageViewController: NSViewController {
     }
     
     private func observeSessionChanges() {
-        sessionChangeObserver = NotificationCenter.default.addObserver(
-            forName: .NSManagedObjectContextObjectsDidChange,
-            object: nil,
-            queue: nil) { [weak self] notification in
-                let insertedSessionSet = notification.userInfo?[NSInsertedObjectsKey] as? Set<TetheringSession>
-                let updatedSessionSet = notification.userInfo?[NSUpdatedObjectsKey] as? Set<TetheringSession>
-                // we're only interested in TetheringSession changes
-                if insertedSessionSet == nil && updatedSessionSet == nil {
-                    return
-                }
-                
-                self?.processSessions()
-                self?.visualizeDataUsageOfCurrentDate()
+        sessionChangeObserver = PersistentContainer.observeSessionChanges { [weak self] session in
+            self?.processSessions()
+            self?.visualizeDataUsageOfCurrentDate()
         }
     }
     

@@ -9,6 +9,5 @@
 import Foundation
 
 protocol StatusItemMenuDelegate {
-    func sessionBytesTransferredUpdated(bytesTransferred: UInt64)
     func pairingStatusUpdated(pairingStatus: PairingStatus)
 }

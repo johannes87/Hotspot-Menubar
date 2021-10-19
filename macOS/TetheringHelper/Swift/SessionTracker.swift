@@ -54,8 +54,6 @@ class SessionTracker {
                     bytesPast: lastIfaddrsBytesTransferred.outputBytes,
                     bytesNow: ifaddrsBytesTransferred.outputBytes)
                 bytesTransferred += UInt64(inputBytesDifference) + UInt64(outputBytesDifference)
-
-                statusItemMenuDelegate.sessionBytesTransferredUpdated(bytesTransferred: bytesTransferred)
                 
                 PersistentContainer.shared.updateTetheringSession(
                     currentTetheringSession!,

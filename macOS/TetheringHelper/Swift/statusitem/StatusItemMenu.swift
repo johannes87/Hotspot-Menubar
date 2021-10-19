@@ -21,6 +21,9 @@ class StatusItemMenu: NSObject, StatusItemMenuDelegate {
     private static let pairMenuItemPairedTitle = NSLocalizedString(
         "Paired with %@",
         comment: "shown in status item menu when paired")
+    private static let sessionDurationMenuItemTitle = NSLocalizedString(
+        "Online since %@",
+        comment: "shown in status item menu when paired, showing the length of the session, like '5 min 2 sec'")
     private static let preferencesMenuItemTitle = NSLocalizedString(
         "Preferences...",
         comment: "menu item in menubar for showing preferences window")
@@ -33,19 +36,31 @@ class StatusItemMenu: NSObject, StatusItemMenuDelegate {
 
     // `menu` is non-private because it needs to be accessed from StatusItem.swift
     var menu: NSMenu!
+    
+    private let sessionDurationFormatter = DateComponentsFormatter()
 
     private var dataUsageMenuItem: NSMenuItem!
     private var pairMenuItem: NSMenuItem!
+    private var sessionDurationMenuItem: NSMenuItem!
     private var preferencesMenuItem: NSMenuItem!
     private var aboutMenuItem: NSMenuItem!
     private var quitMenuItem: NSMenuItem!
 
     private var preferencesWindowController: NSWindowController!
     private var dataUsageWindowController: NSWindowController!
+    
+    private var sessionChangeObserver: Any?
+
+    private var pairingStatus: PairingStatus = .unpaired
 
     override init() {
         super.init()
+        
+        sessionDurationFormatter.unitsStyle = .short
+        sessionDurationFormatter.allowedUnits = [.hour, .minute, .second]
+        
         createMenu()
+        observeSessionChanges()
     }
 
     private func createMenu() {
@@ -57,11 +72,18 @@ class StatusItemMenu: NSObject, StatusItemMenuDelegate {
             keyEquivalent: "")
         dataUsageMenuItem.target = self
 
-        // pairMenuItem is for information only, so it's disabled (action=nil and no target)
+        // Items with action=nil and no target are disabled, they exist only for informational purposes
         pairMenuItem = NSMenuItem(
             title: StatusItemMenu.pairMenuItemUnpairedTitle,
             action: nil,
             keyEquivalent: "")
+        
+        sessionDurationMenuItem = NSMenuItem(
+            title: StatusItemMenu.sessionDurationMenuItemTitle,
+            action: nil,
+            keyEquivalent: "")
+        // item is only visible when paired
+        sessionDurationMenuItem.isHidden = true
 
         preferencesMenuItem = NSMenuItem(
             title: StatusItemMenu.preferencesMenuItemTitle,
@@ -83,10 +105,27 @@ class StatusItemMenu: NSObject, StatusItemMenuDelegate {
 
         menu.insertItem(dataUsageMenuItem, at: 0)
         menu.insertItem(pairMenuItem, at: 1)
-        menu.insertItem(NSMenuItem.separator(), at: 2)
-        menu.insertItem(preferencesMenuItem, at: 3)
-        menu.insertItem(aboutMenuItem, at: 4)
-        menu.insertItem(quitMenuItem, at: 5)
+        menu.insertItem(sessionDurationMenuItem, at: 2)
+        menu.insertItem(NSMenuItem.separator(), at: 3)
+        menu.insertItem(preferencesMenuItem, at: 4)
+        menu.insertItem(aboutMenuItem, at: 5)
+        menu.insertItem(quitMenuItem, at: 6)
+    }
+    
+    private func observeSessionChanges() {
+        // We don't save the addObserver result because we want the observation to stay active during the lifetime of this app
+        let _ = PersistentContainer.observeSessionChanges { [unowned self] session in
+            DispatchQueue.main.async {
+                guard let phoneName = pairingStatus.phoneName else { return }
+                let megabytesTransferred = Double(session.bytesTransferred) / 1024 / 1024
+                let sessionDuration = session.created!.distance(to: Date())
+                let sessionDurationText = self.sessionDurationFormatter.string(from: sessionDuration)!
+                
+                self.dataUsageMenuItem.title = String(format: StatusItemMenu.dataUsageMenuItemPairedTitle, megabytesTransferred)
+                self.pairMenuItem.title = String(format: StatusItemMenu.pairMenuItemPairedTitle, phoneName)
+                self.sessionDurationMenuItem.title = String(format: StatusItemMenu.sessionDurationMenuItemTitle, sessionDurationText)
+            }
+        }
     }
 
     @IBAction private func showDataUsageWindow(sender: Any) {
@@ -115,20 +154,21 @@ class StatusItemMenu: NSObject, StatusItemMenuDelegate {
     }
 
     // MARK: StatusItemMenuDelegate
-    func sessionBytesTransferredUpdated(bytesTransferred: UInt64) {
-        DispatchQueue.main.async {
-            let megabytesTransferred = Double(bytesTransferred) / 1024 / 1024
-            self.dataUsageMenuItem.title = String(format: StatusItemMenu.dataUsageMenuItemPairedTitle, megabytesTransferred)
-        }
-    }
-
     func pairingStatusUpdated(pairingStatus: PairingStatus) {
+        self.pairingStatus = pairingStatus
+        
         // UI needs to be updated in main loop
         DispatchQueue.main.async {
             if let phoneName = pairingStatus.phoneName {
+                self.sessionDurationMenuItem.isHidden = false
+                
                 self.pairMenuItem.title = String(format: StatusItemMenu.pairMenuItemPairedTitle, phoneName)
                 self.dataUsageMenuItem.title = String(format: StatusItemMenu.dataUsageMenuItemPairedTitle, 0)
+                self.sessionDurationMenuItem.title = String(format: StatusItemMenu.sessionDurationMenuItemTitle,
+                                                            self.sessionDurationFormatter.string(from: 0.0)!)
             } else {
+                self.sessionDurationMenuItem.isHidden = true
+                
                 self.pairMenuItem.title = StatusItemMenu.pairMenuItemUnpairedTitle
                 self.dataUsageMenuItem.title = StatusItemMenu.dataUsageMenuItemUnpairedTitle
             }
