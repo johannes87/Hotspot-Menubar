@@ -172,7 +172,6 @@
 				8F1F5C352702089A00FD1B4F /* Autostart.swift */,
 				8F1F5C362702089A00FD1B4F /* PreferencesStorage.swift */,
 				8F1F5C3A2702089A00FD1B4F /* SessionTracker.swift */,
-				8F22CF4E2714913E00F66B7D /* PersistentContainer.swift */,
 				8F1F5C372702089A00FD1B4F /* Utils.swift */,
 			);
 			path = Swift;
@@ -201,6 +200,7 @@
 		8F1F5C162702080E00FD1B4F /* model */ = {
 			isa = PBXGroup;
 			children = (
+				8F22CF4E2714913E00F66B7D /* PersistentContainer.swift */,
 				8F1F5C212702085C00FD1B4F /* PairingStatus.swift */,
 				8F1F5C242702085C00FD1B4F /* PhoneSignal.swift */,
 				8F1F5C232702085C00FD1B4F /* SignalQuality.swift */,
