@@ -193,6 +193,11 @@ class DataUsageViewController: NSViewController {
             dataUsageVisualization.dataUsage = nil
         }
 
+        showMonthlyDataUsage(monthlyBytesUsage: monthlyBytesUsage)
+        showDateInTitle()
+    }
+    
+    private func showMonthlyDataUsage(monthlyBytesUsage: Int64) {
         let monthlyDataUsageTextTemplate = NSLocalizedString(
             "%@ used in",
             comment: "text for monthly data usage in data usage window next to date selection (less than or equal 1 gigabyte)"
@@ -200,16 +205,18 @@ class DataUsageViewController: NSViewController {
         let monthlyDataUsageText = String(format: monthlyDataUsageTextTemplate,
                                           Utils.byteCountFormatter.string(fromByteCount: monthlyBytesUsage))
         monthlyDataUsageTextField.stringValue = monthlyDataUsageText
-        
+    }
+    
+    private func showDateInTitle() {
         let monthYearFormatter = DateFormatter()
         monthYearFormatter.calendar = Calendar.init(identifier: .gregorian)
         monthYearFormatter.setLocalizedDateFormatFromTemplate("MMMMyyyy")
-
-        let windowTitle = NSLocalizedString(
+        
+        let windowTitleTemplate = NSLocalizedString(
             "Data usage on %@",
             comment: "window title for data usage window, e.g. 'Data usage on September 2021'")
 
-        view.window?.title = String(format: windowTitle, monthYearFormatter.string(from: currentDate))
+        view.window?.title = String(format: windowTitleTemplate, monthYearFormatter.string(from: currentDate))
     }
 
     private func aggregateDataUsageByMonthAndDay(tetheringSessions: [TetheringSession]) {
