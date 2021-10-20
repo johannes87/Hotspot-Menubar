@@ -100,6 +100,31 @@ class DataUsageViewController: NSViewController {
     @IBAction func prevMonthButtonClicked(_ sender: Any) {
         selectNextOrPreviousMonth(searchDirection: .previous)
     }
+    
+    private func processSessions() {
+        let tetheringSessions = PersistentContainer.shared.getTetheringSessions()
+
+        firstSessionCreated = tetheringSessions.last?.created
+        lastSessionCreated = tetheringSessions.first?.created
+
+        currentDate = lastSessionCreated!
+
+        aggregateDataUsageByMonthAndDay(tetheringSessions: tetheringSessions)
+    }
+    
+    private func observeSessionChanges() {
+        sessionChangeObserver = PersistentContainer.observeSessionChanges { [weak self] session in
+            self?.processSessions()
+            self?.visualizeDataUsageOfCurrentDate()
+        }
+    }
+    
+    private func removeSessionChangeObserver() {
+        if let observer = sessionChangeObserver {
+            NotificationCenter.default.removeObserver(observer)
+            sessionChangeObserver = nil
+        }
+    }
 
     private func selectNextOrPreviousMonth(searchDirection: MonthSearchDirection) {
         var currentDateIsInBounds: () -> Bool
@@ -220,31 +245,6 @@ class DataUsageViewController: NSViewController {
             prevDay = day
             prevYearMonthKey = yearMonthKey
             prevSession = session
-        }
-    }
-    
-    private func processSessions() {
-        let tetheringSessions = PersistentContainer.shared.getTetheringSessions()
-
-        firstSessionCreated = tetheringSessions.last?.created
-        lastSessionCreated = tetheringSessions.first?.created
-
-        currentDate = lastSessionCreated!
-
-        aggregateDataUsageByMonthAndDay(tetheringSessions: tetheringSessions)
-    }
-    
-    private func observeSessionChanges() {
-        sessionChangeObserver = PersistentContainer.observeSessionChanges { [weak self] session in
-            self?.processSessions()
-            self?.visualizeDataUsageOfCurrentDate()
-        }
-    }
-    
-    private func removeSessionChangeObserver() {
-        if let observer = sessionChangeObserver {
-            NotificationCenter.default.removeObserver(observer)
-            sessionChangeObserver = nil
         }
     }
 }
