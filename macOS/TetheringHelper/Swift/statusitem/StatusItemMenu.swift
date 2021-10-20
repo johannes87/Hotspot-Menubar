@@ -15,15 +15,15 @@ class StatusItemMenu: NSObject, StatusItemMenuDelegate {
     private static let dataUsageMenuItemPairedTitle = NSLocalizedString(
         "Data used: %@",
         comment: "statusitem menu item, shows amount of data used when paired")
+    private static let sessionDurationMenuItemTitle = NSLocalizedString(
+        "Online since %@",
+        comment: "shown in status item menu when paired, showing the length of the session, like '5 min 2 sec'")
     private static let pairMenuItemUnpairedTitle = NSLocalizedString(
         "Not paired",
         comment: "shown in status item menu when not paired yet")
     private static let pairMenuItemPairedTitle = NSLocalizedString(
         "Connected to %@",
         comment: "shown in status item menu when paired")
-    private static let sessionDurationMenuItemTitle = NSLocalizedString(
-        "Online since %@",
-        comment: "shown in status item menu when paired, showing the length of the session, like '5 min 2 sec'")
     private static let preferencesMenuItemTitle = NSLocalizedString(
         "Preferences...",
         comment: "menu item in menubar for showing preferences window")
@@ -40,8 +40,8 @@ class StatusItemMenu: NSObject, StatusItemMenuDelegate {
     private let sessionDurationFormatter = DateComponentsFormatter()
 
     private var dataUsageMenuItem: NSMenuItem!
-    private var pairMenuItem: NSMenuItem!
     private var sessionDurationMenuItem: NSMenuItem!
+    private var pairMenuItem: NSMenuItem!
     private var preferencesMenuItem: NSMenuItem!
     private var aboutMenuItem: NSMenuItem!
     private var quitMenuItem: NSMenuItem!
@@ -73,17 +73,17 @@ class StatusItemMenu: NSObject, StatusItemMenuDelegate {
         dataUsageMenuItem.target = self
 
         // Items with action=nil and no target are disabled, they exist only for informational purposes
-        pairMenuItem = NSMenuItem(
-            title: StatusItemMenu.pairMenuItemUnpairedTitle,
-            action: nil,
-            keyEquivalent: "")
-        
         sessionDurationMenuItem = NSMenuItem(
             title: StatusItemMenu.sessionDurationMenuItemTitle,
             action: nil,
             keyEquivalent: "")
         // item is only visible when paired
         sessionDurationMenuItem.isHidden = true
+        
+        pairMenuItem = NSMenuItem(
+            title: StatusItemMenu.pairMenuItemUnpairedTitle,
+            action: nil,
+            keyEquivalent: "")
 
         preferencesMenuItem = NSMenuItem(
             title: StatusItemMenu.preferencesMenuItemTitle,
@@ -104,8 +104,8 @@ class StatusItemMenu: NSObject, StatusItemMenuDelegate {
         quitMenuItem.target = self
 
         menu.insertItem(dataUsageMenuItem, at: 0)
-        menu.insertItem(pairMenuItem, at: 1)
-        menu.insertItem(sessionDurationMenuItem, at: 2)
+        menu.insertItem(sessionDurationMenuItem, at: 1)
+        menu.insertItem(pairMenuItem, at: 2)
         menu.insertItem(NSMenuItem.separator(), at: 3)
         menu.insertItem(preferencesMenuItem, at: 4)
         menu.insertItem(aboutMenuItem, at: 5)
