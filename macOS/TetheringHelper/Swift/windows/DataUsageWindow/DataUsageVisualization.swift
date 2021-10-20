@@ -13,7 +13,10 @@ private let trackingAreaKeyDataUsage = "dataUsage"
 
 @IBDesignable
 class DataUsageVisualization : NSView {
-    var dataUsage: [DataUsage]? {
+    /// The data that is shown in the chart
+    ///
+    /// - Note: Initial value set to show chart in storyboard (IBDesignable)
+    var dataUsage: [DataUsage]? = [DataUsage(bytesTransferred: 1000000, date: Date())] {
         didSet {
             needsDisplay = true
         }
