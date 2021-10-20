@@ -168,25 +168,14 @@ class DataUsageViewController: NSViewController {
             dataUsageVisualization.dataUsage = nil
         }
 
-        let monthlyDataUsageTextMB = NSLocalizedString(
-            "%.2f MB used in",
+        let monthlyDataUsageTextTemplate = NSLocalizedString(
+            "%@ used in",
             comment: "text for monthly data usage in data usage window next to date selection (less than or equal 1 gigabyte)"
         )
-        let monthlyDataUsageTextGB = NSLocalizedString(
-            "%.2f GB used in",
-            comment: "text for monthly data usage in data usage window next to date selection (more than 1 gigabyte)"
-        )
-
-        let monthlyMegaBytesUsage = Double(monthlyBytesUsage) / 1024 / 1024
-
-        if monthlyMegaBytesUsage <= 1024 {
-            monthlyDataUsageTextField.stringValue = String(format: monthlyDataUsageTextMB,
-                                                           monthlyMegaBytesUsage)
-        } else {
-            monthlyDataUsageTextField.stringValue = String(format: monthlyDataUsageTextGB,
-                                                           monthlyMegaBytesUsage / 1024)
-        }
-
+        let monthlyDataUsageText = String(format: monthlyDataUsageTextTemplate,
+                                          Utils.byteCountFormatter.string(fromByteCount: monthlyBytesUsage))
+        monthlyDataUsageTextField.stringValue = monthlyDataUsageText
+        
         let monthYearFormatter = DateFormatter()
         monthYearFormatter.calendar = Calendar.init(identifier: .gregorian)
         monthYearFormatter.setLocalizedDateFormatFromTemplate("MMMMyyyy")

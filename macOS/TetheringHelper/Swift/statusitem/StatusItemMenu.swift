@@ -13,7 +13,7 @@ class StatusItemMenu: NSObject, StatusItemMenuDelegate {
         "Show data usage",
         comment: "statusitem menu item, shown instead of data usage of session when not paired")
     private static let dataUsageMenuItemPairedTitle = NSLocalizedString(
-        "Data used: %.2f MB",
+        "Data used: %@",
         comment: "statusitem menu item, shows amount of data used when paired")
     private static let pairMenuItemUnpairedTitle = NSLocalizedString(
         "Not paired",
@@ -117,11 +117,11 @@ class StatusItemMenu: NSObject, StatusItemMenuDelegate {
         let _ = PersistentContainer.observeSessionChanges { [unowned self] session in
             DispatchQueue.main.async {
                 guard let phoneName = pairingStatus.phoneName else { return }
-                let megabytesTransferred = Double(session.bytesTransferred) / 1024 / 1024
                 let sessionDuration = session.created!.distance(to: Date())
                 let sessionDurationText = self.sessionDurationFormatter.string(from: sessionDuration)!
-                
-                self.dataUsageMenuItem.title = String(format: StatusItemMenu.dataUsageMenuItemPairedTitle, megabytesTransferred)
+                let dataUsageText = Utils.byteCountFormatter.string(fromByteCount: session.bytesTransferred)
+                                
+                self.dataUsageMenuItem.title = String(format: StatusItemMenu.dataUsageMenuItemPairedTitle, dataUsageText)
                 self.pairMenuItem.title = String(format: StatusItemMenu.pairMenuItemPairedTitle, phoneName)
                 self.sessionDurationMenuItem.title = String(format: StatusItemMenu.sessionDurationMenuItemTitle, sessionDurationText)
             }

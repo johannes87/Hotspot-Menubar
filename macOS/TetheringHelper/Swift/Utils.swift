@@ -43,4 +43,10 @@ class Utils {
 
         return nil
     }
+    
+    static let byteCountFormatter: ByteCountFormatter = {
+        let formatter = ByteCountFormatter()
+        formatter.countStyle = .binary
+        return formatter
+    }()
 }

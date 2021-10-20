@@ -114,10 +114,10 @@ class DataUsageVisualization : NSView {
 
     override func mouseEntered(with event: NSEvent) {
         let dataUsage = event.trackingArea?.userInfo?[trackingAreaKeyDataUsage]! as! DataUsage
-        let popoverTextTemplate = NSLocalizedString("%.2f MB on %@",
-                                                    comment: "text shown in popover in data usage window, e.g. '2.34 MB used on 4. Oct 2021'")
+        let popoverTextTemplate = NSLocalizedString("%@ on %@",
+                                                    comment: "text shown in popover in data usage window, e.g. '2.34 MB on 4. Oct 2021'")
         let popoverText = String(format: popoverTextTemplate,
-                                 Double(dataUsage.bytesTransferred) / 1024 / 1024,
+                                 Utils.byteCountFormatter.string(fromByteCount: dataUsage.bytesTransferred),
                                  popoverDateFormatter.string(from: dataUsage.date!))
 
         let contentViewController = NSViewController()
