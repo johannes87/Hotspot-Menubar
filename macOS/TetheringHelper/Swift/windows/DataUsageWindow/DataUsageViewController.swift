@@ -32,7 +32,7 @@ class DataUsageViewController: NSViewController {
     private var lastSessionCreated: Date?
 
     /// Aggregated data usage, the dictionary values are ready for being passed to DataUsageVisualization
-    /// It's also used to check if a data for a given YearMonthKey exists
+    /// It's also used to check if a data for a given month (YearMonthKey) exists
     private var dataUsageByMonthAndDay: [YearMonthKey: [DataUsage]] = [:]
 
     /// Converts long names of months (e.g. "September") to numbers, and extracts names from `Date` objects.
@@ -218,40 +218,29 @@ class DataUsageViewController: NSViewController {
 
         view.window?.title = String(format: windowTitleTemplate, monthYearFormatter.string(from: currentDate))
     }
-
+    
     private func aggregateDataUsageByMonthAndDay(tetheringSessions: [TetheringSession]) {
-        var dailyBytesTransferred: Int64 = 0
-        var prevDay: Int?
-        var prevYearMonthKey: YearMonthKey?
-        var prevSession: TetheringSession?
-        
-        // reset because it's going to be called again
+        // this function is going to be called again
         dataUsageByMonthAndDay = [:]
-
-        // The aggregation assumes tetheringSessions is sorted
-        tetheringSessions.forEach { session in
-            let yearMonthKey = session.created!.yearMonthKey
-            let day = session.created!.dayNumber
-
-            let dayChanged = prevDay != nil && (day != prevDay || yearMonthKey != prevYearMonthKey)
-            let isLastSession = session == tetheringSessions.last
-
-            if dayChanged || isLastSession {
-                if dataUsageByMonthAndDay[prevYearMonthKey!] == nil {
-                    dataUsageByMonthAndDay[prevYearMonthKey!] = [DataUsage](
-                        repeating: DataUsage(bytesTransferred: 0, date: nil),
-                        count: prevSession!.created!.daysInMonth)
-                }
-                dataUsageByMonthAndDay[prevYearMonthKey!]![prevDay! - 1].bytesTransferred = dailyBytesTransferred
-                dataUsageByMonthAndDay[prevYearMonthKey!]![prevDay! - 1].date = prevSession?.created
-                dailyBytesTransferred = 0
+        
+        let sessionsGroupedByDay = Dictionary(grouping: tetheringSessions) {
+            "\($0.created!.yearMonthKey)-\($0.created!.dayNumber)"
+        }
+        
+        sessionsGroupedByDay.forEach { _, daySessions in
+            let dailyDataUsage = daySessions.reduce(0) { $0 + $1.bytesTransferred }
+            let firstSessionOfDay = daySessions.first!
+            
+            if dataUsageByMonthAndDay[firstSessionOfDay.created!.yearMonthKey] == nil {
+                dataUsageByMonthAndDay[firstSessionOfDay.created!.yearMonthKey] = [DataUsage](
+                    repeating: DataUsage(bytesTransferred: 0, date: nil),
+                    count: firstSessionOfDay.created!.daysInMonth)
             }
-
-            dailyBytesTransferred += session.bytesTransferred
-
-            prevDay = day
-            prevYearMonthKey = yearMonthKey
-            prevSession = session
+            
+            let dayIndex = firstSessionOfDay.created!.dayNumber - 1
+            dataUsageByMonthAndDay[firstSessionOfDay.created!.yearMonthKey]![dayIndex] = DataUsage(
+                bytesTransferred: dailyDataUsage,
+                date: firstSessionOfDay.created)
         }
     }
 }

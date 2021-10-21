@@ -26,7 +26,7 @@ extension Date {
         return Calendar(identifier: .gregorian).component(.day, from: self)
     }
 
-    /// Used to get a dictionary key from a Date that contains the year and month components
+    /// Used to get a dictionary key from a Date that unambiguously identifies a month
     var yearMonthKey: YearMonthKey {
             return "\(self.yearNumber)-\(self.monthNumber)"
     }
