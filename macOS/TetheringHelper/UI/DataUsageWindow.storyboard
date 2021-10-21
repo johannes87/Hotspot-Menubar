@@ -9,7 +9,7 @@
         <!--Window Controller-->
         <scene sceneID="saw-Lf-tAa">
             <objects>
-                <windowController id="7xb-sn-KMt" customClass="FrontCenterWindowController" customModule="TetheringHelper" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController id="7xb-sn-KMt" customClass="DataUsageWindowController" customModule="TetheringHelper" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Data usage" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="DTf-WQ-qCY">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -23,9 +23,6 @@
                             <outlet property="delegate" destination="7xb-sn-KMt" id="Mzl-PR-6Mh"/>
                         </connections>
                     </window>
-                    <connections>
-                        <segue destination="j7e-sW-Ewm" kind="relationship" relationship="window.shadowedContentViewController" id="iWi-L9-Bjf"/>
-                    </connections>
                 </windowController>
                 <customObject id="0P7-Ev-ROG" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -35,7 +32,7 @@
         <scene sceneID="v71-ph-GM0">
             <objects>
                 <customObject id="1ie-EV-MYo" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <viewController id="j7e-sW-Ewm" customClass="DataUsageViewController" customModule="TetheringHelper" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="hasSessions" id="j7e-sW-Ewm" customClass="DataUsageViewController" customModule="TetheringHelper" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="DX1-Yo-aRa">
                         <rect key="frame" x="0.0" y="0.0" width="747" height="304"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -122,6 +119,43 @@
                 </viewController>
             </objects>
             <point key="canvasLocation" x="106.5" y="409"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="PEI-qI-ld8">
+            <objects>
+                <viewController storyboardIdentifier="noSessions" id="Req-OZ-1Fq" sceneMemberID="viewController">
+                    <view key="view" id="b2H-ZB-VjE">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0MX-Pr-1rj">
+                                <rect key="frame" x="142" y="238" width="167" height="19"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="No data recorded yet" id="DNh-r8-RqM">
+                                    <font key="font" metaFont="systemBold" size="16"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xKz-2l-LG0">
+                                <rect key="frame" x="80" y="35" width="291" height="161"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" id="BcG-CL-A6a">
+                                    <font key="font" metaFont="system"/>
+                                    <string key="title">There is no recorded data, because Hotspot Menubar hasn't contacted your phone yet.
+
+To show data here, install Hotspot Menubar on your Android phone, enable it, and connect to your hotspot from this Mac.
+</string>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                </viewController>
+                <customObject id="cCs-5B-fe5" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-583" y="407"/>
         </scene>
     </scenes>
     <resources>

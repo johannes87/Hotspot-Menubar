@@ -39,6 +39,7 @@
 		8F22CF4F2714913E00F66B7D /* PersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CF4E2714913E00F66B7D /* PersistentContainer.swift */; };
 		8F22CF512714930200F66B7D /* TestPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CF502714930200F66B7D /* TestPersistentContainer.swift */; };
 		8F6DD81D270DBC6800A434DB /* FirsttimeUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6DD81C270DBC6800A434DB /* FirsttimeUserViewController.swift */; };
+		8F981A042720597900D6B7CE /* DataUsageWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F981A032720597900D6B7CE /* DataUsageWindowController.swift */; };
 		8FA5CF142703286C00E40092 /* TetheringHelperAutostart.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8F1F5C5C27020D1E00FD1B4F /* TetheringHelperAutostart.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8FA835FA270F3AFC002827D8 /* GooglePlayBadgeImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA835F9270F3AFC002827D8 /* GooglePlayBadgeImageView.swift */; };
 		8FDB7253270F1EDA00BD2785 /* FirsttimeUserWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FDB7252270F1EDA00BD2785 /* FirsttimeUserWindow.storyboard */; };
@@ -94,6 +95,7 @@
 		8F22CF4E2714913E00F66B7D /* PersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentContainer.swift; sourceTree = "<group>"; };
 		8F22CF502714930200F66B7D /* TestPersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPersistentContainer.swift; sourceTree = "<group>"; };
 		8F6DD81C270DBC6800A434DB /* FirsttimeUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirsttimeUserViewController.swift; sourceTree = "<group>"; };
+		8F981A032720597900D6B7CE /* DataUsageWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataUsageWindowController.swift; sourceTree = "<group>"; };
 		8FA835F9270F3AFC002827D8 /* GooglePlayBadgeImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlayBadgeImageView.swift; sourceTree = "<group>"; };
 		8FDB7252270F1EDA00BD2785 /* FirsttimeUserWindow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FirsttimeUserWindow.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -232,6 +234,7 @@
 			children = (
 				8F1F5C2D2702088400FD1B4F /* DataUsageViewController.swift */,
 				8F1F5C2E2702088500FD1B4F /* DataUsageVisualization.swift */,
+				8F981A032720597900D6B7CE /* DataUsageWindowController.swift */,
 			);
 			path = DataUsageWindow;
 			sourceTree = "<group>";
@@ -386,6 +389,7 @@
 				8F1F5C442702089A00FD1B4F /* AndroidConnector.swift in Sources */,
 				8F1F5C1B2702083700FD1B4F /* StatusItem.swift in Sources */,
 				8F1F5C3F2702089A00FD1B4F /* PreferencesStorage.swift in Sources */,
+				8F981A042720597900D6B7CE /* DataUsageWindowController.swift in Sources */,
 				8F1F5C3E2702089A00FD1B4F /* Autostart.swift in Sources */,
 				8F1F5C4F270209A300FD1B4F /* DataModel.xcdatamodeld in Sources */,
 				8F1F5C402702089A00FD1B4F /* Utils.swift in Sources */,
