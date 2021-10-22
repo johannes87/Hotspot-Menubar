@@ -36,14 +36,11 @@
             <objects>
                 <viewController id="TRt-nZ-aM3" customClass="FirsttimeUserViewController" customModule="TetheringHelper" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="p0f-Uq-bwb">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="344"/>
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="353"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oSR-ln-3Ic">
-                                <rect key="frame" x="18" y="261" width="439" height="71"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="71" id="Wq7-eo-Glq"/>
-                                </constraints>
+                                <rect key="frame" x="18" y="261" width="439" height="80"/>
                                 <textFieldCell key="cell" id="KA0-b4-E1I">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <string key="title">Welcome to Hotspot Menubar. To make this app work, you need to install the Hotspot Menubar Android app. Below is a QR code that you can scan with your Android phone to install it. Alternatively, click on the Google Play button below.
@@ -53,16 +50,16 @@
                                 </textFieldCell>
                             </textField>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LkA-4C-n6Y">
-                                <rect key="frame" x="62" y="92" width="158" height="158"/>
+                                <rect key="frame" x="62" y="101" width="158" height="158"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="152" id="rcx-iY-vdS"/>
+                                    <constraint firstAttribute="width" constant="152" id="Hxl-qh-GpW"/>
                                 </constraints>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="groove" id="30x-Ll-LMC"/>
                             </imageView>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="wmL-Tq-lfw" customClass="GooglePlayBadgeButton" customModule="TetheringHelper" customModuleProvider="target">
-                                <rect key="frame" x="254" y="148" width="168" height="46"/>
+                                <rect key="frame" x="254" y="157" width="168" height="46"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="168" id="uVG-py-s9N"/>
+                                    <constraint firstAttribute="width" constant="168" id="0V9-JB-mcy"/>
                                 </constraints>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="GooglePlayBadge" imagePosition="only" alignment="center" refusesFirstResponder="YES" imageScaling="proportionallyUpOrDown" inset="2" id="pZK-jm-MVu">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -83,19 +80,19 @@
                             </textField>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="3uE-a0-1b2" firstAttribute="leading" secondItem="p0f-Uq-bwb" secondAttribute="leading" constant="21" id="1HJ-ru-JbX"/>
-                            <constraint firstItem="oSR-ln-3Ic" firstAttribute="leading" secondItem="p0f-Uq-bwb" secondAttribute="leading" constant="20" symbolic="YES" id="BNO-XZ-G1e"/>
-                            <constraint firstItem="LkA-4C-n6Y" firstAttribute="centerY" secondItem="wmL-Tq-lfw" secondAttribute="centerY" id="VKQ-87-QmY"/>
-                            <constraint firstAttribute="trailing" secondItem="oSR-ln-3Ic" secondAttribute="trailing" constant="25" id="Y1c-lk-nOC"/>
-                            <constraint firstAttribute="bottom" secondItem="3uE-a0-1b2" secondAttribute="bottom" constant="20" symbolic="YES" id="aiZ-7b-fH2"/>
-                            <constraint firstItem="oSR-ln-3Ic" firstAttribute="top" secondItem="p0f-Uq-bwb" secondAttribute="top" constant="12" id="dCG-Dd-gWe"/>
-                            <constraint firstItem="LkA-4C-n6Y" firstAttribute="leading" secondItem="p0f-Uq-bwb" secondAttribute="leading" constant="65" id="dCd-mg-fJe"/>
-                            <constraint firstItem="3uE-a0-1b2" firstAttribute="top" secondItem="LkA-4C-n6Y" secondAttribute="bottom" constant="11" id="kOP-Td-QiZ"/>
-                            <constraint firstItem="3uE-a0-1b2" firstAttribute="top" secondItem="wmL-Tq-lfw" secondAttribute="bottom" constant="64" id="nFt-c3-bEY"/>
-                            <constraint firstItem="wmL-Tq-lfw" firstAttribute="leading" secondItem="LkA-4C-n6Y" secondAttribute="trailing" constant="37" id="o7j-mD-cBu"/>
-                            <constraint firstItem="oSR-ln-3Ic" firstAttribute="centerX" secondItem="3uE-a0-1b2" secondAttribute="centerX" id="odx-o6-KKa"/>
-                            <constraint firstItem="LkA-4C-n6Y" firstAttribute="top" secondItem="oSR-ln-3Ic" secondAttribute="bottom" constant="14" id="uUv-el-sxW"/>
-                            <constraint firstAttribute="trailing" secondItem="wmL-Tq-lfw" secondAttribute="trailing" constant="58" id="xwD-Gp-Owa"/>
+                            <constraint firstItem="3uE-a0-1b2" firstAttribute="leading" secondItem="p0f-Uq-bwb" secondAttribute="leading" constant="21" id="4EN-h0-slh"/>
+                            <constraint firstAttribute="trailing" secondItem="wmL-Tq-lfw" secondAttribute="trailing" constant="58" id="4mc-vj-Qvk"/>
+                            <constraint firstItem="3uE-a0-1b2" firstAttribute="top" secondItem="LkA-4C-n6Y" secondAttribute="bottom" constant="20" id="5Nm-Ys-lIL"/>
+                            <constraint firstAttribute="trailing" secondItem="oSR-ln-3Ic" secondAttribute="trailing" constant="25" id="7IY-Y6-oE4"/>
+                            <constraint firstItem="oSR-ln-3Ic" firstAttribute="centerX" secondItem="3uE-a0-1b2" secondAttribute="centerX" id="Dbt-qj-DHj"/>
+                            <constraint firstItem="oSR-ln-3Ic" firstAttribute="top" secondItem="p0f-Uq-bwb" secondAttribute="top" constant="12" id="I9Z-NH-FQ7"/>
+                            <constraint firstItem="LkA-4C-n6Y" firstAttribute="top" secondItem="oSR-ln-3Ic" secondAttribute="bottom" constant="5" id="RkM-9F-Qle"/>
+                            <constraint firstItem="wmL-Tq-lfw" firstAttribute="top" secondItem="oSR-ln-3Ic" secondAttribute="bottom" constant="58" id="aIS-Vr-VJd"/>
+                            <constraint firstItem="oSR-ln-3Ic" firstAttribute="leading" secondItem="p0f-Uq-bwb" secondAttribute="leading" constant="20" symbolic="YES" id="cxo-cI-vYx"/>
+                            <constraint firstAttribute="bottom" secondItem="3uE-a0-1b2" secondAttribute="bottom" constant="20" symbolic="YES" id="idC-XC-kQr"/>
+                            <constraint firstItem="LkA-4C-n6Y" firstAttribute="centerY" secondItem="wmL-Tq-lfw" secondAttribute="centerY" id="mfz-k7-Dy2"/>
+                            <constraint firstItem="wmL-Tq-lfw" firstAttribute="leading" secondItem="LkA-4C-n6Y" secondAttribute="trailing" constant="37" id="wKf-8L-Or4"/>
+                            <constraint firstItem="LkA-4C-n6Y" firstAttribute="leading" secondItem="p0f-Uq-bwb" secondAttribute="leading" constant="65" id="zJT-BL-5Co"/>
                         </constraints>
                     </view>
                     <connections>
