@@ -23,6 +23,9 @@
                             <outlet property="delegate" destination="7xb-sn-KMt" id="Mzl-PR-6Mh"/>
                         </connections>
                     </window>
+                    <connections>
+                        <segue destination="Req-OZ-1Fq" kind="relationship" relationship="window.shadowedContentViewController" id="ZJU-HI-0cl"/>
+                    </connections>
                 </windowController>
                 <customObject id="0P7-Ev-ROG" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
