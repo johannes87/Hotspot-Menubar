@@ -19,7 +19,7 @@ class DataUsageWindowController: FrontCenterWindowController {
         noSessionsViewController = NSStoryboard(name: "DataUsageWindow", bundle: nil)
             .instantiateController(withIdentifier: "noSessions") as? NSViewController
         hasSessionsViewController = NSStoryboard(name: "DataUsageWindow", bundle: nil)
-            .instantiateController(withIdentifier: "hasSessions") as? DataUsageViewController
+            .instantiateController(withIdentifier: "hasSessions") as? NSViewController
         
         // make window automatically replace its "noSession" view controller when a session gets created
         if PersistentContainer.shared.getTetheringSessions().count == 0 {
