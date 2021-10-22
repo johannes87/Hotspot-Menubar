@@ -117,6 +117,8 @@
                         <outlet property="dataUsageVisualization" destination="sYK-Ef-aiC" id="vml-Ml-afS"/>
                         <outlet property="monthPopUpButton" destination="BwN-0u-CiV" id="pQj-oi-e0a"/>
                         <outlet property="monthlyDataUsageTextField" destination="6Wn-3k-8Di" id="vUY-Nu-b2j"/>
+                        <outlet property="nextMonthButton" destination="bpE-ut-e0W" id="KD8-uT-pRB"/>
+                        <outlet property="prevMonthButton" destination="uos-be-ate" id="zgA-Uu-SGq"/>
                         <outlet property="yearPopUpButton" destination="8d4-WQ-Arx" id="eGT-fn-geK"/>
                     </connections>
                 </viewController>

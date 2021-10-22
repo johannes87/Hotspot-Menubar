@@ -27,6 +27,8 @@ class DataUsageViewController: NSViewController {
     @IBOutlet weak var monthPopUpButton: NSPopUpButton!
     @IBOutlet weak var yearPopUpButton: NSPopUpButton!
     @IBOutlet weak var monthlyDataUsageTextField: NSTextField!
+    @IBOutlet weak var prevMonthButton: NSButton!
+    @IBOutlet weak var nextMonthButton: NSButton!
     
     private var firstSessionCreated: Date?
     private var lastSessionCreated: Date?
@@ -127,32 +129,48 @@ class DataUsageViewController: NSViewController {
     }
 
     private func selectNextOrPreviousMonth(searchDirection: MonthSearchDirection) {
-        var currentDateIsInBounds: () -> Bool
-        var currentDateSummand: Int
-
-        if searchDirection == .next {
-            currentDateIsInBounds = { self.currentDate <= self.lastSessionCreated! }
-            currentDateSummand = 1
-        } else { // .previous
-            currentDateIsInBounds = { self.currentDate >= self.firstSessionCreated! }
-            currentDateSummand = -1
-        }
-
-        var monthFound = false
-
-        while !monthFound && currentDateIsInBounds() {
-            currentDate = Calendar.init(identifier: .gregorian).date(byAdding: DateComponents(month: currentDateSummand), to: currentDate)!
-            if dataUsageByMonthAndDay[currentDate.yearMonthKey] != nil {
-                monthFound = true
-            }
-        }
-        currentDate = currentDate.clamp(from: firstSessionCreated!, until: lastSessionCreated!)
+        guard let newMonth = findExistingMonth(searchDirection: searchDirection) else { return }
+        
+        currentDate = newMonth
 
         // Year might have changed
         populateMonthPopupButton()
 
         selectCurrentDateInDateButtons()
         visualizeDataUsageOfCurrentDate()
+    }
+
+    /// Finds an month that has TetheringSession objects
+    ///
+    /// - Parameter searchDirection: in which direction the search should be performed
+    /// - Returns: A `Date` object with the next or previous month, or `nil` if none was found.
+    private func findExistingMonth(searchDirection: MonthSearchDirection) -> Date? {
+        var selectedMonthIsInBounds: () -> Bool
+        var searchDirectionSummand: Int
+    
+        var selectedMonth = self.currentDate
+
+        if searchDirection == .next {
+            selectedMonthIsInBounds = { selectedMonth <= self.lastSessionCreated! }
+            searchDirectionSummand = 1
+        } else { // .previous
+            selectedMonthIsInBounds = { selectedMonth >= self.firstSessionCreated! }
+            searchDirectionSummand = -1
+        }
+
+        var monthFound = false
+
+        while !monthFound && selectedMonthIsInBounds() {
+            selectedMonth = Calendar.init(identifier: .gregorian).date(
+                byAdding: DateComponents(month: searchDirectionSummand),
+                to: selectedMonth)!
+            if dataUsageByMonthAndDay[selectedMonth.yearMonthKey] != nil {
+                monthFound = true
+            }
+        }
+        selectedMonth = selectedMonth.clamp(from: firstSessionCreated!, until: lastSessionCreated!)
+        
+        return monthFound ? selectedMonth : nil
     }
 
     /// Populate the "month" popup button based on the current year.
@@ -195,6 +213,7 @@ class DataUsageViewController: NSViewController {
 
         showMonthlyDataUsage(monthlyBytesUsage: monthlyBytesUsage)
         showDateInTitle()
+        updatePreviousAndNextMonthButtonEnabledState()
     }
     
     private func showMonthlyDataUsage(monthlyBytesUsage: Int64) {
@@ -217,6 +236,14 @@ class DataUsageViewController: NSViewController {
             comment: "window title for data usage window, e.g. 'Data usage on September 2021'")
 
         view.window?.title = String(format: windowTitleTemplate, monthYearFormatter.string(from: currentDate))
+    }
+    
+    private func updatePreviousAndNextMonthButtonEnabledState() {
+        let prevMonth = findExistingMonth(searchDirection: .previous)
+        let nextMonth = findExistingMonth(searchDirection: .next)
+        
+        prevMonthButton.isEnabled = prevMonth != nil
+        nextMonthButton.isEnabled = nextMonth != nil
     }
     
     private func aggregateDataUsageByMonthAndDay(tetheringSessions: [TetheringSession]) {
