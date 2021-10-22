@@ -39,9 +39,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="344"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oSR-ln-3Ic">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oSR-ln-3Ic">
                                 <rect key="frame" x="18" y="261" width="439" height="71"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="71" id="Wq7-eo-Glq"/>
+                                </constraints>
                                 <textFieldCell key="cell" id="KA0-b4-E1I">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <string key="title">Welcome to Hotspot Menubar. To make this app work, you need to install the Hotspot Menubar Android app. Below is a QR code that you can scan with your Android phone to install it. Alternatively, click on the Google Play button below.
@@ -50,14 +52,18 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LkA-4C-n6Y">
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LkA-4C-n6Y">
                                 <rect key="frame" x="62" y="92" width="158" height="158"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="152" id="rcx-iY-vdS"/>
+                                </constraints>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="groove" id="30x-Ll-LMC"/>
                             </imageView>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wmL-Tq-lfw" customClass="GooglePlayBadgeButton" customModule="TetheringHelper" customModuleProvider="target">
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="wmL-Tq-lfw" customClass="GooglePlayBadgeButton" customModule="TetheringHelper" customModuleProvider="target">
                                 <rect key="frame" x="254" y="148" width="168" height="46"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="168" id="uVG-py-s9N"/>
+                                </constraints>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="GooglePlayBadge" imagePosition="only" alignment="center" refusesFirstResponder="YES" imageScaling="proportionallyUpOrDown" inset="2" id="pZK-jm-MVu">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -66,9 +72,8 @@
                                     <action selector="googlePlayBadgeClicked:" target="TRt-nZ-aM3" id="OYR-Q2-8bx"/>
                                 </connections>
                             </button>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3uE-a0-1b2">
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="3uE-a0-1b2">
                                 <rect key="frame" x="19" y="20" width="437" height="64"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" selectable="YES" id="ivu-pP-v2s">
                                     <font key="font" metaFont="system"/>
                                     <string key="title">This window will appear on launch until Hotspot Menubar successfully connected with your Android phone. To do so, enable Hotspot Menubar on Android, and enable and connect to your phone's hotspot from macOS. </string>
@@ -77,6 +82,21 @@
                                 </textFieldCell>
                             </textField>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="3uE-a0-1b2" firstAttribute="leading" secondItem="p0f-Uq-bwb" secondAttribute="leading" constant="21" id="1HJ-ru-JbX"/>
+                            <constraint firstItem="oSR-ln-3Ic" firstAttribute="leading" secondItem="p0f-Uq-bwb" secondAttribute="leading" constant="20" symbolic="YES" id="BNO-XZ-G1e"/>
+                            <constraint firstItem="LkA-4C-n6Y" firstAttribute="centerY" secondItem="wmL-Tq-lfw" secondAttribute="centerY" id="VKQ-87-QmY"/>
+                            <constraint firstAttribute="trailing" secondItem="oSR-ln-3Ic" secondAttribute="trailing" constant="25" id="Y1c-lk-nOC"/>
+                            <constraint firstAttribute="bottom" secondItem="3uE-a0-1b2" secondAttribute="bottom" constant="20" symbolic="YES" id="aiZ-7b-fH2"/>
+                            <constraint firstItem="oSR-ln-3Ic" firstAttribute="top" secondItem="p0f-Uq-bwb" secondAttribute="top" constant="12" id="dCG-Dd-gWe"/>
+                            <constraint firstItem="LkA-4C-n6Y" firstAttribute="leading" secondItem="p0f-Uq-bwb" secondAttribute="leading" constant="65" id="dCd-mg-fJe"/>
+                            <constraint firstItem="3uE-a0-1b2" firstAttribute="top" secondItem="LkA-4C-n6Y" secondAttribute="bottom" constant="11" id="kOP-Td-QiZ"/>
+                            <constraint firstItem="3uE-a0-1b2" firstAttribute="top" secondItem="wmL-Tq-lfw" secondAttribute="bottom" constant="64" id="nFt-c3-bEY"/>
+                            <constraint firstItem="wmL-Tq-lfw" firstAttribute="leading" secondItem="LkA-4C-n6Y" secondAttribute="trailing" constant="37" id="o7j-mD-cBu"/>
+                            <constraint firstItem="oSR-ln-3Ic" firstAttribute="centerX" secondItem="3uE-a0-1b2" secondAttribute="centerX" id="odx-o6-KKa"/>
+                            <constraint firstItem="LkA-4C-n6Y" firstAttribute="top" secondItem="oSR-ln-3Ic" secondAttribute="bottom" constant="14" id="uUv-el-sxW"/>
+                            <constraint firstAttribute="trailing" secondItem="wmL-Tq-lfw" secondAttribute="trailing" constant="58" id="xwD-Gp-Owa"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="qrCodeImageView" destination="LkA-4C-n6Y" id="10I-s3-28D"/>

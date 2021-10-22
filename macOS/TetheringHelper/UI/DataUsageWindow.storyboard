@@ -131,18 +131,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0MX-Pr-1rj">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0MX-Pr-1rj">
                                 <rect key="frame" x="142" y="238" width="167" height="19"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="No data recorded yet" id="DNh-r8-RqM">
                                     <font key="font" metaFont="systemBold" size="16"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xKz-2l-LG0">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xKz-2l-LG0">
                                 <rect key="frame" x="80" y="35" width="291" height="161"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="161" id="Pfl-jm-CmL"/>
+                                    <constraint firstAttribute="width" constant="287" id="iW3-FX-ujw"/>
+                                </constraints>
                                 <textFieldCell key="cell" id="BcG-CL-A6a">
                                     <font key="font" metaFont="system"/>
                                     <string key="title">There is no recorded data, because Hotspot Menubar hasn't contacted your phone yet.
@@ -154,6 +156,12 @@ To show data here, install Hotspot Menubar on your Android phone, enable it, and
                                 </textFieldCell>
                             </textField>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="0MX-Pr-1rj" firstAttribute="top" secondItem="b2H-ZB-VjE" secondAttribute="top" constant="43" id="4V2-T0-FzZ"/>
+                            <constraint firstItem="xKz-2l-LG0" firstAttribute="top" secondItem="0MX-Pr-1rj" secondAttribute="bottom" constant="42" id="LcL-gQ-1iK"/>
+                            <constraint firstItem="0MX-Pr-1rj" firstAttribute="centerX" secondItem="xKz-2l-LG0" secondAttribute="centerX" id="mQn-4T-32H"/>
+                            <constraint firstItem="0MX-Pr-1rj" firstAttribute="centerX" secondItem="b2H-ZB-VjE" secondAttribute="centerX" id="n5W-Gy-Cod"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <customObject id="cCs-5B-fe5" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
