@@ -52,15 +52,11 @@ class DataUsageViewController: NSViewController {
         monthFormatter.calendar = Calendar.init(identifier: .gregorian)
 
         processSessions()
-
-        populateYearPopupButton()
-        populateMonthPopupButton()
-        selectCurrentDateInDateButtons()
     }
 
     override func viewDidAppear() {
         observeSessionChanges()
-        visualizeDataUsageOfCurrentDate()
+        visualizeCurrentDate()
     }
     
     override func viewDidDisappear() {
@@ -76,7 +72,7 @@ class DataUsageViewController: NSViewController {
             month: monthNumberOfSelectedMonth
         )!
 
-        visualizeDataUsageOfCurrentDate()
+        visualizeCurrentDate()
     }
 
     @IBAction func yearPopUpButtonChanged(_ sender: Any) {
@@ -85,14 +81,8 @@ class DataUsageViewController: NSViewController {
         currentDate = Date
             .fromYearAndMonth(year: selectedYear, month: currentDate.monthNumber)!
             .clamp(from: firstSessionCreated!, until: lastSessionCreated!)
-        
-        // Month button contents depends on the selected year
-        populateMonthPopupButton()
 
-        // After populating the selection is reset
-        selectCurrentDateInDateButtons()
-
-        visualizeDataUsageOfCurrentDate()
+        visualizeCurrentDate()
     }
 
     @IBAction func nextMonthButtonClicked(_ sender: Any) {
@@ -117,7 +107,7 @@ class DataUsageViewController: NSViewController {
     private func observeSessionChanges() {
         sessionChangeObserver = PersistentContainer.observeSessionChanges { [weak self] session in
             self?.processSessions()
-            self?.visualizeDataUsageOfCurrentDate()
+            self?.visualizeCurrentDate()
         }
     }
     
@@ -130,14 +120,8 @@ class DataUsageViewController: NSViewController {
 
     private func selectNextOrPreviousMonth(searchDirection: MonthSearchDirection) {
         guard let newMonth = findExistingMonth(searchDirection: searchDirection) else { return }
-        
         currentDate = newMonth
-
-        // Year might have changed
-        populateMonthPopupButton()
-
-        selectCurrentDateInDateButtons()
-        visualizeDataUsageOfCurrentDate()
+        visualizeCurrentDate()
     }
 
     /// Finds an month that has TetheringSession objects
@@ -147,7 +131,7 @@ class DataUsageViewController: NSViewController {
     private func findExistingMonth(searchDirection: MonthSearchDirection) -> Date? {
         var selectedMonthIsInBounds: () -> Bool
         var searchDirectionSummand: Int
-    
+
         var selectedMonth = self.currentDate
 
         if searchDirection == .next {
@@ -169,8 +153,30 @@ class DataUsageViewController: NSViewController {
             }
         }
         selectedMonth = selectedMonth.clamp(from: firstSessionCreated!, until: lastSessionCreated!)
-        
+
         return monthFound ? selectedMonth : nil
+    }
+
+    /// This function is called whenever the current date needs to be visualized, e.g. when a session change is observed, or the current date changes.
+    private func visualizeCurrentDate() {
+        var monthlyBytesUsage: Int64 = 0
+        if let monthUsage = dataUsageByMonthAndDay[currentDate.yearMonthKey] {
+            dataUsageVisualization.dataUsage = monthUsage
+            monthlyBytesUsage = monthUsage
+                .map { $0.bytesTransferred }
+                .reduce(0, { $0 + $1 })
+        } else {
+            dataUsageVisualization.dataUsage = nil
+        }
+
+        // make sure buttons contain the correct values
+        populateMonthPopupButton()
+        populateYearPopupButton()
+
+        selectCurrentDateInDateButtons()
+        showMonthlyDataUsage(monthlyBytesUsage: monthlyBytesUsage)
+        showDateInTitle()
+        updatePreviousAndNextMonthButtonEnabledState()
     }
 
     /// Populate the "month" popup button based on the current year.
@@ -199,22 +205,6 @@ class DataUsageViewController: NSViewController {
         monthPopUpButton.selectItem(withTitle: nameOfMonth)
         yearPopUpButton.selectItem(withTitle: year)
     }
-
-    private func visualizeDataUsageOfCurrentDate() {
-        var monthlyBytesUsage: Int64 = 0
-        if let monthUsage = dataUsageByMonthAndDay[currentDate.yearMonthKey] {
-            dataUsageVisualization.dataUsage = monthUsage
-            monthlyBytesUsage = monthUsage
-                .map { $0.bytesTransferred }
-                .reduce(0, { dayA, dayB in dayA + dayB })
-        } else {
-            dataUsageVisualization.dataUsage = nil
-        }
-
-        showMonthlyDataUsage(monthlyBytesUsage: monthlyBytesUsage)
-        showDateInTitle()
-        updatePreviousAndNextMonthButtonEnabledState()
-    }
     
     private func showMonthlyDataUsage(monthlyBytesUsage: Int64) {
         let monthlyDataUsageTextTemplate = NSLocalizedString(
@@ -241,11 +231,11 @@ class DataUsageViewController: NSViewController {
     private func updatePreviousAndNextMonthButtonEnabledState() {
         let prevMonth = findExistingMonth(searchDirection: .previous)
         let nextMonth = findExistingMonth(searchDirection: .next)
-        
+
         prevMonthButton.isEnabled = prevMonth != nil
         nextMonthButton.isEnabled = nextMonth != nil
     }
-    
+
     private func aggregateDataUsageByMonthAndDay(tetheringSessions: [TetheringSession]) {
         // this function is going to be called again
         dataUsageByMonthAndDay = [:]
