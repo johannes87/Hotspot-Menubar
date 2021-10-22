@@ -56,7 +56,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Wn-3k-8Di">
-                                <rect key="frame" x="126" y="20" width="216" height="16"/>
+                                <rect key="frame" x="123" y="20" width="216" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="1312.42 MB used in" id="a3n-wb-f5Y">
                                     <font key="font" metaFont="systemBold"/>
@@ -65,7 +65,7 @@
                                 </textFieldCell>
                             </textField>
                             <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BwN-0u-CiV">
-                                <rect key="frame" x="345" y="14" width="113" height="25"/>
+                                <rect key="frame" x="342" y="14" width="113" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" refusesFirstResponder="YES" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" arrowPosition="arrowAtCenter" selectedItem="thO-GA-MVh" id="cMe-SV-ymb">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -83,7 +83,7 @@
                                 </connections>
                             </popUpButton>
                             <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8d4-WQ-Arx">
-                                <rect key="frame" x="459" y="14" width="78" height="25"/>
+                                <rect key="frame" x="456" y="14" width="81" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" refusesFirstResponder="YES" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" arrowPosition="arrowAtCenter" selectedItem="Er2-H8-hYD" id="we5-1Q-MDu">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
