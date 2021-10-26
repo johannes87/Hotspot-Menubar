@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">TetheringHelper</string>
-    <string name="port">Port</string>
     <string name="first_time_setup_need_permissions">I need some permissions to run. Please click the green button to grant them. You can click on the \"Why?\" button for the reason why I need those.</string>
     <string name="first_time_setup_grant_button_text">Okay</string>
     <string name="first_time_setup_continue_button_text">Continue</string>
