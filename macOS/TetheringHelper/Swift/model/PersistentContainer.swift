@@ -31,15 +31,10 @@ class PersistentContainer: NSPersistentContainer {
             forName: .NSManagedObjectContextObjectsDidChange,
             object: nil,
             queue: nil) { notification in
-                let insertedSession = (notification.userInfo?[NSInsertedObjectsKey] as? Set<TetheringSession>)?.first
-                let updatedSession = (notification.userInfo?[NSUpdatedObjectsKey] as? Set<TetheringSession>)?.first
-                
-                if insertedSession != nil {
-                    onChange(insertedSession!)
-                } else if updatedSession != nil {
-                    onChange(updatedSession!)
-                } else {
-                    return
+                if let insertedSession = (notification.userInfo?[NSInsertedObjectsKey] as? Set<TetheringSession>)?.first {
+                    onChange(insertedSession)
+                } else if let updatedSession = (notification.userInfo?[NSUpdatedObjectsKey] as? Set<TetheringSession>)?.first {
+                    onChange(updatedSession)
                 }
         }
     }
