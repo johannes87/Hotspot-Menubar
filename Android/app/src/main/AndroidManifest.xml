@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.gmail.bittner.johannes.tetheringhelper">
 
     <uses-permission android:name="android.permission.INTERNET" /> <!-- needed for opening network port -->
@@ -15,23 +16,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <service
-            android:name=".service.SignalSenderService"/>
 
-        <receiver android:name=".service.AutostartReceiver">
+        <service android:name=".service.SignalSenderService" />
+
+        <receiver android:name=".service.AutostartReceiver"
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
 
-        <activity android:name=".ui.FirstTimeSetupActivity"/>
-        <activity android:name=".ui.SettingsActivity"
-            android:label="@string/settings_activity_label"
-            android:parentActivityName=".ui.MainActivity"/>
+        <activity android:name=".ui.FirstTimeSetupActivity" />
+
+        <activity
+            android:name=".ui.HowToConnectActivity"
+            android:parentActivityName=".ui.MainActivity" />
 
         <activity
             android:name=".ui.MainActivity"
-            android:launchMode="singleInstance">
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait"
+            android:exported="true"
+            tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

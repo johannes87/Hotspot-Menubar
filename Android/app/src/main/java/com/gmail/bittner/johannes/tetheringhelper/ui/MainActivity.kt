@@ -7,6 +7,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.IBinder
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.preference.PreferenceManager
@@ -19,20 +20,6 @@ import com.gmail.bittner.johannes.tetheringhelper.service.SignalSenderServiceBin
 import com.gmail.bittner.johannes.tetheringhelper.service.SignalSenderStatus
 import com.gmail.bittner.johannes.tetheringhelper.utils.Permissions
 
-/**
- * TetheringHelperStatus encapsulates the status of the whole Android app that is
- * shown to the user.
- */
-private enum class TetheringHelperStatus {
-    /** DISABLED means TetheringHelper is disabled in the settings */
-    DISABLED,
-    /** INACTIVE corresponds to SignalSenderStatus.INACTIVE
-     * @see SignalSenderStatus.INACTIVE */
-    INACTIVE,
-    /** ACTIVE corresponds to SignalSenderStatus.ACTIVE
-     * @see SignalSenderStatus.ACTIVE */
-    ACTIVE
-}
 
 private const val TAG = "MainActivity"
 
@@ -40,7 +27,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var runConditionMonitor: RunConditionMonitor
+
     private var signalSenderService: SignalSenderService? = null
+    private var signalSenderStatus: SignalSenderStatus = SignalSenderStatus.INACTIVE
+
     private val tetheringHelperEnabled: Boolean
         get() = sharedPreferences.getBoolean(SharedPreferencesKeys.tetheringHelperEnabled, false)
 
@@ -61,6 +51,7 @@ class MainActivity : AppCompatActivity() {
         Log.d(TAG, "onCreate")
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
         runConditionMonitor = RunConditionMonitor(this)
         lifecycle.addObserver(runConditionMonitor)
@@ -69,8 +60,25 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        binding.buttonSettings.setOnClickListener {
-            startActivity(Intent(this, SettingsActivity::class.java))
+        updateUI()
+
+        binding.switchEnableService.setOnCheckedChangeListener { _, isChecked ->
+            sharedPreferences.edit().apply {
+                putBoolean(SharedPreferencesKeys.tetheringHelperEnabled, isChecked)
+                apply()
+            }
+
+            if (isChecked) {
+                // service is destroyed when switch gets unchecked, so the connection is lost.
+                // we need to reconnect when switch gets checked.
+                connectToService()
+            } else {
+                updateUI()
+            }
+        }
+
+        binding.buttonHowToConnectLink.setOnClickListener {
+            startActivity(Intent(this, HowToConnectActivity::class.java))
         }
     }
 
@@ -79,12 +87,7 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
 
         if (tetheringHelperEnabled && signalSenderService == null) {
-            Intent(this, SignalSenderService::class.java).also { intent ->
-                bindService(intent, serviceConnection, 0)
-            }
-        }
-        if (!tetheringHelperEnabled) {
-            showTetheringHelperStatus(TetheringHelperStatus.DISABLED)
+            connectToService()
         }
     }
 
@@ -97,6 +100,32 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun updateUI() {
+        if (tetheringHelperEnabled) {
+            binding.switchEnableService.isChecked = true
+            binding.imageViewWifiSymbol.visibility = View.VISIBLE
+            binding.buttonHowToConnectLink.visibility = View.VISIBLE
+            binding.textViewServiceStatus.visibility = View.VISIBLE
+
+            if (signalSenderStatus == SignalSenderStatus.ACTIVE) {
+                binding.textViewServiceStatus.text = getString(R.string.main_activity_service_status_hotspot_on)
+            } else {
+                binding.textViewServiceStatus.text = getString(R.string.main_activity_service_status_hotspot_off)
+            }
+        } else {
+            binding.switchEnableService.isChecked = false
+            binding.imageViewWifiSymbol.visibility = View.INVISIBLE
+            binding.buttonHowToConnectLink.visibility = View.INVISIBLE
+            binding.textViewServiceStatus.visibility = View.INVISIBLE
+        }
+    }
+
+    private fun connectToService() {
+        Intent(this, SignalSenderService::class.java).also { intent ->
+            bindService(intent, serviceConnection, 0)
+        }
+    }
+
     /**
      * onServiceConnected is called by serviceConnection when the Service is connected.
      * Extracted to this function to keep serviceConnection small
@@ -105,42 +134,17 @@ class MainActivity : AppCompatActivity() {
         // We use !! because onServiceConnected is called after signalSenderService is set
         // I.e., it should never happen that it is null, and we want to be informed if it is
         signalSenderService!!.statusUpdateCallback = { status ->
-            onSignalSenderStatusChanged(status)
+            this.signalSenderStatus = status
+            updateUI()
         }
 
-        // Sometimes the first SignalSenderStatusChanged happens before the service is connected
-        // Therefore, explicitly request the status when connected
-        showTetheringHelperStatus(getTetheringHelperStatus(signalSenderService!!.signalSenderStatus))
-    }
-
-    /**
-     * onSignalSenderStatusChanged is needed so that the activity can be informed about
-     * status changes of SignalSender.
-     */
-    private fun onSignalSenderStatusChanged(signalSenderStatus: SignalSenderStatus) {
-        Log.d(TAG, "SignalSenderStatus changed: $signalSenderStatus")
-        showTetheringHelperStatus(getTetheringHelperStatus(signalSenderStatus))
-    }
-
-    /**
-     * Encapsulate the UI changes that happen when TetheringHelperStatus changes
-     */
-    private fun showTetheringHelperStatus(tetheringHelperStatus: TetheringHelperStatus) {
-        binding.textViewStatus.text = "$tetheringHelperStatus"
-    }
-
-    /**
-     * Handy function that gets the TetheringHelperStatus
-     */
-    private fun getTetheringHelperStatus(signalSenderStatus: SignalSenderStatus): TetheringHelperStatus {
-        if (!tetheringHelperEnabled) {
-            return TetheringHelperStatus.DISABLED
+        signalSenderService?.let { service ->
+            this.signalSenderStatus = service.signalSenderStatus
         }
-        return when (signalSenderStatus) {
-            SignalSenderStatus.ACTIVE -> TetheringHelperStatus.ACTIVE
-            SignalSenderStatus.INACTIVE -> TetheringHelperStatus.INACTIVE
-        }
+
+        updateUI()
     }
+
 
     /**
      * Starts the first time setup if necessary. First time setup is used to grant permissions
