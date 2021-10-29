@@ -62,7 +62,7 @@ class PhoneSignal(val quality: SignalQuality, val type: SignalType) {
     companion object {
         fun getSignal(telephonyManager: TelephonyManager): PhoneSignal {
             val quality = SignalQuality.fromQuality(telephonyManager.signalStrength!!.level)
-            var type: SignalType? = null
+            val type: SignalType?
 
             try {
                 type = SignalType.fromDataNetworkType(telephonyManager.dataNetworkType)
@@ -71,7 +71,7 @@ class PhoneSignal(val quality: SignalQuality, val type: SignalType) {
                 throw e
             }
 
-            return PhoneSignal(quality, type!!)
+            return PhoneSignal(quality, type)
         }
     }
 
