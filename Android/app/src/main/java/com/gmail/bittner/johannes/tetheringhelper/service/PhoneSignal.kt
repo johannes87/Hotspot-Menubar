@@ -1,5 +1,7 @@
 package com.gmail.bittner.johannes.tetheringhelper.service
 
+import android.os.Build
+import android.telephony.TelephonyDisplayInfo
 import android.telephony.TelephonyManager
 import android.util.Log
 
@@ -31,11 +33,42 @@ enum class SignalType(val type: String) {
     THREE_G("3G"),
     HSDPA("H"),
     LTE("LTE"),
-    FIVE_G("5G");
+    FIVE_G("5G"),
+    FIVE_G_PLUS("5G+");
 
     companion object {
-        fun fromDataNetworkType(dataNetworkType: Int): SignalType {
-            // TODO: support 5G
+        fun fromAndroidData(
+            dataNetworkType: Int,
+            telephonyDisplayInfo: TelephonyDisplayInfo?
+        ): SignalType {
+            // lots of edge cases; dataNetworkType alone is not sufficient to determine 5G
+            // see the following links:
+            // https://source.android.com/devices/tech/connect/acts-5g-testing
+            // https://developer.android.com/reference/android/telephony/TelephonyDisplayInfo#OVERRIDE_NETWORK_TYPE_NR_ADVANCED
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R &&
+                telephonyDisplayInfo != null
+            ) {
+                if (dataNetworkType == TelephonyManager.NETWORK_TYPE_LTE &&
+                    telephonyDisplayInfo.overrideNetworkType == TelephonyDisplayInfo.OVERRIDE_NETWORK_TYPE_NR_NSA
+                ) {
+                    return FIVE_G
+                }
+
+                // Android 11 is still used and MMWAVE value might be returned
+                @Suppress("DEPRECATION")
+                if (Build.VERSION.SDK_INT == Build.VERSION_CODES.R &&
+                    telephonyDisplayInfo.overrideNetworkType == TelephonyDisplayInfo.OVERRIDE_NETWORK_TYPE_NR_NSA_MMWAVE
+                ) {
+                    return FIVE_G_PLUS
+                }
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S &&
+                    telephonyDisplayInfo.overrideNetworkType == TelephonyDisplayInfo.OVERRIDE_NETWORK_TYPE_NR_ADVANCED
+                ) {
+                    return FIVE_G_PLUS
+                }
+            }
+
             return when (dataNetworkType) {
                 TelephonyManager.NETWORK_TYPE_GPRS -> TWO_G
                 TelephonyManager.NETWORK_TYPE_EDGE -> EDGE
@@ -52,6 +85,7 @@ enum class SignalType(val type: String) {
                 TelephonyManager.NETWORK_TYPE_EHRPD -> HSDPA
                 TelephonyManager.NETWORK_TYPE_HSPAP -> HSDPA
                 TelephonyManager.NETWORK_TYPE_LTE -> LTE
+                TelephonyManager.NETWORK_TYPE_NR -> FIVE_G
                 else -> NO_SIGNAL
             }
         }
@@ -60,17 +94,20 @@ enum class SignalType(val type: String) {
 
 class PhoneSignal(val quality: SignalQuality, val type: SignalType) {
     companion object {
-        fun getSignal(telephonyManager: TelephonyManager): PhoneSignal {
-            val quality = SignalQuality.fromQuality(telephonyManager.signalStrength!!.level)
-            val type: SignalType?
-
+        fun getSignal(
+            telephonyManager: TelephonyManager,
+            telephonyDisplayInfo: TelephonyDisplayInfo?
+        ): PhoneSignal {
+            val dataNetworkType: Int
             try {
-                type = SignalType.fromDataNetworkType(telephonyManager.dataNetworkType)
+                dataNetworkType = telephonyManager.dataNetworkType
             } catch (e: SecurityException) {
                 Log.e(TAG, "Required permissions missing. This should never happen, please report a bug.")
                 throw e
             }
 
+            val quality = SignalQuality.fromQuality(telephonyManager.signalStrength!!.level)
+            val type = SignalType.fromAndroidData(dataNetworkType, telephonyDisplayInfo)
             return PhoneSignal(quality, type)
         }
     }

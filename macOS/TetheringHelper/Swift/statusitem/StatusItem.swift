@@ -86,8 +86,8 @@ class StatusItem: StatusItemDelegate {
         let fontBig = NSFont.systemFont(ofSize: 7)
 
         var font: NSFont
-        if self.signalType == SignalType.lte {
-            // the string "LTE" requires more space
+        if self.signalType == .lte || self.signalType == .five_g_plus {
+            // some signal types require more space
             font = fontSmall
         } else {
             font = fontBig

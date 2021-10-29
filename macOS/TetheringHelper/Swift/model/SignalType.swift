@@ -16,5 +16,6 @@ enum SignalType: String {
     case hsdpa = "H"
     case lte = "LTE"
     case five_g = "5G"
+    case five_g_plus = "5G+"
 }
 
