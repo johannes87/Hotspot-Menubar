@@ -52,6 +52,7 @@ class DataUsageViewController: NSViewController {
         monthFormatter.calendar = Calendar.init(identifier: .gregorian)
 
         processSessions()
+        currentDate = lastSessionCreated!
     }
 
     override func viewDidAppear() {
@@ -98,8 +99,6 @@ class DataUsageViewController: NSViewController {
 
         firstSessionCreated = tetheringSessions.last?.created
         lastSessionCreated = tetheringSessions.first?.created
-
-        currentDate = lastSessionCreated!
 
         aggregateDataUsageByMonthAndDay(tetheringSessions: tetheringSessions)
     }
