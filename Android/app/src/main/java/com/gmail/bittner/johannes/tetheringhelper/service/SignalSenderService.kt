@@ -135,7 +135,11 @@ class SignalSenderService : Service() {
         notificationManager.createNotificationChannel(channel)
 
         val contentIntent = Intent(this, MainActivity::class.java).let { intent ->
-            PendingIntent.getActivity(this, 0, intent, 0)
+            PendingIntent.getActivity(
+                this,
+                0,
+                intent,
+                PendingIntent.FLAG_IMMUTABLE)
         }
 
         val builder = NotificationCompat.Builder(this, notificationChannelId)
