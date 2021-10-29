@@ -53,6 +53,8 @@ captures/
 # no need to commit zoom-level changes of layout xml files
 .idea/misc.xml
 
+.idea/deploymentTargetDropDown.xml
+
 # Keystore files
 # Uncomment the following lines if you do not want to check your keystore files in.
 #*.jks
