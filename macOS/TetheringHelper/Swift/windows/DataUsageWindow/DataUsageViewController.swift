@@ -123,7 +123,7 @@ class DataUsageViewController: NSViewController {
         visualizeCurrentDate()
     }
 
-    /// Finds an month that has TetheringSession objects
+    /// Finds a month that has TetheringSession objects
     ///
     /// - Parameter searchDirection: in which direction the search should be performed
     /// - Returns: A `Date` object with the next or previous month, or `nil` if none was found.
