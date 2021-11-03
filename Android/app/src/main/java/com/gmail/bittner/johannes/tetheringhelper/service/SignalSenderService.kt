@@ -151,7 +151,7 @@ class SignalSenderService : Service() {
 
         val notification = builder
             .setContentTitle(notificationText)
-            .setSmallIcon(R.mipmap.ic_launcher)
+            .setSmallIcon(R.drawable.ic_notification)
             .setOngoing(true)
             .setOnlyAlertOnce(true)
             .setPriority(NotificationCompat.PRIORITY_MIN)
