@@ -22,8 +22,8 @@ class AutostartReceiver : BroadcastReceiver() {
             return
         }
 
-        Intent(context, SignalSenderService::class.java).also { intent ->
-            context?.startForegroundService(intent)
+        Intent(context, SignalSenderService::class.java).also { serviceIntent ->
+            context?.startForegroundService(serviceIntent)
         }
         Log.i(TAG, "Starting SignalSenderService on boot")
     }
