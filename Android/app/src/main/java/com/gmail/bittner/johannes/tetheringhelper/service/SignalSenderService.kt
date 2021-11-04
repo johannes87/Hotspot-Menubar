@@ -40,18 +40,21 @@ enum class SignalSenderStatus {
  * @see https://robertohuertas.com/2019/06/29/android_foreground_services/
  */
 class SignalSenderService : Service() {
-    private var isRunning = false
-    private lateinit var signalSender: SignalSender
-    private lateinit var sharedPreferences: SharedPreferences
-    private lateinit var hotspotStateReceiver: BroadcastReceiver
-
+    /**
+     * Used by other components to get the signalSenderStatus
+     */
     var signalSenderStatus: SignalSenderStatus = SignalSenderStatus.INACTIVE
         private set
-
     /**
      * statusUpdateCallback will be set by connecting components who want to receive status updates
      */
     var statusUpdateCallback: ((status: SignalSenderStatus) -> Unit)? = null
+
+    private lateinit var signalSender: SignalSender
+    private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var hotspotStateReceiver: BroadcastReceiver
+
+    private var isRunning = false
 
     override fun onCreate() {
         Log.d(TAG, "onCreate")
