@@ -40,7 +40,6 @@ enum class SignalSenderStatus {
  * @see https://robertohuertas.com/2019/06/29/android_foreground_services/
  */
 class SignalSenderService : Service() {
-    // TODO: service needs to check permissions on startup because the permission grants might get lost
     private var isRunning = false
     private lateinit var signalSender: SignalSender
     private lateinit var sharedPreferences: SharedPreferences
