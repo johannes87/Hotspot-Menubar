@@ -36,6 +36,9 @@ class SignalSender(private val phoneName: String, private val context: Context) 
             return
         }
         isRunning = true
+
+        telephonyManager = context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
+
         serverSocket = ServerSocket(0)
         bonjourPublisher = BonjourPublisher(
             serviceName = phoneName,
@@ -43,8 +46,6 @@ class SignalSender(private val phoneName: String, private val context: Context) 
             port = serverSocket.localPort
         )
         bonjourPublisher.publish()
-
-        telephonyManager = context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
 
         // Avoid NoClassDefFoundError on older Android versions
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -61,8 +62,9 @@ class SignalSender(private val phoneName: String, private val context: Context) 
         if (!isRunning) {
             return
         }
-        Log.d(TAG, "Stopping")
         isRunning = false
+
+        Log.d(TAG, "Stopping")
         serverLoopJob?.cancel()
         bonjourPublisher.unpublish()
         fiveGDetection?.teardown()
