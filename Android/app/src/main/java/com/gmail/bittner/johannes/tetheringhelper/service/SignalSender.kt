@@ -55,10 +55,6 @@ class SignalSender(private val phoneName: String, private val context: Context) 
         serverLoopJob = coroutineScope.launch {
             serverLoop()
         }
-
-        // TODO: get wifi lock: https://developer.android.com/reference/android/net/wifi/WifiManager.WifiLock.html
-        // maybe wifi lock is not necessary, test this. hotspot might keep wifi active anyway
-        // TODO: request disabling auto-reset of permissions
     }
 
     fun stop() {
