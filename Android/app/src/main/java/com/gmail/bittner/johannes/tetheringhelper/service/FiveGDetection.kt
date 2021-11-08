@@ -15,7 +15,7 @@ private const val TAG = "FiveGDetection"
  * NSA (non-standalone) 5G networks are not detectable with dataNetworkType
  *
  * This class also exists to avoid `NoClassDefFoundError` exceptions for class TelephonyCallback,
- * which happen on older Android API levels when this class is references in SignalSender.
+ * which happen on older Android API levels when this class is referenced in SignalSender.
  *
  * @see https://developer.android.com/about/versions/11/features/5g#detection
  */
