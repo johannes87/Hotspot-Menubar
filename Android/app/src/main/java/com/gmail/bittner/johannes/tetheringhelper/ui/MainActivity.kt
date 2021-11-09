@@ -19,6 +19,10 @@ import com.gmail.bittner.johannes.tetheringhelper.service.SignalSenderServiceBin
 import com.gmail.bittner.johannes.tetheringhelper.service.SignalSenderStatus
 import com.gmail.bittner.johannes.tetheringhelper.utils.Permissions
 import com.gmail.bittner.johannes.tetheringhelper.utils.SharedPreferencesKeys
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 private const val TAG = "MainActivity"
 
@@ -35,6 +39,7 @@ class MainActivity : AppCompatActivity() {
             SharedPreferencesKeys.tetheringHelperEnabled,
             false
         )
+    private val coroutineScope = CoroutineScope(Dispatchers.Main)
 
     private val serviceConnection = object : ServiceConnection {
         override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
@@ -65,17 +70,23 @@ class MainActivity : AppCompatActivity() {
         updateUI()
 
         binding.switchEnableService.setOnCheckedChangeListener { _, isChecked ->
-            sharedPreferences.edit().apply {
-                putBoolean(SharedPreferencesKeys.tetheringHelperEnabled, isChecked)
-                apply()
-            }
+            coroutineScope.launch {
+                // hack: leave a bit time before service starting/stopping happens, to avoid
+                // jumpy switch animation because starting/stopping happens in main thread
+                delay(300)
 
-            if (isChecked) {
-                // service is destroyed when switch gets unchecked, so the connection is lost.
-                // we need to reconnect when switch gets checked.
-                connectToService()
-            } else {
-                updateUI()
+                sharedPreferences.edit().apply {
+                    putBoolean(SharedPreferencesKeys.tetheringHelperEnabled, isChecked)
+                    apply()
+                }
+
+                if (isChecked) {
+                    // service is destroyed when switch gets unchecked, so the connection is lost.
+                    // we need to reconnect when switch gets checked.
+                    connectToService()
+                } else {
+                    updateUI()
+                }
             }
         }
 
