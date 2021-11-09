@@ -60,8 +60,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="450" height="89"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jll-Eq-s4J">
-                                <rect key="frame" x="85" y="52" width="278" height="18"/>
-                                <buttonCell key="cell" type="check" title="Start Hotspot Menubar on system startup" bezelStyle="regularSquare" imagePosition="left" refusesFirstResponder="YES" inset="2" id="PGo-CZ-KTF">
+                                <rect key="frame" x="116" y="52" width="217" height="18"/>
+                                <buttonCell key="cell" type="check" title="Start Hotspot Menubar on login" bezelStyle="regularSquare" imagePosition="left" refusesFirstResponder="YES" inset="2" id="PGo-CZ-KTF">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
