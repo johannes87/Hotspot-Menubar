@@ -56,27 +56,25 @@ class SignalSenderService : Service() {
 
     private var isRunning = false
 
-    override fun onCreate() {
-        Log.d(TAG, "onCreate")
-        super.onCreate()
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-        signalSender = SignalSender(
-            sharedPreferences.getString(SharedPreferencesKeys.phoneName, "")!!,
-            this)
-
-        createHotspotStateListener()
-    }
-
     override fun onBind(intent: Intent?): IBinder {
         return SignalSenderServiceBinder(this)
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        Log.d(TAG, "onStartCommand; isRunning=$isRunning")
+        Log.d(TAG, "onStartCommand: isRunning=$isRunning")
         if (isRunning) {
+            Log.d(TAG, "onStartCommand: not starting, as service is already running")
             return super.onStartCommand(intent, flags, startId)
         }
         isRunning = true
+
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        signalSender = SignalSender(
+            sharedPreferences.getString(SharedPreferencesKeys.phoneName, "")!!,
+            this
+        )
+
+        createHotspotStateListener()
 
         if (isWifiHotspotActive()) {
             // startSignalSender creates the foreground notification
