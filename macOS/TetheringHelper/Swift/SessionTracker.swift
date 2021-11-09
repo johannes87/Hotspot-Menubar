@@ -16,7 +16,7 @@ enum GetBytesTransferredError: Error {
 }
 
 /// SessionTracker's responsibility is to determine when a tethering session with a phone starts and ends, determine the amount
-/// of data transferred in a session, and persistently store that information via SessionStorage
+/// of data transferred in a session, and persistently store that information via PersistentContainer
 class SessionTracker {
     private(set) var bytesTransferred: UInt64 = 0
 
