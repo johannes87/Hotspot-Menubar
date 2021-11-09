@@ -32,7 +32,10 @@ class MainActivity : AppCompatActivity() {
     private var signalSenderStatus: SignalSenderStatus = SignalSenderStatus.INACTIVE
 
     private val tetheringHelperEnabled: Boolean
-        get() = sharedPreferences.getBoolean(SharedPreferencesKeys.tetheringHelperEnabled, false)
+        get() = sharedPreferences.getBoolean(
+            SharedPreferencesKeys.tetheringHelperEnabled,
+            false
+        )
 
     private val serviceConnection = object : ServiceConnection {
         override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
@@ -153,7 +156,10 @@ class MainActivity : AppCompatActivity() {
      * @return true if first time setup is necessary, false otherwise
      */
     private fun maybeStartFirstTimeSetup(): Boolean {
-        val firstTimeSetupFinished = sharedPreferences.getBoolean(SharedPreferencesKeys.firstTimeSetupFinished, false)
+        val firstTimeSetupFinished = sharedPreferences.getBoolean(
+            SharedPreferencesKeys.firstTimeSetupFinished,
+            false
+        )
         if (firstTimeSetupFinished && Permissions.allPermissionsGranted(this)) {
             return false
         }
