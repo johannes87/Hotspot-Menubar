@@ -1,15 +1,15 @@
 <resources>
-    <string name="app_name">TetheringHelper</string>
+    <string name="app_name">Hotspot Menubar</string>
     <string name="first_time_setup_need_permissions">I need some permissions to run. Please click the green button to grant them. You can click on the \"Why?\" button for the reason why I need those.</string>
     <string name="first_time_setup_grant_button_text">Okay</string>
     <string name="first_time_setup_continue_button_text">Continue</string>
     <string name="first_time_setup_still_need_permissions">You need to grant me permissions to continue.</string>
     <string name="first_time_setup_phone_name_label">Phone name:</string>
     <string name="first_time_setup_need_phone_name">And finally I need a name for your phone of your choosing, so macOS knows who it is talking to.</string>
-    <string name="first_time_setup_welcome">Welcome to the first time setup of TetheringHelper!</string>
+    <string name="first_time_setup_welcome">Welcome to the first time setup of Hotspot Menubar!</string>
     <string name="first_time_setup_why_button_text">Why?</string>
     <string name="first_time_setup_why_dialog_title">Why the permissions are required</string>
-    <string name="first_time_setup_why_dialog_message">TetheringHelper needs to figure out how good the signal quality to your phone carrier is. To do this it needs the permission to make and manage phone calls.</string>
+    <string name="first_time_setup_why_dialog_message">Hotspot Menubar needs to figure out how good the signal quality to your phone carrier is. To do this it needs the permission to make and manage phone calls.</string>
     <string name="first_time_setup_why_dialog_positive_button_text">Back to first time setup</string>
     <string name="main_activity_service_status_hotspot_on">Connected macOS devices can now see this phone\'s signal strength.</string>
     <string name="main_activity_service_status_hotspot_off">If you enable your hotspot, connected macOS devices can see this phone\'s signal strength.</string>
@@ -18,7 +18,7 @@
     <string name="main_activity_wifi_image_view_content_description">Hotspot menu bar icon is active</string>
     <string name="service_notification_tetheringhelper_is_running">TetheringHelper is running</string>
     <string name="service_notification_tetheringhelper_is_inactive">TetheringHelper is inactive</string>
-    <string name="service_notification_channel_name">TetheringHelper active</string>
+    <string name="service_notification_channel_name">Hotspot Menubar active</string>
     <string name="how_to_connect_activity_web_link">https://bit.ly/hotspot-menubar-item</string>
     <string name="how_to_connect_activity_to_connect_a_macOS_device">To connect a macOS device, download the hotspot menu bar item app on your Mac:</string>
     <string name="how_to_connect_activity_app_store_badge_content_description">Download on the Mac App Store</string>
