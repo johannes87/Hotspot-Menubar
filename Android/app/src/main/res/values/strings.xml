@@ -16,8 +16,8 @@
     <string name="main_activity_switch_description">Enable hotspot menu bar item</string>
     <string name="main_activity_how_to_connect_link">How to connect a device</string>
     <string name="main_activity_wifi_image_view_content_description">Hotspot menu bar icon is active</string>
-    <string name="service_notification_tetheringhelper_is_running">TetheringHelper is running</string>
-    <string name="service_notification_tetheringhelper_is_inactive">TetheringHelper is inactive</string>
+    <string name="service_notification_tetheringhelper_is_running">Broadcasting signal</string>
+    <string name="service_notification_tetheringhelper_is_inactive">Not broadcasting</string>
     <string name="service_notification_channel_name">Hotspot Menubar active</string>
     <string name="how_to_connect_activity_web_link">https://bit.ly/hotspot-menubar-item</string>
     <string name="how_to_connect_activity_to_connect_a_macOS_device">To connect a macOS device, download the hotspot menu bar item app on your Mac:</string>
