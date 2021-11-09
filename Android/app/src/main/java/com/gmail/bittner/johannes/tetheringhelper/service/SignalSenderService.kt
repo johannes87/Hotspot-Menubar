@@ -1,6 +1,9 @@
 package com.gmail.bittner.johannes.tetheringhelper.service
 
-import android.app.*
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.app.Service
 import android.content.*
 import android.net.wifi.WifiManager
 import android.os.Binder
@@ -9,8 +12,8 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.preference.PreferenceManager
 import com.gmail.bittner.johannes.tetheringhelper.R
-import com.gmail.bittner.johannes.tetheringhelper.utils.SharedPreferencesKeys
 import com.gmail.bittner.johannes.tetheringhelper.ui.MainActivity
+import com.gmail.bittner.johannes.tetheringhelper.utils.SharedPreferencesKeys
 
 private const val TAG = "SignalSenderService"
 
@@ -122,7 +125,9 @@ class SignalSenderService : Service() {
         val notificationChannelId = "NOTIFICATION_CHANNEL_TETHERING_HELPER_STATUS"
         val notificationId = 1
 
-        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val notificationManager =
+            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
         val channel = NotificationChannel(
             notificationChannelId,
             getString(R.string.service_notification_channel_name),
@@ -141,14 +146,17 @@ class SignalSenderService : Service() {
                 this,
                 0,
                 intent,
-                PendingIntent.FLAG_IMMUTABLE)
+                PendingIntent.FLAG_IMMUTABLE
+            )
         }
 
         val builder = NotificationCompat.Builder(this, notificationChannelId)
 
         val notificationText = when (signalSenderStatus) {
-            SignalSenderStatus.INACTIVE -> getString(R.string.service_notification_tetheringhelper_is_inactive)
-            SignalSenderStatus.ACTIVE -> getString(R.string.service_notification_tetheringhelper_is_running)
+            SignalSenderStatus.INACTIVE ->
+                getString(R.string.service_notification_tetheringhelper_is_inactive)
+            SignalSenderStatus.ACTIVE ->
+                getString(R.string.service_notification_tetheringhelper_is_running)
         }
 
         val notification = builder

@@ -16,7 +16,10 @@ private const val TAG = "AutostartReceiver"
 class AutostartReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
-        val tetheringHelperEnabled = sharedPreferences.getBoolean(SharedPreferencesKeys.tetheringHelperEnabled, false)
+        val tetheringHelperEnabled = sharedPreferences.getBoolean(
+            SharedPreferencesKeys.tetheringHelperEnabled,
+            false
+        )
         if (!tetheringHelperEnabled) {
             Log.i(TAG, "Not starting because disabled in preferences")
             return

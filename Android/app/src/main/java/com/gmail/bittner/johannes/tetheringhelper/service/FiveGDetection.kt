@@ -46,7 +46,8 @@ class FiveGDetection(
 
     @RequiresApi(Build.VERSION_CODES.S)
     private fun setupForAndroid12AndUp() {
-        android12AndUpCallback = object : TelephonyCallback(), TelephonyCallback.DisplayInfoListener {
+        android12AndUpCallback = object :
+            TelephonyCallback(), TelephonyCallback.DisplayInfoListener {
             override fun onDisplayInfoChanged(telephonyDisplayInfo: TelephonyDisplayInfo) {
                 Log.d(TAG, "Android 12 and up, display info changed: $telephonyDisplayInfo")
                 this@FiveGDetection.telephonyDisplayInfo = telephonyDisplayInfo
@@ -56,7 +57,8 @@ class FiveGDetection(
         android12AndUpCallback?.let { callback ->
             telephonyManager.registerTelephonyCallback(
                 Executors.newSingleThreadExecutor(),
-                callback)
+                callback
+            )
         }
     }
 

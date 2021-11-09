@@ -1,0 +1,2 @@
+[*.kt]
+disabled_rules=no-wildcard-imports,import-ordering

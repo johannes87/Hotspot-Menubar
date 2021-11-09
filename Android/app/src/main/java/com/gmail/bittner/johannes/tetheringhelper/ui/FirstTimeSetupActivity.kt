@@ -10,9 +10,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.preference.PreferenceManager
 import com.gmail.bittner.johannes.tetheringhelper.R
-import com.gmail.bittner.johannes.tetheringhelper.utils.SharedPreferencesKeys
 import com.gmail.bittner.johannes.tetheringhelper.databinding.ActivityFirstTimeSetupBinding
 import com.gmail.bittner.johannes.tetheringhelper.utils.Permissions
+import com.gmail.bittner.johannes.tetheringhelper.utils.SharedPreferencesKeys
 
 class FirstTimeSetupActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFirstTimeSetupBinding
@@ -43,7 +43,7 @@ class FirstTimeSetupActivity : AppCompatActivity() {
         builder.apply {
             setTitle(R.string.first_time_setup_why_dialog_title)
             setMessage(R.string.first_time_setup_why_dialog_message)
-            setPositiveButton(R.string.first_time_setup_why_dialog_positive_button_text) { _,_ -> }
+            setPositiveButton(R.string.first_time_setup_why_dialog_positive_button_text) { _, _ -> }
         }
 
         builder.create().show()

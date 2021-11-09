@@ -2,17 +2,13 @@ package com.gmail.bittner.johannes.tetheringhelper.service
 
 import android.content.Context
 import android.os.Build
-import android.telephony.TelephonyCallback
-import android.telephony.TelephonyDisplayInfo
 import android.telephony.TelephonyManager
 import android.util.Log
-import androidx.annotation.RequiresApi
-import kotlinx.coroutines.*
 import java.io.PrintWriter
 import java.net.ServerSocket
 import java.net.Socket
 import java.net.SocketException
-import java.util.concurrent.Executors
+import kotlinx.coroutines.*
 
 private const val TAG = "SignalSender"
 

@@ -18,7 +18,7 @@ private const val TAG = "RunConditionMonitor"
  */
 class RunConditionMonitor(
     private val context: Context
-    ): LifecycleObserver  {
+) : LifecycleObserver {
     private val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
     private val tetheringHelperEnabled: Boolean
         get() = sharedPreferences.getBoolean(SharedPreferencesKeys.tetheringHelperEnabled, false)

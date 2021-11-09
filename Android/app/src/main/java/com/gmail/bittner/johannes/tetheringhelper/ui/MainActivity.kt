@@ -12,14 +12,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.preference.PreferenceManager
 import com.gmail.bittner.johannes.tetheringhelper.R
-import com.gmail.bittner.johannes.tetheringhelper.utils.SharedPreferencesKeys
 import com.gmail.bittner.johannes.tetheringhelper.databinding.ActivityMainBinding
 import com.gmail.bittner.johannes.tetheringhelper.service.RunConditionMonitor
 import com.gmail.bittner.johannes.tetheringhelper.service.SignalSenderService
 import com.gmail.bittner.johannes.tetheringhelper.service.SignalSenderServiceBinder
 import com.gmail.bittner.johannes.tetheringhelper.service.SignalSenderStatus
 import com.gmail.bittner.johannes.tetheringhelper.utils.Permissions
-
+import com.gmail.bittner.johannes.tetheringhelper.utils.SharedPreferencesKeys
 
 private const val TAG = "MainActivity"
 
@@ -39,13 +38,13 @@ class MainActivity : AppCompatActivity() {
 
     private val serviceConnection = object : ServiceConnection {
         override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
-            Log.d(TAG,"Service connected")
+            Log.d(TAG, "Service connected")
             signalSenderService = (service as? SignalSenderServiceBinder)?.service
             this@MainActivity.onServiceConnected()
         }
 
         override fun onServiceDisconnected(name: ComponentName?) {
-            Log.d(TAG,"Service disconnected")
+            Log.d(TAG, "Service disconnected")
             signalSenderService = null
         }
     }
@@ -111,9 +110,11 @@ class MainActivity : AppCompatActivity() {
             binding.textViewServiceStatus.visibility = View.VISIBLE
 
             if (signalSenderStatus == SignalSenderStatus.ACTIVE) {
-                binding.textViewServiceStatus.text = getString(R.string.main_activity_service_status_hotspot_on)
+                binding.textViewServiceStatus.text =
+                    getString(R.string.main_activity_service_status_hotspot_on)
             } else {
-                binding.textViewServiceStatus.text = getString(R.string.main_activity_service_status_hotspot_off)
+                binding.textViewServiceStatus.text =
+                    getString(R.string.main_activity_service_status_hotspot_off)
             }
         } else {
             binding.switchEnableService.isChecked = false
@@ -147,7 +148,6 @@ class MainActivity : AppCompatActivity() {
 
         updateUI()
     }
-
 
     /**
      * Starts the first time setup if necessary. First time setup is used to grant permissions
