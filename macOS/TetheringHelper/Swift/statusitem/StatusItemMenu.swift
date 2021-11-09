@@ -28,7 +28,7 @@ class StatusItemMenu: NSObject, StatusItemMenuDelegate {
         "Preferences...",
         comment: "menu item in menubar for showing preferences window")
     private static let aboutMenuItemTitle = NSLocalizedString(
-        "About TetheringHelper",
+        "About Hotspot Menubar",
         comment: "menu item in menubar for showing about window")
     private static let quitMenuItemTitle = NSLocalizedString(
         "Quit",

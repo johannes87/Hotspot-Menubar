@@ -59,7 +59,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		8F1F5C02270207E600FD1B4F /* TetheringHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TetheringHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F1F5C02270207E600FD1B4F /* Hotspot Menubar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hotspot Menubar.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F1F5C07270207E800FD1B4F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8F1F5C0A270207E800FD1B4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		8F1F5C0C270207E800FD1B4F /* TetheringHelper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TetheringHelper.entitlements; sourceTree = "<group>"; };
@@ -131,7 +131,7 @@
 		8F1F5C03270207E600FD1B4F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8F1F5C02270207E600FD1B4F /* TetheringHelper.app */,
+				8F1F5C02270207E600FD1B4F /* Hotspot Menubar.app */,
 				8F1F5C5C27020D1E00FD1B4F /* TetheringHelperAutostart.app */,
 			);
 			name = Products;
@@ -293,7 +293,7 @@
 			);
 			name = TetheringHelper;
 			productName = TetheringHelper;
-			productReference = 8F1F5C02270207E600FD1B4F /* TetheringHelper.app */;
+			productReference = 8F1F5C02270207E600FD1B4F /* Hotspot Menubar.app */;
 			productType = "com.apple.product-type.application";
 		};
 		8F1F5C5B27020D1E00FD1B4F /* TetheringHelperAutostart */ = {
@@ -577,7 +577,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gmail.bittner.johannes.TetheringHelper;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Hotspot Menubar";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -606,7 +606,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gmail.bittner.johannes.TetheringHelper;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Hotspot Menubar";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};

@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Fs6-Kd-ZjQ">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Fs6-Kd-ZjQ">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19162"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19455"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Window Controller-->
         <scene sceneID="pwh-6h-dxx">
             <objects>
-                <windowController id="Fs6-Kd-ZjQ" customClass="FrontCenterWindowController" customModule="TetheringHelper" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController id="Fs6-Kd-ZjQ" customClass="FrontCenterWindowController" customModule="Hotspot_Menubar" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="G5f-Fk-3pJ">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -54,13 +55,13 @@
         <!--General-->
         <scene sceneID="FL4-k5-KdL">
             <objects>
-                <viewController title="General" id="cIp-Ar-Thd" customClass="GeneralPreferencesViewController" customModule="TetheringHelper" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="General" id="cIp-Ar-Thd" customClass="GeneralPreferencesViewController" customModule="Hotspot_Menubar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" translatesAutoresizingMaskIntoConstraints="NO" id="Tu2-S8-ZrN">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="89"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jll-Eq-s4J">
-                                <rect key="frame" x="89" y="52" width="270" height="18"/>
-                                <buttonCell key="cell" type="check" title="Start TetheringHelper on system startup" bezelStyle="regularSquare" imagePosition="left" refusesFirstResponder="YES" inset="2" id="PGo-CZ-KTF">
+                                <rect key="frame" x="85" y="52" width="278" height="18"/>
+                                <buttonCell key="cell" type="check" title="Start Hotspot Menubar on system startup" bezelStyle="regularSquare" imagePosition="left" refusesFirstResponder="YES" inset="2" id="PGo-CZ-KTF">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
