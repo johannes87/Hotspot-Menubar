@@ -7,6 +7,7 @@
 
 import Cocoa
 
+/// DataUsageWindowController's job is to differentiate whether sessions are available in CoreData, and show the appropriate view controller.
 class DataUsageWindowController: FrontCenterWindowController {
     
     private var noSessionsViewController: NSViewController!
