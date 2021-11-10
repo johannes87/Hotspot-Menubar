@@ -40,5 +40,8 @@ class DataUsageWindowController: FrontCenterWindowController {
         } else {
             contentViewController = hasSessionsViewController
         }
+
+        // center, changing contentViewController makes this necessary
+        window?.center()
     }
 }
