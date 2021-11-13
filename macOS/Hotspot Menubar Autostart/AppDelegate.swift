@@ -21,13 +21,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     private func mainAppIsRunning() -> Bool {
-        let helperBundleIdentifier = Bundle.main.bundleIdentifier
-        let mainBundleName = helperBundleIdentifier?.replacingOccurrences(of: "Autostart", with: "")
-
+        let mainBundleName = "com.gmail.bittner.johannes.Hotspot-Menubar"
         let isRunning = NSWorkspace.shared.runningApplications.contains {
             $0.bundleIdentifier == mainBundleName
         }
-
         return isRunning
     }
 
@@ -41,4 +38,3 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSWorkspace.shared.launchApplication(path as String)
     }
 }
-

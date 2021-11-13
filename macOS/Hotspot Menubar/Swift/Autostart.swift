@@ -11,11 +11,7 @@ import ServiceManagement
 import os
 
 class Autostart {
-    private static var helperBundleName: String {
-        get {
-            return "\(Bundle.main.bundleIdentifier!)Autostart"
-        }
-    }
+    private static var helperBundleName = "com.gmail.bittner.johannes.Hotspot-Menubar-Autostart"
 
     static func setAutostart(enabled: Bool) {
         os_log("Setting autostart of %{public}@ to %{public}@", helperBundleName, String(describing: enabled))
