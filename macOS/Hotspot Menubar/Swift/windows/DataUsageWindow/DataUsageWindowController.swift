@@ -1,6 +1,6 @@
 //
 //  DataUsageWindowController.swift
-//  TetheringHelper
+//  Hotspot Menubar
 //
 //  Created by Johannes Bittner on 20.10.21.
 //

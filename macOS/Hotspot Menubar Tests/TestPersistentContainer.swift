@@ -1,6 +1,6 @@
 //
 //  TestPersistentContainer.swift
-//  TetheringHelper
+//  Hotspot Menubar
 //
 //  Created by Johannes Bittner on 11.10.21.
 //

@@ -1,6 +1,6 @@
 //
 //  Autostart.swift
-//  TetheringHelper
+//  Hotspot Menubar
 //
 //  Created by Johannes Bittner on 23.06.20.
 //  Copyright © 2020 Johannes Bittner. All rights reserved.

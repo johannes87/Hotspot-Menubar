@@ -1,6 +1,6 @@
 //
 //  FirsttimeUserViewController.swift
-//  TetheringHelper
+//  Hotspot Menubar
 //
 //  Created by Johannes Bittner on 06.10.21.
 //

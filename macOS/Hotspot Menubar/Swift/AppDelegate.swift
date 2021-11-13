@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  TetheringHelper
+//  Hotspot Menubar
 //
 //  Created by Johannes Bittner on 03.08.19.
 //  Copyright © 2019 Johannes Bittner. All rights reserved.

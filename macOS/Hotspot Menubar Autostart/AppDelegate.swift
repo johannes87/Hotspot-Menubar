@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  TetheringHelperAutostart
+//  Hotspot Menubar Autostart
 //
 //  Created by Johannes Bittner on 25.06.20.
 //  Copyright © 2020 Johannes Bittner. All rights reserved.
@@ -12,7 +12,7 @@ import os
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-    /// This helper app is needed to autostart TetheringHelper. It will always be running if autostart is enabled in preferences
+    /// This helper app is needed to autostart Hotspot Menubar. It will always be running if autostart is enabled in preferences
     /// Derived from this article: https://medium.com/@hoishing/adding-login-items-for-macos-7d76458f6495
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         if !mainAppIsRunning() {

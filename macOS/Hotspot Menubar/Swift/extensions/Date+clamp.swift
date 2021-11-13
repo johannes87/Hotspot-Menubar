@@ -1,6 +1,6 @@
 //
 //  Date+Clamp.swift
-//  TetheringHelper
+//  Hotspot Menubar
 //
 //  Created by Johannes Bittner on 03.08.21.
 //  Copyright © 2021 Johannes Bittner. All rights reserved.

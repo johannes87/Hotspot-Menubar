@@ -1,6 +1,6 @@
 //
 //  StatusItem.swift
-//  TetheringHelper
+//  Hotspot Menubar
 //
 //  Created by Johannes Bittner on 12.08.19.
 //  Copyright © 2019 Johannes Bittner. All rights reserved.

@@ -1,6 +1,6 @@
 //
 //  GooglePlayBadgeImageView.swift
-//  TetheringHelper
+//  Hotspot Menubar
 //
 //  Created by Johannes Bittner on 07.10.21.
 //

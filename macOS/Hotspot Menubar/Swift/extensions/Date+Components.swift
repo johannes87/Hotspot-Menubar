@@ -1,6 +1,6 @@
 //
 //  Date+Components.swift
-//  TetheringHelper
+//  Hotspot Menubar
 //
 //  Created by Johannes Bittner on 28.07.21.
 //  Copyright © 2021 Johannes Bittner. All rights reserved.
