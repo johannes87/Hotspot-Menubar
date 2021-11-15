@@ -23,7 +23,11 @@ class DataUsageVisualization : NSView {
     }
 
     private var dayUsagePopover: NSPopover?
+    private var dayUsagePopoverTimer: Timer?
+
     private let popoverDateFormatter = DateFormatter()
+    private let dayUsagePopoverDelay: TimeInterval = 0.5
+
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -154,7 +158,7 @@ class DataUsageVisualization : NSView {
         dayUsagePopover = NSPopover()
         dayUsagePopover!.contentSize = contentViewController.view.frame.size
         dayUsagePopover!.behavior = .transient
-        dayUsagePopover!.animates = false
+        dayUsagePopover!.animates = true
         dayUsagePopover!.contentViewController = contentViewController
 
         // ensure the popover is shown inside the view
@@ -170,10 +174,20 @@ class DataUsageVisualization : NSView {
     }
 
     override func mouseEntered(with event: NSEvent) {
-        showDayUsagePopover(
-            forDataUsage: event.trackingArea?.userInfo?[trackingAreaKeyDataUsage]! as! DataUsage,
-            onRect: event.trackingArea!.rect
-        )
+        if let timer = dayUsagePopoverTimer {
+            timer.invalidate()
+            dayUsagePopoverTimer = nil
+        }
+
+        dayUsagePopoverTimer = Timer.scheduledTimer(
+            withTimeInterval: TimeInterval(dayUsagePopoverDelay),
+            repeats: false
+        ) { _ in
+            self.showDayUsagePopover(
+                forDataUsage: event.trackingArea?.userInfo?[trackingAreaKeyDataUsage]! as! DataUsage,
+                onRect: event.trackingArea!.rect
+            )
+        }
     }
 
     override func mouseExited(with event: NSEvent) {
