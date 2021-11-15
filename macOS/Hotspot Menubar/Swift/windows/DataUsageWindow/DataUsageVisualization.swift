@@ -22,7 +22,7 @@ class DataUsageVisualization : NSView {
         }
     }
 
-    private var dailyDataUsagePopover: NSPopover?
+    private var dayUsagePopover: NSPopover?
     private let popoverDateFormatter = DateFormatter()
 
     required init?(coder: NSCoder) {
@@ -115,8 +115,7 @@ class DataUsageVisualization : NSView {
         outlinePath.stroke()
     }
 
-    override func mouseEntered(with event: NSEvent) {
-        let dataUsage = event.trackingArea?.userInfo?[trackingAreaKeyDataUsage]! as! DataUsage
+    private func showDayUsagePopover(forDataUsage dataUsage: DataUsage, onRect chartBarRect: NSRect) {
         let popoverTextTemplate = NSLocalizedString("%@ on %@",
                                                     comment: "text shown in popover in data usage window, e.g. '2.34 MB on 4. Oct 2021'")
         let popoverText = String(format: popoverTextTemplate,
@@ -148,32 +147,39 @@ class DataUsageVisualization : NSView {
 
         textField.allowsEditingTextAttributes = true
 
-        if dailyDataUsagePopover != nil {
-            dailyDataUsagePopover!.close()
+        if dayUsagePopover != nil {
+            dayUsagePopover!.close()
         }
 
-        dailyDataUsagePopover = NSPopover()
-        dailyDataUsagePopover!.contentSize = contentViewController.view.frame.size
-        dailyDataUsagePopover!.behavior = .transient
-        dailyDataUsagePopover!.animates = false
-        dailyDataUsagePopover!.contentViewController = contentViewController
-        
+        dayUsagePopover = NSPopover()
+        dayUsagePopover!.contentSize = contentViewController.view.frame.size
+        dayUsagePopover!.behavior = .transient
+        dayUsagePopover!.animates = false
+        dayUsagePopover!.contentViewController = contentViewController
+
         // ensure the popover is shown inside the view
         var preferredEdge: NSRectEdge
         let popoverDecorationSize: CGFloat = 15
-        if contentViewController.view.frame.width + popoverDecorationSize > event.trackingArea!.rect.origin.x {
+        if contentViewController.view.frame.width + popoverDecorationSize > chartBarRect.origin.x {
             preferredEdge = .maxX
         } else {
             preferredEdge = .minX
         }
-        
-        dailyDataUsagePopover!.show(relativeTo: event.trackingArea!.rect, of: self, preferredEdge: preferredEdge)
+
+        dayUsagePopover!.show(relativeTo: chartBarRect, of: self, preferredEdge: preferredEdge)
+    }
+
+    override func mouseEntered(with event: NSEvent) {
+        showDayUsagePopover(
+            forDataUsage: event.trackingArea?.userInfo?[trackingAreaKeyDataUsage]! as! DataUsage,
+            onRect: event.trackingArea!.rect
+        )
     }
 
     override func mouseExited(with event: NSEvent) {
-        if let popover = dailyDataUsagePopover {
+        if let popover = dayUsagePopover {
             popover.close()
-            dailyDataUsagePopover = nil
+            dayUsagePopover = nil
         }
     }
 }
