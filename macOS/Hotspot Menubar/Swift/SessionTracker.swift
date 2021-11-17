@@ -15,6 +15,8 @@ enum GetBytesTransferredError: Error {
     case noDataFound
 }
 
+typealias IfaddrsBytesTransferred = (inputBytes: UInt32, outputBytes: UInt32)
+
 /// SessionTracker's responsibility is to determine when a tethering session with a phone starts and ends, determine the amount
 /// of data transferred in a session, and persistently store that information via PersistentContainer
 class SessionTracker {
@@ -23,7 +25,7 @@ class SessionTracker {
     private let statusItemMenuDelegate: StatusItemMenuDelegate
 
     private var sessionActive = false
-    private var lastIfaddrsBytesTransferred: (inputBytes: UInt32, outputBytes: UInt32) = (0, 0)
+    private var lastIfaddrsBytesTransferred: IfaddrsBytesTransferred = (0, 0)
     private var currentTetheringSession: TetheringSession?
 
     init(statusItemMenuDelegate: StatusItemMenuDelegate) {
@@ -40,35 +42,52 @@ class SessionTracker {
             let ifaddrsBytesTransferred = try! getIfaddrsBytesTransferred(forInterface: localInterfaceName!)
 
             if !sessionActive {
-                os_log(.debug, "Starting session to %@", String(describing: pairingStatus.phoneName))
-                sessionActive = true
-
-                lastIfaddrsBytesTransferred = ifaddrsBytesTransferred
-
-                currentTetheringSession = PersistentContainer.shared.createNewTetheringSession(withPhoneName: pairingStatus.phoneName!)
+                createSession(
+                    phoneName: pairingStatus.phoneName!,
+                    ifaddrsBytesTransferred: ifaddrsBytesTransferred
+                )
             } else {
-                let inputBytesDifference = getBytesTransferredDifference(
-                    bytesPast: lastIfaddrsBytesTransferred.inputBytes,
-                    bytesNow: ifaddrsBytesTransferred.inputBytes)
-                let outputBytesDifference = getBytesTransferredDifference(
-                    bytesPast: lastIfaddrsBytesTransferred.outputBytes,
-                    bytesNow: ifaddrsBytesTransferred.outputBytes)
-                bytesTransferred += UInt64(inputBytesDifference) + UInt64(outputBytesDifference)
-                
-                PersistentContainer.shared.updateTetheringSession(
-                    currentTetheringSession!,
-                    withBytesTransferred: Int64(bytesTransferred))
-
-                os_log(.debug, "Transferred %f MB this session", Double(bytesTransferred) / 1024 / 1024)
-                lastIfaddrsBytesTransferred = ifaddrsBytesTransferred
+                updateSession(ifaddrsBytesTransferred: ifaddrsBytesTransferred)
             }
         } else if sessionActive {
-            os_log(.debug, "Session lost")
-            sessionActive = false
-            lastIfaddrsBytesTransferred = (0, 0)
-            bytesTransferred = 0
-            currentTetheringSession = nil
+            closeSession()
         }
+    }
+
+    private func createSession(phoneName: String, ifaddrsBytesTransferred: IfaddrsBytesTransferred) {
+        os_log(.debug, "Starting session to %@", phoneName)
+        sessionActive = true
+        lastIfaddrsBytesTransferred = ifaddrsBytesTransferred
+        currentTetheringSession = PersistentContainer.shared.createNewTetheringSession(
+            withPhoneName: phoneName
+        )
+    }
+
+    private func updateSession(ifaddrsBytesTransferred: IfaddrsBytesTransferred) {
+        let inputBytesDifference = getBytesTransferredDifference(
+            bytesPast: lastIfaddrsBytesTransferred.inputBytes,
+            bytesNow: ifaddrsBytesTransferred.inputBytes)
+        let outputBytesDifference = getBytesTransferredDifference(
+            bytesPast: lastIfaddrsBytesTransferred.outputBytes,
+            bytesNow: ifaddrsBytesTransferred.outputBytes)
+
+        bytesTransferred += UInt64(inputBytesDifference) + UInt64(outputBytesDifference)
+
+        PersistentContainer.shared.updateTetheringSession(
+            currentTetheringSession!,
+            withBytesTransferred: Int64(bytesTransferred)
+        )
+
+        os_log(.debug, "Transferred %f MB this session", Double(bytesTransferred) / 1024 / 1024)
+        lastIfaddrsBytesTransferred = ifaddrsBytesTransferred
+    }
+
+    private func closeSession() {
+        os_log(.debug, "Session lost")
+        sessionActive = false
+        lastIfaddrsBytesTransferred = (0, 0)
+        bytesTransferred = 0
+        currentTetheringSession = nil
     }
 
     private func getBytesTransferredDifference(bytesPast: UInt32, bytesNow: UInt32) -> UInt32 {
@@ -87,7 +106,7 @@ class SessionTracker {
     ///
     /// Parameter `forInterface`: The interface for which to acquire the number of bytes transferred
     /// Returns: a tuple with two UInt32, which corresponds to `getifaddrs`'s `ifi_ibytes` and `ifi_obytes`
-    private func getIfaddrsBytesTransferred(forInterface: String) throws -> (inputBytes: UInt32, outputBytes: UInt32) {
+    private func getIfaddrsBytesTransferred(forInterface: String) throws -> IfaddrsBytesTransferred {
         // the initial pointer is needed so it can be passed to "freeifaddrs" at the end
         var initialIfaddrs: UnsafeMutablePointer<ifaddrs>!
 
