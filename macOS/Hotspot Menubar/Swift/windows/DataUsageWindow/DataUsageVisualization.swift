@@ -191,6 +191,12 @@ class DataUsageVisualization : NSView {
     }
 
     override func mouseExited(with event: NSEvent) {
+        // don't show popover when mouse already has left the tracking rect
+        if let timer = dayUsagePopoverTimer {
+            timer.invalidate()
+            dayUsagePopoverTimer = nil
+        }
+
         if let popover = dayUsagePopover {
             popover.close()
             dayUsagePopover = nil
