@@ -52,16 +52,36 @@ class StatusItem: StatusItemDelegate {
     private func drawSignalBars(_ dstRect: NSRect) {
         let signalBarRectWidth: CGFloat = 3
 
-        let signalBar1Rect = NSRect(x: NSMinX(dstRect), y: NSMinY(dstRect), width: signalBarRectWidth, height: 3)
+        let signalBar1Rect = NSRect(
+            x: NSMinX(dstRect),
+            y: NSMinY(dstRect),
+            width: signalBarRectWidth,
+            height: 3
+        )
         drawSignalBar(signalBarRect: signalBar1Rect, minActiveQuality: 1)
 
-        let signalBar2Rect = NSRect(x: NSMinX(dstRect) + signalBarRectWidth+2, y: NSMinY(dstRect), width: signalBarRectWidth, height: 6)
+        let signalBar2Rect = NSRect(
+            x: NSMinX(dstRect) + signalBarRectWidth + 2,
+            y: NSMinY(dstRect),
+            width: signalBarRectWidth,
+            height: 6
+        )
         drawSignalBar(signalBarRect: signalBar2Rect, minActiveQuality: 2)
 
-        let signalBar3Rect = NSRect(x: NSMinX(dstRect) + signalBarRectWidth*2+4, y: NSMinY(dstRect), width: signalBarRectWidth, height: 10)
+        let signalBar3Rect = NSRect(
+            x: NSMinX(dstRect) + signalBarRectWidth * 2 + 4,
+            y: NSMinY(dstRect),
+            width: signalBarRectWidth,
+            height: 10
+        )
         drawSignalBar(signalBarRect: signalBar3Rect, minActiveQuality: 3)
 
-        let signalBar4Rect = NSRect(x: NSMinX(dstRect) + signalBarRectWidth*3+6, y: NSMinY(dstRect), width: signalBarRectWidth, height: 14)
+        let signalBar4Rect = NSRect(
+            x: NSMinX(dstRect) + signalBarRectWidth * 3 + 6,
+            y: NSMinY(dstRect),
+            width: signalBarRectWidth,
+            height: 14
+        )
         drawSignalBar(signalBarRect: signalBar4Rect, minActiveQuality: 4)
     }
 
