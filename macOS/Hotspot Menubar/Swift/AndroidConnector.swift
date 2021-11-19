@@ -103,16 +103,17 @@ class AndroidConnector: NSObject {
             if error != nil || !messageComplete {
                 return
             }
+            guard let unwrappedData = data else { return }
 
             let decoder = JSONDecoder()
 
-            if let serviceResponse = try? decoder.decode(ServiceResponse.self, from: data!) {
-                phoneSignal = PhoneSignal(
-                    quality: SignalQuality(rawValue: serviceResponse.quality)!,
-                    type: SignalType(rawValue: serviceResponse.type)!
-                )
+            if let serviceResponse = try? decoder.decode(ServiceResponse.self, from: unwrappedData),
+               let signalQuality = SignalQuality(rawValue: serviceResponse.quality),
+               let signalType = SignalType(rawValue: serviceResponse.type)
+            {
+                phoneSignal = PhoneSignal(quality: signalQuality, type: signalType)
             } else {
-                os_log(.debug, "Unexpected data received: %@", String(decoding: data!, as: UTF8.self))
+                os_log(.debug, "Unexpected data received: %@", String(decoding: unwrappedData, as: UTF8.self))
             }
         }
 
