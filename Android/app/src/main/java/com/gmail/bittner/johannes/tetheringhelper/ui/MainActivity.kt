@@ -119,6 +119,7 @@ class MainActivity : AppCompatActivity() {
             binding.imageViewWifiSymbol.visibility = View.VISIBLE
             binding.buttonHowToConnectLink.visibility = View.VISIBLE
             binding.textViewServiceStatus.visibility = View.VISIBLE
+            binding.textViewKeepsRunning.visibility = View.VISIBLE
 
             if (signalSenderStatus == SignalSenderStatus.ACTIVE) {
                 binding.textViewServiceStatus.text =
@@ -132,6 +133,7 @@ class MainActivity : AppCompatActivity() {
             binding.imageViewWifiSymbol.visibility = View.INVISIBLE
             binding.buttonHowToConnectLink.visibility = View.INVISIBLE
             binding.textViewServiceStatus.visibility = View.INVISIBLE
+            binding.textViewKeepsRunning.visibility = View.INVISIBLE
         }
     }
 
