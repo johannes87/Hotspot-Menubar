@@ -221,7 +221,7 @@ class DataUsageViewController: NSViewController {
         monthYearFormatter.setLocalizedDateFormatFromTemplate("MMMMyyyy")
         
         let windowTitleTemplate = NSLocalizedString(
-            "Data usage on %@",
+            "Data usage in %@",
             comment: "window title for data usage window, e.g. 'Data usage on September 2021'")
 
         view.window?.title = String(format: windowTitleTemplate, monthYearFormatter.string(from: currentDate))
