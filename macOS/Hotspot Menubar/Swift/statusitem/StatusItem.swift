@@ -134,7 +134,7 @@ class StatusItem: StatusItemDelegate {
         )
     }
 
-    /// - Returns: the NSAttributedString that is going to be drawn into the status item
+    /// - Returns: the NSAttributedString for the signal type label that is going to be drawn into the status item
     private func getAttributedStringForSignalType() -> NSAttributedString {
         let attributes: [NSAttributedString.Key: Any] = [
             .font: NSFont.systemFont(ofSize: 10),
