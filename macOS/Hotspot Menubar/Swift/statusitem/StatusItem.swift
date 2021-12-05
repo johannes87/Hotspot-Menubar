@@ -74,7 +74,7 @@ class StatusItem: StatusItemDelegate {
             x: NSMinX(dstRect) + xOffset,
             y: NSMinY(dstRect) + yOffset,
             width: signalBarRectWidth,
-            height: 4
+            height: 3
         )
         drawSignalBar(signalBarRect: signalBar1Rect, minActiveQuality: 1)
 
