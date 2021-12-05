@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F4494DA275CCF30002DA46E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4494D9275CCF30002DA46E /* Constants.swift */; };
 		8F58FB0E273FCF32003C2B5C /* Hotspot Menubar Autostart.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8F80D8D8273E6A06005CFA1E /* Hotspot Menubar Autostart.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8F80D8C6273E635E005CFA1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F80D8C5273E635E005CFA1E /* AppDelegate.swift */; };
 		8F80D8CA273E6360005CFA1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F80D8C9273E6360005CFA1E /* Assets.xcassets */; };
@@ -37,7 +38,6 @@
 		8FCC065C273FE63F00E29FB6 /* PhoneSignal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCC0657273FE63F00E29FB6 /* PhoneSignal.swift */; };
 		8FCC065D273FE63F00E29FB6 /* PairingStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCC0658273FE63F00E29FB6 /* PairingStatus.swift */; };
 		8FCC0661273FE66900E29FB6 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8FCC065E273FE66900E29FB6 /* DataModel.xcdatamodeld */; };
-		8FCC0662273FE66900E29FB6 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 8FCC0660273FE66900E29FB6 /* Localizable.stringsdict */; };
 		8FCC0666273FE7E400E29FB6 /* FirsttimeUserWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FCC0663273FE7E400E29FB6 /* FirsttimeUserWindow.storyboard */; };
 		8FCC0667273FE7E400E29FB6 /* PreferencesWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FCC0664273FE7E400E29FB6 /* PreferencesWindow.storyboard */; };
 		8FCC0668273FE7E400E29FB6 /* DataUsageWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FCC0665273FE7E400E29FB6 /* DataUsageWindow.storyboard */; };
@@ -58,6 +58,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8F4494D9275CCF30002DA46E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8F58FB0F273FD1C9003C2B5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F80D8C2273E635E005CFA1E /* Hotspot Menubar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hotspot Menubar.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F80D8C5273E635E005CFA1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -92,7 +93,6 @@
 		8FCC0657273FE63F00E29FB6 /* PhoneSignal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneSignal.swift; sourceTree = "<group>"; };
 		8FCC0658273FE63F00E29FB6 /* PairingStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PairingStatus.swift; sourceTree = "<group>"; };
 		8FCC065F273FE66900E29FB6 /* TetheringHelper.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TetheringHelper.xcdatamodel; sourceTree = "<group>"; };
-		8FCC0660273FE66900E29FB6 /* Localizable.stringsdict */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.stringsdict; path = Localizable.stringsdict; sourceTree = "<group>"; };
 		8FCC0663273FE7E400E29FB6 /* FirsttimeUserWindow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FirsttimeUserWindow.storyboard; sourceTree = "<group>"; };
 		8FCC0664273FE7E400E29FB6 /* PreferencesWindow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PreferencesWindow.storyboard; sourceTree = "<group>"; };
 		8FCC0665273FE7E400E29FB6 /* DataUsageWindow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DataUsageWindow.storyboard; sourceTree = "<group>"; };
@@ -142,7 +142,6 @@
 				8FCC060E273FDE9C00E29FB6 /* UI */,
 				8FCC060D273FDE9300E29FB6 /* Swift */,
 				8F80D8CE273E6360005CFA1E /* Hotspot_Menubar.entitlements */,
-				8FCC0660273FE66900E29FB6 /* Localizable.stringsdict */,
 				8FCC065E273FE66900E29FB6 /* DataModel.xcdatamodeld */,
 			);
 			path = "Hotspot Menubar";
@@ -172,6 +171,7 @@
 				8FCC0643273FE60300E29FB6 /* Autostart.swift */,
 				8FCC0644273FE60300E29FB6 /* PreferencesStorage.swift */,
 				8FCC0646273FE60300E29FB6 /* SessionTracker.swift */,
+				8F4494D9275CCF30002DA46E /* Constants.swift */,
 				8FCC0642273FE60300E29FB6 /* Utils.swift */,
 			);
 			path = Swift;
@@ -358,7 +358,6 @@
 				8FCC0667273FE7E400E29FB6 /* PreferencesWindow.storyboard in Resources */,
 				8FCC0668273FE7E400E29FB6 /* DataUsageWindow.storyboard in Resources */,
 				8F80D8CD273E6360005CFA1E /* Main.storyboard in Resources */,
-				8FCC0662273FE66900E29FB6 /* Localizable.stringsdict in Resources */,
 				8FCC0666273FE7E400E29FB6 /* FirsttimeUserWindow.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -404,6 +403,7 @@
 				8F80D8C6273E635E005CFA1E /* AppDelegate.swift in Sources */,
 				8FCC0641273FE5C100E29FB6 /* GeneralPreferencesViewController.swift in Sources */,
 				8FCC063A273FE59200E29FB6 /* DataUsageWindowController.swift in Sources */,
+				8F4494DA275CCF30002DA46E /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

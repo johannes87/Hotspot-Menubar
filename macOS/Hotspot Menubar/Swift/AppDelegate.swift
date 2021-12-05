@@ -60,7 +60,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     localInterfaceName: self.androidConnector.tetheringInterfaceName
                 )
 
-                Thread.sleep(forTimeInterval: Double(PreferencesStorage.refreshStatusDelay))
+                Thread.sleep(forTimeInterval: Constants.refreshStatusDelay)
             }
         }
     }
