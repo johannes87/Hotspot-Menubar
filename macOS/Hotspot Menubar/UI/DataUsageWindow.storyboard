@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="7xb-sn-KMt">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="7xb-sn-KMt">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19162"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19455"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Window Controller-->
         <scene sceneID="saw-Lf-tAa">
             <objects>
-                <windowController id="7xb-sn-KMt" customClass="DataUsageWindowController" customModule="TetheringHelper" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController id="7xb-sn-KMt" customClass="DataUsageWindowController" customModule="Hotspot_Menubar" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Data usage" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="DTf-WQ-qCY">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -35,12 +35,12 @@
         <scene sceneID="v71-ph-GM0">
             <objects>
                 <customObject id="1ie-EV-MYo" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <viewController storyboardIdentifier="hasSessions" id="j7e-sW-Ewm" customClass="DataUsageViewController" customModule="TetheringHelper" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="hasSessions" id="j7e-sW-Ewm" customClass="DataUsageViewController" customModule="Hotspot_Menubar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="DX1-Yo-aRa">
                         <rect key="frame" x="0.0" y="0.0" width="747" height="304"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sYK-Ef-aiC" customClass="DataUsageVisualization" customModule="TetheringHelper" customModuleProvider="target">
+                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sYK-Ef-aiC" customClass="DataUsageVisualization" customModule="Hotspot_Menubar" customModuleProvider="target">
                                 <rect key="frame" x="60" y="46" width="627" height="238"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </customView>
@@ -50,6 +50,7 @@
                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSGoBackTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" refusesFirstResponder="YES" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1gU-VD-MS3">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent"></string>
                                 </buttonCell>
                                 <connections>
                                     <action selector="prevMonthButtonClicked:" target="j7e-sW-Ewm" id="2WH-5O-fAE"/>
@@ -58,7 +59,7 @@
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Wn-3k-8Di">
                                 <rect key="frame" x="123" y="20" width="216" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="1312.42 MB used in" id="a3n-wb-f5Y">
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="1234,56 MB used in" id="a3n-wb-f5Y">
                                     <font key="font" metaFont="systemBold"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -106,6 +107,7 @@
                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSGoForwardTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" refusesFirstResponder="YES" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Epr-oI-b5Z">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent"></string>
                                 </buttonCell>
                                 <connections>
                                     <action selector="nextMonthButtonClicked:" target="j7e-sW-Ewm" id="yk4-bE-1Zt"/>
