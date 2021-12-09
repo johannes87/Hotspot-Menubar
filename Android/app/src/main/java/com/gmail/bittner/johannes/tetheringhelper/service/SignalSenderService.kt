@@ -65,7 +65,7 @@ class SignalSenderService : Service() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         // There's no way in Android >= O to check if the service is running before starting
-        // see the comments in this question: https://stackoverflow.com/a/5921190/96205
+        // see the comments in this answer: https://stackoverflow.com/a/5921190/96205
         Log.d(TAG, "onStartCommand: isRunning=$isRunning")
         if (isRunning) {
             Log.d(TAG, "onStartCommand: not starting, as service is already running")
