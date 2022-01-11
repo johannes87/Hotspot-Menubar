@@ -144,7 +144,6 @@
 				8FCC060E273FDE9C00E29FB6 /* UI */,
 				8FCC060D273FDE9300E29FB6 /* Swift */,
 				8F80D8CE273E6360005CFA1E /* Hotspot_Menubar.entitlements */,
-				8FCC065E273FE66900E29FB6 /* DataModel.xcdatamodeld */,
 			);
 			path = "Hotspot Menubar";
 			sourceTree = "<group>";
@@ -213,8 +212,9 @@
 		8FCC062A273FE4E600E29FB6 /* model */ = {
 			isa = PBXGroup;
 			children = (
-				8FCC0658273FE63F00E29FB6 /* PairingStatus.swift */,
+				8FCC065E273FE66900E29FB6 /* DataModel.xcdatamodeld */,
 				8FCC0655273FE63F00E29FB6 /* PersistentContainer.swift */,
+				8FCC0658273FE63F00E29FB6 /* PairingStatus.swift */,
 				8FCC0657273FE63F00E29FB6 /* PhoneSignal.swift */,
 				8FCC0654273FE63F00E29FB6 /* SignalQuality.swift */,
 				8FCC0656273FE63F00E29FB6 /* SignalType.swift */,
