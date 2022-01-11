@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F21CF5B275D6FC500F5E06C /* TransferNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F21CF5A275D6FC500F5E06C /* TransferNotification.swift */; };
 		8F4494DA275CCF30002DA46E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4494D9275CCF30002DA46E /* Constants.swift */; };
 		8F58FB0E273FCF32003C2B5C /* Hotspot Menubar Autostart.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8F80D8D8273E6A06005CFA1E /* Hotspot Menubar Autostart.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8F80D8C6273E635E005CFA1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F80D8C5273E635E005CFA1E /* AppDelegate.swift */; };
@@ -58,6 +59,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8F21CF5A275D6FC500F5E06C /* TransferNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferNotification.swift; sourceTree = "<group>"; };
 		8F4494D9275CCF30002DA46E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8F58FB0F273FD1C9003C2B5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F80D8C2273E635E005CFA1E /* Hotspot Menubar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hotspot Menubar.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -170,6 +172,7 @@
 				8FCC0645273FE60300E29FB6 /* AndroidConnector.swift */,
 				8FCC0643273FE60300E29FB6 /* Autostart.swift */,
 				8FCC0644273FE60300E29FB6 /* PreferencesStorage.swift */,
+				8F21CF5A275D6FC500F5E06C /* TransferNotification.swift */,
 				8FCC0646273FE60300E29FB6 /* SessionTracker.swift */,
 				8F4494D9275CCF30002DA46E /* Constants.swift */,
 				8FCC0642273FE60300E29FB6 /* Utils.swift */,
@@ -390,6 +393,7 @@
 				8FCC065C273FE63F00E29FB6 /* PhoneSignal.swift in Sources */,
 				8FCC0635273FE58700E29FB6 /* FrontCenterWindowController.swift in Sources */,
 				8FCC065D273FE63F00E29FB6 /* PairingStatus.swift in Sources */,
+				8F21CF5B275D6FC500F5E06C /* TransferNotification.swift in Sources */,
 				8FCC0648273FE60300E29FB6 /* Autostart.swift in Sources */,
 				8FF1EB4F273FF98D00BB9916 /* TestPersistentContainer.swift in Sources */,
 				8FCC065A273FE63F00E29FB6 /* PersistentContainer.swift in Sources */,

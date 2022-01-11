@@ -15,6 +15,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     private var androidConnector: AndroidConnector!
     private var sessionTracker: SessionTracker!
+    private var transferNotification: TransferNotification!
 
     private var firsttimeUserWindowController: NSWindowController?
 
@@ -23,6 +24,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // don't show dock icon or application menu
         NSApp.setActivationPolicy(.accessory)
 
+        PreferencesStorage.registerDefaults()
         firsttimeUserDialog()
 
         androidConnector = AndroidConnector(
@@ -32,6 +34,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         sessionTracker = SessionTracker(
             statusItemMenuDelegate: statusItem.statusItemMenu
         )
+        transferNotification = TransferNotification()
+
         startBackgroundThread()
     }
 
@@ -55,9 +59,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
                 // TODO: why does getSignal take so long?
                 self.androidConnector.getSignal()
+
                 self.sessionTracker.trackSession(
                     pairingStatus: self.androidConnector.pairingStatus,
                     localInterfaceName: self.androidConnector.tetheringInterfaceName
+                )
+
+                self.transferNotification.maybeShowNotification(
+                    sessionActive: self.sessionTracker.sessionActive,
+                    bytesTransferred: self.sessionTracker.bytesTransferred
                 )
 
                 Thread.sleep(forTimeInterval: Constants.refreshStatusDelay)

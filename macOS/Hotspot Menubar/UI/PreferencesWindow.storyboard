@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Fs6-Kd-ZjQ">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Fs6-Kd-ZjQ">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19455"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -57,10 +57,10 @@
             <objects>
                 <viewController title="General" id="cIp-Ar-Thd" customClass="GeneralPreferencesViewController" customModule="Hotspot_Menubar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" translatesAutoresizingMaskIntoConstraints="NO" id="Tu2-S8-ZrN">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="56"/>
+                        <rect key="frame" x="0.0" y="0.0" width="487" height="86"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jll-Eq-s4J">
-                                <rect key="frame" x="116" y="19" width="217" height="18"/>
+                                <rect key="frame" x="66" y="49" width="217" height="18"/>
                                 <buttonCell key="cell" type="check" title="Start Hotspot Menubar on login" bezelStyle="regularSquare" imagePosition="left" refusesFirstResponder="YES" inset="2" id="PGo-CZ-KTF">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -69,12 +69,76 @@
                                     <action selector="runOnStartupCheckboxChanged:" target="cIp-Ar-Thd" id="BSK-V2-BsU"/>
                                 </connections>
                             </button>
+                            <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vUh-MA-u8Z">
+                                <rect key="frame" x="329" y="17" width="19" height="27"/>
+                                <stepperCell key="cell" continuous="YES" alignment="left" increment="10" maxValue="1000" id="fG4-xX-07Y"/>
+                                <connections>
+                                    <binding destination="Umc-up-e8l" name="value" keyPath="values.transferNotifyAfterMegabytes" id="aSO-c5-5Je">
+                                        <dictionary key="options">
+                                            <integer key="NSNullPlaceholder" value="0"/>
+                                        </dictionary>
+                                    </binding>
+                                    <binding destination="Umc-up-e8l" name="enabled" keyPath="values.enableTransferNotification" id="owY-6z-24X"/>
+                                </connections>
+                            </stepper>
+                            <textField verticalHuggingPriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="B4e-Ud-Max">
+                                <rect key="frame" x="270" y="20" width="54" height="21"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" title="123" drawsBackground="YES" id="lVn-XN-zCb">
+                                    <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" formatWidth="-1" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="8cv-bW-LeZ">
+                                        <real key="minimum" value="1"/>
+                                        <real key="maximum" value="9999"/>
+                                    </numberFormatter>
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="Umc-up-e8l" name="value" keyPath="values.transferNotifyAfterMegabytes" id="85w-40-1wF">
+                                        <dictionary key="options">
+                                            <integer key="NSNullPlaceholder" value="0"/>
+                                        </dictionary>
+                                    </binding>
+                                    <binding destination="Umc-up-e8l" name="enabled" keyPath="values.enableTransferNotification" id="qev-6A-une"/>
+                                </connections>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="R6l-lN-SPh">
+                                <rect key="frame" x="66" y="22" width="196" height="18"/>
+                                <buttonCell key="cell" type="check" title="Notify me after transferring:" bezelStyle="regularSquare" imagePosition="left" refusesFirstResponder="YES" state="on" inset="2" id="ulX-Mf-eVf">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="Umc-up-e8l" name="value" keyPath="values.enableTransferNotification" id="KMS-Ic-poy">
+                                        <dictionary key="options">
+                                            <integer key="NSNullPlaceholder" value="0"/>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GZS-in-fq0">
+                                <rect key="frame" x="351" y="23" width="71" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Megabytes" id="jzJ-JP-NCh">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="jll-Eq-s4J" firstAttribute="top" secondItem="Tu2-S8-ZrN" secondAttribute="top" constant="20" symbolic="YES" id="6We-hc-rM7"/>
-                            <constraint firstAttribute="height" constant="56" id="Lsq-dV-hWz"/>
-                            <constraint firstAttribute="width" constant="450" id="TLf-R3-2ED"/>
-                            <constraint firstItem="jll-Eq-s4J" firstAttribute="centerX" secondItem="Tu2-S8-ZrN" secondAttribute="centerX" id="rcW-yc-itv"/>
+                            <constraint firstItem="R6l-lN-SPh" firstAttribute="baseline" secondItem="B4e-Ud-Max" secondAttribute="baseline" id="0RP-TW-Rza"/>
+                            <constraint firstItem="B4e-Ud-Max" firstAttribute="centerY" secondItem="vUh-MA-u8Z" secondAttribute="centerY" id="7Nw-db-iKB"/>
+                            <constraint firstItem="vUh-MA-u8Z" firstAttribute="leading" secondItem="B4e-Ud-Max" secondAttribute="trailing" constant="8" symbolic="YES" id="BXV-wt-1pH"/>
+                            <constraint firstItem="B4e-Ud-Max" firstAttribute="leading" secondItem="R6l-lN-SPh" secondAttribute="trailing" constant="8" symbolic="YES" id="C6G-MH-Adx"/>
+                            <constraint firstItem="GZS-in-fq0" firstAttribute="baseline" secondItem="B4e-Ud-Max" secondAttribute="baseline" id="EiW-PD-pAR"/>
+                            <constraint firstAttribute="height" constant="86" id="GsG-aY-EJ5"/>
+                            <constraint firstItem="jll-Eq-s4J" firstAttribute="leading" secondItem="Tu2-S8-ZrN" secondAttribute="leading" constant="68" id="LZo-aT-eOZ"/>
+                            <constraint firstAttribute="bottom" secondItem="B4e-Ud-Max" secondAttribute="bottom" constant="20" symbolic="YES" id="O41-vw-EfV"/>
+                            <constraint firstItem="jll-Eq-s4J" firstAttribute="top" secondItem="Tu2-S8-ZrN" secondAttribute="top" constant="20" symbolic="YES" id="lcb-XI-R5n"/>
+                            <constraint firstAttribute="width" constant="487" id="mpO-Aj-6Ka"/>
+                            <constraint firstItem="B4e-Ud-Max" firstAttribute="bottom" secondItem="vUh-MA-u8Z" secondAttribute="bottom" id="rDQ-w3-333"/>
+                            <constraint firstItem="GZS-in-fq0" firstAttribute="leading" secondItem="vUh-MA-u8Z" secondAttribute="trailing" constant="8" symbolic="YES" id="um0-ha-wlS"/>
+                            <constraint firstAttribute="trailing" secondItem="GZS-in-fq0" secondAttribute="trailing" constant="67" id="wcU-uK-o3I"/>
+                            <constraint firstItem="jll-Eq-s4J" firstAttribute="leading" secondItem="R6l-lN-SPh" secondAttribute="leading" id="zZL-bq-we9"/>
                         </constraints>
                     </view>
                     <connections>
@@ -82,8 +146,9 @@
                     </connections>
                 </viewController>
                 <customObject id="GgR-su-5Gh" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController representsSharedInstance="YES" id="Umc-up-e8l"/>
             </objects>
-            <point key="canvasLocation" x="1016" y="-369"/>
+            <point key="canvasLocation" x="1034.5" y="-354"/>
         </scene>
     </scenes>
     <resources>

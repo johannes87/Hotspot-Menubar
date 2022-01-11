@@ -21,10 +21,10 @@ typealias IfaddrsBytesTransferred = (inputBytes: UInt32, outputBytes: UInt32)
 /// of data transferred in a session, and persistently store that information via PersistentContainer
 class SessionTracker {
     private(set) var bytesTransferred: UInt64 = 0
+    private(set) var sessionActive = false
 
     private let statusItemMenuDelegate: StatusItemMenuDelegate
 
-    private var sessionActive = false
     private var lastIfaddrsBytesTransferred: IfaddrsBytesTransferred = (0, 0)
     private var currentTetheringSession: TetheringSession?
 
