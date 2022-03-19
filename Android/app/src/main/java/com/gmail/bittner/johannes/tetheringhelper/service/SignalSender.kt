@@ -9,6 +9,7 @@ import java.net.ServerSocket
 import java.net.Socket
 import java.net.SocketException
 import kotlinx.coroutines.*
+import java.net.InetSocketAddress
 
 private const val TAG = "SignalSender"
 
@@ -18,6 +19,7 @@ private const val TAG = "SignalSender"
  */
 class SignalSender(private val phoneName: String, private val context: Context) {
     private val coroutineScope = CoroutineScope(Job() + Dispatchers.IO)
+    private val hotspotInterfaceIPv4 = HotspotInterfaceIPv4(context)
 
     private lateinit var serverSocket: ServerSocket
     private lateinit var bonjourPublisher: BonjourPublisher
@@ -31,11 +33,19 @@ class SignalSender(private val phoneName: String, private val context: Context) 
         if (isRunning) {
             return
         }
+        val hotspotInterfaceIPv4 = hotspotInterfaceIPv4.getHotspotIPv4Address() ?: run {
+            Log.d(TAG, "Couldn't get IPv4 of hotspot interface, not starting sender")
+            return
+        }
+        Log.d(TAG, "Found hotspot IPv4: $hotspotInterfaceIPv4")
+
         isRunning = true
 
         telephonyManager = context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
 
-        serverSocket = ServerSocket(0)
+        serverSocket = ServerSocket()
+        serverSocket.bind(InetSocketAddress(hotspotInterfaceIPv4, 0))
+
         bonjourPublisher = BonjourPublisher(
             serviceName = phoneName,
             context = context,

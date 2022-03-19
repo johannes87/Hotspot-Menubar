@@ -14,6 +14,7 @@ import androidx.preference.PreferenceManager
 import com.gmail.bittner.johannes.tetheringhelper.R
 import com.gmail.bittner.johannes.tetheringhelper.ui.MainActivity
 import com.gmail.bittner.johannes.tetheringhelper.utils.SharedPreferencesKeys
+import kotlinx.coroutines.*
 
 private const val TAG = "SignalSenderService"
 
@@ -43,6 +44,8 @@ enum class SignalSenderStatus {
  * @see https://robertohuertas.com/2019/06/29/android_foreground_services/
  */
 class SignalSenderService : Service() {
+    private val mainCoroutineScope = CoroutineScope(Job() + Dispatchers.Main)
+
     /**
      * Used by other components to get the signalSenderStatus
      */
@@ -184,7 +187,14 @@ class SignalSenderService : Service() {
                 val wifiState = extra % 10
                 if (wifiState == WifiManager.WIFI_STATE_ENABLED) {
                     Log.d(TAG, "Hotspot state changed: enabled")
-                    startSignalSender()
+                    // Dispatchers.Main used because FiveGDetection (used during start) fails
+                    // if not run on main thread (when creating PhoneStateListener)
+                    mainCoroutineScope.launch {
+                        // needed because it takes some time for hotspot interface to come up,
+                        // which is necessary to determine the interface IPv4 address
+                        delay(500)
+                        startSignalSender()
+                    }
                 } else if (wifiState == WifiManager.WIFI_STATE_DISABLED) {
                     Log.d(TAG, "Hotspot state changed: disabled")
                     stopSignalSender()
