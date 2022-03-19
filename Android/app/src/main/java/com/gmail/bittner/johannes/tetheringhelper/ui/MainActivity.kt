@@ -114,26 +114,28 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateUI() {
-        if (tetheringHelperEnabled) {
-            binding.switchEnableService.isChecked = true
-            binding.imageViewWifiSymbol.visibility = View.VISIBLE
-            binding.buttonHowToConnectLink.visibility = View.VISIBLE
-            binding.textViewServiceStatus.visibility = View.VISIBLE
-            binding.textViewKeepsRunning.visibility = View.VISIBLE
+        runOnUiThread {
+            if (tetheringHelperEnabled) {
+                binding.switchEnableService.isChecked = true
+                binding.imageViewWifiSymbol.visibility = View.VISIBLE
+                binding.buttonHowToConnectLink.visibility = View.VISIBLE
+                binding.textViewServiceStatus.visibility = View.VISIBLE
+                binding.textViewKeepsRunning.visibility = View.VISIBLE
 
-            if (signalSenderStatus == SignalSenderStatus.ACTIVE) {
-                binding.textViewServiceStatus.text =
-                    getString(R.string.main_activity_service_status_hotspot_on)
+                if (signalSenderStatus == SignalSenderStatus.ACTIVE) {
+                    binding.textViewServiceStatus.text =
+                        getString(R.string.main_activity_service_status_hotspot_on)
+                } else {
+                    binding.textViewServiceStatus.text =
+                        getString(R.string.main_activity_service_status_hotspot_off)
+                }
             } else {
-                binding.textViewServiceStatus.text =
-                    getString(R.string.main_activity_service_status_hotspot_off)
+                binding.switchEnableService.isChecked = false
+                binding.imageViewWifiSymbol.visibility = View.INVISIBLE
+                binding.buttonHowToConnectLink.visibility = View.INVISIBLE
+                binding.textViewServiceStatus.visibility = View.INVISIBLE
+                binding.textViewKeepsRunning.visibility = View.INVISIBLE
             }
-        } else {
-            binding.switchEnableService.isChecked = false
-            binding.imageViewWifiSymbol.visibility = View.INVISIBLE
-            binding.buttonHowToConnectLink.visibility = View.INVISIBLE
-            binding.textViewServiceStatus.visibility = View.INVISIBLE
-            binding.textViewKeepsRunning.visibility = View.INVISIBLE
         }
     }
 
