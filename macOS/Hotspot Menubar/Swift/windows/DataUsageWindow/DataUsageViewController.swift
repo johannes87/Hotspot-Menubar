@@ -53,11 +53,16 @@ class DataUsageViewController: NSViewController {
 
         processSessions()
         currentDate = lastSessionCreated!
+
+        // show data for current date before the view appears to avoid showing the template from the storyboard (happens when the window is first opened)
+        visualizeCurrentDate()
     }
 
     override func viewDidAppear() {
+        // I don't know why, but setting the title in viewDidLoad has no effect
+        showDateInTitle()
+
         observeSessionChanges()
-        visualizeCurrentDate()
     }
     
     override func viewDidDisappear() {
