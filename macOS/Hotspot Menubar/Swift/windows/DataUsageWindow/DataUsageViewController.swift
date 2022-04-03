@@ -88,6 +88,10 @@ class DataUsageViewController: NSViewController {
             .fromYearAndMonth(year: selectedYear, month: currentDate.monthNumber)!
             .clamp(from: firstSessionCreated!, until: lastSessionCreated!)
 
+        if dataUsageByMonthAndDay[currentDate.yearMonthKey] == nil {
+            currentDate = findExistingMonth(searchDirection: .next) ?? lastSessionCreated!
+        }
+
         visualizeCurrentDate()
     }
 
