@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-/// Intended to be used by replacing "PersistentContainer.shared" in the codebase with one of the statically defined TestPersistentContainers
+/// Intended to be used by returning one of the statically defined TestPersistentContainers in "PersistentContainer.shared"
 class TestPersistentContainer: PersistentContainer {
     /// An empty in-memory container containing no sessions
     static let emptyInMemoryShared: TestPersistentContainer = {
