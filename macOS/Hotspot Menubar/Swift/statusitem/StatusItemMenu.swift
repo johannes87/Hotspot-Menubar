@@ -116,7 +116,7 @@ class StatusItemMenu: NSObject, StatusItemMenuDelegate {
         // We don't save the addObserver result because we want the observation to stay active during the lifetime of this app
         let _ = PersistentContainer.observeSessionChanges { [unowned self] session in
             DispatchQueue.main.async {
-                guard let phoneName = pairingStatus.phoneName else { return }
+                guard let phoneName = self.pairingStatus.phoneName else { return }
                 let sessionDuration = session.created!.distance(to: Date())
                 let sessionDurationText = self.sessionDurationFormatter.string(from: sessionDuration)!
                 let dataUsageText = Utils.byteCountFormatter.string(fromByteCount: session.bytesTransferred)
