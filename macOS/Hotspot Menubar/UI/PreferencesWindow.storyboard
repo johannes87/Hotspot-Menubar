@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Fs6-Kd-ZjQ">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Fs6-Kd-ZjQ">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -61,7 +61,7 @@
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jll-Eq-s4J">
                                 <rect key="frame" x="66" y="49" width="217" height="18"/>
-                                <buttonCell key="cell" type="check" title="Start Hotspot Menubar on login" bezelStyle="regularSquare" imagePosition="left" refusesFirstResponder="YES" inset="2" id="PGo-CZ-KTF">
+                                <buttonCell key="cell" type="check" title="Start Hotspot Menubar on login" bezelStyle="regularSquare" imagePosition="left" inset="2" id="PGo-CZ-KTF">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -70,15 +70,15 @@
                                 </connections>
                             </button>
                             <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vUh-MA-u8Z">
-                                <rect key="frame" x="329" y="17" width="19" height="27"/>
+                                <rect key="frame" x="329" y="16" width="19" height="29"/>
                                 <stepperCell key="cell" continuous="YES" alignment="left" increment="10" maxValue="1000" id="fG4-xX-07Y"/>
                                 <connections>
+                                    <binding destination="Umc-up-e8l" name="enabled" keyPath="values.enableTransferNotification" id="owY-6z-24X"/>
                                     <binding destination="Umc-up-e8l" name="value" keyPath="values.transferNotifyAfterMegabytes" id="aSO-c5-5Je">
                                         <dictionary key="options">
                                             <integer key="NSNullPlaceholder" value="0"/>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="Umc-up-e8l" name="enabled" keyPath="values.enableTransferNotification" id="owY-6z-24X"/>
                                 </connections>
                             </stepper>
                             <textField verticalHuggingPriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="B4e-Ud-Max">
@@ -93,17 +93,17 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
+                                    <binding destination="Umc-up-e8l" name="enabled" keyPath="values.enableTransferNotification" id="qev-6A-une"/>
                                     <binding destination="Umc-up-e8l" name="value" keyPath="values.transferNotifyAfterMegabytes" id="85w-40-1wF">
                                         <dictionary key="options">
                                             <integer key="NSNullPlaceholder" value="0"/>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="Umc-up-e8l" name="enabled" keyPath="values.enableTransferNotification" id="qev-6A-une"/>
                                 </connections>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="R6l-lN-SPh">
                                 <rect key="frame" x="66" y="22" width="196" height="18"/>
-                                <buttonCell key="cell" type="check" title="Notify me after transferring:" bezelStyle="regularSquare" imagePosition="left" refusesFirstResponder="YES" state="on" inset="2" id="ulX-Mf-eVf">
+                                <buttonCell key="cell" type="check" title="Notify me after transferring:" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="ulX-Mf-eVf">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
